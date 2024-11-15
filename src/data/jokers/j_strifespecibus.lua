@@ -27,17 +27,36 @@ function Balatrostuck.INIT.Jokers.j_strifespecibus()
         discovered = true,
         atlas = 'HomestuckJokers',
 
-        loc_def = function(card)
+        loc_vars = function(self, info_queue, card)
             local color = G.GAME.BALATROSTUCK.strife_assignment == "Unassigned" and G.C.JOKER_GREY or G.C.SPECIBUS
-            return {}, {
-                { n=G.UIT.C, config={align = "bm", minh = 0.45}, nodes={
-                    {n=G.UIT.C, config={ref_table = self, align = "m", colour = color, r = 0.05, padding = 0.08}, nodes={
-                        {n=G.UIT.T, config={ref_table = G.GAME.BALATROSTUCK, ref_value = 'strife_assignment',colour = G.C.UI.TEXT_LIGHT, scale = 0.32*0.8}}
-                }}}}
-            }
+            return {
+                main_end = {
+                    {
+                        n = G.UIT.C,
+                        config = {align = "bm", minh = 0.45},
+                        nodes = {
+                            {
+                                n = G.UIT.C,
+                                config = {align = "m", colour = color, r = 0.05, padding = 0.08},
+                                nodes = {
+                                    {
+                                        n = G.UIT.T,
+                                        config = {
+                                            ref_table = G.GAME.BALATROSTUCK,
+                                            ref_value = "strife_assignment",
+                                            colour = G.C.UI.TEXT_LIGHT,
+                                            scale = 0.32 * 0.8
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }            
         end,
 
-        calculate = function (self, context)
+        calculate = function (self, card, context)
             if context.cardarea == G.jokers and context.joker_main then
                 if G.GAME.BALATROSTUCK.strife_assignment == 'Unassigned' then
                     G.GAME.BALATROSTUCK.strife_assignment = context.scoring_name

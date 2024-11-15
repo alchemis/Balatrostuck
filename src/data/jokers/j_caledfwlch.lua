@@ -29,20 +29,20 @@ function Balatrostuck.INIT.Jokers.j_caledfwlch()
             return {vars = {G.GAME.probabilities.normal, card.ability.extra.probability, card.ability.extra.mult}}
         end,
 
-        calculate = function (self, context)
+        calculate = function (self, card, context)
             if context.joker_main and context.cardarea == G.jokers then
-                if pseudorandom('caledfwlch') < G.GAME.probabilities.normal / self.ability.extra.probability then
+                if pseudorandom('caledfwlch') < G.GAME.probabilities.normal / card.ability.extra.probability then
                     return {
-                        message = localize { type = 'variable', key = 'a_xmult', vars = { self.ability.extra.mult } },
-                        Xmult_mod = self.ability.extra.mult
+                        message = localize { type = 'variable', key = 'a_xmult', vars = { card.ability.extra.mult } },
+                        Xmult_mod = card.ability.extra.mult
                     }
                 else
                     return {
-                        message = localize { type = 'variable', key = 'a_mult', vars = { self.ability.extra.mult } },
-                        mult_mod = self.ability.extra.mult
+                        message = localize { type = 'variable', key = 'a_mult', vars = { card.ability.extra.mult } },
+                        mult_mod = card.ability.extra.mult
                     }
                 end
             end
-        end 
+        end  
     }:register()
 end

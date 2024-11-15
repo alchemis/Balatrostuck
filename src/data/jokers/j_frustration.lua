@@ -34,19 +34,19 @@ function Balatrostuck.INIT.Jokers.j_frustration()
             return {vars = {card.ability.extra.chips_amt, card.ability.extra.chips_total}}
         end,
 
-        calculate = function(self, context)
+        calculate = function(self, card, context)
             if context.joker_main and context.cardarea == G.jokers then
-                return {
-                    message = localize { type = 'variable', key = 'a_chips', vars = { self.ability.extra.chips_total } },
-                    chip_mod = self.ability.extra.chips_total,
-                    colour = G.C.CHIPS
-                }
-            elseif context.cardarea == G.play and context.individual then
                 local scoring_amount = #context.scoring_hand
                 local full_amount = #context.full_hand
 
-                local mult_incr = full_amount - scoring_amount
-                self.ability.extra.chips_total = self.ability.extra.chips_total + (self.ability.extra.chips_amt * mult_incr)
+                local chip_increase = full_amount - scoring_amount
+                card.ability.extra.chips_total = card.ability.extra.chips_total + (card.ability.extra.chips_amt * chip_increase)
+
+                return {
+                    message = localize { type = 'variable', key = 'a_chips', vars = { card.ability.extra.chips_total } },
+                    chip_mod = card.ability.extra.chips_total,
+                    colour = G.C.CHIPS
+                }
             end
         end
     }:register()

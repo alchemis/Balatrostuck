@@ -39,9 +39,30 @@ function Balatrostuck.INIT.Jokers.j_fluoriteoctet()
         discovered = true,
         atlas = 'HomestuckJokers',
         loc_vars = function(self, info_queue, card)
-            return {vars = {G.GAME.probabilities.normal}, {{n=G.UIT.O, config={object = DynaText({string = card.ability.extra.descs, colours = {G.C.VRISKA},pop_in_rate = 9999999, silent = true, random_element = false, pop_delay = 0.166, scale = 0.32, min_cycle_time = 0})}},}}
+            return {
+                vars = {G.GAME.probabilities.normal},
+                main_end = {
+                    {
+                        n = G.UIT.O,
+                        config = {
+                            object = DynaText(
+                                {
+                                    string = card.ability.extra.descs,
+                                    colours = {G.C.VRISKA},
+                                    pop_in_rate = 9999999,
+                                    silent = true,
+                                    random_element = false,
+                                    pop_delay = 0.166,
+                                    scale = 0.32,
+                                    min_cycle_time = 0
+                                }
+                            )
+                        }
+                    }
+                }
+            }            
         end,
-        calculate = function(self, context)
+        calculate = function(self, card, context)
             if context.joker_main and context.cardarea == G.jokers then
                 if pseudoseed("yeah!!!!!!!!") < G.GAME.probabilities.normal / 64 then
                     return {
@@ -49,7 +70,7 @@ function Balatrostuck.INIT.Jokers.j_fluoriteoctet()
                         Xmult_mod = 64
                     }
                 else
-                    local payout = pseudorandom_element(self.ability.extra.probs, pseudoseed("yeah!!!!!!!!"))
+                    local payout = pseudorandom_element(card.ability.extra.probs, pseudoseed("yeah!!!!!!!!"))
                     if payout == 'mult' then
                         local mult = #context.scoring_hand * 8
                         return {
@@ -76,13 +97,13 @@ function Balatrostuck.INIT.Jokers.j_fluoriteoctet()
                                 trigger = 'before',
                                 delay = 0.0,
                                 func = (function()
-                                        local card = create_card('Tarot',G.consumeables, nil, nil, nil, nil, nil, 'octet')
-                                        card:add_to_deck()
-                                        G.consumeables:emplace(card)
+                                        local card_vris = create_card('Tarot',G.consumeables, nil, nil, nil, nil, nil, 'octet')
+                                        card_vris:add_to_deck()
+                                        G.consumeables:emplace(card_vris)
                                         G.GAME.consumeable_buffer = 0
                                     return true
                                 end)}))
-                            card_eval_status_text(context.blueprint_card or self, 'extra', nil, nil, nil, {message = localize('k_plus_tarot'), colour = G.C.SECONDARY_SET.Tarot})
+                            card_eval_status_text(context.blueprint_card or card, 'extra', nil, nil, nil, {message = localize('k_plus_tarot'), colour = G.C.SECONDARY_SET.Tarot})
                         end
 
                     elseif payout == 'seal' then
@@ -94,13 +115,13 @@ function Balatrostuck.INIT.Jokers.j_fluoriteoctet()
                                 trigger = 'before',
                                 delay = 0.0,
                                 func = (function()
-                                        local card = create_card('Spectral',G.consumeables, nil, nil, nil, nil, nil, 'octet')
-                                        card:add_to_deck()
-                                        G.consumeables:emplace(card)
+                                        local card_vris = create_card('Spectral',G.consumeables, nil, nil, nil, nil, nil, 'octet')
+                                        card_vris:add_to_deck()
+                                        G.consumeables:emplace(card_vris)
                                         G.GAME.consumeable_buffer = 0
                                     return true
                                 end)}))
-                            card_eval_status_text(context.blueprint_card or self, 'extra', nil, nil, nil, {message = localize('k_plus_spectral'), colour = G.C.SECONDARY_SET.Spectral})
+                            card_eval_status_text(context.blueprint_card or card, 'extra', nil, nil, nil, {message = localize('k_plus_spectral'), colour = G.C.SECONDARY_SET.Spectral})
                         end
                         
                     elseif payout == 'dollars' then
