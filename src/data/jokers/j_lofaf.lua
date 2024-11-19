@@ -24,5 +24,5 @@ function Balatrostuck.INIT.Jokers.j_lofaf()
         discovered = true,
         atlas = 'HomestuckJokers'
     
-    }:register()
+    }
 end 

@@ -137,5 +137,5 @@ function Balatrostuck.INIT.Jokers.j_fluoriteoctet()
                 end
             end
         end
-    }:register()
+    }
 end

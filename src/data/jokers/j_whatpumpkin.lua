@@ -22,5 +22,5 @@ function Balatrostuck.INIT.Jokers.j_whatpumpkin()
         unlocked = true,
         discovered = true,
         atlas = 'HomestuckJokers'
-    }:register()
+    }
 end

@@ -82,5 +82,5 @@ function Balatrostuck.INIT.Jokers.j_whoisthis()
                 end
             end
         end
-    }:register()
+    }
 end

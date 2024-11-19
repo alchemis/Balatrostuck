@@ -49,5 +49,5 @@ function Balatrostuck.INIT.Jokers.j_frustration()
                 }
             end
         end
-    }:register()
+    }
 end

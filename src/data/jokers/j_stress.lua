@@ -29,5 +29,5 @@ function Balatrostuck.INIT.Jokers.j_stress()
         loc_vars = function(self, info_queue, card)
             return {vars = {card.ability.extra.xmult}}
         end
-    }:register()
+    }
 end

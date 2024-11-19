@@ -26,5 +26,5 @@ function Balatrostuck.INIT.Jokers.j_jokermode()
 
         calculate = function (self, context)
         end
-    }:register()
+    }
 end

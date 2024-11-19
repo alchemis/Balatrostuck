@@ -39,5 +39,5 @@ function Balatrostuck.INIT.Jokers.j_batterwitch()
         calculate = function(self, context)
 
         end
-    }:register()
+    }
 end

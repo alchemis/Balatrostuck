@@ -45,5 +45,5 @@ function Balatrostuck.INIT.Jokers.j_twinarmageddons()
                 }
             end
         end
-    }:register()
+    }
 end

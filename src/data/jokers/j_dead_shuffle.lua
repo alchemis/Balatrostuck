@@ -64,5 +64,5 @@ function Balatrostuck.INIT.Jokers.j_dead_shuffle()
                 }
             end
         end
-    }:register()
+    }
 end

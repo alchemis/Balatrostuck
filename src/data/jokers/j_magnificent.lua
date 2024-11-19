@@ -26,5 +26,5 @@ function Balatrostuck.INIT.Jokers.j_magnificent()
 
         calculate = function (self, context)
         end
-    }:register()
+    }
 end

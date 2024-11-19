@@ -22,5 +22,5 @@ function Balatrostuck.INIT.Jokers.j_roundtwo()
         unlocked = true,
         discovered = true,
         atlas = 'HomestuckJokers'
-    }:register()
+    }
 end

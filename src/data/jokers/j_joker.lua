@@ -31,5 +31,5 @@ function Balatrostuck.INIT.Jokers.j_joker()
         },
         loc_vars = function(self, info_queue, card)
         end
-    }:register()
+    }
 end

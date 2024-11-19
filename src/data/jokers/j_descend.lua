@@ -31,5 +31,5 @@ function Balatrostuck.INIT.Jokers.j_descend()
         unlocked = true,
         discovered = true,
         atlas = 'HomestuckJokers'
-    }:register()
+    }
 end

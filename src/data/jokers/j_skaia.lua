@@ -23,5 +23,5 @@ function Balatrostuck.INIT.Jokers.j_skaia()
         unlocked = true,
         discovered = true,
         atlas = 'HomestuckJokers'
-    }:register()
+    }
 end 

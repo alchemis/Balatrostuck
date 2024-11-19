@@ -45,5 +45,5 @@ function Balatrostuck.INIT.Jokers.j_lucky_break()
                 end
             end
         end
-    }:register()
+    }
 end

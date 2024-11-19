@@ -25,5 +25,5 @@ function Balatrostuck.INIT.Jokers.j_alltheirons()
 
         calculate = function(self, context)
         end
-    }:register()
+    }
 end

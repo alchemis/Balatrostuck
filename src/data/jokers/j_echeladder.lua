@@ -48,5 +48,5 @@ function Balatrostuck.INIT.Jokers.j_echeladder()
 -- 99% of Gamblers
 -- Junior Japer
 
-    }:register()
+    }
 end

@@ -43,5 +43,5 @@ function Balatrostuck.INIT.Jokers.j_waywardvagabond()
                 end
             end
         end
-    }:register()
+    }
 end

@@ -42,5 +42,5 @@ function Balatrostuck.INIT.Jokers.j_cascade()
                 }
             end
         end
-    }:register()
+    }
 end

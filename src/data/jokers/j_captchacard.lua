@@ -30,5 +30,5 @@ function Balatrostuck.INIT.Jokers.j_captchacard()
         loc_vars = function(self, info_queue, card)
             return {vars = {card.ability.extra.rank, card.ability.extra.suit}}
         end
-    }:register()
+    }
 end

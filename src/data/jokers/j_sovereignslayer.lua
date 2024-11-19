@@ -59,5 +59,5 @@ function Balatrostuck.INIT.Jokers.j_sovereignslayer()
                 end
             end
         end
-    }:register()
+    }
 end

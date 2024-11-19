@@ -45,5 +45,5 @@ function Balatrostuck.INIT.Jokers.j_soporpie()
                 self.ability.extra.chips = self.ability.extra.chips + self.ability.extra.chips_mod
             end
         end
-    }:register()
+    }
 end

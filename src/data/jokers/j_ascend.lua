@@ -76,5 +76,5 @@ function Balatrostuck.INIT.Jokers.j_ascend()
                 end
             end
         end
-    }:register()
+    }
 end

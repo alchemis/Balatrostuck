@@ -43,5 +43,5 @@ function Balatrostuck.INIT.Jokers.j_jocker()
                 }))
             end
         end
-    }:register()
+    }
 end

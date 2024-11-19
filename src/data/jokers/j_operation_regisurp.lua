@@ -35,5 +35,5 @@ function Balatrostuck.INIT.Jokers.j_operation_regisurp()
         calculate = function(self, context)
             
         end
-    }:register()
+    }
 end

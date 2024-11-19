@@ -36,5 +36,5 @@ function Balatrostuck.INIT.Jokers.j_note_desolation()
         loc_vars = function(self, info_queue, card)
             return {vars = {card.ability.mult, card.ability.extra.chips }}
         end
-    }:register()
+    }
 end

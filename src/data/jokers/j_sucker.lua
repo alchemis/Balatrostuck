@@ -90,5 +90,5 @@ function Balatrostuck.INIT.Jokers.j_sucker()
                 end
             end
         end
-    }:register()
+    }
 end

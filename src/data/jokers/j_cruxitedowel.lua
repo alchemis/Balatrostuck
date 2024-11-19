@@ -58,5 +58,5 @@ function Balatrostuck.INIT.Jokers.j_cruxitedowel()
                 end
             end
         end
-    }:register()
+    }
 end

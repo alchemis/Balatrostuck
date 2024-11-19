@@ -36,5 +36,5 @@ function Balatrostuck.INIT.Jokers.j_beyondcanon()
                 }
             end
         end
-    }:register()
+    }
 end

@@ -53,5 +53,5 @@ function Balatrostuck.INIT.Jokers.j_applejuice()
                 end
             end
         end
-    }:register()
+    }
 end 

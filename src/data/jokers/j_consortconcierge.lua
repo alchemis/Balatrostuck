@@ -49,5 +49,5 @@ function Balatrostuck.INIT.Jokers.j_consortconcierge()
                 end   
         end
     end
-    }:register()
+    }
 end

@@ -44,5 +44,5 @@ function Balatrostuck.INIT.Jokers.j_caledfwlch()
                 end
             end
         end  
-    }:register()
+    }
 end

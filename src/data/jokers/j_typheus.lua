@@ -30,5 +30,5 @@ function Balatrostuck.INIT.Jokers.j_typheus()
             x = 9,
             y = 9
         }
-    }:register()
+    }
 end

@@ -27,5 +27,5 @@ function Balatrostuck.INIT.Jokers.j_redblood()
 
 
         
-    }:register()
+    }
 end

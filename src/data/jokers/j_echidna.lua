@@ -35,5 +35,5 @@ function Balatrostuck.INIT.Jokers.j_echidna()
             local s = card.ability.extra.levels > 1 and 's' or ''
             return {vars = {card.ability.extra.levels, s}}
         end
-    }:register()
+    }
 end

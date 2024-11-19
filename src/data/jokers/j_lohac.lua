@@ -64,5 +64,5 @@ function Balatrostuck.INIT.Jokers.j_lohac()
                 }
             end
         end
-    }:register()
+    }
 end 

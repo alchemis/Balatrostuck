@@ -33,7 +33,7 @@ function Balatrostuck.INIT.Jokers.j_abraxas()
         loc_vars = function(self, info_queue, card)
             return {vars = {card.ability.extra.h_plays, card.ability.extra.h_size}}
         end
-    }:register()
+    }
     
     -- local remove_from_deckref = Card.add_to_deck
     -- function Card:remove_from_deck(from_debuff)

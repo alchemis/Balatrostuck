@@ -86,5 +86,5 @@ function Balatrostuck.INIT.Jokers.j_jetpack()
                 end
             end
         end
-    }:register()
+    }
 end

@@ -68,5 +68,5 @@ function Balatrostuck.INIT.Jokers.j_gristtorrent()
                 }
             end
         end
-    }:register()
+    }
 end

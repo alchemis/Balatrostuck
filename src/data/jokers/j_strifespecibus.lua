@@ -69,7 +69,7 @@ function Balatrostuck.INIT.Jokers.j_strifespecibus()
                 G.GAME.BALATROSTUCK.strife_assignment = 'Unassigned'
             end
         end
-    }:register()
+    }
 
     -- TODO: For some reason this breaks Mouth, Eye and Psychic, that shouldn't be happening
     local blind_debuff_handref = Blind.debuff_hand

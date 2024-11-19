@@ -52,5 +52,5 @@ function Balatrostuck.INIT.Jokers.j_hephaestus()
                 end
             end
         end
-    }:register()
+    }
 end

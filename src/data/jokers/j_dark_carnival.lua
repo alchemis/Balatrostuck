@@ -72,5 +72,5 @@ function Balatrostuck.INIT.Jokers.j_dark_carnival()
                 end
             end
         end
-    }:register()
+    }
 end

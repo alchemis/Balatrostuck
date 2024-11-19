@@ -60,5 +60,5 @@ function Balatrostuck.INIT.Jokers.j_draconiandignitary()
                 end
             end
         end
-    }:register()
+    }
 end

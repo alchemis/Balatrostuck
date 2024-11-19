@@ -48,5 +48,5 @@ function Balatrostuck.INIT.Jokers.j_mirthful()
         --         end
         --     end
         -- end
-    }:register()
+    }
 end

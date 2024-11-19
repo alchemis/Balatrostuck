@@ -46,5 +46,5 @@ function Balatrostuck.INIT.Jokers.j_courtyarddroll()
                 end
             end
         end
-    }:register()
+    }
 end

@@ -26,5 +26,5 @@ function Balatrostuck.INIT.Jokers.j_questbed()
         unlocked = true,
         discovered = true,
         atlas = 'HomestuckJokers'
-    }:register()
+    }
 end

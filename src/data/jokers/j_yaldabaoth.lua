@@ -60,5 +60,5 @@ function Balatrostuck.INIT.Jokers.j_yaldabaoth()
                 card_eval_status_text( self, 'extra', nil, nil, nil, {message = localize('k_reset'), colour = G.C.FILTER})
             end
         end
-    }:register()
+    }
 end

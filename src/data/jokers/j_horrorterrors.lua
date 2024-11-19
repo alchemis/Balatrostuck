@@ -52,5 +52,5 @@ function Balatrostuck.INIT.Jokers.j_horrorterrors()
                 self.ability.extra.repetitions = {}
             end
         end
-    }:register()
+    }
 end
