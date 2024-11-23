@@ -19,8 +19,12 @@ function Balatrostuck.INIT.Aspects.c_aspect_space()
         cost = 4,
         discovered = true,
         atlas = "HomestuckAspects",
-        loc_def = function(self, info_queue)
-            return {summation(G.GAME.BALATROSTUCK.aspect_levels[self.name])}
+        loc_vars = function(self, info_queue)
+            return {
+                vars = {
+                    summation(G.GAME.BALATROSTUCK.aspect_levels[self.name] or 0)
+                }
+            }
         end
     }
 end

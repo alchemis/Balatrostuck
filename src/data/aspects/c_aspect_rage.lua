@@ -23,8 +23,12 @@ function Balatrostuck.INIT.Aspects.c_aspect_rage()
         cost = 4,
         discovered = true,
         atlas = "HomestuckAspects",
-        loc_def = function(self, info_queue)
-            return {G.GAME.BALATROSTUCK.aspect_levels[self.name]*0.25}
+        loc_vars = function(self, info_queue)
+            return {
+                vars = {
+                    (G.GAME.BALATROSTUCK.aspect_levels[self.name] or 0)*0.25
+                }
+            }
         end
     }
 end
