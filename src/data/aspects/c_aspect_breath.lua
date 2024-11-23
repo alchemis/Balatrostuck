@@ -24,5 +24,5 @@ function Balatrostuck.INIT.Aspects.c_aspect_breath()
         loc_def = function(self, info_queue)
             return {G.GAME.BALATROSTUCK.aspect_levels[self.name]}
         end
-    }:register()
+    }
 end

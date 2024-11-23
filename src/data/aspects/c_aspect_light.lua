@@ -23,5 +23,5 @@ function Balatrostuck.INIT.Aspects.c_aspect_light()
         loc_def = function(self, info_queue)
             return {1+(G.GAME.BALATROSTUCK.aspect_levels[self.name]*0.5)}
         end
-    }:register()
+    }
 end

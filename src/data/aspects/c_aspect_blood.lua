@@ -25,7 +25,7 @@ function Balatrostuck.INIT.Aspects.c_aspect_blood()
         loc_def = function(self, info_queue)
             return {G.GAME.BALATROSTUCK.aspect_levels[self.name]+1}
         end
-    }:register()
+    }
 
-    --Balatrostuck.Slab{key='blood', atlas='HomestuckAspectSlabs', pos={x=2,y=2}}:register()
+    --Balatrostuck.Slab{key='blood', atlas='HomestuckAspectSlabs', pos={x=2,y=2}}
 end

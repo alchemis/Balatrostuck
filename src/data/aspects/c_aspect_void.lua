@@ -21,5 +21,5 @@ function Balatrostuck.INIT.Aspects.c_aspect_void()
         cost = 4,
         discovered = true,
         atlas = "HomestuckAspects"
-    }:register()
+    }
 end

@@ -22,5 +22,5 @@ function Balatrostuck.INIT.Aspects.c_aspect_time()
         loc_def = function(self, info_queue)
             return {summation(G.GAME.BALATROSTUCK.aspect_levels[self.name])}
         end
-    }:register()
+    }
 end

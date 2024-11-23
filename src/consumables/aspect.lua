@@ -9,7 +9,7 @@ SMODS.ConsumableType{
     label = 'Aspect',
     undiscovered = {}
   },
-}:register()
+}
 
 Balatrostuck.Aspect = SMODS.Consumable:extend{
   set = 'Aspect',

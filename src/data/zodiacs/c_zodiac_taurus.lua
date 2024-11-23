@@ -16,5 +16,5 @@ function Balatrostuck.INIT.Zodiacs.c_zodiac_taurus()
         cost = 4,
         discovered = true,
         atlas = "HomestuckZodiacs"
-    }:register()
+    }
 end
