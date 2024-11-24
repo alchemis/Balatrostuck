@@ -27,6 +27,21 @@ function Slab:init(key)
   self.ID = 413
 end
 
+function Slab:apply_to_run(_context)
+  if not self.triggered then
+    local obj = Balatrostuck.Slabs[self.key]
+    local res
+    if obj and obj.apply and type(obj.apply) == 'function' then
+      res = obj.apply(self, _context)
+    end
+
+    if res then
+      self.triggered = true
+      return res
+    end
+  end
+end
+
 -- TODO: actually write our own functions for executing slabs akin to tags
 
 Balatrostuck.Slabs = {}
