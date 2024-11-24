@@ -28,6 +28,26 @@ function Balatrostuck.INIT.Aspects.c_aspect_blood()
                     (G.GAME.BALATROSTUCK.aspect_levels[self.name] or 0)+1
                 }
             }
+        end,
+        use = function(self, card, area, copier)
+            sendInfoMessage("Setting slab")
+            add_slab(Slab('slab_bstuck_blood'))
+        end,
+        can_use = function(self)
+            return true
+        end
+    }
+
+    Balatrostuck.Slab{
+        key = 'blood',
+        atlas = 'HomestuckAspectSlabs',
+        pos = {
+            x = 2,
+            y = 2
+        },
+        name = 'Aspect of Blood',
+        apply = function(self, context)
+            sendInfoMessage("Aspect of Blood applied")
         end
     }
 

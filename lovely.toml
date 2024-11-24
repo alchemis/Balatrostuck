@@ -84,3 +84,54 @@ end
 '''
 match_indent = true
 times = 1
+
+# Slabs
+[[patches]]
+[patches.regex]
+target = "game.lua"
+pattern = "(?<indent>[\t ]*)self.P_TAGS = \\{"
+position = "before"
+line_prepend = '$indent'
+payload = '''
+self.P_SLABS = {}
+'''
+
+[[patches]]
+[patches.regex]
+target = "game.lua"
+pattern = "(?<indent>[\t ]*)self.P_CENTER_POOLS = \\{\\n"
+position = "after"
+line_prepend = '$indent$indent'
+payload = '''
+Slabs = {},
+'''
+
+[[patches]]
+[patches.regex]
+target = "tag.lua"
+pattern = "(?<indent>[\t ]*)if (?<cond>_context.type == 'eval' then)"
+position = 'at'
+line_prepend = '$indent'
+# we can't use elseif because Steamodded matches the if
+# (?<indent>[\t ]*)if (?<cond>_context.type == 'eval' then)
+payload = '''
+local obj = Balatrostuck.Slabs[self.key]
+local res
+if obj and obj.apply and type(obj.apply) == 'function' then
+	res = obj.apply(self, _context)
+end
+if res then
+	return res
+end
+
+if $cond'''
+
+[[patches]]
+[patches.regex]
+target = "game.lua"
+pattern = "(?<indent>[\t ]*)G\\.GAME\\.tags = \\{\\}\\n"
+position = "after"
+line_prepend = '$indent'
+payload = '''
+G.GAME.slab = nil
+'''
