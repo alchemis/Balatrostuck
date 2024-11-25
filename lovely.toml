@@ -160,9 +160,9 @@ times = 1
 
 [[patches]]
 [patches.pattern]
-target = "game.lua"
-pattern = "ease_background_colour_blind(G.STATES.DRAW_TO_HAND)"
-position = "before"
+target = "functions/state_events.lua"
+pattern = "G.GAME.blind:set_blind(G.GAME.round_resets.blind)"
+position = "after"
 match_indent = true
 payload = '''
 if G.GAME.slab ~= nil then
