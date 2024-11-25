@@ -55,9 +55,15 @@ function Balatrostuck.INIT.Aspects.c_aspect_blood()
                 if slab.ability.discards_used < G.GAME.BALATROSTUCK.aspect_levels['Blood'] then
                     local enhancement = pseudorandom_element(G.P_CENTER_POOLS.Enhanced, pseudoseed('slab_bstuck_blood'))
                     if enhancement.key and G.P_CENTERS[enhancement.key] then
-                        context.other_card:set_ability(G.P_CENTERS[enhancement.key])
-                        context.other_card:juice_up()
-                        card_eval_status_text(context.other_card, 'extra', nil, nil, nil, {message = "Enhanced!", colour = G.C.SET.Enhanced})
+                        sendInfoMessage("Enhancing")
+                        G.E_MANAGER:add_event(Event({
+                            trigger = 'before',
+                            delay = 0.9375,
+                            func = function()
+                                card_eval_status_text(context.other_card, 'extra', nil, nil, nil, {message = "Enhanced!", colour = G.C.SET.Enhanced, instant = true})
+                                context.other_card:set_ability(G.P_CENTERS[enhancement.key])
+                                return true
+                        end}))
                         slab.ability.discards_used = slab.ability.discards_used + 1
                     end
                 end
