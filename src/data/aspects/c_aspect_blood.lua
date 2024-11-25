@@ -51,12 +51,13 @@ function Balatrostuck.INIT.Aspects.c_aspect_blood()
         config = { discards_used = 0 },
         name = 'Aspect of Blood',
         apply = function(self, slab, context)
-            if context.pre_discard then
-                local to_discard = math.min(#context.full_hand, G.GAME.BALATROSTUCK.aspect_levels['Blood'] - slab.ability.discards_used)
-                for i = 1, to_discard do
+            if context.discard then
+                if slab.ability.discards_used < G.GAME.BALATROSTUCK.aspect_levels['Blood'] then
                     local enhancement = pseudorandom_element(G.P_CENTER_POOLS.Enhanced, pseudoseed('slab_bstuck_blood'))
                     if enhancement.key and G.P_CENTERS[enhancement.key] then
-                        context.full_hand[i]:set_ability(G.P_CENTERS[enhancement.key])
+                        context.other_card:set_ability(G.P_CENTERS[enhancement.key])
+                        context.other_card:juice_up()
+                        card_eval_status_text(context.other_card, 'extra', nil, nil, nil, {message = "Enhanced!", colour = G.C.SET.Enhanced})
                         slab.ability.discards_used = slab.ability.discards_used + 1
                     end
                 end
