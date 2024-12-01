@@ -27,16 +27,18 @@ function Balatrostuck.INIT.Zodiacs.c_zodiac_libra()
             G.GAME.BALATROSTUCK.zodiac_levels[self.ability.name] = G.GAME.BALATROSTUCK.zodiac_levels[self.ability.name] + 1
         end,
         can_use = function() return true end,
-        loc_def = function(card)
-            local level = G.GAME.BALATROSTUCK.zodiac_levels[card.name] + 1
+        loc_vars = function(card)
+            local level = (G.GAME.BALATROSTUCK.zodiac_levels[card.name] or 0) + 1
             local formula = 1 + level/10
             return {
-                level,
-                formula,
-                colours = {(level==1 and G.C.UI.TEXT_DARK or G.C.ZODIAC_LEVELS[math.min(7, level)])}
+                vars = {
+                    level,
+                    formula,
+                    colours = {(level==1 and G.C.UI.TEXT_DARK or G.C.ZODIAC_LEVELS[math.min(7, level)])}
+                }
             }
         end,
-    }:register()
+    }
 end
 
 --[1] = 'All scoring 7s',

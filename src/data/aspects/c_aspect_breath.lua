@@ -5,9 +5,8 @@ function Balatrostuck.INIT.Aspects.c_aspect_breath()
         loc_txt = {
             ['name'] = "Breath",
             ['text'] = {
-                [1] = 'All {C:blue}seals{} get',
-                [2] = 'retriggered',
-                [3] = '#1# times',
+                [1] = 'Your first {C:green}#1#{} rerolls',
+                [2] = 'each round are free.',
             }
         },
         pos = {
@@ -21,8 +20,35 @@ function Balatrostuck.INIT.Aspects.c_aspect_breath()
         cost = 4,
         discovered = true,
         atlas = "HomestuckAspects",
-        loc_def = function(self, info_queue)
-            return {G.GAME.BALATROSTUCK.aspect_levels[self.name]}
+        loc_vars = function(self, info_queue)
+            return {
+                vars = {
+                    self:level()
+                }
+            }
+        end,
+        use = function(self, context)
+            self:switch_slab()
+        end,
+        can_use = function(self)
+            return true
         end
-    }:register()
+    }
+
+    Balatrostuck.Slab{
+        key = 'breath',
+        atlas = 'HomestuckAspectSlabs',
+        pos = {
+            x = 2,
+            y = 1
+        },
+        config = {},
+        name = 'Aspect of Breath',
+        apply = function(self, slab, context)
+            if context.start_of_round then
+                G.GAME.current_round.free_rerolls = G.GAME.current_round.free_rerolls + slab:level()
+                calculate_reroll_cost(true)
+            end
+        end
+    }
 end

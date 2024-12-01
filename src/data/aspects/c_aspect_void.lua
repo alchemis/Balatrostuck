@@ -20,6 +20,13 @@ function Balatrostuck.INIT.Aspects.c_aspect_void()
         },
         cost = 4,
         discovered = true,
-        atlas = "HomestuckAspects"
-    }:register()
+        atlas = "HomestuckAspects",
+        loc_vars = function(self, info_queue)
+            return {
+                vars = {
+                    summation(1+(G.GAME.BALATROSTUCK.aspect_levels[self.name] or 0)),
+                }
+            }
+        end
+    }
 end

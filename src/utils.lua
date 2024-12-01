@@ -34,9 +34,9 @@ function get_table_values(tab)
 end
 
 function summation(n)
-    if (n == 0) then
-        return 0
-    else
-        return n + summation(n - 1)
+    local sum = 0
+    for i = 1, n do
+        sum = sum + i
     end
+    return sum
 end

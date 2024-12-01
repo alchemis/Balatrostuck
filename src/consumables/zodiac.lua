@@ -26,7 +26,7 @@ SMODS.ConsumableType{
       SMODS.process_loc_text()
     end
   },
-}:register()
+}
 
 Balatrostuck.Zodiac = SMODS.Consumable:extend{
   set = "Zodiac",
