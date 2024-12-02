@@ -5,9 +5,9 @@ function Balatrostuck.INIT.Aspects.c_aspect_doom()
         loc_txt = {
             ['name'] = "Doom",
             ['text'] = {
-                [1] = 'When a {C:green,E:1,S:1.1}probability',
-                [2] = 'up to {C:green}1 in 3{} fails',
-                [3] = 'gain a {C:dark_edition}Negative{} Fool'
+                [1] = 'Played cards giv {C:mult}+#1# Mult{}',
+                [2] = 'when scored. {C:green}1 in #2#{} chance',
+                [3] = 'for played cards to be debuffed.'
             }
         },
         pos = {
@@ -20,6 +20,47 @@ function Balatrostuck.INIT.Aspects.c_aspect_doom()
         },
         cost = 4,
         discovered = true,
-        atlas = "HomestuckAspects"
-    }   
+        atlas = "HomestuckAspects",
+        loc_vars = function(self, info_queue)
+            return {
+                vars = {
+                    1 + self:level() / 10,
+                    self:level()
+                }
+            }
+        end,
+        use = function(self, card, area, copier)
+            self:switch_slab()
+        end,
+        can_use = function(self)
+            return true
+        end
+    }
+
+    Balatrostuck.Slab{
+        key = 'doom',
+        atlas = 'HomestuckAspectSlabs',
+        pos = {
+            x = 1,
+            y = 2
+        },
+        config = {},
+        name = 'Aspect of Doom',
+
+        apply = function(self, slab, context)
+            if context.score_effects_before_debuff then
+                if pseudoseed('slab_bstuck_doom') < G.GAME.probabilities.normal / slab:level() then
+                    return {
+                        debuff = true
+                    }
+                end
+            end
+            
+            if context.score_effects then
+                return {
+                    mult = 1 + slab:level() / 10
+                }
+            end
+        end
+    }
 end

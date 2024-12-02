@@ -46,7 +46,6 @@ function Slab:apply_to_run(_context)
     end
 
     if res then
-      self.triggered = true
       return res
     end
   end

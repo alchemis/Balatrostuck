@@ -170,3 +170,38 @@ if G.GAME.slab ~= nil then
     slab_eval = G.GAME.slab:apply_to_run({start_of_round = true})
 end
 '''
+
+[[patches]]
+[patches.pattern]
+target = "functions/state_events.lua"
+pattern = "if scoring_hand[i].debuff then"
+position = "before"
+match_indent = true
+payload = '''
+local slab_debuffed = false
+if G.GAME.slab ~= nil then
+    local slab_eval = nil
+    slab_eval = G.GAME.slab:apply_to_run({score_effects_before_debuff = true, cardarea = G.play, full_hand = G.play.cards, scoring_hand = scoring_hand, poker_hand = text, other_card = scoring_hand[i], individual = true})
+    
+    if slab_eval and slab_eval.debuff then
+        scoring_hand[i].debuff = true
+        slab_debuffed = true
+    end
+end
+'''
+
+[[patches]]
+[patches.pattern]
+target = "functions/state_events.lua"
+pattern = "local effects = {eval_card(scoring_hand[i], {cardarea = G.play, full_hand = G.play.cards, scoring_hand = scoring_hand, poker_hand = text})}"
+position = "after"
+match_indent = true
+payload = '''
+if G.GAME.slab ~= nil then
+    local slab_eval = nil
+    slab_eval = G.GAME.slab:apply_to_run({score_effects = true, cardarea = G.play, full_hand = G.play.cards, scoring_hand = scoring_hand, poker_hand = text, other_card = scoring_hand[i], individual = true, slab_debuffed = slab_debuffed})
+    if slab_eval then
+        table.insert(effects, slab_eval)
+    end
+end
+'''
