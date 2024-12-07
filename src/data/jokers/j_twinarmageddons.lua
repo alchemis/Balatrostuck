@@ -32,16 +32,16 @@ function Balatrostuck.INIT.Jokers.j_twinarmageddons()
             return {vars = {card.ability.extra.hand}}
         end,
 
-        calculate = function(self, context)
+        calculate = function(self,card,context)
             if context.cardarea == G.jokers and context.joker_main then
-            elseif context.cardarea == G.play and context.individual and next(context.poker_hands[self.ability.extra.hand]) then
+            elseif context.cardarea == G.play and context.individual and next(context.poker_hands[card.ability.extra.hand]) then
                 local chips = context.other_card:get_chip_bonus()
                 if (context.other_card:get_edition() ~= nil and context.other_card:get_edition().chip_mod ~= nil) then
                     chips = context.other_card:get_edition().chip_mod + chips
                 end
                 return {
                     mult = chips,
-                    card = self
+                    card = card
                 }
             end
         end
