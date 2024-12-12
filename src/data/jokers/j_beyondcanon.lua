@@ -19,7 +19,7 @@ function Balatrostuck.INIT.Jokers.j_beyondcanon()
             x = 5,
             y = 8
          },
-        cost = 4,
+        cost = 7,
         rarity = 3,
         blueprint_compat = true,
         eternal_compat = true,

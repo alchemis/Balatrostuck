@@ -24,7 +24,7 @@ function Balatrostuck.INIT.Jokers.j_cueball()
             x = 1,
             y = 6
         },
-        cost = 4,
+        cost = 3,
         rarity = 1,
         blueprint_compat = true,
         eternal_compat = true,

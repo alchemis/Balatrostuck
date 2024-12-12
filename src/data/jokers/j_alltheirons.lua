@@ -15,8 +15,8 @@ function Balatrostuck.INIT.Jokers.j_alltheirons()
             x = 7,
             y = 1
         },
-        cost = 8,
-        rarity = 3,
+        cost = 3,
+        rarity = 1,
         blueprint_compat = true,
         eternal_compat = true,
         unlocked = true,

@@ -17,7 +17,7 @@ function Balatrostuck.INIT.Jokers.j_caledfwlch()
             x = 0,
             y = 6
         },
-        cost = 4,
+        cost = 3,
         rarity = 1,
         blueprint_compat = true,
         eternal_compat = true,

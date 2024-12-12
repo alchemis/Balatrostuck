@@ -24,7 +24,7 @@ function Balatrostuck.INIT.Jokers.j_ascend()
             x = 0,
             y = 7
         },
-        cost = 5,
+        cost = 6,
         rarity = 2,
         blueprint_compat = true,
         eternal_compat = true,

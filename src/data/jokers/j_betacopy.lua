@@ -16,7 +16,7 @@ function Balatrostuck.INIT.Jokers.j_betacopy()
             x = 2,
             y = 0
          },
-        cost = 4,
+        cost = 25,
         rarity = 1,
         blueprint_compat = true,
         eternal_compat = true,

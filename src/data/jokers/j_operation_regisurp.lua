@@ -20,8 +20,8 @@ function Balatrostuck.INIT.Jokers.j_operation_regisurp()
             x = 8,
             y = 3
         },
-        cost = 6,
-        rarity = 2,
+        cost = 5,
+        rarity = 1,
         blueprint_compat = true,
         eternal_compat = true,
         unlocked = true,
@@ -32,8 +32,12 @@ function Balatrostuck.INIT.Jokers.j_operation_regisurp()
             return {vars = {card.ability.extra.suit, card.ability.extra.dollars}}
         end,
 
-        calculate = function(self, context)
-            
+        calculate = function(self, card, context)
+            if context.other_card:get_id() == 12 then
+                if context.other_card:is_suit("Spades") then
+                    other_card:start_dissolve() -- does not work
+                end
+            end
         end
     }
 end

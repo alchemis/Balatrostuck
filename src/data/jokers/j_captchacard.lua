@@ -20,7 +20,7 @@ function Balatrostuck.INIT.Jokers.j_captchacard()
             x = 5,
             y = 0
         },
-        cost = 7,
+        cost = 5,
         rarity = 2,
         blueprint_compat = true,
         eternal_compat = true,

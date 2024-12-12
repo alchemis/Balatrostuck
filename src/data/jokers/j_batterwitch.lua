@@ -24,7 +24,7 @@ function Balatrostuck.INIT.Jokers.j_batterwitch()
             x = 1,
             y = 5
         },
-        cost = 5,
+        cost = 8,
         rarity = 3,
         blueprint_compat = true,
         eternal_compat = true,
