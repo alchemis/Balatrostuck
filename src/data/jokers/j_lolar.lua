@@ -10,6 +10,10 @@ function Balatrostuck.INIT.Jokers.j_lolar()
         loc_txt = {
             ['name'] = 'Light and Rain',
             ['text'] = {
+                [1] = "After playing a hand this",
+                [2] = "gets {C:chips}+3 chips{} for every",
+                [3] = "empty joker slot",
+                [4] = "{C:inactive}[Currently: {C:chips}+0{} {C:inactive}chips]{}"
             }
         },
         pos = {
