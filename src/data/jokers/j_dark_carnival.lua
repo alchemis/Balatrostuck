@@ -12,12 +12,10 @@ function Balatrostuck.INIT.Jokers.j_dark_carnival()
         loc_txt = {
             ['name'] = 'Dark Carnival',
             ['text'] = {
-                [1] = "If a played hand",
-                [2] = "contains a {C:attention}Straight{}",
-                [3] = "destroy cards ranked under {C:attention}10",
-                [4] = "and gain destroyed cards'",
-                [5] = "{C:chips}Chips{} value",
-                [4] = "{C:inactive}(Currently: {}{}{C:chips}+#1# Chips{}{C:inactive}){}"
+                [1] = "Destroy all played",
+                [2] = "ranks corresponding",
+                [3] = "to consumable slot",
+                [4] = "{C:attention}Zodiac cards{}"
             }
         },
         pos = {
