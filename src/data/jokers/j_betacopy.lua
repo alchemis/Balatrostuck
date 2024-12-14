@@ -10,6 +10,10 @@ function Balatrostuck.INIT.Jokers.j_betacopy()
         loc_txt = {
             ['name'] = 'Beta Copy',
             ['text'] = {
+                [1] = "{C:red}X2{} Base Blind size",
+                [2] = "End of Blind gain a {C:attention}Sburb Tag{}",
+                [3] = "and transform this into",
+                [4] = "a random joker"
             }
         },
         pos = {

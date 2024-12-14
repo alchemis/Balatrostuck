@@ -10,10 +10,9 @@ function Balatrostuck.INIT.Jokers.j_whoisthis()
         loc_txt = {
             ['name'] = 'Who Even Is This?',
             ['text'] = {
-                [1] = 'Creates a random {C:dark_edition}Negative{}',
-                [2] = 'joker when blind is selected,',
-                [3] = 'Adjacent jokers are {C:red}destroyed{}',
-                [4] = 'at the end of the round.'
+                [1] = 'Creates a random',
+                [2] = '{C:dark_edition}Paradox{} joker when',
+                [3] = 'blind is selected'
             }
         },
         pos = {

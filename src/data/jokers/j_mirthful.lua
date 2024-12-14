@@ -10,10 +10,9 @@ function Balatrostuck.INIT.Jokers.j_mirthful()
         loc_txt = {
             ['name'] = 'Mirthful Joker',
             ['text'] = {
-                'If {C:attention}scoring hand',
-                'contains a {C:attention}Straight',
-                'with a {C:attention}6{} and a {C:attention}9{}',
-                'give {C:money}$4{} and {C:red}+20 Mult{} '
+                [1] = "{C:green}69 in 420{} chance to",
+                [2] = "create a {C:attention}Zodiac card{}",
+                [3] = "at end of round"
             }
         },
         pos = {
