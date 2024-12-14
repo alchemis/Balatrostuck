@@ -1,6 +1,6 @@
 function Balatrostuck.INIT.Jokers.j_stress()
     SMODS.Joker{
-        name = "Stress",
+        name = "Synchronization",
         key = "stress",
         config = {
             extra = {
@@ -8,10 +8,10 @@ function Balatrostuck.INIT.Jokers.j_stress()
             }
         },
         loc_txt = {
-            ['name'] = 'Stress',
+            ['name'] = 'Synchronization',
             ['text'] = {
                 [1] = 'Gives {C:white,X:mult}X#1#{} if {C:attention}2 face cards{}',
-                [2] = 'are destroyed during the round'
+                [2] = 'are destroyed during the ante'
             }
         },
         pos = {
