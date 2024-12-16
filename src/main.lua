@@ -112,6 +112,7 @@ local zodiac_list = {
 batch_load("jokers")
 batch_load("aspects")
 batch_load("zodiacs")
+batch_load("boosters")
 
 for _, joker in ipairs(joker_list) do
     Balatrostuck.INIT.Jokers["j_"..joker]()
@@ -131,3 +132,5 @@ SMODS.Atlas({key = "HomestuckJokers", path = "hsjokers.png", px = 71, py = 95, a
 SMODS.Atlas({key = "HomestuckZodiacs", path = "zodiac.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
 SMODS.Atlas({key = "HomestuckAspects", path = "aspect.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
 SMODS.Atlas({key = "HomestuckLogo", path = "bstuck_logo.png", px = 34, py = 34, atlas_table = "ASSET_ATLAS"}):register()
+SMODS.Atlas({key = "HomestuckAspectBooster", path = "booster.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
+-- SMODS.Atlas({key = "HomestuckZodiacBooster", path = "booster_zodiac.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
