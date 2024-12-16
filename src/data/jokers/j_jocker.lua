@@ -32,11 +32,11 @@ function Balatrostuck.INIT.Jokers.j_jocker()
                     trigger = 'before',
                     delay = 0.0,
                     func = function()
-                    local card = create_card('Joker', G.jokers, nil, nil, nil, nil, 'j_jocker', 'jpg')
-                    card:set_edition({negative = true}, nil, true)
-                    card:add_to_deck()
-                    G.jokers:emplace(card)
-                    card:start_materialize()
+                    local _card = copy_card(card, nil, nil, nil, card.edition)
+                    _card:set_edition({negative = true}, nil, true)
+                    _card:add_to_deck()
+                    G.jokers:emplace(_card)
+                    _card:start_materialize()
                     G.GAME.joker_buffer = 0
                     return true
                     end
