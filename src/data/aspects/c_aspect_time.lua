@@ -20,10 +20,15 @@ function Balatrostuck.INIT.Aspects.c_aspect_time()
         discovered = true,
         atlas = "HomestuckAspects",
         loc_vars = function(self, info_queue)
+            local mariobros = ""
+            if self:level() ~= 0 then
+                mariobros = "s"
+            end
             return {
                 vars = {
-                    summation(self:level()),
-                    self:level()
+                    summation(self:level() + 1),
+                    self:level(),
+                    mariobros
                 }
             }
         end,
