@@ -79,12 +79,12 @@ NFS.load(mod.path.."utils.lua")()
 
 local joker_list = {
     --[[ Artifacts     ]] "whatpumpkin","caledfwlch", "cueball", "jetpack", "ringoflife",
-    --[[ Derse Agents  ]] "draconiandignitary", "hegemonicbrute", "courtyarddroll", "sovereignslayer", "waywardvagabond",
+    --[[ Derse Agents  ]] "draconiandignitary", "hegemonicbrute", "courtyarddroll", "sovereignslayer", "waywardvagabond","operation_regisurp",
     --[[ Sylladex      ]] "captchacard", "strifespecibus", "cruxitedowel",
                           "betacopy", "questbed", "note_desolation",
                           "jocker", "joker", "whoisthis",
                           "mirthful", "batterwitch",
-                          "dead_shuffle", "dark_carnival",
+                          "dead_shuffle", "dark_carnival","tumor",
     --[[ EoA Jokers    ]] "ascend", "descend", "cascade", "collide",
     --[[ Other S pages ]] "stress", "roundtwo",
     --[[ Cherub Jokers ]] "magnificent", "jokermode",
