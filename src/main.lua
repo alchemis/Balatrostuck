@@ -94,7 +94,8 @@ local joker_list = {
     --[[ Food Jokers   ]] "applejuice", "soporpie", "sucker",
     --[[ Medium Jokers ]] "lohac", "lowas", "lofaf", "lolar", "skaia",
     --[[ Denizens      ]] "yaldabaoth", "abraxas", "hephaestus", "echidna", "typheus", "gristtorrent","consortconcierge","echeladder","redblood",
-    --[[ Post-canon    ]] "beyondcanon"
+    --[[ Post-canon    ]] "beyondcanon",
+    --[[ MSPA Jokers   ]] "stump"
 }
 
 local aspect_list = {
