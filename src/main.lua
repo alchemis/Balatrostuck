@@ -95,7 +95,7 @@ local joker_list = {
     --[[ Medium Jokers ]] "lohac", "lowas", "lofaf", "lolar", "skaia",
     --[[ Denizens      ]] "yaldabaoth", "abraxas", "hephaestus", "echidna", "typheus", "gristtorrent","consortconcierge","echeladder","redblood",
     --[[ Post-canon    ]] "beyondcanon",
-    --[[ MSPA Jokers   ]] "stump"
+    --[[ MSPA Jokers   ]] "stump", "aceDick"
 }
 
 local aspect_list = {

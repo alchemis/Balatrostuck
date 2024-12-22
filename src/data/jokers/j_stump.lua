@@ -31,7 +31,7 @@ function Balatrostuck.INIT.Jokers.j_stump()
                 return {
                     message = localize('k_saved_ex'),
                     saved = true,
-                    colour = G.C.RED
+                    colour = G.C.RED                    
                 }
             end
         end
