@@ -1,0 +1,29 @@
+-- TODO: Localization and calculation logic
+function Balatrostuck.INIT.Jokers.j_biscuits()
+    SMODS.Joker{
+        name = "Biscuits",
+        key = "biscuits",
+        config = {
+            extra = {
+            }
+        },
+        loc_txt = {
+            ['name'] = 'Biscuits',
+            ['text'] = {
+                [1] = "{C:green}Paradox cards{} cannot",
+                [2] = "be destroyed"
+            }
+        },
+        pos = {
+            x = 2,
+            y = 0
+         },
+        cost = 13,
+        rarity = 3,
+        blueprint_compat = false,
+        eternal_compat = true,
+        unlocked = true,
+        discovered = true,
+        atlas = 'HomestuckJokers'
+    }
+end 

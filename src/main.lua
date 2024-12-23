@@ -88,7 +88,7 @@ local joker_list = {
     --[[ EoA Jokers    ]] "ascend", "descend", "cascade", "collide",
     --[[ Other S pages ]] "synchronization", "roundtwo",
     --[[ Cherub Jokers ]] "magnificent", "jokermode",
-    --[[ Misc Joker    ]] "tanglebuddies", "horrorterrors","purrfectwarrior","lonegunbird",
+    --[[ Misc Joker    ]] "tanglebuddies", "horrorterrors","purrfectwarrior","lonegunbird","biscuits",
     --[[ Troll Jokers  ]] "frustration", "twinarmageddons", "pairing_grid",
     --[[ Vriska Jokers ]] "fluoriteoctet", "lucky_break", "alltheirons",
     --[[ Food Jokers   ]] "applejuice", "soporpie", "sucker","faygo",
