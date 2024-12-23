@@ -57,7 +57,7 @@ SMODS.current_mod.extra_tabs = function() --Credits tab
                     {
                     n = G.UIT.T,
                     config = {
-                        text = "ghostyTrickster, joey!!!!!, Knightmare, Lyman, shmig, vera",
+                        text = "Miser, joey!!!!!, Knightmare, Lyman, shmig, vera",
                         shadow = false,
                         scale = scale,
                         colour = G.C.MONEY
