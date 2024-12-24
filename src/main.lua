@@ -84,17 +84,23 @@ local joker_list = {
 "betacopy", "echeladder","captchacard", "strifespecibus","collide",
 "applejuice", "clover", "mirthful", "synchronization", "jetpack", 
 
+-- Page 2
+
 -- Page 3
-"caledfwlch", "nepetajoker",
+"caledfwlch", "nepetajoker", "frogbreeding", "dead_shuffle", "jocker",
+"courtyarddroll", "hegemonicbrute", "draconiandignitary", "sovereignslayer", "snowman",
+"lohac", "lowas", "lofaf", "lolar", "skaia",
 
+-- Page 4
+"kernelsprite", "whatpumpkin",
 
-    --[[ Artifacts     ]] "whatpumpkin", "cueball","ringoflife",
-    --[[ Derse Agents  ]] "draconiandignitary", "hegemonicbrute", "courtyarddroll", "sovereignslayer", "waywardvagabond","operation_regisurp",
+    --[[ Artifacts     ]] "cueball","ringoflife",
+    --[[ Derse Agents  ]] "waywardvagabond","operation_regisurp",
     --[[ Sylladex      ]]  "cruxitedowel",
                         "questbed", "note_desolation","commandervantas",
-                          "jocker", "joker", "whoisthis",
+                           "joker", "whoisthis",
                         "batterwitch",
-                          "dead_shuffle", "dark_carnival","tumor","kernelsprite",
+                           "dark_carnival","tumor",
     --[[ Other S pages ]] "roundtwo",
     --[[ Cherub Jokers ]] "magnificent", "jokermode", 
     --[[ Misc Joker    ]] "tanglebuddies", "horrorterrors","purrfectwarrior","lonegunbird","biscuits", "parcelmistress", "amberfirefly", "whitequeen", 
@@ -103,7 +109,6 @@ local joker_list = {
                           "trolltrain",
     --[[ Vriska Jokers ]] "fluoriteoctet", "lucky_break", "alltheirons",
     --[[ Food Jokers   ]] "soporpie", "sucker","faygo",
-    --[[ Medium Jokers ]] "lohac", "lowas", "lofaf", "lolar", "skaia",
     --[[ Denizens      ]] "yaldabaoth", "abraxas", "hephaestus", "echidna", "typheus", "gristtorrent","consortconcierge","redblood",
     --[[ Post-canon    ]] "beyondcanon", "bigkahuna", "smallerbutterflies",
     --[[ MSPA Jokers   ]] "stump", "aceDick"
