@@ -85,6 +85,8 @@ local joker_list = {
 "applejuice", "clover", "mirthful", "synchronization", "jetpack", 
 
 -- Page 2
+"cruxitedowel", "operation_regisurp","cloudwatching","note_desolation", "clownincar",
+"commandervantas", "bigkahuna",
 
 -- Page 3
 "caledfwlch", "nepetajoker", "frogbreeding", "dead_shuffle", "jocker",
@@ -95,22 +97,22 @@ local joker_list = {
 "kernelsprite", "whatpumpkin",
 
     --[[ Artifacts     ]] "cueball","ringoflife",
-    --[[ Derse Agents  ]] "waywardvagabond","operation_regisurp",
-    --[[ Sylladex      ]]  "cruxitedowel",
-                        "questbed", "note_desolation","commandervantas",
+    --[[ Derse Agents  ]] "waywardvagabond",
+    --[[ Sylladex      ]]  
+                        "questbed",
                            "joker", "whoisthis",
                         "batterwitch",
                            "dark_carnival","tumor",
     --[[ Other S pages ]] "roundtwo",
     --[[ Cherub Jokers ]] "magnificent", "jokermode", 
     --[[ Misc Joker    ]] "tanglebuddies", "horrorterrors","purrfectwarrior","lonegunbird","biscuits", "parcelmistress", "amberfirefly", "whitequeen", 
-                           "conditionalimmortality", "misspaint", "cloudwatching",
+                           "conditionalimmortality", "misspaint", 
     --[[ Troll Jokers  ]] "frustration", "twinarmageddons", "pairing_grid", "conventioncenter", "hotdogjuggler", "culling",
                           "trolltrain",
     --[[ Vriska Jokers ]] "fluoriteoctet", "lucky_break", "alltheirons",
     --[[ Food Jokers   ]] "soporpie", "sucker","faygo",
     --[[ Denizens      ]] "yaldabaoth", "abraxas", "hephaestus", "echidna", "typheus", "gristtorrent","consortconcierge","redblood",
-    --[[ Post-canon    ]] "beyondcanon", "bigkahuna", "smallerbutterflies",
+    --[[ Post-canon    ]] "beyondcanon", "smallerbutterflies",
     --[[ MSPA Jokers   ]] "stump", "aceDick"
 }
 
