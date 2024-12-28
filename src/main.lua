@@ -127,10 +127,15 @@ local zodiac_list = {
     "pisces", "ophiuchus", "aries"
 }
 
+local edition_list = {
+    "paradox"
+}
+
 batch_load("jokers")
 batch_load("aspects")
 batch_load("zodiacs")
 batch_load("boosters")
+batch_load("editions")
 
 for _, joker in ipairs(joker_list) do
     Balatrostuck.INIT.Jokers["j_"..joker]()
@@ -144,6 +149,9 @@ for _, aspect in ipairs(zodiac_list) do
     Balatrostuck.INIT.Zodiacs["c_zodiac_"..aspect]()
 end
 
+for _, edition in ipairs(edition_list) do
+    Balatrostuck.INIT.Editions["e_"..edition]()
+end
 
 
 SMODS.Atlas({key = "HomestuckJokers", path = "hsjokers.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
