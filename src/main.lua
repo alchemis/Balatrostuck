@@ -106,25 +106,18 @@ local joker_list = {
 
 -- Page 6
 "sucker", "roundtwo", "tumor", "vodkamutini", "purrfectwarrior", 
-"lordoftime", "museofspace", "problemsleuth",
-"gristtorrent", "batterwitch", "beyondcanon",
+"lordoftime", "museofspace", "problemsleuth", "pickleinspector", "aceDick",
+"gristtorrent", "batterwitch", "beyondcanon", "therapture", "ahabscrosshairs",
 
 -- Page 7
+"faygo", "stump", "ringoflife",
+"magnificent", "jokermode", 
+"dark_carnival", "soporpie",
 
 -- Page 8
 "conditionalimmortality", "joker", "questbed",
 
 "echidna", "abraxas", "yaldabaoth", "typheus", "hephaestus",
-
-    --[[ Artifacts     ]] "ringoflife",
-    --[[ Sylladex      ]]  
-                           "dark_carnival",
-    --[[ Cherub Jokers ]] "magnificent", "jokermode", 
-                           
-                          
-    --[[ Food Jokers   ]] "soporpie", "faygo",
-    --[[ Denizens      ]] "redblood",
-    --[[ MSPA Jokers   ]] "stump", "aceDick"
 }
 
 local aspect_list = {
