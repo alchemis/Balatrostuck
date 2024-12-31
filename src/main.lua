@@ -110,13 +110,12 @@ local joker_list = {
 "gristtorrent", "batterwitch", "beyondcanon", "therapture", "ahabscrosshairs",
 
 -- Page 7
-"faygo", "stump", "ringoflife",
-"magnificent", "jokermode", 
-"dark_carnival", "soporpie",
+"faygo", "stump", "porkhollow", "ringoflife", "ringofvoid",
+"pawnrevolution", "dark_carnival", "soporpie", "darkscholar",
 
 -- Page 8
 "conditionalimmortality", "joker", "questbed",
-
+"magnificent", "jokermode", 
 "echidna", "abraxas", "yaldabaoth", "typheus", "hephaestus",
 }
 
