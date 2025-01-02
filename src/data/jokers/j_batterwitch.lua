@@ -1,43 +1,70 @@
--- TODO: Calculation logic
 function Balatrostuck.INIT.Jokers.j_batterwitch() 
     SMODS.Joker{
         name = "Batterwitch",
         key = "batterwitch",
         config = {
             extra = {
-                poker_hand = "Full House",
-                xmult = 0.25,
-                total = 1
+                dollars = 4
             }
         },
         loc_txt = {
             ['name'] = 'Batterwitch',
             ['text'] = {
-                [1] = 'Levels down {C:attention}#1#{}',
-                [2] = 'when played',
-                [3] = 'Gains {C:white,X:mult}X#2#{} Mult per level down',
-                [4] = '{C:inactive}Hand changes every round{}',
-                [5] = '{C:inactive}(Currently: {C:white,X:mult}X#3#{} Mult{C:inactive}){}'
+                [1] = 'If played {C:attention}Poker Hand{} is your',
+                [2] = '{C:attention}highest level{} hand, it loses',
+                [3] = '{C:attention}all{} levels and gives {C:money}$#1#{} for each level lost'
             }
         },
         pos = {
             x = 1,
             y = 5
-        },
+        }, 
         cost = 8,
         rarity = 3,
-        blueprint_compat = true,
+        blueprint_compat = false,
         eternal_compat = true,
         unlocked = true,
         discovered = true,
         atlas = 'HomestuckJokers',
 
         loc_vars = function(self, info_queue, card)
-            return {vars = {card.ability.extra.poker_hand, card.ability.extra.xmult, card.ability.extra.total}}
+            return {vars = {card.ability.extra.dollars}}
         end,
 
-        calculate = function(self, context)
+        calculate = function(self, card, context)
+            if context.cardarea == G.jokers and context.before and not context.blueprint then
 
+                local valid_hands, level, activate = {}, 1, false
+                
+                for k, v in pairs(G.GAME.hands) do 
+                    if v.level ~= 1 and v.level == level then
+                        valid_hands[#valid_hands+1] = k
+                    elseif v.level > level then
+                        valid_hands = {}
+                        level = v.level
+                        valid_hands[#valid_hands+1] = k
+                    end
+                end
+
+                if level > 1 then
+                    for k, v in pairs(valid_hands) do
+                        if v == context.scoring_name then
+                            activate = true break
+                        end
+                    end
+                end
+
+
+
+                if activate then
+                    local amount = G.GAME.hands[context.scoring_name].level - 1
+                    local text,disp_text = context.scoring_name
+                    card_eval_status_text(card, 'extra', nil, nil, nil, {message = "Conquered!",colour = G.C.FILTER})
+                    update_hand_text({sound = 'button', volume = 0.7, pitch = 0.8, delay = 0.3}, {handname=localize(text, 'poker_hands'),chips = G.GAME.hands[text].chips, mult = G.GAME.hands[text].mult, level=G.GAME.hands[text].level})
+                    level_up_hand(card, text, false, -amount)
+                    ease_dollars(amount * card.ability.extra.dollars)
+                end
+            end
         end
     }
 end
