@@ -14,8 +14,8 @@ function Balatrostuck.INIT.Jokers.j_nepetajoker()
             }
         },
         pos = {
-            x = 2,
-            y = 0
+            x = 7,
+            y = 2
          },
         cost = 4,
         rarity = 1,

@@ -14,8 +14,8 @@ function Balatrostuck.INIT.Jokers.j_trolltrain()
             }
         },
         pos = {
-            x = 2,
-            y = 0
+            x = 9,
+            y = 7
          },
         cost = 4,
         rarity = 1,

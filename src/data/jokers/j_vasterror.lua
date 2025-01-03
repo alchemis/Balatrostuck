@@ -18,8 +18,8 @@ function Balatrostuck.INIT.Jokers.j_vasterror()
             }
         },
         pos = {
-            x = 2,
-            y = 0
+            x = 8,
+            y = 2
          },
         cost = 6,
         rarity = 2,

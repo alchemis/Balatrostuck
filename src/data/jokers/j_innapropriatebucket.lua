@@ -15,7 +15,7 @@ function Balatrostuck.INIT.Jokers.j_innapropriatebucket()
         },
         pos = {
             x = 2,
-            y = 0
+            y = 3
          },
         cost = 4,
         rarity = 1,

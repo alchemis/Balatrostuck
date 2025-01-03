@@ -16,7 +16,7 @@ function Balatrostuck.INIT.Jokers.j_genejoker()
         },
         pos = {
             x = 2,
-            y = 0
+            y = 2
          },
         cost = 4,
         rarity = 1,

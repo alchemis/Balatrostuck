@@ -15,8 +15,8 @@ function Balatrostuck.INIT.Jokers.j_biscuits()
             }
         },
         pos = {
-            x = 2,
-            y = 0
+            x = 4,
+            y = 5
          },
         cost = 13,
         rarity = 3,

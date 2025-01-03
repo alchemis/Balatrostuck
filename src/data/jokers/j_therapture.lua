@@ -14,8 +14,8 @@ function Balatrostuck.INIT.Jokers.j_therapture()
             }
         },
         pos = {
-            x = 2,
-            y = 0
+            x = 4,
+            y = 3
          },
         cost = 8,
         rarity = 3,

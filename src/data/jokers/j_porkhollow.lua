@@ -14,8 +14,8 @@ function Balatrostuck.INIT.Jokers.j_porkhollow()
             }
         },
         pos = {
-            x = 2,
-            y = 0
+            x = 4,
+            y = 4
          },
         cost = 10,
         rarity = 2,

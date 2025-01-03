@@ -18,7 +18,7 @@ function Balatrostuck.INIT.Jokers.j_faygo()
             }
         },
         pos = {
-            x = 6,
+            x = 8,
             y = 4
         },
         cost = 4,
