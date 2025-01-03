@@ -1,7 +1,11 @@
 function Balatrostuck.INIT.Editions.e_paradox()
+    SMODS.Shader{
+        key = 'paradox',
+        path = 'paradox.fs'
+    }
     SMODS.Edition{
         key = "paradox",
-        shader = false, -- change that to paradox shader later
+        shader = 'paradox', -- change that to paradox shader later
         loc_txt = {
             name = 'Paradox',
             label = 'Paradox',
