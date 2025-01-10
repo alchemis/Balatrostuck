@@ -14,8 +14,8 @@ function Balatrostuck.INIT.Jokers.j_kernelsprite()
             }
         },
         pos = {
-            x = 2,
-            y = 0
+            x = 3,
+            y = 3
          },
         cost = 4,
         rarity = 2,

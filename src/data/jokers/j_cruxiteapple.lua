@@ -15,8 +15,8 @@ function Balatrostuck.INIT.Jokers.j_cruxiteapple()
             }
         },
         pos = {
-            x = 2,
-            y = 0
+            x = 0,
+            y = 1
          },
         cost = 1,
         rarity = 1,

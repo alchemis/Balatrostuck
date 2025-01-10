@@ -15,7 +15,7 @@ function Balatrostuck.INIT.Jokers.j_clover()
         },
         pos = {
             x = 2,
-            y = 0
+            y = 5
          },
         cost = 4,
         rarity = 1,
