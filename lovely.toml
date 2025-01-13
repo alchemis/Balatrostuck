@@ -228,4 +228,15 @@ match_indent = true
 times = 1
 
 
-
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = 'if id == 11 or id == 12 or id == 13 or next(find_joker("Pareidolia")) then'
+position = "before"
+payload = '''
+if id == 8 and next(find_joker("Snowman")) then
+    return true
+end
+'''
+match_indent = true
+times = 1

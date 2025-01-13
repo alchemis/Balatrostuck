@@ -23,6 +23,22 @@ function Balatrostuck.INIT.Jokers.j_snowman()
         eternal_compat = true,
         unlocked = true,
         discovered = true,
-        atlas = 'HomestuckJokers'
+        atlas = 'HomestuckJokers',
+        calculate = function(self,card,context)
+            if context.individual and context.cardarea == G.hand then
+                if context.other_card:is_face() and not context.other_card.debuff then
+                    return {
+                        h_mult = 1,
+                        card = card
+                    }
+                elseif context.other_card:is_face() then
+                    return {
+                        message = localize('k_debuffed'),
+                        colour = G.C.RED,
+                        card = card
+                    }
+                end
+            end
+        end
     }
 end 
