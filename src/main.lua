@@ -135,11 +135,16 @@ local edition_list = {
     "paradox"
 }
 
+local tag_list = {
+    "perfectlygeneric"
+}
+
 batch_load("jokers")
 batch_load("aspects")
 batch_load("zodiacs")
 batch_load("boosters")
 batch_load("editions")
+batch_load("tags")
 
 for _, joker in ipairs(joker_list) do
     Balatrostuck.INIT.Jokers["j_"..joker]()
@@ -157,12 +162,17 @@ for _, edition in ipairs(edition_list) do
     Balatrostuck.INIT.Editions["e_"..edition]()
 end
 
+for _, tag in ipairs(tag_list) do
+    Balatrostuck.INIT.Tags["t_"..tag]()
+end
 
 SMODS.Atlas({key = "HomestuckJokers", path = "hsjokers.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
 SMODS.Atlas({key = "HomestuckZodiacs", path = "zodiac.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
 SMODS.Atlas({key = "HomestuckAspects", path = "aspect.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
 SMODS.Atlas({key = "HomestuckLogo", path = "bstuck_logo.png", px = 34, py = 34, atlas_table = "ASSET_ATLAS"}):register()
 SMODS.Atlas({key = "HomestuckAspectBooster", path = "booster.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
+SMODS.Atlas({key = "HomestuckTags", path = "tags.png", px = 34, py = 34, atlas_table = "ASSET_ATLAS"}):register()
+
 -- SMODS.Atlas({key = "HomestuckZodiacBooster", path = "booster_zodiac.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
 
 local UI, load_error = SMODS.load_file("bstuckui.lua")
