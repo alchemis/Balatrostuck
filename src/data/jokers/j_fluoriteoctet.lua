@@ -1,10 +1,10 @@
 function Balatrostuck.INIT.Jokers.j_fluoriteoctet() 
 
     local locs = {
-        mult     = 'give +8 Mult per scoring card',
+        mult     = 'give +8 Chips per scoring card',
         xmult    = 'give X2 Mult',
-        seal     = 'add seal to a scoring card',
-        dollars  = 'give $8',
+        seal     = 'add a seal to a scoring card',
+        dollars  = 'earn $8',
         tarot    = 'create a Tarot card',
         spectral = 'create a Spectral card',
         chips    = 'give +800 Chips'
@@ -73,8 +73,8 @@ function Balatrostuck.INIT.Jokers.j_fluoriteoctet()
                     if payout == 'mult' then
                         local mult = #context.scoring_hand * 8
                         return {
-                            message = localize { type = 'variable', key = 'a_mult', vars = { mult }},
-                            mult_mod = mult
+                            message = localize { type = 'variable', key = 'a_chips', vars = { mult }},
+                            chip_mod = mult
                         }
 
                     elseif payout == 'xmult' then

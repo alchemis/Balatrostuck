@@ -13,9 +13,9 @@ function Balatrostuck.INIT.Jokers.j_frustration()
         loc_txt = {
             ['name'] = 'Frustration',
             ['text'] = {
-                [1] = "Gains {C:chips}+#1# Chips{} per",
-                [2] = "{C:attention}non-scoring card{} played",
-                [3] = "{C:inactive}(Currently: {}{C:chips}+#2# Chips{}{C:inactive}){}"
+                [1] = "This Joker gains {C:chips}+#1# Chips{} for",
+                [2] = "every {C:attention}non-scoring{} card played",
+                [3] = "{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chips)"
             }
         },
         pos = {
