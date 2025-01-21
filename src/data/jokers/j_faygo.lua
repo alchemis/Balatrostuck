@@ -13,8 +13,8 @@ function Balatrostuck.INIT.Jokers.j_faygo()
             ['name'] = 'Faygo',
             ['text'] = {
                 [1] = 'Played cards give {C:mult}#3##1#{} Mult',
-                [2] = 'when scored, then this joker',
-                [3] = 'loses {C:mult}-#2#{} Mult'
+                [2] = 'when scored, reduces by {C:red}#2#{}',
+                [3] = 'when a card is scored',
             }
         },
         pos = {
