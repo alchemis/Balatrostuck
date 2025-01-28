@@ -240,3 +240,26 @@ end
 '''
 match_indent = true
 times = 1
+
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = 'function Card:set_debuff(should_debuff)'
+position = "after"
+payload = '''
+if next(find_joker("Commander Vantas")) and self.playing_card then
+    local hasWild = false
+    for k, v in pairs(G.playing_cards) do
+        if v.config.center == G.P_CENTERS.m_wild then 
+            hasWild = true
+            break
+        end
+    end
+    if hasWild then should_debuff = false end
+end
+'''
+match_indent = true
+times = 1
+
+
+
