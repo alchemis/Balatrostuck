@@ -4,13 +4,16 @@ function Balatrostuck.INIT.Jokers.j_frogbreeding()
         key = "frogbreeding",
         config = {
             extra = {
+                rounds = 5
             }
         },
         loc_txt = {
             ['name'] = 'Frog Breeding',
             ['text'] = {
-                [1] = "texty text",
-                [2] = "texty text"
+                [1] = "Create a {C:green}Paradox copy",
+                [2] = "of the {C:attention}first{} consumable",
+                [3] = "used each round",
+                [4] = "{C:inactive}({C:attention}#1#{C:inactive} rounds remaining)"
             }
         },
         pos = {
@@ -23,6 +26,10 @@ function Balatrostuck.INIT.Jokers.j_frogbreeding()
         eternal_compat = true,
         unlocked = true,
         discovered = true,
-        atlas = 'HomestuckJokers'
+        atlas = 'HomestuckJokers',
+
+        loc_vars = function(self, info_queue, card)
+            return {vars = {card.ability.extra.rounds}}
+        end,
     }
 end 

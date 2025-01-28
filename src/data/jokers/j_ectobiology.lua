@@ -14,8 +14,8 @@ function Balatrostuck.INIT.Jokers.j_ectobiology()
             }
         },
         pos = {
-            x = 2,
-            y = 0
+            x = 5,
+            y = 3
          },
         cost = 10,
         rarity = 2,
