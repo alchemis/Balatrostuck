@@ -3,8 +3,7 @@ function Balatrostuck.INIT.Jokers.j_trolltrain()
         name = "Troll Train",
         key = "trolltrain",
         config = {
-            extra = {
-            }
+            extra = {mult = 4}
         },
         loc_txt = {
             ['name'] = 'Troll Train',
@@ -23,6 +22,18 @@ function Balatrostuck.INIT.Jokers.j_trolltrain()
         eternal_compat = true,
         unlocked = true,
         discovered = true,
-        atlas = 'HomestuckJokers'
+        atlas = 'HomestuckJokers',
+        calculate = function(self,card,context)
+            if context.individual and context.cardarea == G.play then
+                for k,v in ipairs(G.GAME.BALATROSTUCK.active_castes) do
+                    if context.other_card:get_id() == v.ability.rank then
+                        return {
+                            mult = v:level() * card.ability.extra.mult,
+                            card = context.other_card
+                        }
+                    end
+                end
+            end
+        end
     }
 end 
