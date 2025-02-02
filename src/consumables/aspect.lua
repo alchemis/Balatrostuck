@@ -37,7 +37,7 @@ function Slab:init(key)
   self.ability = copy_table(self.config)
 end
 
-function Slab:apply_to_run(_context)
+function Slab:apply_to_run(_context,dont_trigger)
   if not self.triggered then
     local obj = Balatrostuck.Slabs[self.key]
     local res
@@ -46,7 +46,7 @@ function Slab:apply_to_run(_context)
     end
 
     if res then
-      self.triggered = true
+      if not dont_trigger then self.triggered = true end
       return res
     end
   end

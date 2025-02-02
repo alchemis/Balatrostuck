@@ -254,6 +254,41 @@ if #G.GAME.BALATROSTUCK.active_castes > 0 then
 end'''
 
 
+[[patches]]
+[patches.pattern]
+target = "functions/state_events.lua"
+pattern = "local effects = eval_card(_card, {cardarea = G.jokers, full_hand = G.play.cards, scoring_hand = scoring_hand, scoring_name = text, poker_hands = poker_hands, joker_main = true})"
+position = "after"
+match_indent = true
+payload = '''
+if G.GAME.slab ~= nil then
+    if _card.ability.set ~= 'Joker' then
+        effects.slabs = G.GAME.slab:apply_to_run({consumable = _card},true)
+    end
+else
+    effects.slabs = {}
+end
+'''
+[[patches]]
+[patches.pattern]
+target = "functions/state_events.lua"
+pattern = "if effects.jokers then"
+position = "before"
+match_indent = true
+payload = '''
+if effects.slabs then 
+    local extras = {mult = false, hand_chips = false}
+    if effects.slabs.mult_mod then mult = mod_mult(mult + effects.slabs.mult_mod);extras.mult = true end
+    if effects.slabs.chip_mod then hand_chips = mod_chips(hand_chips + effects.slabs.chip_mod);extras.hand_chips = true end
+    if effects.slabs.Xmult_mod then mult = mod_mult(mult*effects.slabs.Xmult_mod);extras.mult = true  end
+    update_hand_text({delay = 0}, {chips = extras.hand_chips and hand_chips, mult = extras.mult and mult})
+    card_eval_status_text(_card, 'extra', nil, percent, nil, effects.slabs)
+    percent = percent+percent_delta
+end
+
+'''
+
+
 
 [[patches]]
 [patches.pattern]
