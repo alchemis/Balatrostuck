@@ -52,7 +52,7 @@ function Balatrostuck.INIT.Aspects.c_aspect_rage()
             if context.individual and context.cardarea == G.play then
                 if math.abs(G.GAME.current_round.hands_left - G.GAME.current_round.discards_left) ~= 0 then
                     return {
-                        x_mult = (slab:level() / 2) * math.abs(G.GAME.current_round.hands_left - G.GAME.current_round.discards_left),
+                        x_mult = (slab:level() / 4) * math.abs(G.GAME.current_round.hands_left - G.GAME.current_round.discards_left),
                         card = context.other_card
                     }
                 end
