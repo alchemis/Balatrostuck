@@ -48,7 +48,6 @@ function Balatrostuck.INIT.Aspects.c_aspect_light()
         name = 'Aspect of Light',
         apply = function(self, slab, context) 
             if context.consumable then
-                slab.triggered = false
                 return {
                     Xmult_mod = 1 + slab:level() / 2,
                     message = localize{type = 'variable', key = 'a_xmult', vars = {1 + slab:level() / 2}},

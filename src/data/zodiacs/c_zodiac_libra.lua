@@ -46,13 +46,8 @@ function Balatrostuck.INIT.Zodiacs.c_zodiac_libra()
         rank = 7,
         apply = function(self,context)
             if context.individual and context.cardarea == G.play and context.other_card:get_id() == self.ability.rank then
-                local scottthewoz = discard_aces
-                for k,v in pairs(G.deck.cards) do
-                    if k:get_id() == self.ability.rank then scottthewoz = scottthewoz + 1 end
-                end
-
                 return {
-                    x_mult = (self:level() / 2) * scottthewoz,
+                    x_mult = 1 + (self:level() / 10),
                     card = context.other_card
                 }
             end

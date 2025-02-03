@@ -27,7 +27,33 @@ function Balatrostuck.INIT.Aspects.c_aspect_mind()
                     (G.GAME.BALATROSTUCK.aspect_levels[self.name] or 0)
                 }
             }
+        end,
+        use = function(self, context)
+            self:switch_slab()
+        end,
+        can_use = function(self)
+            return true
         end
     }
 
+    Balatrostuck.Slab{
+        key = 'mind',
+        atlas = 'HomestuckAspectSlabs',
+        pos = {
+            x = 1,
+            y = 0
+        },
+        config = {},
+        name = 'Aspect of Mind',
+        apply = function(self, slab, context) 
+            if context.tag then
+                if context.tag.ability and context.tag.ability.orbital_hand then
+                    G.orbital_hand = context.tag.ability.orbital_hand
+                end
+                for i = 1, slab:level() do
+                    add_tag(Tag(context.tag.key),true)
+                end
+            end
+        end
+    }
 end
