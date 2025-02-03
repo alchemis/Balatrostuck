@@ -240,6 +240,10 @@ pattern = "G.GAME.blind:set_blind(G.GAME.round_resets.blind)"
 position = "after"
 match_indent = true
 payload = '''
+if G.GAME.slab ~= nil then
+    local slab_eval = G.GAME.slab:apply_to_run({setting_blind = true, blind = G.GAME.round_resets.blind})
+end
+
 if #G.GAME.BALATROSTUCK.active_castes > 0 then
     for c = 1, #G.GAME.BALATROSTUCK.active_castes do
         local caste_eval = G.GAME.BALATROSTUCK.active_castes[c]:apply_to_run({setting_blind = true, blind = G.GAME.round_resets.blind})
