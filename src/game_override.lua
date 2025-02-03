@@ -107,5 +107,6 @@ function Game:init_game_object()
     ret.BALATROSTUCK.active_castes = {}
     ret.BALATROSTUCK.strife_assignment = 'Unassigned'
     ret.BALATROSTUCK.current_aspect = ''
+    ret.BALATROSTUCK.pack_size_bonus = 0
     return ret
 end

@@ -13,7 +13,7 @@ function Balatrostuck.INIT.Jokers.j_abraxas()
             ['text'] = {
                 [1] = '{C:attention}+#1#{} hand size,',
                 [2] = '{C:attention}Booster Packs{} have',
-                [3] = '{C:attention}+#2#{} cards to choose from'
+                [3] = '{C:attention}+#1#{} cards to choose from'
             }
         },
         pos = {
@@ -38,12 +38,12 @@ function Balatrostuck.INIT.Jokers.j_abraxas()
 
         add_to_deck = function(self, card, from_debuff)
             G.hand:change_size(card.ability.extra.h_size)
-
+            G.GAME.BALATROSTUCK.pack_size_bonus = G.GAME.BALATROSTUCK.pack_size_bonus + card.ability.extra.h_size
         end,
     
         remove_from_deck = function(self, card, from_debuff)
             G.hand:change_size(-card.ability.extra.h_size)
-
+            G.GAME.BALATROSTUCK.pack_size_bonus = G.GAME.BALATROSTUCK.pack_size_bonus - card.ability.extra.h_size
         end
     }
     

@@ -274,8 +274,6 @@ if G.GAME.slab ~= nil then
     if _card.ability.set ~= 'Joker' then
         effects.slabs = G.GAME.slab:apply_to_run({consumable = _card},true)
     end
-else
-    effects.slabs = {}
 end
 '''
 [[patches]]
@@ -320,6 +318,26 @@ if G.GAME.slab ~= nil then
     local slab_eval = nil
     slab_eval = G.GAME.slab:apply_to_run({start_of_round = true})
 end
+'''
+
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = "local _size = self.ability.extra"
+position = "at"
+match_indent = true
+payload = '''
+local _size = self.ability.extra + G.GAME.BALATROSTUCK.pack_size_bonus
+'''
+
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = "G.GAME.pack_choices = self.config.center.config.choose or 1"
+position = "before"
+match_indent = true
+payload = '''
+G.GAME.pack_size = math.min(G.GAME.pack_size + G.GAME.BALATROSTUCK.pack_size_bonus,5)
 '''
 
 [[patches]]
