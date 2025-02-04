@@ -4,15 +4,20 @@ function Balatrostuck.INIT.Jokers.j_therapture()
         key = "therapture",
         config = {
             extra = {
+                x_mult = 0.25, gained_xmult = 1.00
             }
         },
         loc_txt = {
             ['name'] = 'The Rapture',
             ['text'] = {
                 [1] = "Destroys played cards after scoring. Each destroyed",
-                [2] = "scoring card adds X0.25 Mult. If you sell this Joker you lose."
+                [2] = "scoring card adds {C:white,X:mult}#1#{}. If you sell this Joker you lose.",
+                [3] = "{C:inactive}(Currently {C:white,X:mult}#2#{C:inactive} Mult)"
             }
         },
+        loc_vars = function (self, info_queue, card)
+            return {vars = {card.ability.extra.x_mult, card.ability.extra.gained_xmult}}
+        end,
         pos = {
             x = 4,
             y = 3
@@ -23,6 +28,15 @@ function Balatrostuck.INIT.Jokers.j_therapture()
         eternal_compat = true,
         unlocked = true,
         discovered = true,
-        atlas = 'HomestuckJokers'
+        atlas = 'HomestuckJokers',
+        calculate = function(self,card,context)
+            if context.selling_self then
+                G.STATE = G.STATES.GAME_OVER; G.STATE_COMPLETE = false
+            end
+            
+            if context.last_minute_destruction then
+                return context.full_hand
+            end
+        end
     }
 end 

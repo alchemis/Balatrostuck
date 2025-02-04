@@ -28,6 +28,32 @@ function Balatrostuck.INIT.Aspects.c_aspect_heart()
                     (G.GAME.BALATROSTUCK.aspect_levels[self.name] or 0)+2
                 }
             }
+        end,
+        use = function(self, card, area, copier)
+            self:switch_slab()
+        end,
+        can_use = function(self)
+            return true
         end
-    }   
+    }
+
+    Balatrostuck.Slab{
+        key = 'heart',
+        atlas = 'HomestuckAspectSlabs',
+        pos = {
+            x = 0,
+            y = 1
+        },
+        config = {},
+        name = 'Aspect of Heart',
+        apply = function(self, slab, context)
+            if context.level_up_hand then
+                sendInfoMessage("Intersected level up")
+                return {
+                    amount = context.amount + summation(slab:level())
+                }
+            end
+        end
+    }
+
 end

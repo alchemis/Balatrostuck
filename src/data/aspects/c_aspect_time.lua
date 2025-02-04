@@ -50,7 +50,7 @@ function Balatrostuck.INIT.Aspects.c_aspect_time()
         config = {},
         name = 'Aspect of Time',
         apply = function(self, slab, context) 
-            if context.start_of_round then
+            if context.setting_blind then
                 ease_hands_played(summation(slab:level()))
             end
         end

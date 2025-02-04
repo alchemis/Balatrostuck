@@ -42,7 +42,7 @@ function Balatrostuck.INIT.Zodiacs.c_zodiac_capricorn()
         name = 'Capricorn',
         rank = 10,
         apply = function(self,context)
-            if context.individual and context.cardarea == G.hand and context.other_card:get_id() == self.ability.rank then
+            if context.individual and context.cardarea == G.hand and context.other_card:get_id() == self.ability.rank and not context.end_of_round then
                 if context.other_card.debuff then
                     return {
                         message = localize('k_debuffed'),

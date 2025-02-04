@@ -51,7 +51,7 @@ function Balatrostuck.INIT.Zodiacs.c_zodiac_cancer()
         name = 'Cancer',
         rank = 4,
         apply = function(self,context)
-            if context.individual and context.cardarea == G.hand and context.other_card:get_id() == self.ability.rank then
+            if context.individual and context.cardarea == G.hand and not context.end_of_round and context.other_card:get_id() == self.ability.rank then
                 if context.other_card.debuff then
                     return {
                         message = localize('k_debuffed'),

@@ -45,8 +45,19 @@ function Balatrostuck.INIT.Aspects.c_aspect_breath()
         config = {},
         name = 'Aspect of Breath',
         apply = function(self, slab, context)
-            if context.start_of_round then
-                G.GAME.current_round.free_rerolls = G.GAME.current_round.free_rerolls + slab:level()
+            local peepee = slab:level()
+            local poopoo = slab:level() - 1
+
+            if context.activated and context.after_level_up then
+                if context.returning then
+                    G.GAME.current_round.free_rerolls = G.GAME.current_round.free_rerolls + peepee
+                else
+                    G.GAME.current_round.free_rerolls = G.GAME.current_round.free_rerolls + peepee-poopoo
+                end
+                calculate_reroll_cost(true)
+            end
+            if context.deactivated and context.before_level_down then
+                G.GAME.current_round.free_rerolls = G.GAME.current_round.free_rerolls  - peepee
                 calculate_reroll_cost(true)
             end
         end

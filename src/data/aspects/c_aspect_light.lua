@@ -47,11 +47,11 @@ function Balatrostuck.INIT.Aspects.c_aspect_light()
         config = {},
         name = 'Aspect of Light',
         apply = function(self, slab, context) 
-            if context.consumable then
+            if context.other_consumeable then
                 return {
                     Xmult_mod = 1 + slab:level() / 2,
                     message = localize{type = 'variable', key = 'a_xmult', vars = {1 + slab:level() / 2}},
-                    card = context.consumable              
+                    card = context.other_consumeable              
                 }
             end
         end

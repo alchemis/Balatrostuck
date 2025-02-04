@@ -4,7 +4,7 @@ version = "1.0.0"
 dump_lua = true
 priority = 0
 
-# # setup for Zodiac/Aspect calculations hook
+# # setup for Zodiac/Aspect calculations hook NOT NEEDED ANYMORE LMAOOOOOO
 # [[patches]]
 # [patches.pattern]
 # target = 'functions/state_events.lua'
@@ -18,21 +18,7 @@ priority = 0
 # match_indent = true
 # overwrite = false
 
-# Mind functionality setup
 
-[[patches]]
-[patches.pattern]
-target = 'functions/state_events.lua'
-pattern = 'local hand_space = e or math.min(#G.deck.cards, G.hand.config.card_limit - #G.hand.cards)'
-payload = '''
-if G.GAME.BALATROSTUCK.current_aspect == 'Mind' and (G.GAME.current_round.hands_played > 0 or
-G.GAME.current_round.discards_used > 0) then
-    hand_space = math.min(#G.deck.cards, G.GAME.BALATROSTUCK.aspect_levels['Mind']+3) 
-end
-'''
-position = 'after'
-match_indent = true
-overwrite = false
 
 #Debuff functionality
 [[patches]]
@@ -67,7 +53,7 @@ payload = '''
 match_indent = true
 
 
-# final_scoring_step support for jokers
+# Context.Ace_Dick
 [[patches]]
 [patches.pattern]
 target = "functions/state_events.lua"
@@ -106,6 +92,126 @@ self.P_SLABS = {}
 self.P_CASTES = {}
 '''
 
+
+# Slabs and Castes Calculation
+[[patches]]
+[patches.regex]
+target = '=[SMODS _ "src/utils.lua"]'
+pattern = "(?<indent>[\t ]*)        SMODS\\.trigger_effects\\(effects, card\\)"
+position = "before"
+line_prepend = '$indent'
+payload = '''
+-- Castes
+if #G.GAME.BALATROSTUCK.active_castes > 0 then
+    for c = 1, #G.GAME.BALATROSTUCK.active_castes do
+        local caste_eval = G.GAME.BALATROSTUCK.active_castes[c]:apply_to_run(context)
+        if caste_eval then 
+            table.insert(effects, {jokers = caste_eval}) 
+            if caste_eval.retriggers then
+                context.retrigger_joker = true
+                for rt = 1, #caste_eval.retriggers do
+                    table.insert(effects, { caste_eval.retriggers[rt] })
+                end
+                context.retrigger_joker = nil
+            end
+        end
+    end
+end
+
+if G.GAME.slab ~= nil then
+    local slab_eval = G.GAME.slab:apply_to_run(context,true)
+    if slab_eval then 
+        table.insert(effects, {jokers = slab_eval}) 
+        if slab_eval.retriggers then
+            context.retrigger_joker = true
+            for rt = 1, #slab_eval.retriggers do
+                table.insert(effects, { slab_eval.retriggers[rt] })
+            end
+            context.retrigger_joker = nil
+        end
+    end
+end
+'''
+
+[[patches]]
+[patches.regex]
+target = '=[SMODS _ "src/utils.lua"]'
+pattern = "context.main_eval = nil"
+position = "before"
+line_prepend = '$indent'
+payload = '''
+-- Castes
+local effects = {}
+
+if #G.GAME.BALATROSTUCK.active_castes > 0 then
+    for c = 1, #G.GAME.BALATROSTUCK.active_castes do
+        local caste_eval = G.GAME.BALATROSTUCK.active_castes[c]:apply_to_run(context)
+        if caste_eval then 
+            table.insert(effects, {jokers = caste_eval}) 
+            if caste_eval.retriggers then
+                context.retrigger_joker = true
+                for rt = 1, #caste_eval.retriggers do
+                    table.insert(effects, { caste_eval.retriggers[rt] })
+                end
+                context.retrigger_joker = nil
+            end
+        end
+    end
+end
+
+if G.GAME.slab ~= nil then
+    local slab_eval = G.GAME.slab:apply_to_run(context)
+    if slab_eval then 
+        table.insert(effects, {jokers = slab_eval}) 
+        if slab_eval.retriggers then
+            context.retrigger_joker = true
+            for rt = 1, #slab_eval.retriggers do
+                table.insert(effects, { slab_eval.retriggers[rt] })
+            end
+            context.retrigger_joker = nil
+        end
+    end
+end
+SMODS.trigger_effects(effects,card)
+'''
+
+[[patches]]
+[patches.regex]
+target = '=[SMODS _ "src/utils.lua"]'
+pattern = "(?<indent>[\t ]*)            effect\\.card = effect\\.card or G\\.deck\\.cards\\[1\\] or G\\.deck\n            reps\\[#reps\\+1\\] = \\{key = effect\\}\n        end\n    end"
+position = "after"
+line_prepend = '$indent'
+payload = '''
+if #G.GAME.BALATROSTUCK.active_castes > 0 then
+    for c = 1, #G.GAME.BALATROSTUCK.active_castes do
+        local eval = G.GAME.BALATROSTUCK.active_castes[c]:apply_to_run(context)
+        if eval and eval.repetitions then
+            for h=1, eval.repetitions do
+                if h == 1 then eval.message = nil end
+                eval.card = eval.card or _card
+                reps[#reps+1] = {key = eval}
+            end
+        end
+    end
+end
+'''
+
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+pattern = "for _, _area in ipairs(SMODS.get_card_areas('jokers')) do"
+position = "before"
+match_indent = true
+payload = '''
+if G.GAME.slab ~= nil then
+    local slab_eval = G.GAME.slab:apply_to_run({full_hand = G.play.cards, scoring_hand = scoring_hand, scoring_name = text, poker_hands = poker_hands, other_joker = _card.ability.set == 'Joker' and _card or false, other_consumeable = _card.config.center.consumeable and _card or false},true)
+    if slab_eval then
+        table.insert(effects, {joker = slab_eval})
+    end
+end
+'''
+
+
 [[patches]]
 [patches.regex]
 target = "game.lua"
@@ -127,202 +233,23 @@ payload = '''
 G.GAME.slab = nil
 '''
 
+
 [[patches]]
 [patches.pattern]
-target = "functions/state_events.lua"
-pattern = "table.insert(cards, G.hand.highlighted[i])"
-position = "before"
+target = "functions/common_events.lua"
+pattern = "amount = amount or 1"
+position = "after"
 match_indent = true
 payload = '''
 if G.GAME.slab ~= nil then
     local eval = nil
-    eval = G.GAME.slab:apply_to_run({discard = true, other_card = G.hand.highlighted[i], full_hand = G.hand.highlighted})
-end
-'''
-times = 1
-
-[[patches]]
-[patches.pattern]
-target = "functions/state_events.lua"
-pattern = "inc_career_stat('c_cards_discarded', highlighted_count)"
-position = "after"
-match_indent = true
-payload = '''
-if G.GAME.slab ~= nil then
-    local slab_eval = nil
-    slab_eval = G.GAME.slab:apply_to_run({pre_discard = true, full_hand = G.hand.highlighted, hook = hook})
-end
-'''
-times = 1
-
-[[patches]]
-[patches.pattern]
-target = "functions/state_events.lua"
-pattern = "if G.GAME.round_resets.ante == G.GAME.win_ante and G.GAME.blind:get_type() == 'Boss' then"
-position = "before"
-match_indent = true
-payload = '''
-if G.GAME.slab ~= nil then
-    local slab_eval = nil
-    slab_eval = G.GAME.slab:apply_to_run({end_of_round = true, game_over = game_over})
+    eval = G.GAME.slab:apply_to_run({level_up_hand, amount = amount},true)
+    if eval then amount = eval.amount end
 end
 '''
 times = 1
 
 
-[[patches]]
-[patches.pattern]
-target = "functions/state_events.lua"
-pattern = "local effects = {eval_card(G.hand.cards[i], {cardarea = G.hand, full_hand = G.play.cards, scoring_hand = scoring_hand, scoring_name = text, poker_hands = poker_hands})}"
-position = "after"
-match_indent = true
-payload = '''
-if #G.GAME.BALATROSTUCK.active_castes > 0 then
-    for c = 1, #G.GAME.BALATROSTUCK.active_castes do
-        local caste_eval = G.GAME.BALATROSTUCK.active_castes[c]:apply_to_run({cardarea = G.hand, full_hand = G.play.cards, scoring_hand = scoring_hand, scoring_name = text, poker_hands = poker_hands, other_card = G.hand.cards[i], individual = true})
-        if caste_eval then
-            table.insert(effects, caste_eval)
-        end
-    end
-end
-'''
-
-[[patches]]
-[patches.pattern]
-target = "functions/state_events.lua"
-pattern = "local effects = {eval_card(scoring_hand[i], {cardarea = G.play, full_hand = G.play.cards, scoring_hand = scoring_hand, poker_hand = text})}"
-position = "after"
-match_indent = true
-payload = '''
-if G.GAME.slab ~= nil then
-    local slab_eval = G.GAME.slab:apply_to_run({cardarea = G.play, full_hand = G.play.cards, scoring_hand = scoring_hand, scoring_name = text, poker_hands = poker_hands, other_card = scoring_hand[i], individual = true},true)
-    if slab_eval then
-        table.insert(effects, slab_eval)
-    end
-end
-
-if #G.GAME.BALATROSTUCK.active_castes > 0 then
-    for c = 1, #G.GAME.BALATROSTUCK.active_castes do
-        local caste_eval = G.GAME.BALATROSTUCK.active_castes[c]:apply_to_run({cardarea = G.play, full_hand = G.play.cards, scoring_hand = scoring_hand, scoring_name = text, poker_hands = poker_hands, other_card = scoring_hand[i], individual = true})
-        if caste_eval then
-            table.insert(effects, caste_eval)
-        end
-    end
-end
-'''
-
-
-[[patches]]
-[patches.regex]
-target = "functions/state_events.lua"
-pattern = '''(?<indent>[\t ]*)                --From jokers'''
-position = "before"
-line_prepend = '$indent'
-payload = '''
-if #G.GAME.BALATROSTUCK.active_castes > 0 then
-    for c = 1, #G.GAME.BALATROSTUCK.active_castes do
-        local eval = G.GAME.BALATROSTUCK.active_castes[c]:apply_to_run({cardarea = G.play, full_hand = G.play.cards, scoring_hand = scoring_hand, scoring_name = text, poker_hands = poker_hands, other_card = scoring_hand[i], repetition = true})
-        if eval then
-            for h = 1, eval.repetitions do
-                reps[#reps+1] = eval
-            end
-        end
-    end
-end
-'''
-times = 1
-
-
-[[patches]]
-[patches.pattern]
-target = "functions/state_events.lua"
-pattern = "G.GAME.blind:set_blind(G.GAME.round_resets.blind)"
-position = "after"
-match_indent = true
-payload = '''
-if G.GAME.slab ~= nil then
-    local slab_eval = G.GAME.slab:apply_to_run({setting_blind = true, blind = G.GAME.round_resets.blind})
-end
-
-if #G.GAME.BALATROSTUCK.active_castes > 0 then
-    for c = 1, #G.GAME.BALATROSTUCK.active_castes do
-        local caste_eval = G.GAME.BALATROSTUCK.active_castes[c]:apply_to_run({setting_blind = true, blind = G.GAME.round_resets.blind})
-    end
-end'''
-
-[[patches]]
-[patches.pattern]
-target = "functions/state_events.lua"
-pattern = "local removed = false"
-position = "after"
-match_indent = true
-payload = '''
-if #G.GAME.BALATROSTUCK.active_castes > 0 then
-    for c = 1, #G.GAME.BALATROSTUCK.active_castes do
-        local caste_eval = G.GAME.BALATROSTUCK.active_castes[c]:apply_to_run({discard = true, other_card =  G.hand.highlighted[i], full_hand = G.hand.highlighted})
-        if caste_eval then
-            if caste_eval.remove then remove = true end
-        end
-    end
-end'''
-
-
-[[patches]]
-[patches.pattern]
-target = "functions/state_events.lua"
-pattern = "local effects = eval_card(_card, {cardarea = G.jokers, full_hand = G.play.cards, scoring_hand = scoring_hand, scoring_name = text, poker_hands = poker_hands, joker_main = true})"
-position = "after"
-match_indent = true
-payload = '''
-if G.GAME.slab ~= nil then
-    if _card.ability.set ~= 'Joker' then
-        effects.slabs = G.GAME.slab:apply_to_run({consumable = _card},true)
-    end
-end
-'''
-[[patches]]
-[patches.pattern]
-target = "functions/state_events.lua"
-pattern = "if effects.jokers then"
-position = "before"
-match_indent = true
-payload = '''
-if effects.slabs then 
-    local extras = {mult = false, hand_chips = false}
-    if effects.slabs.mult_mod then mult = mod_mult(mult + effects.slabs.mult_mod);extras.mult = true end
-    if effects.slabs.chip_mod then hand_chips = mod_chips(hand_chips + effects.slabs.chip_mod);extras.hand_chips = true end
-    if effects.slabs.Xmult_mod then mult = mod_mult(mult*effects.slabs.Xmult_mod);extras.mult = true  end
-    update_hand_text({delay = 0}, {chips = extras.hand_chips and hand_chips, mult = extras.mult and mult})
-    card_eval_status_text(_card, 'extra', nil, percent, nil, effects.slabs)
-    percent = percent+percent_delta
-end
-
-'''
-
-
-
-[[patches]]
-[patches.pattern]
-target = "functions/state_events.lua"
-pattern = "card_eval_status_text((reps[j].jokers or reps[j].seals).card, 'jokers', nil, nil, nil, (reps[j].jokers or reps[j].seals))"
-position = "at"
-match_indent = true
-payload = '''
-card_eval_status_text((reps[j].jokers or reps[j].seals or reps[j]).card, 'jokers', nil, nil, nil, (reps[j].jokers or reps[j].seals or reps[j]))
-'''
-
-[[patches]]
-[patches.pattern]
-target = "functions/state_events.lua"
-pattern = "G.GAME.blind:set_blind(G.GAME.round_resets.blind)"
-position = "after"
-match_indent = true
-payload = '''
-if G.GAME.slab ~= nil then
-    local slab_eval = nil
-    slab_eval = G.GAME.slab:apply_to_run({start_of_round = true})
-end
-'''
 
 [[patches]]
 [patches.pattern]
@@ -347,7 +274,7 @@ payload = '''
 function add_tag(_tag,fromMind)
 '''
 
-
+# Pack Size Bonus
 [[patches]]
 [patches.pattern]
 target = "card.lua"
@@ -448,3 +375,4 @@ end
 '''
 match_indent = true
 times = 1
+
