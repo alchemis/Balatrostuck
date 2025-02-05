@@ -3,14 +3,13 @@ function Balatrostuck.INIT.Jokers.j_waywardvagabond()
         name = "Wayward Vagabond", -- Must later be converted into Pawn Revolution
         key = "waywardvagabond",
         config = {
-            extra = {
-            }
+            extra = {mult = 2}
         },
         loc_txt = {
             ['name'] = 'Wayward Vagabond',
             ['text'] = {
                 [1] = 'All {C:attention}Kings{} are debuffed',
-                [2] = 'other cards give {C:mult}+4 Mult{}',
+                [2] = 'other cards give {C:mult}+#1#{} Mult',
                 [3] = 'when {C:attention}scored{} or {C:attention}held in hand'
             }
         },
@@ -18,6 +17,9 @@ function Balatrostuck.INIT.Jokers.j_waywardvagabond()
             x = 9,
             y = 5
         },
+        loc_vars = function(self,info_queue,card)
+            return{vars = {card.ability.extra.mult}}
+        end,
         cost = 3,
         rarity = 2,
         blueprint_compat = true,
@@ -25,21 +27,32 @@ function Balatrostuck.INIT.Jokers.j_waywardvagabond()
         unlocked = true,
         discovered = true,
         atlas = 'HomestuckJokers',
-
-        calculate = function(self, context)
-            if context.individual and (context.cardarea == G.play or context.cardarea == G.hand) then
-                if context.other_card:get_id() ~= 13 then
-                    if context.cardarea == G.play then
+        calculate = function(self, card, context)
+            if context.setting_blind then
+                for _, v in ipairs(G.playing_cards) do
+                    if v:get_id() == 13 then
+                        v:set_debuff(true)
+                    end
+                end
+            end
+            if context.individual and not context.end_of_round then
+                if context.cardarea == G.play then
+                    return {
+                        mult = card.ability.extra.mult,
+                        card = card
+                    }
+                elseif context.cardarea == G.hand then
+                    if context.other_card.debuff then
                         return {
-                            mult = 4,
-                            card = card
-                        }
-                    elseif context.cardarea == G.hand then
-                        return {
-                            h_mult = 4,
-                            card = card
+                            message = localize('k_debuffed'),
+                            colour = G.C.RED,
+                            card = card,
                         }
                     end
+                    return {
+                        h_mult = card.ability.extra.mult,
+                        card = card
+                    }
                 end
             end
         end
