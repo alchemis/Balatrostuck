@@ -346,7 +346,7 @@ times = 1
 [[patches]]
 [patches.pattern]
 target = "card.lua"
-pattern = 'if id == 11 or id == 12 or id == 13 or next(find_joker("Pareidolia")) then'
+pattern = 'if (id > 0 and rank and rank.face) or next(find_joker("Pareidolia")) then'
 position = "before"
 payload = '''
 if id == 8 and next(find_joker("Snowman")) then
