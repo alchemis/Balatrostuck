@@ -57,25 +57,10 @@ match_indent = true
 [[patches]]
 [patches.pattern]
 target = "functions/state_events.lua"
-pattern = "local nu_chip, nu_mult = G.GAME.selected_back:trigger_effect{context = 'final_scoring_step', chips = hand_chips, mult = mult}"
+pattern = "hand_chips = mod_chips(nu_chip or hand_chips)"
 position = "after"
 payload = '''
-for j = 1, #G.jokers.cards do
-    local tempTable = G.jokers.cards[j]:calculate_joker({final_scoring_step = true})
-    if tempTable ~= nil then
-        nu_chip = tempTable[1] or nu_chip
-        nu_mult = tempTable[2] or u_mult
-    end
-end
-
--- THIS IS STUPID
-for j = 1, #G.jokers.cards do
-    local tempTable = G.jokers.cards[j]:calculate_joker({ace_dick = true})
-    if tempTable ~= nil then
-        nu_chip = tempTable[1] or nu_chip
-        nu_mult = tempTable[2] or u_mult
-    end
-end
+SMODS.calculate_context({ace_dick = true})
 '''
 match_indent = true
 times = 1
