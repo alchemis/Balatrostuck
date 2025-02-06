@@ -3,7 +3,7 @@ function Balatrostuck.INIT.Jokers.j_smallerbutterflies()
         name = "Smaller Butterflies",
         key = "smallerbutterflies",
         config = {
-            extra = {
+            extra = { dollars = 3, chips = 33, odds = 3
             }
         },
         loc_txt = {
@@ -23,6 +23,18 @@ function Balatrostuck.INIT.Jokers.j_smallerbutterflies()
         eternal_compat = true,
         unlocked = true,
         discovered = true,
-        atlas = 'HomestuckJokers'
+        atlas = 'HomestuckJokers',
+        calculate = function(self,card,context)
+            if context.joker_main then
+                local effect = {
+                    chips = card.ability.extra.chips,
+                    card = card
+                }
+                if pseudorandom('Butterfly') < G.GAME.probabilities.normal/card.ability.extra.odds then
+                    effect.dollars = card.ability.extra.dollars
+                end
+                return effect
+            end
+        end
     }
 end 
