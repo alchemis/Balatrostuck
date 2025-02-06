@@ -14,8 +14,8 @@ function Balatrostuck.INIT.Jokers.j_paintseal()
             }
         },
         pos = {
-            x = 2,
-            y = 0
+            x = 7,
+            y = 3
          },
         cost = 6,
         rarity = 1,
