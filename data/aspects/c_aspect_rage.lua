@@ -50,9 +50,9 @@ function Balatrostuck.INIT.Aspects.c_aspect_rage()
         name = 'Aspect of Rage',
         apply = function(self,slab,context)
             if context.individual and context.cardarea == G.play then
-                if math.abs(G.GAME.current_round.hands_left - G.GAME.current_round.discards_left) ~= 0 then
+                if context.other_card == context.scoring_hand[1] then
                     return {
-                        x_mult = (slab:level() / 4) * math.abs(G.GAME.current_round.hands_left - G.GAME.current_round.discards_left),
+                        x_mult = (1 + (slab:level() / 2)) ^ (G.GAME.current_round.discards_left - G.GAME.current_round.hands_left),
                         card = context.other_card
                     }
                 end
