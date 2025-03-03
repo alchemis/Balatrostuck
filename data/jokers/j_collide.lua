@@ -46,6 +46,14 @@ function Balatrostuck.INIT.Jokers.j_collide()
                     playing_card_joker_effects({true})
                 end
             end
+        end,
+        add_to_deck = function(self,card,from_debuff)
+            if G.GAME.pool_flags.bstuck_actprogress <= 5 then
+                G.GAME.pool_flags.bstuck_actprogress = 6
+            end
+        end,
+        in_pool = function(self,args)
+            return G.GAME.pool_flags.bstuck_actprogress >= 5
         end
     }
 end

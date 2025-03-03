@@ -74,6 +74,8 @@ end
 local init_game_objectref = Game.init_game_object
 function Game:init_game_object()
     local ret = init_game_objectref(self)
+
+    ret.pool_flags.bstuck_actprogress = 0
     ret.BALATROSTUCK = {}
     ret.BALATROSTUCK.aspect_levels = {
         Space = 0,

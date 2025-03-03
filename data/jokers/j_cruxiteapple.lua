@@ -48,6 +48,9 @@ function Balatrostuck.INIT.Jokers.j_cruxiteapple()
                         return true
                     end
                 }))
+                if not G.GAME.pool_flags.bstuck_actprogress <= 1 then
+                    G.GAME.pool_flags.bstuck_actprogress = 1
+                end
                 return {
                     message = 'Bitten!',
                     colour = G.C.FILTER

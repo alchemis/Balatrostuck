@@ -204,3 +204,8 @@ if load_error then
 else
   UI()
 end
+
+
+mod.optional_features = { 
+    cardareas = { unscored = true } 
+}

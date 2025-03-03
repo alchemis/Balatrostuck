@@ -11,8 +11,8 @@ function Balatrostuck.INIT.Jokers.j_therapture()
             ['name'] = 'The Rapture',
             ['text'] = {
                 [1] = "Destroys played cards after scoring. Each destroyed",
-                [2] = "scoring card adds {C:white,X:mult}#1#{}. If you sell this Joker you lose.",
-                [3] = "{C:inactive}(Currently {C:white,X:mult}#2#{C:inactive} Mult)"
+                [2] = "scoring card adds {C:white,X:mult}X#1#{}. If you sell this Joker you lose.",
+                [3] = "{C:inactive}(Currently {C:white,X:mult}X#2#{C:inactive} Mult)"
             }
         },
         loc_vars = function (self, info_queue, card)
@@ -34,8 +34,16 @@ function Balatrostuck.INIT.Jokers.j_therapture()
                 G.STATE = G.STATES.GAME_OVER; G.STATE_COMPLETE = false
             end
             
-            if context.last_minute_destruction then
-                return context.full_hand
+            if context.destroy_card and (context.cardarea == G.play or context.cardarea == 'unscored') then
+                card.ability.extra.gained_xmult = card.ability.extra.gained_xmult + card.ability.extra.x_mult
+                return true
+            end
+
+            if context.joker_main then
+                return {
+                    x_mult = card.ability.extra.gained_xmult,
+                    card = card
+                }
             end
         end
     }

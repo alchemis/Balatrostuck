@@ -23,6 +23,17 @@ function Balatrostuck.INIT.Jokers.j_enterthemedium()
         eternal_compat = true,
         unlocked = true,
         discovered = true,
-        atlas = 'HomestuckJokers'
+        atlas = 'HomestuckJokers',
+        calculate = function(self,card,context)
+
+        end,
+        add_to_deck = function(self,card,from_debuff)
+            if G.GAME.pool_flags.bstuck_actprogress <= 2 then
+                G.GAME.pool_flags.bstuck_actprogress = 3
+            end
+        end,
+        in_pool = function(self,args)
+            return G.GAME.pool_flags.bstuck_actprogress >= 2
+        end
     }
 end 
