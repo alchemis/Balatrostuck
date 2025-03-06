@@ -36,6 +36,17 @@ G.C.ZODIAC = {
     Ophiuchus = HEX('4ce24e')
 }
 
+-- DON'T REMOVE, THIS ALLOWS US TO ADD LOC_COLOURS!!!!
+loc_colour('red')
+-- Change later maybe!!!!!!
+G.ARGS.LOC_COLOURS['paradox'] = HEX("4EA752")
+
+
+
+
+
+
+
 -- temporary!!!!!!!! will be changed to cooler colors
 G.C.ZODIAC_LEVELS = {
     HEX("efefef"),
@@ -135,6 +146,11 @@ local edition_list = {
     "paradox"
 }
 
+local seal_list = {
+    "felt"
+}
+
+
 local tag_list = {
     "perfectlygeneric",
     "parcelpyxis",
@@ -159,6 +175,7 @@ batch_load("boosters")
 batch_load("editions")
 batch_load("tags")
 batch_load("spectrals")
+batch_load("seals")
 
 bstuck_joker_keys = {}
 
@@ -178,6 +195,10 @@ for _, edition in ipairs(edition_list) do
     Balatrostuck.INIT.Editions["e_"..edition]()
 end
 
+for _, seal in ipairs(seal_list) do
+    Balatrostuck.INIT.Seals["seal_"..seal]()
+end
+
 for _, tag in ipairs(tag_list) do
     Balatrostuck.INIT.Tags["t_"..tag]()
 end
@@ -195,6 +216,7 @@ SMODS.Atlas({key = "modicon", path = "bstuck_logo.png", px = 34, py = 34, atlas_
 SMODS.Atlas({key = "HomestuckAspectBooster", path = "booster.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
 SMODS.Atlas({key = "HomestuckTags", path = "tags.png", px = 34, py = 34, atlas_table = "ASSET_ATLAS"}):register()
 SMODS.Atlas({key = "HomestuckSpectrals", path = "hsspectral.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
+SMODS.Atlas({key = "HomestuckSeals", path = "hsseals.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
 
 -- SMODS.Atlas({key = "HomestuckZodiacBooster", path = "booster_zodiac.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
 
@@ -207,5 +229,5 @@ end
 
 
 mod.optional_features = { 
-    cardareas = { unscored = true } 
+    cardareas = { unscored = true, deck = true, discard = true} 
 }

@@ -16,7 +16,7 @@ function Balatrostuck.INIT.Spectrals.c_spectral_scratchconstruct()
         },
         atlas = 'HomestuckSpectrals',
         can_use = function(self,card)
-            return true
+            return #G.hand.cards > 1
         end,
         use = function(self, card, area, copier)
 
