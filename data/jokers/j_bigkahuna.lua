@@ -9,7 +9,7 @@ function Balatrostuck.INIT.Jokers.j_bigkahuna()
         loc_txt = {
             ['name'] = 'Big Kahuna',
             ['text'] = {
-                [1] = "Create a {C:green}Paradox {C:attention}Lovers",
+                [1] = "Create a {C:paradox}Paradox {C:attention}Lovers",
                 [2] = "card at end of round"
             }
         },
@@ -23,6 +23,20 @@ function Balatrostuck.INIT.Jokers.j_bigkahuna()
         eternal_compat = true,
         unlocked = true,
         discovered = true,
-        atlas = 'HomestuckJokers'
+        atlas = 'HomestuckJokers',
+        calculate = function(self,card,context)
+            if context.end_of_round and context.cardarea == G.jokers then
+                G.E_MANAGER:add_event(Event({
+                    func = function() 
+                        local _card = SMODS.add_card({set = 'Tarot', key = 'c_lovers'})
+                        _card:set_edition('e_bstuck_paradox',true,true)
+                        return true 
+                    end
+                }))
+                return {
+                    message = '+1 Lovers!'
+                }
+            end
+        end
     }
 end 

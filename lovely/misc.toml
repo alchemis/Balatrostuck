@@ -161,6 +161,43 @@ match_indent = true
 times = 1
 
         
+## Biscuits
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = "function Card:start_dissolve(dissolve_colours, silent, dissolve_time_fac, no_juice)"
+position = "after"
+payload = '''
+if self.edition and self.edition.key == 'e_bstuck_paradox' and next(SMODS.find_card('j_bstuck_biscuits')) then
+    self.getting_sliced = nil
+    play_sound('bstuck_HomestuckParadoxSaved',0.7,0.7)
+    card_eval_status_text(self, 'extra', nil, nil, nil, {message = localize('k_safe_ex')})
+    for j=1, #G.jokers.cards do
+        local card = G.jokers.cards[j]
+        if card.config.center.key == 'j_bstuck_biscuits' then
+            card:juice_up()
+        end
+    end
+    return false
+end
+'''
+match_indent = true
+times = 1
+
+
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = "        self.area.config.type == 'joker' and"
+position = "after"
+payload = '''
+not (self.edition and self.edition.key == 'e_bstuck_paradox' and next(SMODS.find_card('j_bstuck_biscuits'))) and 
+'''
+match_indent = true
+times = 1
+
+
+
 
 
 

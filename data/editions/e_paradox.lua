@@ -17,7 +17,7 @@ function Balatrostuck.INIT.Editions.e_paradox()
         unlocked = true,
         discovered = true,
         calculate = function(self,card,context)
-            if context.end_of_round and context.other_card == nil then
+            if context.end_of_round and context.other_card == nil and not next(SMODS.find_card('j_bstuck_biscuits')) then
                 if context.cardarea == G.hand or (context.cardarea ~= G.deck and context.cardarea ~= G.discard) then
                     G.E_MANAGER:add_event(Event({
                         func = function()

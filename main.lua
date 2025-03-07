@@ -213,6 +213,7 @@ end
 
 SMODS.Sound({key = "HomestuckHeroicDeath", path = 'johnfuckingdies.ogg'})
 SMODS.Sound({key = "HomestuckJustDeath", path = 'shhh.ogg'})
+SMODS.Sound({key = "HomestuckParadoxSaved", path = 'paradoxSaved.ogg'})
 
 SMODS.Atlas({key = "HomestuckJokers", path = "hsjokers.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
 SMODS.Atlas({key = "HomestuckZodiacs", path = "zodiac.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()

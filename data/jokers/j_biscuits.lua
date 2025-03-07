@@ -24,6 +24,9 @@ function Balatrostuck.INIT.Jokers.j_biscuits()
         eternal_compat = true,
         unlocked = true,
         discovered = true,
-        atlas = 'HomestuckJokers'
+        atlas = 'HomestuckJokers',
+        in_pool = function(self,args)
+            return false
+        end
     }
 end 
