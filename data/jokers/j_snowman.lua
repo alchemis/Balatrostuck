@@ -25,7 +25,7 @@ function Balatrostuck.INIT.Jokers.j_snowman()
         discovered = true,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
-            if context.individual and context.cardarea == G.hand then
+            if context.individual and context.cardarea == G.hand and not context.end_of_round then
                 if context.other_card:is_face() and not context.other_card.debuff then
                     return {
                         h_mult = 1,
