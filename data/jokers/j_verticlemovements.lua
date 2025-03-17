@@ -11,8 +11,8 @@ function Balatrostuck.INIT.Jokers.j_verticlemovements()
             }
         },
         pos = {
-            x = 2,
-            y = 0
+            x = 9,
+            y = 2
          },
         cost = 8,
         rarity = 3,

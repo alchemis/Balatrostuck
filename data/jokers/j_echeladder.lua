@@ -34,8 +34,8 @@ function Balatrostuck.INIT.Jokers.j_echeladder()
             }
         },
         pos = {
-            x = 1,
-            y = 10
+            x = 4,
+            y = 0
          },
         cost = 4,
         rarity = 1,

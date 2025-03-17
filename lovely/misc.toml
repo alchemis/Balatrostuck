@@ -55,11 +55,11 @@ local _size = self.ability.extra + G.GAME.BALATROSTUCK.pack_size_bonus
 [[patches]]
 [patches.pattern]
 target = "card.lua"
-pattern = "G.GAME.pack_choices = self.config.center.config.choose or 1"
+pattern = "if G.pack_cards and G.pack_cards.VT.y < G.ROOM.T.h then"
 position = "before"
 match_indent = true
 payload = '''
-G.GAME.pack_size = math.min(G.GAME.pack_size + G.GAME.BALATROSTUCK.pack_size_bonus,5)
+G.pack_cards.config.real_card_limit = math.min(G.GAME.pack_choices  + G.GAME.BALATROSTUCK.pack_size_bonus,5)
 '''
 
 
