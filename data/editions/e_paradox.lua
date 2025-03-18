@@ -42,10 +42,10 @@ function Balatrostuck.INIT.Editions.e_paradox()
                                             context.cardarea:remove_card(card)
                                             card:remove()
                                             card = nil
-                                return true; end}))
+                                    return true; end}))
                             return true
-                            end
-                        }))
+                        end}))
+
                         return {
                             message = '-Ify!'
                         }

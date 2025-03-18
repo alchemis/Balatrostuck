@@ -25,7 +25,7 @@ function Balatrostuck.INIT.Zodiacs.c_zodiac_pisces()
                 card:juice_up(0.8, 0.5)
                 return true end
             }))
-            G.GAME.BALATROSTUCK.zodiac_levels[card.ability.name] = G.GAME.BALATROSTUCK.zodiac_levels[card.ability.name] + 1
+            self:add_caste('Pisces')
         end,
         can_use = function() return true end,
         loc_vars = function(card)
@@ -40,4 +40,23 @@ function Balatrostuck.INIT.Zodiacs.c_zodiac_pisces()
             }
         end,
     }
+
+
+    Balatrostuck.Caste{
+        key = 'Pisces',
+        name = 'Pisces',
+        rank = 12,
+        apply = function(self,context)
+            if context.individual and context.cardarea == G.play and context.other_card:get_id() == self.ability.rank then
+                return {
+                    dollars = (2 * self:level()) - G.GAME.current_round.hands_left,
+                    card = context.other_card
+                }
+            end
+        end
+    }
+
+
+
+
 end

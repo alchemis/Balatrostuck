@@ -19,6 +19,53 @@ function Balatrostuck.INIT.Zodiacs.c_zodiac_ophiuchus()
         },
         cost = 4,
         discovered = false,
-        atlas = "HomestuckZodiacs"
+        atlas = "HomestuckZodiacs",
+        use = function(self, card, area, copier)
+            G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.9, func = function()
+                play_sound('tarot1')
+                card:juice_up(0.8, 0.5)
+                return true end
+            }))
+            self:add_caste('Ophiuchus')
+        end,
+        can_use = function() return true end
     }
+
+    Balatrostuck.Caste{
+        key = 'Ophiuchus',
+        config = {},
+        name = 'Ophiuchus',
+        rank = 13,
+        apply = function(self,context)
+        
+            if context.individual and context.cardarea == G.play and context.other_card:get_id() == self.ability.rank then
+                local possible_choices = {}
+                for i=1, #G.hand.cards do 
+                    if G.hand.cards[i].edition == nil then
+                        table.insert(possible_choices,G.hand.cards[i])
+                    end
+                end
+
+                if #possible_choices >= 1 then
+                    local _card = pseudorandom_element(possible_choices,pseudoseed('Looking for me?  O  '))
+                    G.E_MANAGER:add_event(Event({func = function()
+                        G.hand:remove_card(_card)
+                        play_sound('bstuck_HomestuckParadox',0.7)
+                        _card:juice_up()
+                        _card:set_edition('e_bstuck_paradox',true,true)
+                        G.hand:emplace(_card)
+                        G.hand:sort()
+                        return true end
+                    }))
+                    return {
+                        x_mult = self:level() * 2,
+                        card = context.other_card
+                    }
+                end
+            end
+        end
+    }
+
+
+
 end

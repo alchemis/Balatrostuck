@@ -6,7 +6,7 @@ function Balatrostuck.INIT.Zodiacs.c_zodiac_taurus()
         pos = {
             x = 0,
             y = 0
-        },
+        }, 
         loc_txt = {
             ['name'] = "Taurus", --value is 0.95^lvl
             ['text'] = {
@@ -18,6 +18,51 @@ function Balatrostuck.INIT.Zodiacs.c_zodiac_taurus()
         },
         cost = 4,
         discovered = true,
-        atlas = "HomestuckZodiacs"
+        atlas = "HomestuckZodiacs",
+        use = function(self, card, area, copier)
+            G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.9, func = function()
+                play_sound('tarot1')
+                card:juice_up(0.8, 0.5)
+                return true end
+            }))
+            self:add_caste('Taurus')
+        end,
+        can_use = function() return true end
     }
+    
+    Balatrostuck.Caste{
+        key = 'Taurus',
+        name = 'Taurus',
+        rank = 3,
+        apply = function(self,context)
+            
+
+            if context.individual and context.cardarea == G.play and context.other_card:get_id() == self.ability.rank then
+                return {
+                    func = function()
+                        G.E_MANAGER:add_event(Event({
+                            func = function()
+                            play_sound('xchips',0.8,0.4)
+                            G.E_MANAGER:add_event(Event({
+                                trigger = 'ease',
+                                blockable = false,
+                                ref_table = G.GAME.blind,
+                                ref_value = 'chips',
+                                delay = 1,
+                                ease_to = G.GAME.blind.chips * (0.95^self:level()),
+                                func = (function(t) 
+                                    G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
+                                    return t end)
+                            }))
+                            return true
+                        end}))
+                    end
+                }
+            end
+        end
+    }
+
+
+
+
 end

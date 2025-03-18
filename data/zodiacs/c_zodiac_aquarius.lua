@@ -18,6 +18,45 @@ function Balatrostuck.INIT.Zodiacs.c_zodiac_aquarius()
         },
         cost = 4,
         discovered = true,
-        atlas = "HomestuckZodiacs"
+        atlas = "HomestuckZodiacs",
+        use = function(self, card, area, copier)
+            G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.9, func = function()
+                play_sound('tarot1')
+                card:juice_up(0.8, 0.5)
+                return true end
+            }))
+            self:add_caste('Aquarius')
+        end,
+        can_use = function() return true end
+    }
+
+    Balatrostuck.Caste {
+        key = 'Aquarius',
+        config = {discared_aces = 0},
+        name = 'Aquarius',
+        rank = 11,
+        apply = function(self,context)
+            if context.remove_playing_cards then
+                for i=1, #context.removed do
+                    if context.removed[i]:get_id() == self.ability.rank then
+                        G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
+                            local tagkey = get_next_tag_key()
+                            local tag = Tag(tagkey)
+                            if tagkey == 'tag_orbital' then
+                                local _poker_hands = {}
+                                for k, v in pairs(G.GAME.hands) do
+                                    if v.visible then _poker_hands[#_poker_hands+1] = k end
+                                end
+                                
+                                tag.ability.orbital_hand = pseudorandom_element(_poker_hands, pseudoseed('orbital'))
+                            end
+                            play_sound('timpani')
+                            add_tag(tag)
+                            return true
+                        end}))
+                    end
+                end
+            end
+        end
     }
 end

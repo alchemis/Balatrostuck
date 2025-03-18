@@ -26,7 +26,7 @@ function Balatrostuck.INIT.Zodiacs.c_zodiac_virgo()
                 card:juice_up(0.8, 0.5)
                 return true end
             }))
-            G.GAME.BALATROSTUCK.zodiac_levels[card.ability.name] = G.GAME.BALATROSTUCK.zodiac_levels[card.ability.name] + 1
+            self:add_caste('Virgo')
         end,
         can_use = function() return true end,
         loc_vars = function(card)
@@ -44,4 +44,33 @@ function Balatrostuck.INIT.Zodiacs.c_zodiac_virgo()
         discovered = true,
         atlas = "HomestuckZodiacs"
     }
+
+    Balatrostuck.Caste{
+        key = 'Virgo',
+        config = {},
+        name = 'Virgo',
+        rank = 6,
+        apply = function(self,context)
+        
+            if context.individual and context.cardarea == G.play and context.other_card:get_id() == self.ability.rank then
+                local card = context.other_card
+                local scoring_hand = context.scoring_hand
+
+                return {
+                    func = function()
+                        local delay = 0.5
+                        for i=1, #scoring_hand do
+                            local _card = scoring_hand[i]
+                            _card.ability.perma_bonus = _card.ability.perma_bonus or 0
+                            _card.ability.perma_bonus = _card.ability.perma_bonus + self:level() * 3
+                            card_eval_status_text(_card, 'extra', nil, nil, nil, {message = 'Upgraded!', delay = delay})
+                            delay = delay - 0.05
+                        end
+                    end
+                }
+            end
+        end
+    }
+
+
 end

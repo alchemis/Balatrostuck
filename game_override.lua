@@ -113,6 +113,8 @@ function Game:init_game_object()
     ret.BALATROSTUCK.pack_size_bonus = 0
     ret.BALATROSTUCK.bucket_suits = {'Diamonds','Clubs'}
     ret.BALATROSTUCK.joker_keys = {}
+    ret.BALATROSTUCK.vriska_luck = 1
+    ret.BALATROSTUCK.blood_discards = 0
     return ret
 end
 
