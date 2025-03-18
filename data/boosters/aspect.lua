@@ -1,6 +1,7 @@
 SMODS.Booster{
     key = 'aspect_booster',
     atlas = 'HomestuckAspectBooster',
+    config = {extra = 2, choose = 1},
     discovered = true,
     loc_txt = {
         ['name'] = 'Aspect Pack',

@@ -166,7 +166,7 @@ function get_aspect_for_pack(normalize_weights)
         {key = 'breath',weight = 0,onestar = false},
         {key = 'hope',weight = 0.2,onestar = false},
         {key = 'life',weight = 0.2,onestar = false},
-        {key = 'doom',weight = 0.2,onestar = false},
+        {key = 'doom',weight = 0.2,onestar = false},    
         {key = 'rage',weight = 0.2,onestar = false},
         {key = 'mind',weight = 0.4,onestar = false},
         {key = 'void',weight = 0.6,onestar = false},
@@ -228,4 +228,38 @@ function get_aspect_for_pack(normalize_weights)
 
     return 'c_bstuck_breath'
 end
-            
+
+
+
+
+function reset_hand(card, hand, instant)
+    local decrease = G.GAME.hands[hand].level - 1
+    G.GAME.hands[hand].level = 1
+    G.GAME.hands[hand].mult = G.GAME.hands[hand].s_mult
+    G.GAME.hands[hand].chips = G.GAME.hands[hand].s_chips 
+    if not instant then 
+        G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.2, func = function()
+            play_sound('tarot1')
+            if card then card:juice_up(0.8, 0.5) end
+            G.TAROT_INTERRUPT_PULSE = true
+            return true end }))
+        update_hand_text({delay = 0}, {mult = G.GAME.hands[hand].mult, StatusText = true})
+        G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.9, func = function()
+            play_sound('tarot1')
+            if card then card:juice_up(0.8, 0.5) end
+            return true end }))
+        update_hand_text({delay = 0}, {chips = G.GAME.hands[hand].chips, StatusText = true})
+        G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.9, func = function()
+            play_sound('tarot1')
+            if card then card:juice_up(0.8, 0.5) end
+            G.TAROT_INTERRUPT_PULSE = nil
+            return true end }))
+        update_hand_text({sound = 'button', volume = 0.7, pitch = 0.9, delay = 0}, {level=G.GAME.hands[hand].level})
+        delay(1.3)
+    end
+    G.E_MANAGER:add_event(Event({
+        trigger = 'immediate',
+        func = (function() check_for_unlock{type = 'upgrade_hand', hand = hand, level = G.GAME.hands[hand].level} return true end)
+    }))
+    return decrease
+end

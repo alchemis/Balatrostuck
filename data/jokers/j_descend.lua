@@ -8,7 +8,7 @@ function Balatrostuck.INIT.Jokers.j_descend()
                 rounds_loc = 3,
                 rounds_left = 3,
                 mult_gain = 0.5,
-                mult_total = 0
+                mult_total = 1
             }
         },
         loc_txt = {
@@ -33,7 +33,39 @@ function Balatrostuck.INIT.Jokers.j_descend()
         discovered = true,
         atlas = 'HomestuckJokers',
         calculate = function(Self,card,context)
+            if context.joker_main then
+                return {
+                    x_mult = card.ability.extra.mult_total,
+                    card = card
+                }
+            end
 
+            
+            
+            if context.end_of_round and card.ability.extra.rounds_left >= 1 and context.cardarea == G.jokers then
+                card.ability.extra.rounds_left = card.ability.extra.rounds_left - 1 
+                if card.ability.extra.rounds_left == 0 then
+                    for k,v in pairs(G.GAME.hands) do
+                        if v.level ~= 1 then
+                            update_hand_text({sound = 'button', volume = 0.7, pitch = 0.8, delay = 0.3}, {handname=localize(k, 'poker_hands'),chips = G.GAME.hands[k].chips, mult = G.GAME.hands[k].mult, level=G.GAME.hands[k].level})
+                            local inc = reset_hand(card,k,false)
+                            card.ability.extra.mult_total =  card.ability.extra.mult_total + (card.ability.extra.mult_gain*inc)
+                            update_hand_text({sound = 'button', volume = 0.7, pitch = 1.1, delay = 0}, {mult = 0, chips = 0, handname = '', level = ''})
+                        end
+                    end
+
+                    return {
+                        message = localize{type = 'variable', key = 'a_xmult', vars = {card.ability.extra.mult_total}},
+                        colour = G.C.MULT,
+                        card = card
+                    }
+                else
+                    return {
+                        message = card.ability.extra.rounds_left .. ' Left!',
+                        card = card
+                    }
+                end
+            end
 
         end,
         add_to_deck = function(self,card,from_debuff)
