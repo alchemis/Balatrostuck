@@ -37,7 +37,22 @@ function Balatrostuck.INIT.Jokers.j_lonegunbird()
                 if card.ability.extra.rolls >= 6 then
                     card_eval_status_text(card, 'extra', nil, nil, nil, {message = 'Tag!',colour = G.C.FILTER, card = card})
                     card.ability.extra.rolls = 0
-                    --do the steamodded tag thang
+                    G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
+                        local tagkey = get_next_tag_key()
+                        local tag = Tag(tagkey)
+                        if tagkey == 'tag_orbital' then
+                            local _poker_hands = {}
+                            for k, v in pairs(G.GAME.hands) do
+                                if v.visible then _poker_hands[#_poker_hands+1] = k end
+                            end
+                            
+                            tag.ability.orbital_hand = pseudorandom_element(_poker_hands, pseudoseed('orbital'))
+                        end
+                        play_sound('timpani')
+                        add_tag(tag)
+                        card:juice_up(0.3, 0.5)
+                        return true
+                    end}))
                 end
             end
         end

@@ -4,21 +4,18 @@ function Balatrostuck.INIT.Jokers.j_note_desolation()
         key = "note_desolation",
         config = {
             extra = {
-                mult_gain = 4,
-                chips_gain = 13,
-                chips = 0,
-                last_hand = ""
+                chips = 613,
+                rolls = 0,
+                active = false
             }
         },
         loc_txt = {
             ['name'] = 'Note Desolation',
             ['text'] = {
-                [1] = 'Gains {C:mult}+4 Mult{} and',
-                [2] = '{C:chips}+13 Chips{} for each',
-                [3] = 'consecutive',
-                [4] = '{C:attention}repeat hand type{}',
-                [5] = '{C:inactive}(Currently: {}{C:mult}+#1# Mult {}',
-                [6] = '{C:inactive}and {}{C:chips}+#2# Chips{}{C:inactive}){}'
+                [1] = 'Base {C:green}Rerolls{} cost {C:money}4${}, After',
+                [2] = '13 Rerolls this gives {C:chips}+#1#{} Chips',
+                [3] = 'on the {C:attention}next hand{} played',
+                [4] = '{C:inactive}#2# remaining'
             }
         },
         pos = {
@@ -32,9 +29,37 @@ function Balatrostuck.INIT.Jokers.j_note_desolation()
         unlocked = true,
         discovered = true,
         atlas = 'HomestuckJokers',
+        add_to_deck = function(self,card,from_debuff)
+            G.GAME.round_resets.reroll_cost = G.GAME.round_resets.reroll_cost - 1
+        end,
+        remove_from_deck = function(self,card,from_debuff)
+            G.GAME.round_resets.reroll_cost = G.GAME.round_resets.reroll_cost + 1
+        end,
+        calculate = function(self,card,context)
+            if context.reroll_shop and not context.blueprint and not card.ability.extra.active then
+                card.ability.extra.rolls = card.ability.extra.rolls + 1
+                if card.ability.extra.rolls >= 13 then
+                    card.ability.extra.active = true                    
+                    local eval = function(card) return (card.ability.extra.active) end
+                    juice_card_until(card, eval, true)
+                    card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize('k_active_ex')})
+                end
+            end
 
+            if context.joker_main and card.ability.extra.active then
+                local tempchips = card.ability.extra.chips 
+                card.ability.extra.active = false
+                card.ability.extra.rolls = 0
+                return {
+                    chips = tempchips,
+                    card = card
+                }
+            end
+                
+        end,
         loc_vars = function(self, info_queue, card)
-            return {vars = {card.ability.mult, card.ability.extra.chips }}
+            local asdf = 13 - card.ability.extra.rolls
+            return {vars = {card.ability.extra.chips, asdf}}
         end
     }
 end

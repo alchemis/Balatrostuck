@@ -10,7 +10,7 @@ function Balatrostuck.INIT.Jokers.j_strifespecibus()
         loc_txt = {
             ['name'] = 'Strife Specibus',
             ['text'] = {
-                [1] = 'Gives {C:white,X:mult}X4{} Mult',
+                [1] = 'Gives {C:mult}+20{} Mult',
                 [2] = 'After first hand played',
                 [3] = 'disallows all other hands',
             }
@@ -62,8 +62,8 @@ function Balatrostuck.INIT.Jokers.j_strifespecibus()
                     G.GAME.BALATROSTUCK.strife_assignment = context.scoring_name
                 end
                 return {
-                    Xmult_mod = 4,
-                    message = localize { type = 'variable', key = 'a_xmult', vars = { 4 } }
+                    mult = 20,
+                    card = card
                 }
             elseif context.selling_self then
                 G.GAME.BALATROSTUCK.strife_assignment = 'Unassigned'
