@@ -4,7 +4,7 @@ function Balatrostuck.INIT.Jokers.j_note_desolation()
         key = "note_desolation",
         config = {
             extra = {
-                chips = 613,
+                chips = 612,
                 rolls = 0,
                 active = false
             }
@@ -12,10 +12,10 @@ function Balatrostuck.INIT.Jokers.j_note_desolation()
         loc_txt = {
             ['name'] = 'Note Desolation',
             ['text'] = {
-                [1] = 'Base {C:green}Rerolls{} cost {C:money}4${}, After',
-                [2] = '13 Rerolls this gives {C:chips}+#1#{} Chips',
+                [1] = '{C:green}Reroll{} base cost is {C:money}$4{}, after',
+                [2] = '{C:attention}13{} Rerolls this gives {C:chips}+#1#{} Chips',
                 [3] = 'on the {C:attention}next hand{} played',
-                [4] = '{C:inactive}#2# remaining'
+                [4] = '{C:inactive}(Currently {C:attention}#2#{C:inactive}/13)'
             }
         },
         pos = {
@@ -38,6 +38,9 @@ function Balatrostuck.INIT.Jokers.j_note_desolation()
         calculate = function(self,card,context)
             if context.reroll_shop and not context.blueprint and not card.ability.extra.active then
                 card.ability.extra.rolls = card.ability.extra.rolls + 1
+                if card.ability.extra.rolls < 13 then
+                    card_eval_status_text(card, 'extra', nil, nil, nil, {message = (13 - card.ability.extra.rolls).." Left!", colour = G.C.FILTER})
+                end
                 if card.ability.extra.rolls >= 13 then
                     card.ability.extra.active = true                    
                     local eval = function(card) return (card.ability.extra.active) end
@@ -48,18 +51,21 @@ function Balatrostuck.INIT.Jokers.j_note_desolation()
 
             if context.joker_main and card.ability.extra.active then
                 local tempchips = card.ability.extra.chips 
-                card.ability.extra.active = false
                 card.ability.extra.rolls = 0
                 return {
                     chips = tempchips,
                     card = card
                 }
             end
+
+            if context.after and not context.blueprint and card.ability.extra.active then
+                card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize('k_reset')})
+                card.ability.extra.active = false
+            end
                 
         end,
         loc_vars = function(self, info_queue, card)
-            local asdf = 13 - card.ability.extra.rolls
-            return {vars = {card.ability.extra.chips, asdf}}
+            return {vars = {card.ability.extra.chips, math.min(card.ability.extra.rolls, 13)}}
         end
     }
 end
