@@ -9,8 +9,10 @@ function Balatrostuck.INIT.Jokers.j_objectduality()
         loc_txt = {
             ['name'] = 'Object Duality',
             ['text'] = {
-                [1] = "If first played hand of round is a high card then create",
-                [2] = "the paradox joker corresponding to each scored card"
+                [1] = "If first played {C:attention}poker hand{} of",
+                [2] = "round is a {C:attention}High Card{}, create",
+                [3] = "the {C:green}Paradox{} Joker corresponding ",
+                [4] = "to each scoring card"
             }
         },
         pos = {
