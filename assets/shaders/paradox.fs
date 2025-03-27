@@ -6,6 +6,10 @@
 
 extern PRECISION vec2 paradox;
 
+
+extern Image paradoxTexture;
+
+
 extern PRECISION number dissolve;
 extern PRECISION number time;
 // (sprite_pos_x, sprite_pos_y, sprite_width, sprite_height) [not normalized]
@@ -33,6 +37,10 @@ vec4 effect( vec4 colour, Image texture, vec2 texture_coords, vec2 screen_coords
 {
     // Take pixel color (rgba) from `texture` at `texture_coords`, equivalent of texture2D in GLSL
     vec4 tex = Texel(texture, texture_coords);
+    
+    // take the pixel color from the Paradox Texture
+    vec4 Ptex = Texel(paradoxTexture, texture_coords);
+
     // Position of a pixel within the sprite
 	vec2 uv = (((texture_coords)*(image_details)) - texture_details.xy*texture_details.ba)/texture_details.ba;
 
@@ -67,6 +75,10 @@ vec4 effect( vec4 colour, Image texture, vec2 texture_coords, vec2 screen_coords
     //tex = RGB(0.7*hsl + 0.3*bhsl);
     float ratio = 1;
     tex = ratio*RGB(hsl) + (1-ratio)*RGB(bhsl);
+    tex = tex * Ptex;
+    
+    
+
 
 
 

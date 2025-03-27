@@ -131,8 +131,6 @@ times = 1
 
 
 
-
-
 [[patches]]
 [patches.pattern]
 target = "card.lua"

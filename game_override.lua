@@ -144,3 +144,5 @@ function ease_dollars(mod, instant)
     SMODS.calculate_context({bstuck_money_increased = true, total_dollars = G.GAME.dollars + mod})
     easedollars_ref(mod,instant)
 end
+
+

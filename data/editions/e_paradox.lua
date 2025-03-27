@@ -1,7 +1,12 @@
 function Balatrostuck.INIT.Editions.e_paradox()
     SMODS.Shader{
         key = 'paradox',
-        path = 'paradox.fs'
+        path = 'paradox.fs',
+        send_vars = function(sprite, card)
+            return {
+                paradoxTexture = G.ASSET_ATLAS['bstuck_HomestuckParadox'].image
+            }
+        end
     }
     SMODS.Edition{
         key = "paradox",

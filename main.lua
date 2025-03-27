@@ -224,6 +224,7 @@ SMODS.Atlas({key = "HomestuckAspectBooster", path = "booster.png", px = 71, py =
 SMODS.Atlas({key = "HomestuckTags", path = "tags.png", px = 34, py = 34, atlas_table = "ASSET_ATLAS"}):register()
 SMODS.Atlas({key = "HomestuckSpectrals", path = "hsspectral.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
 SMODS.Atlas({key = "HomestuckSeals", path = "hsseals.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
+SMODS.Atlas({key = "HomestuckParadox", path = "paradox.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
 
 -- SMODS.Atlas({key = "HomestuckZodiacBooster", path = "booster_zodiac.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
 
@@ -236,5 +237,6 @@ end
 
 
 mod.optional_features = { 
-    cardareas = { unscored = true, deck = true, discard = true} 
+    cardareas = { unscored = true, deck = true, discard = true},
+    post_trigger = true
 }
