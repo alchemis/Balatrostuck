@@ -49,18 +49,13 @@ pattern = "local _size = self.ability.extra"
 position = "at"
 match_indent = true
 payload = '''
-local _size = self.ability.extra + G.GAME.BALATROSTUCK.pack_size_bonus
+self.ability.extra = self.ability.extra + G.GAME.BALATROSTUCK.pack_size_bonus
+local asdf = math.max(0,self.ability.extra - 5)
+self.ability.extra = math.min(self.ability.extra,5)
+local _size = self.ability.extra + asdf
+G.pack_cards.config.card_limit = self.ability.extra
 '''
 
-[[patches]]
-[patches.pattern]
-target = "card.lua"
-pattern = "if G.pack_cards and G.pack_cards.VT.y < G.ROOM.T.h then"
-position = "before"
-match_indent = true
-payload = '''
-G.pack_cards.config.real_card_limit = math.min(G.GAME.pack_choices  + G.GAME.BALATROSTUCK.pack_size_bonus,5)
-'''
 
 
 
@@ -224,5 +219,18 @@ payload = '''
 irons_triggers = self.irons_triggers,
 '''
 times = 1
+
+
+[[patches]]
+[patches.pattern]
+target = "functions/UI_definitions.lua"
+pattern = "{n=G.UIT.T, config={text = localize('ph_blind_score_at_least'), scale = 0.3, colour = G.C.WHITE, shadow = true}}"
+position = "after"
+match_indent = true
+payload = '''
+
+'''
+times = 1
+
 
 

@@ -18,8 +18,8 @@ function Balatrostuck.INIT.Jokers.j_purrfectwarrior()
             }
         },
         pos = {
-            x = 5,
-            y = 9
+            x = 0,
+            y = 2
         },
         cost = 10,
         rarity = 3,
@@ -27,7 +27,11 @@ function Balatrostuck.INIT.Jokers.j_purrfectwarrior()
         eternal_compat = true,
         unlocked = true,
         discovered = true,
-        atlas = 'HomestuckJokers',
+        animated = true,
+        frames = 8,
+        animation_speed = 20,
+        photosensitive = true,
+        atlas = 'HomestuckJokersAnimated',
 
         loc_vars = function(self, info_queue, card)
             return {vars = {card.ability.extra.h_gain, card.ability.extra.levels, card.ability.extra.h_plays}}

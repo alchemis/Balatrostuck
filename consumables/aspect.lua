@@ -38,7 +38,7 @@ function Slab:init(key)
   self.ability = copy_table(self.config)
 end
 
-function Slab:apply_to_run(_context,dont_trigger)
+function Slab:calculate(_context,trigger)
   if not self.triggered then
     local obj = Balatrostuck.Slabs[self.key]
     local res
@@ -47,11 +47,17 @@ function Slab:apply_to_run(_context,dont_trigger)
     end
 
     if res then
-      if not dont_trigger then self.triggered = true end
+      if trigger then self.triggered = true end
       return res
     end
   end
 end
+
+
+
+
+
+
 
 function Slab:level(default)
   local aspect = string.gsub(self.key, "slab_bstuck_", "")
@@ -109,7 +115,7 @@ function add_slab(_slab)
     sendInfoMessage("First slab: ".._slab.name)
     G.GAME.slab = _slab
     _slab:increase_level()
-    _slab:apply_to_run({ activated = true, after_level_up = true, is_new = true })
+    _slab:calculate({ activated = true, after_level_up = true, is_new = true },true)
     return
   end
 
@@ -118,14 +124,14 @@ function add_slab(_slab)
 
   if old_slab.key ~= _slab.key and old_slab:level() > 0 then
     sendInfoMessage("Changing slab from "..old_slab.name.." to ".._slab.name)
-    old_slab:apply_to_run({ deactivated = true, new_slab = _slab, before_level_down = true })
+    old_slab:calculate({ deactivated = true, new_slab = _slab, before_level_down = true },true)
     old_slab:decrease_level()
-    old_slab:apply_to_run({ deactivated = true, new_slab = _slab, after_level_down = true })
+    old_slab:calculate({ deactivated = true, new_slab = _slab, after_level_down = true },true)
   end
 
   local prevLevel = _slab:level() >= 1 and old_slab.key ~= _slab.key
-  _slab:apply_to_run({ activated = true, old_slab = old_slab, before_level_up = true, returning = prevLevel})
+  _slab:calculate({ activated = true, old_slab = old_slab, before_level_up = true, returning = prevLevel},true)
   _slab:increase_level()
-  _slab:apply_to_run({ activated = true, old_slab = old_slab, after_level_up = true, returning = prevLevel})
+  _slab:calculate({ activated = true, old_slab = old_slab, after_level_up = true, returning = prevLevel},true)
   sendInfoMessage("LEVEL UP ".._slab.name.." to ".._slab:level())
 end

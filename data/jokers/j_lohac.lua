@@ -5,14 +5,14 @@ function Balatrostuck.INIT.Jokers.j_lohac()
         key = "lohac",
         config = {
             extra = {
-                mult_gain = 1,
-                mult_total = 1
+                hands = 2,
+                active = false
             }
         },
         loc_txt = {
             ['name'] = 'Heat and Clockwork',
             ['text'] = {
-                [1] = "Gain {C:blue}+2{} Hands when {C:attention}Blind{} is",
+                [1] = "Gain {C:blue}+#1#{} Hands when {C:attention}Blind{} is",
                 [2] = "selected if previous round's",
                 [3] = "score was {C:attention,E:2,S:1.1}set on fire"
 
@@ -30,37 +30,22 @@ function Balatrostuck.INIT.Jokers.j_lohac()
         discovered = true,
         atlas = 'HomestuckJokers',
         loc_vars = function (self, info_queue, card)
-            return {vars = {card.ability.extra.mult_gain, card.ability.extra.mult_total}}
+            return {vars = {card.ability.extra.hands}}
         end,
         calculate = function (self, card, context)
-            if context.end_of_round and not (context.individual or context.repetition) and G.GAME.current_round.hands_played == 1 then
-                card.ability.extra.mult_total = card.ability.extra.mult_total + card.ability.extra.mult_gain
-                return {
-                    message = localize {
-                        type = 'variable', 
-                        key = 'a_xmult', 
-                        vars = { card.ability.extra.mult_total }
-                    },
-                    colour = G.C.FILTER
-                }
-                
-            elseif context.before and context.cardarea == G.jokers and G.GAME.current_round.hands_played > 0 and card.ability.extra.mult_total > 1 then
-                card.ability.extra.mult_total = 1
-                return {
-                    message = localize('k_reset'),
-                    colour = G.C.FILTER
-                }
+            if context.end_of_round and context.cardarea == G.jokers and G.ARGS.score_intensity.flames > 0 then
+                card.ability.extra.active = true
+                local eval = function() return not card.ability.extra.active end
+                juice_card_until(card, eval, true)
+                card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize('k_active')})
+            end
 
-            elseif context.joker_main and context.cardarea == G.jokers and card.ability.extra.mult_total > 1 then
-                return {
-                    message = localize{
-                        type = 'variable', 
-                        key = 'a_xmult', 
-                        vars = { card.ability.extra.mult_total }
-                    },
-                    colour = G.C.FILTER,
-                    Xmult_mod = card.ability.extra.mult_total
-                }
+            
+            
+            if context.setting_blind and card.ability.extra.active then
+                ease_hands_played(card.ability.hands)
+                card_eval_status_text(context.blueprint_card or card, 'extra', nil, nil, nil, {message = localize{type = 'variable', key = 'a_hands', vars = {card.ability.extra.hands}}})
+                card.ability.extra.active = false
             end
         end
     }

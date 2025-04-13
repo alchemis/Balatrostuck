@@ -60,7 +60,7 @@ function Caste:init(key,config)
 end
 
 
-function Caste:apply_to_run(_context)
+function Caste:calculate(_context)
 
   local peepee = self.ability.apply(self, _context)
   if peepee then

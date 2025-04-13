@@ -14,8 +14,8 @@ function Balatrostuck.INIT.Jokers.j_theplotpoint()
             }
         },
         pos = {
-            x = 2,
-            y = 0
+            x = 0,
+            y = 1
          },
         cost = 8,
         rarity = 3,
@@ -23,7 +23,10 @@ function Balatrostuck.INIT.Jokers.j_theplotpoint()
         eternal_compat = true,
         unlocked = true,
         discovered = true,
-        atlas = 'HomestuckJokers',
+        atlas = 'HomestuckJokersAnimated',
+        animated = true,
+        frames = 8,
+        animation_speed = 20,
         calculate = function(self,card,context)
             if context.selling_self then
                 ease_ante(-1)

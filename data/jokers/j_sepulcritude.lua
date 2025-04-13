@@ -23,6 +23,10 @@ function Balatrostuck.INIT.Jokers.j_sepulcritude()
         eternal_compat = true,
         unlocked = true,
         discovered = true,
-        atlas = 'HomestuckJokers'
+        atlas = 'HomestuckJokersAnimated',
+        animated = true,
+        frames = 8,
+        animation_speed = 20,
+        photosensitive = true,
     }
 end 

@@ -31,121 +31,26 @@ self.P_CASTES = {}
 
 # Slabs and Castes Calculation
 [[patches]]
-[patches.regex]
-target = '=[SMODS _ "src/utils.lua"]'
-pattern = "(?<indent>[\t ]*)        SMODS\\.trigger_effects\\(effects, card\\)"
-position = "before"
-line_prepend = '$indent'
-payload = '''
--- Castes
-if #G.GAME.BALATROSTUCK.active_castes > 0 then
-    for c = 1, #G.GAME.BALATROSTUCK.active_castes do
-        local caste_eval = G.GAME.BALATROSTUCK.active_castes[c]:apply_to_run(context)
-        if caste_eval then 
-            table.insert(effects, {jokers = caste_eval}) 
-            if caste_eval.retriggers then
-                context.retrigger_joker = true
-                for rt = 1, #caste_eval.retriggers do
-                    table.insert(effects, { caste_eval.retriggers[rt] })
-                end
-                context.retrigger_joker = nil
-            end
-        end
-    end
-end
-
-if G.GAME.slab ~= nil then
-    local slab_eval = G.GAME.slab:apply_to_run(context,true)
-    if slab_eval then 
-        table.insert(effects, {jokers = slab_eval}) 
-        if slab_eval.retriggers then
-            context.retrigger_joker = true
-            for rt = 1, #slab_eval.retriggers do
-                table.insert(effects, { slab_eval.retriggers[rt] })
-            end
-            context.retrigger_joker = nil
-        end
-    end
-end
-'''
-
-[[patches]]
-[patches.regex]
-target = '=[SMODS _ "src/utils.lua"]'
-pattern = "context.main_eval = nil"
-position = "before"
-line_prepend = '$indent'
-payload = '''
--- Castes
-local effects = {}
-
-if #G.GAME.BALATROSTUCK.active_castes > 0 then
-    for c = 1, #G.GAME.BALATROSTUCK.active_castes do
-        local caste_eval = G.GAME.BALATROSTUCK.active_castes[c]:apply_to_run(context)
-        if caste_eval then 
-            table.insert(effects, {jokers = caste_eval}) 
-            if caste_eval.retriggers then
-                context.retrigger_joker = true
-                for rt = 1, #caste_eval.retriggers do
-                    table.insert(effects, { caste_eval.retriggers[rt] })
-                end
-                context.retrigger_joker = nil
-            end
-        end
-    end
-end
-
-if G.GAME.slab ~= nil then
-    local slab_eval = G.GAME.slab:apply_to_run(context)
-    if slab_eval then 
-        table.insert(effects, {jokers = slab_eval}) 
-        if slab_eval.retriggers then
-            context.retrigger_joker = true
-            for rt = 1, #slab_eval.retriggers do
-                table.insert(effects, { slab_eval.retriggers[rt] })
-            end
-            context.retrigger_joker = nil
-        end
-    end
-end
-SMODS.trigger_effects(effects,card)
-'''
-
-[[patches]]
-[patches.regex]
-target = '=[SMODS _ "src/utils.lua"]'
-pattern = "(?<indent>[\t ]*)            effect\\.card = effect\\.card or G\\.deck\\.cards\\[1\\] or G\\.deck\n            reps\\[#reps\\+1\\] = \\{key = effect\\}\n        end\n    end"
-position = "after"
-line_prepend = '$indent'
-payload = '''
-if #G.GAME.BALATROSTUCK.active_castes > 0 then
-    for c = 1, #G.GAME.BALATROSTUCK.active_castes do
-        local eval = G.GAME.BALATROSTUCK.active_castes[c]:apply_to_run(context)
-        if eval and eval.repetitions then
-            for h=1, eval.repetitions do
-                if h == 1 then eval.message = nil end
-                eval.card = eval.card or _card
-                reps[#reps+1] = {key = eval}
-            end
-        end
-    end
-end
-'''
-
-[[patches]]
 [patches.pattern]
-target = 'functions/state_events.lua'
-pattern = "for _, _area in ipairs(SMODS.get_card_areas('jokers')) do"
+target = '=[SMODS _ "src/utils.lua"]'
+pattern = "-- TARGET: add your own individual scoring targets"
 position = "before"
+times = 3
+line_prepend = '$indent'
 match_indent = true
 payload = '''
-if G.GAME.slab ~= nil then
-    local slab_eval = G.GAME.slab:apply_to_run({full_hand = G.play.cards, scoring_hand = scoring_hand, scoring_name = text, poker_hands = poker_hands, other_joker = _card.ability.set == 'Joker' and _card or false, other_consumeable = _card.config.center.consumeable and _card or false},true)
-    if slab_eval then
-        table.insert(effects, {joker = slab_eval})
+-- Castes
+if G.GAME.slab then
+    t[#t+1] = {object = G.GAME.slab}
+end
+
+if G.GAME.BALATROSTUCK.active_castes and #G.GAME.BALATROSTUCK.active_castes > 0 then
+    for c = 1, #G.GAME.BALATROSTUCK.active_castes do
+        t[#t+1] = {object = G.GAME.BALATROSTUCK.active_castes[c]}
     end
 end
 '''
+
 
 
 [[patches]]
@@ -178,7 +83,7 @@ match_indent = true
 payload = '''
 if G.GAME.slab ~= nil then
     local eval = nil
-    eval = G.GAME.slab:apply_to_run({level_up_hand, amount = amount},true)
+    eval = G.GAME.slab:calculate({level_up_hand, amount = amount},true)
     if eval then amount = eval.amount end
 end
 '''
@@ -205,7 +110,7 @@ match_indent = true
 payload = '''
 if G.GAME.slab ~= nil and not fromMind then
     local slab_eval = nil
-    slab_eval = G.GAME.slab:apply_to_run({tag = _tag})
+    slab_eval = G.GAME.slab:calculate({tag = _tag})
 end
 '''
 
@@ -222,7 +127,7 @@ match_indent = true
 payload = '''
 if G.GAME.slab ~= nil then
     local eval = nil
-    eval = G.GAME.slab:apply_to_run({level_up_hand = true, amount = amount},true)
+    eval = G.GAME.slab:calculate({level_up_hand = true, amount = amount},true)
     if eval then amount = eval.amount end
 end
 '''

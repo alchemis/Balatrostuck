@@ -184,6 +184,9 @@ batch_load("seals")
 bstuck_joker_keys = {}
 
 for _, joker in ipairs(joker_list) do
+    if G.GAME then 
+        G.GAME.BALATROSTUCK.joker_keys[#G.GAME.BALATROSTUCK.joker_keys+1] = 'j_bstuck_' .. joker
+    end
     Balatrostuck.INIT.Jokers["j_"..joker]()
 end
 
@@ -225,6 +228,7 @@ SMODS.Atlas({key = "HomestuckTags", path = "tags.png", px = 34, py = 34, atlas_t
 SMODS.Atlas({key = "HomestuckSpectrals", path = "hsspectral.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
 SMODS.Atlas({key = "HomestuckSeals", path = "hsseals.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
 SMODS.Atlas({key = "HomestuckParadox", path = "paradox.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
+SMODS.Atlas({key = "HomestuckJokersAnimated", path = "hsjokersanimated.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
 
 -- SMODS.Atlas({key = "HomestuckZodiacBooster", path = "booster_zodiac.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
 

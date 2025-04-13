@@ -13,8 +13,8 @@ function Balatrostuck.INIT.Jokers.j_signofthesignless()
             }
         },
         pos = {
-            x = 2,
-            y = 0
+            x = 1,
+            y = 7
          },
         cost = 9,
         rarity = 3,

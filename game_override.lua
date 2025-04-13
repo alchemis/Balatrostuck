@@ -146,3 +146,23 @@ function ease_dollars(mod, instant)
 end
 
 
+local draw_ref = Card.draw
+function Card:draw(layer)
+    if self.config.center.animated then
+        self.animTime = self.animTime or G.TIMERS.REAL
+        self.animPos = self.animPos or copy_table(self.config.center.pos)
+
+
+        if self.animTime + (1/self.config.center.animation_speed) <= G.TIMERS.REAL then
+            self.animPos.x = self.animPos.x + 1
+            if self.animPos.x >= self.config.center.frames then
+                self.animPos.x = 0
+            end
+            self.animTime = G.TIMERS.REAL
+            self.children.center:set_sprite_pos(self.animPos)
+        end
+    end
+    draw_ref(self,layer)
+end
+
+
