@@ -115,6 +115,8 @@ function Game:init_game_object()
     ret.BALATROSTUCK.joker_keys = {}
     ret.BALATROSTUCK.vriska_luck = 1
     ret.BALATROSTUCK.blood_discards = 0
+    check_for_piss()
+
     return ret
 end
 
@@ -163,6 +165,33 @@ function Card:draw(layer)
         end
     end
     draw_ref(self,layer)
+end
+
+local shatter_ref = Card.shatter
+function Card:shatter()
+    if self.edition and self.edition.key == 'e_bstuck_paradox' and next(SMODS.find_card('j_bstuck_biscuits')) and self.config.center.key ~= 'j_bstuck_questbed' then
+        self.getting_sliced = nil
+        play_sound('bstuck_HomestuckParadoxSaved',0.7,0.7)
+        card_eval_status_text(self, 'extra', nil, nil, nil, {message = localize('k_safe_ex')})
+        for j=1, #G.jokers.cards do
+            local card = G.jokers.cards[j]
+            if card.config.center.key == 'j_bstuck_biscuits' then
+                card:juice_up()
+            end
+        end
+        return false
+    end
+    shatter_ref(self)
+end
+
+function check_for_piss()
+    -- sendInfoMessage(G.P_CENTERS['c_bstuck_piss'].discovered and 'True' or 'False')
+    if G.P_CENTERS['c_bstuck_piss'].discovered then
+        G.P_CENTERS['c_bstuck_piss'].no_collection = false
+    else 
+        G.P_CENTERS['c_bstuck_piss'].no_collection = true
+    end
+
 end
 
 

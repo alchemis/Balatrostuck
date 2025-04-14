@@ -16,8 +16,8 @@ function Balatrostuck.INIT.Jokers.j_crowbarsfelt()
             }
         },
         pos = {
-            x = 2,
-            y = 0
+            x = 9,
+            y = 4
          },
         cost = 99,
         rarity = 1,

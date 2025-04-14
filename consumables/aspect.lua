@@ -65,16 +65,18 @@ function Slab:level(default)
   return G.GAME.BALATROSTUCK.aspect_levels[aspect] or default or 0
 end
 
-function Slab:increase_level()
+function Slab:increase_level(amount)
+  amount = amount or 1
   local aspect = string.gsub(self.key, "slab_bstuck_", "")
   aspect = string.gsub(aspect, "^%l", string.upper)
-  G.GAME.BALATROSTUCK.aspect_levels[aspect] = G.GAME.BALATROSTUCK.aspect_levels[aspect] + 1
+  G.GAME.BALATROSTUCK.aspect_levels[aspect] = G.GAME.BALATROSTUCK.aspect_levels[aspect] + amount
 end
 
-function Slab:decrease_level()
+function Slab:decrease_level(amount)
+  amount = amount or 1
   local aspect = string.gsub(self.key, "slab_bstuck_", "")
   aspect = string.gsub(aspect, "^%l", string.upper)
-  G.GAME.BALATROSTUCK.aspect_levels[aspect] = G.GAME.BALATROSTUCK.aspect_levels[aspect] - 1
+  G.GAME.BALATROSTUCK.aspect_levels[aspect] = G.GAME.BALATROSTUCK.aspect_levels[aspect] - amount
 end
 
 -- TODO: actually write our own functions for executing slabs akin to tags

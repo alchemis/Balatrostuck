@@ -50,6 +50,9 @@ function Balatrostuck.INIT.Jokers.j_horrorterrors()
             elseif context.after and not (context.blueprint or context.before or context.repetition) then
                 card.ability.extra.repetitions = {}
             end
+        end,
+        in_pool = function(self,args)
+            return G.GAME.pool_flags.horrorterrors
         end
     }
 end

@@ -14,8 +14,8 @@ function Balatrostuck.INIT.Jokers.j_commandervantas()
             }
         },
         pos = {
-            x = 6,
-            y = 4
+            x = 2,
+            y = 1
         },
         cost = 2,
         rarity = 1,

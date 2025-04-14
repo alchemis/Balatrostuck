@@ -51,6 +51,18 @@ function Balatrostuck.INIT.Jokers.j_tanglebuddies()
             elseif context.after and not (context.blueprint or context.before or context.repetition) then
                 card.ability.extra.repetitions = {}
             end
+
+            if context.selling_self then
+                card.ability.do_not_update_pool = true
+            end
+        end,
+        remove_from_deck = function(self,card,from_debuff)
+            if not from_debuff and not card.ability.do_not_update_pool then
+                G.GAME.pool_flags.horrorterrors = true
+            end
+        end,
+        in_pool = function(self,args)
+            return not G.GAME.pool_flags.horrorterrors
         end
     }
 end

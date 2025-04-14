@@ -18,7 +18,7 @@ function Balatrostuck.INIT.Aspects.c_aspect_piss()
             y = 3
         },
         cost = 4,
-        discovered = true,
+        no_collection = true,
         atlas = "HomestuckAspects",
         loc_vars = function(self, info_queue)
             return {

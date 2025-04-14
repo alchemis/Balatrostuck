@@ -199,6 +199,24 @@ times = 1
 
 [[patches]]
 [patches.pattern]
+target = "functions/common_events.lua"
+pattern = "{n=G.UIT.O, config={object = DynaText({string = {' '..localize('ph_mr_bones')..' '}, colours = {G.C.FILTER}, shadow = true, pop_in = 0, scale = 0.5*scale, silent = true})}}"
+position = "at"
+payload = '''
+    {n=G.UIT.O, config={object = DynaText({string = {' '..localize('k_saved_ex')..' '}, colours = {G.C.FILTER}, shadow = true, pop_in = 0, scale = 0.5*scale, silent = true})}}
+'''
+match_indent = true
+times = 1
+
+
+
+
+
+
+
+
+[[patches]]
+[patches.pattern]
 target = "card.lua"
 pattern = "self.seal = cardTable.seal"
 position = "after"

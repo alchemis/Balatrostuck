@@ -33,9 +33,9 @@ function Balatrostuck.INIT.Jokers.j_lohac()
             return {vars = {card.ability.extra.hands}}
         end,
         calculate = function (self, card, context)
-            if context.end_of_round and context.cardarea == G.jokers and G.ARGS.score_intensity.flames > 0 then
+            if context.end_of_round and context.cardarea == G.jokers and G.ARGS.score_intensity.flames > 0.09 then
                 card.ability.extra.active = true
-                local eval = function() return not card.ability.extra.active end
+                local eval = function() return card.ability.extra.active end
                 juice_card_until(card, eval, true)
                 card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize('k_active')})
             end
@@ -43,7 +43,7 @@ function Balatrostuck.INIT.Jokers.j_lohac()
             
             
             if context.setting_blind and card.ability.extra.active then
-                ease_hands_played(card.ability.hands)
+                ease_hands_played(card.ability.extra.hands)
                 card_eval_status_text(context.blueprint_card or card, 'extra', nil, nil, nil, {message = localize{type = 'variable', key = 'a_hands', vars = {card.ability.extra.hands}}})
                 card.ability.extra.active = false
             end

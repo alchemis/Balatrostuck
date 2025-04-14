@@ -44,7 +44,7 @@ function Balatrostuck.INIT.Jokers.j_conditionalimmortality()
                             ease_background_colour{new_colour = HEX('FFAD56')}
                             play_sound('bstuck_HomestuckHeroicDeath', 1, 1)
                             attention_text({
-                                scale = 1, text = 'WHERE THE FUCK ARE YOU IAN', hold = 4, align = 'cm', offset = {x = 0,y = -2.7},major = G.play
+                                scale = 2, text = 'HEORIC', hold = 4, align = 'cm', offset = {x = 0,y = -2.7},major = G.play
                             })
                             delay(5)
                             return true

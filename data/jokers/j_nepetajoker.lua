@@ -6,7 +6,7 @@ function Balatrostuck.INIT.Jokers.j_nepetajoker()
             extra = {mult = 3, mult_gain = 0, suit_a = 'Spades', suit_b = 'Hearts'}
         },
         loc_txt = {
-            ['name'] = 'nepetajoker',
+            ['name'] = 'Rogue Matchmaker',
             ['text'] = {
                 [1] = "This Joker gains {C:mult}+#1#{} Mult if played hand",
                 [2] = "contains a scoring {V:1}#3#{} and {V:2}#4#{}",
