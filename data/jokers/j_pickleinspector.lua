@@ -19,7 +19,7 @@ function Balatrostuck.INIT.Jokers.j_pickleinspector()
             }
         },
         pos = {
-            x = 2,
+            x = 8,
             y = 0
          },
         cost = 5,
