@@ -184,9 +184,7 @@ batch_load("seals")
 bstuck_joker_keys = {}
 
 for _, joker in ipairs(joker_list) do
-    if G.GAME then 
-        G.GAME.BALATROSTUCK.joker_keys[#G.GAME.BALATROSTUCK.joker_keys+1] = 'j_bstuck_' .. joker
-    end
+    bstuck_joker_keys[#bstuck_joker_keys+1] = 'j_bstuck_' .. joker
     Balatrostuck.INIT.Jokers["j_"..joker]()
 end
 

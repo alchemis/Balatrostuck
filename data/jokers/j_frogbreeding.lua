@@ -4,7 +4,8 @@ function Balatrostuck.INIT.Jokers.j_frogbreeding()
         key = "frogbreeding",
         config = {
             extra = {
-                rounds = 5
+                rounds = 5,
+                active = true,
             }
         },
         loc_txt = {
@@ -27,9 +28,27 @@ function Balatrostuck.INIT.Jokers.j_frogbreeding()
         unlocked = true,
         discovered = true,
         atlas = 'HomestuckJokers',
-
         loc_vars = function(self, info_queue, card)
             return {vars = {card.ability.extra.rounds}}
         end,
+        calculate = function(self,card,context)
+            if context.end_of_round and G.GAME.blind.boss and context.cardarea == G.jokers then
+                card.ability.extra.active = true
+                card.ability.extra.rounds = card.ability.extra.rounds - 1
+                return {
+                    message = card.ability.extra.rounds .. ' Rounds left!',
+                    card = card
+                }
+            end
+
+            if context.using_consumeable and card.ability.extra.active then
+                card.ability.extra.active = false
+                SMODS.add_card({key = context.consumeable.config.center.key,edition = 'e_bstuck_paradox'})
+                return {
+                    message = '+1 Paradox Consumable',
+                    card = card
+                }
+            end
+        end
     }
 end 
