@@ -138,7 +138,7 @@ pattern = "function Card:remove_from_deck(from_debuff)"
 position = "after"
 payload = '''
 if self.ability.set == 'Joker' and not from_debuff and self.added_to_deck then
-    SMODS.calculate_context({other_card = self, BSTUCK_joker_destroyed = true})
+    SMODS.calculate_context({other_card = self, BSTUCK_joker_destroyed = true,})
 end
 '''
 match_indent = true

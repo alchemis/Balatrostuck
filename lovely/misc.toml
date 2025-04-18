@@ -250,5 +250,27 @@ payload = '''
 '''
 times = 1
 
+[[patches]]
+[patches.pattern]
+target = "functions/button_callbacks.lua"
+pattern = "    not (card.ability.consumeable and #G.consumeables.cards < G.consumeables.config.card_limit + ((card.edition and card.edition.negative) and 1 or 0)) then"
+position = "at"
+match_indent = true
+payload = '''
+    not (card.ability.consumeable and #G.consumeables.cards < G.consumeables.config.card_limit + ((card.edition and card.edition.card_limit and card.edition.card_limit >= 1) and 1 or 0)) then
+'''
+times = 1
+
+[[patches]]
+[patches.pattern]
+target = "functions/button_callbacks.lua"
+pattern = "not (card.ability.set == 'Joker' and #G.jokers.cards < G.jokers.config.card_limit + ((card.edition and card.edition.negative) and 1 or 0)) and"
+position = "at"
+match_indent = true
+payload = '''
+    not (card.ability.set == 'Joker' and #G.jokers.cards < G.jokers.config.card_limit + ((card.edition and card.edition.card_limit and card.edition.card_limit >= 1) and 1 or 0)) and
+'''
+times = 1
+
 
 

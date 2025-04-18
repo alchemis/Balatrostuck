@@ -195,3 +195,13 @@ function check_for_piss()
 end
 
 
+-- SMODS.Booster:take_ownership_by_kind('Standard', {
+--     create_card = function(self, card, i)
+--         if SMODS.find_card('j_bstuck_clown')
+        
+--         local _edition = poll_edition('standard_edition'..G.GAME.round_resets.ante, 2, true)
+--         local _seal = SMODS.poll_seal({mod = 10})
+--         return {set = (pseudorandom(pseudoseed('stdset'..G.GAME.round_resets.ante)) > 0.6) and "Enhanced" or "Base", edition = _edition, seal = _seal, area = G.pack_cards, skip_materialize = true, soulable = true, key_append = "sta"}
+--     end,
+--    true
+-- )
