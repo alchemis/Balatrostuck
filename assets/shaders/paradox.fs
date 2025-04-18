@@ -28,6 +28,10 @@ vec4 RGB(vec4 c);
 // Transform color from RGB to HSL
 vec4 HSL(vec4 c);
 
+vec4 blendOverlay(vec4 c1, vec4 c2);
+vec4 blendScreen(vec4 c1, vec4 c2);
+float contrastBrightness(float base, float contrast, float bright);
+
 // [Required] 
 // Apply dissolve effect (when card is being "burnt", e.g. when consumable is used)
 vec4 dissolve_mask(vec4 tex, vec2 texture_coords, vec2 uv);
@@ -39,10 +43,11 @@ vec4 effect( vec4 colour, Image texture, vec2 texture_coords, vec2 screen_coords
     vec4 tex = Texel(texture, texture_coords);
     
     // take the pixel color from the Paradox Texture
-    vec4 Ptex = Texel(paradoxTexture, texture_coords);
 
     // Position of a pixel within the sprite
 	vec2 uv = (((texture_coords)*(image_details)) - texture_details.xy*texture_details.ba)/texture_details.ba;
+
+    vec4 Ptex = Texel(paradoxTexture, uv);
 
     float t = paradox.g + time;
     float adjust_value = 0.1 * sin(t) + 0.5;
@@ -55,27 +60,31 @@ vec4 effect( vec4 colour, Image texture, vec2 texture_coords, vec2 screen_coords
     vec4 hsl = HSL(tex); // convert texture to HSL values
     vec4 bhsl = HSL(tex); // make a base copy of HSL values
 
+    float fac = 0.512;
 
     if (paradox.g > 0.0 || paradox.g < 0.0) {
-        hsl.y = 0.02;
-        hsl.z *= (1 - adjusted_uv.x*(cos(paradox.r*0.512)));
-        hsl.z *= (1 - adjusted_uv.y*(cos(paradox.r*0.512)));
+         hsl.y = 0.0;
+         hsl.z *= (1 - adjusted_uv.x*(cos(paradox.r*fac)));
+         hsl.z *= (1 - adjusted_uv.y*(cos(paradox.r*fac)));
     }
 
-    if (bhsl.z > 0.95){
-        hsl.a = 0;
-    }
+    //if (bhsl.z > 0.95){
+    //    hsl.a = 0;
+    //}
 
     if (bhsl.a == 0){
-        hsl.a = 0;
-    }
+         hsl.a = 0;
+     }
 
 
     // Mix with base texture
     //tex = RGB(0.7*hsl + 0.3*bhsl);
-    float ratio = 1;
-    tex = ratio*RGB(hsl) + (1-ratio)*RGB(bhsl);
-    tex = tex * Ptex;
+    //float ratio = 1;
+    hsl.b = contrastBrightness(hsl.b, 0.66, 0.12);
+    hsl.b = max(hsl.b, 0.33);
+    tex = RGB(hsl);
+    //tex = ratio*RGB(hsl) + (1-ratio)*RGB(bhsl);
+    tex = tex * (Ptex*1.125);
     
     
 
@@ -127,6 +136,29 @@ vec4 HSL(vec4 c)
 
 	hsl.x = mod(hsl.x / 6., 1.);
 	return hsl;
+}
+
+vec4 blendOverlay(vec4 base, vec4 overlay) {
+  vec3 result = vec3(0.0);
+  for (int i = 0; i < 3; ++i) {
+    if (base[i] < 0.5) {
+      result[i] = 2.0 * base[i] * overlay[i];
+    } else {
+      result[i] = 1.0 - 2.0 * (1.0 - base[i]) * (1.0 - overlay[i]);
+    }
+  }
+  return vec4(result.x, result.y, result.z, base.a);
+}
+
+float contrastBrightness(float base, float contrast, float bright) {
+    base = ((base - 0.5) * max(contrast, 0)) + 0.5;
+    base += bright;
+    return base;
+}
+
+vec4 blendScreen(vec4 base, vec4 screen) {
+    vec3 result = 1.0 - (1.0 - base.rgb) * (1.0 - screen.rgb);
+    return vec4(result.x, result.y, result.z, base.a);
 }
 
 vec4 dissolve_mask(vec4 tex, vec2 texture_coords, vec2 uv)
