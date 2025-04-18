@@ -122,7 +122,7 @@ target = '=[SMODS _ "src/overrides.lua"]'
 pattern = "if type(edition) == 'string' then"
 position = "before"
 payload = '''
-if edition == 'e_bstuck_paradox' then
+if edition == 'e_bstuck_paradox' and G.jokers then
     SMODS.calculate_context({paradox_created = true, card = self})
 end
 '''
