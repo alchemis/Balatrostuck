@@ -14,8 +14,8 @@ function Balatrostuck.INIT.Jokers.j_bigkahuna()
             }
         },
         pos = {
-            x = 2,
-            y = 0
+            x = 3,
+            y = 1
          },
         cost = 6,
         rarity = 1,
