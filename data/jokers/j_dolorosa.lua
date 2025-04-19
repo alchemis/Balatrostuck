@@ -14,8 +14,8 @@ function Balatrostuck.INIT.Jokers.j_dolorosa()
             }
         },
         pos = {
-            x = 2,
-            y = 0
+            x = 4,
+            y = 5
          },
         cost = 6,
         rarity = 2,
