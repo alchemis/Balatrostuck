@@ -22,7 +22,7 @@ G.C.RAGE = HEX('9c4dad')
 
 
 G.C.PARADOX = HEX('4EA752')
-
+G.C.CALIBORN = HEX("009c68")
 
 G.C.ZODIAC = {
     Aries = HEX('a10000'),
@@ -44,7 +44,7 @@ G.C.ZODIAC = {
 loc_colour('red')
 -- Change later maybe!!!!!!
 G.ARGS.LOC_COLOURS['paradox'] = HEX("4EA752")
-
+G.ARGS.LOC_COLOURS['caliborn'] = HEX("009c68")
 
 
 
@@ -65,6 +65,7 @@ G.C.ZODIAC_LEVELS = {
 G.C.SPECIBUS = HEX("008c45")
 G.C.VRISKA = HEX("005682")
 G.C.VRISKA_2 = HEX("007ebd")
+
 
 
 local mod = SMODS.current_mod

@@ -9,8 +9,9 @@ function Balatrostuck.INIT.Jokers.j_yourlordandmaster()
         loc_txt = {
             ['name'] = 'YOUR LORD AND MASTER',
             ['text'] = {
-                [1] = "YOU DO NOT NEED TO KNOW MY WAYS. MY PUTRID SOUL WILL MAKE",
-                [2] = "A MOCKERY OF THIS GLORIFIED GAME OF SOLITAIRE."
+                "{C:caliborn}YOU DO NOT NEED TO KNOW MY WAYS.",
+                "{C:caliborn}MY PUTRID SOUL WILL MAKE A MOCKERY",
+                "{C:caliborn}OF THIS GLORIFIED GAME OF SOLITAIRE."
             }
         },
         pos = {
