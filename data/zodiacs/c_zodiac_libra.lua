@@ -30,10 +30,13 @@ function Balatrostuck.INIT.Zodiacs.c_zodiac_libra()
         loc_vars = function(card)
             local level = (G.GAME.BALATROSTUCK.zodiac_levels[card.name] or 0) + 1
             local formula = 1 + level/10
+            local current = 1
+            if level - 1 > 0 then current = 1 + (level-1)/10 end
             return {
                 vars = {
                     level,
                     formula,
+                    current,
                     colours = {(level==1 and G.C.UI.TEXT_DARK or G.C.ZODIAC_LEVELS[math.min(7, level)])}
                 }
             }

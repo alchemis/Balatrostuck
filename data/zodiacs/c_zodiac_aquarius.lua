@@ -10,10 +10,10 @@ function Balatrostuck.INIT.Zodiacs.c_zodiac_aquarius()
         loc_txt = {
             ['name'] = "Aquarius",
             ['text'] = {
-                '{S:0.8}({S:0.8}lvl.#1#{S:0.8}){} Level up', --needs color var
-                '{C:attention}Jacks{} create {C:attention}1{} random',
-                '{C:attention}Tags{} when {C:attention}destroyed', --next level value + dynamic plural
-                '{C:inactive}(Currently {C:attention}0{C:inactive} Tags)' --current level value + dynamic plural
+                '{S:0.8}({S:0.8, V:1}lvl.#1#{S:0.8}){} Level up', --needs color var
+                '{C:attention}Jacks{} create {C:attention}#2#{} random',
+                '{C:attention}Tag#4#{} when {C:attention}destroyed', --next level value + dynamic plural
+                '{C:inactive}(Currently {C:attention}#3#{C:inactive} Tag#4#)' --current level value + dynamic plural
             }
         },
         cost = 4,
@@ -27,7 +27,22 @@ function Balatrostuck.INIT.Zodiacs.c_zodiac_aquarius()
             }))
             self:add_caste('Aquarius')
         end,
-        can_use = function() return true end
+        can_use = function() return true end,
+        loc_vars = function(card)
+            local level = (G.GAME.BALATROSTUCK.zodiac_levels[card.name] or 0) + 1
+            local formula = level
+            local current = 1
+            if level - 1 > 0 then current = level-1 end
+            return {
+                vars = {
+                    level,
+                    formula,
+                    current,
+                    (level~=1 and 's' or ''),
+                    colours = {(level==1 and G.C.UI.TEXT_DARK or G.C.ZODIAC_LEVELS[math.min(7, level)])}
+                }
+            }
+        end,
     }
 
     Balatrostuck.Caste {

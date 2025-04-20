@@ -28,13 +28,13 @@ function Balatrostuck.INIT.Zodiacs.c_zodiac_cancer()
             local level = (G.GAME.BALATROSTUCK.zodiac_levels[card.name] or 0) + 1
             local formula = 3 + level
             local current = 0
-            if level - 1 < 0 then current = 3 + (level - 1) end
+            if level - 1 > 0 then current = 3 + (level - 1) end
             return {
                 vars = {
                     level,
                     formula,
+                    current,
                     colours = {(level==1 and G.C.UI.TEXT_DARK or G.C.ZODIAC_LEVELS[math.min(7, level)])},
-                    current
                 }
             }
         end,
