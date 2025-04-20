@@ -31,7 +31,7 @@ function Balatrostuck.INIT.Zodiacs.c_zodiac_aquarius()
         loc_vars = function(card)
             local level = (G.GAME.BALATROSTUCK.zodiac_levels[card.name] or 0) + 1
             local formula = level
-            local current = 1
+            local current = 0
             if level - 1 > 0 then current = level-1 end
             return {
                 vars = {
