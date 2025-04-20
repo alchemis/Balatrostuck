@@ -28,8 +28,6 @@ function Balatrostuck.INIT.Jokers.j_yourlordandmaster()
         frames = 250,
         dimensions = {x=15,y=15},
         animation_speed = 50,
-        frames = 63,
-        animation_speed = 15,
         photosensitive = false
     }
 end 
