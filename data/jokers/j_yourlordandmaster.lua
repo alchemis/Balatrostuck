@@ -25,8 +25,8 @@ function Balatrostuck.INIT.Jokers.j_yourlordandmaster()
         discovered = true,
         atlas = 'TheCalibornJoker',
         animated = true,
-        frames = 250,
-        animation_speed = 20,
+        frames = 63,
+        animation_speed = 15,
         photosensitive = false
     }
 end 
