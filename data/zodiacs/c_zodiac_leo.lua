@@ -11,10 +11,10 @@ function Balatrostuck.INIT.Zodiacs.c_zodiac_leo()
             ['name'] = "Leo",
             ['text'] = {
                 [1] = '{S:0.8}({S:0.8,V:1}lvl.#1#{S:0.8}){} Level up',
-                [2] = '{C:attention}Held 5s{} have a {C:green}1 in 4{} chance',
-                [3] = 'to give {C:money}$1{} when any', --next level value
+                [2] = '{C:attention}Held 5s{} have a {C:green}#4# in 4{} chance',
+                [3] = 'to give {C:money}$#2#{} when any', --next level value
                 [4] = 'played card is scored',
-                [5] = '{C:inactive}(Currently {C:money}$0{C:inactive})' --current level value
+                [5] = '{C:inactive}(Currently {C:money}$#3#{C:inactive})' --current level value
             }
         },
         cost = 4,
@@ -31,11 +31,15 @@ function Balatrostuck.INIT.Zodiacs.c_zodiac_leo()
         can_use = function() return true end,
         loc_vars = function(card)
             local level = (G.GAME.BALATROSTUCK.zodiac_levels[card.name] or 0) + 1
-            local formula = 1 + level/10
+            local formula = level
+            local current = 0
+            if level-1 > 0 then current = level-1 end
             return {
                 vars = {
                     level,
                     formula,
+                    current,
+                    G.GAME.probabilities.normal,
                     colours = {(level==1 and G.C.UI.TEXT_DARK or G.C.ZODIAC_LEVELS[math.min(7, level)])}
                 }
             }

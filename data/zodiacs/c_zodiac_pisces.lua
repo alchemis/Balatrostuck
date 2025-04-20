@@ -11,9 +11,9 @@ function Balatrostuck.INIT.Zodiacs.c_zodiac_pisces()
             ['name'] = "Pisces",
             ['text'] = {
                 "{S:0.8}({S:0.8,V:1}lvl.#1#{S:0.8}){} Level up",
-                'Played{C:attention} Queens{} give {C:money}$2 {C:red,E:2}minus{} the', --next level value
+                'Played{C:attention} Queens{} give {C:money}$#2# {C:red,E:2}minus{} the', --next level value
                 'amount of {C:attention}remaining hands{} when scored', 
-                '{C:inactive}(Currently {C:money}$0{C:inactive})'    --current level value
+                '{C:inactive}(Currently {C:money}$#3#{C:inactive})'    --current level value
             }
         },
         cost = 4,
@@ -30,11 +30,14 @@ function Balatrostuck.INIT.Zodiacs.c_zodiac_pisces()
         can_use = function() return true end,
         loc_vars = function(card)
             local level = (G.GAME.BALATROSTUCK.zodiac_levels[card.name] or 0) + 1
-            local formula = level
+            local formula = level*2
+            local current = 0
+            if level-1 > 0 then current = (level-1)*2 end
             return {
                 vars = {
                     level,
                     formula,
+                    current,
                     colours = {(level==1 and G.C.UI.TEXT_DARK or G.C.ZODIAC_LEVELS[math.min(7, level)])}
                 }
             }
