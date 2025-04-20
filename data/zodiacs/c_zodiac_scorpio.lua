@@ -39,7 +39,7 @@ function Balatrostuck.INIT.Zodiacs.c_zodiac_scorpio()
                 vars = {
                     level,
                     formula,
-                    current
+                    current,
                     (level~=1 and 's' or ''),
                     ((level-1)~=1 and 's' or ''),
                     colours = {(level==1 and G.C.UI.TEXT_DARK or G.C.ZODIAC_LEVELS[math.min(7, level)])}
