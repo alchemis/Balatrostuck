@@ -5,7 +5,9 @@ function Balatrostuck.INIT.Aspects.c_aspect_time()
         loc_txt = {
             ['name'] = "Time",
             ['text'] = {
-                [1] = '{E:1,S:1.2}(lvl. #2#){} Get {C:blue}+#1# Hand#3#{}'
+                [1] = "", -- "{S:0.8}({S:0.8,V:1}lvl.#2#{S:0.8}){} Level up",
+                [2] = "{C:blue}+#1#{} hand#3# each round",
+                [3] = "{C:inactive}(Currently {C:blue}+#4#{C:inactive} hands)"
             }
         },
         pos = {
