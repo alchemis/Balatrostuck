@@ -12,10 +12,10 @@ function Balatrostuck.INIT.Zodiacs.c_zodiac_aries()
             ['name'] = "Aries",
             ['text'] = {
                 '{{S:0.8}({S:0.8, V:1}lvl.#1#{}{S:0.8}){} Level up',
-                '{C:attention}Aces{} gain {X:mult,C:white}X0.5{} Mult for', --next level value
+                '{C:attention}Aces{} gain {X:mult,C:white}X#2#{} Mult for', --next level value
                 'each {C:attention}Ace discarded{} this round',
                 'or currently in your {C:attention}deck',
-                '{C:inactive}(Currently gains {X:mult,C:white}X0{C:inactive})', --current level value
+                '{C:inactive}(Currently gains {X:mult,C:white}X#3#{C:inactive})', --current level value
             }
         },
         use = function(self, card, area, copier)
@@ -30,11 +30,14 @@ function Balatrostuck.INIT.Zodiacs.c_zodiac_aries()
         loc_vars = function(card)
             local level = (G.GAME.BALATROSTUCK.zodiac_levels[card.name] or 0) + 1           
             local formula = 0.5 * level
+            local current = 0
+            if level-1 > 0 then current = 0.5 * (level-1) end
 
             return {
                 vars = {
                     level,
                     formula,
+                    current,
                     colours = {(level==1 and G.C.UI.TEXT_DARK or G.C.ZODIAC_LEVELS[math.min(7, level)])}
                 }
             }
