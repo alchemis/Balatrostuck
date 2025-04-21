@@ -12,6 +12,8 @@ SMODS.Booster{
         },
         group_name = 'Aspect Pack'
     },
+    kind = 'aspect',
+    weight = 0.3,
     pos = { x = 0, y = 0 },
     create_card = function(self, card,i)
         if i == 1 or G.GAME.gamer_choices == nil then
@@ -21,7 +23,7 @@ SMODS.Booster{
         local qualityControl = false
         for v=1, #G.vouchers.cards do
             local lekey = G.vouchers.cards[v].config.center.key
-            if lekey == 'v_bstuck_gift_of_gab' then
+            if lekey == 'v_bstuck_giftofgab' then
                 qualityControl = true
             end
         end

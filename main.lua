@@ -159,6 +159,9 @@ local blind_list = {
     "demoness","summoner","helmsman","sufferer","disciple","dolorosa","legislacerator","manipulator","executioner","subjuggulator","orphaner","bettycrocker"
 }
 
+local voucher_list = {
+    "riseup","giftofgab"
+}
 
 local tag_list = {
     "perfectlygeneric",
@@ -186,6 +189,7 @@ batch_load("tags")
 batch_load("spectrals")
 batch_load("seals")
 batch_load("blinds")
+batch_load("vouchers")
 
 bstuck_joker_keys = {}
 
@@ -222,6 +226,9 @@ for _, blind in ipairs(blind_list) do
     Balatrostuck.INIT.Blinds["bl_"..blind]()
 end
 
+for _, voucher in ipairs(voucher_list) do
+    Balatrostuck.INIT.Vouchers["v_"..voucher]()
+end
 
 SMODS.Sound({key = "HomestuckHeroicDeath", path = 'johnfuckingdies.ogg'})
 SMODS.Sound({key = "HomestuckJustDeath", path = 'shhh.ogg'})
@@ -242,6 +249,7 @@ SMODS.Atlas({key = "HomestuckParadox", path = "paradox.png", px = 71, py = 95, a
 SMODS.Atlas({key = "HomestuckJokersAnimated", path = "hsjokersanimated.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
 SMODS.Atlas({key = "TheCalibornJoker", path = "caliborn.png",  px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
 SMODS.Atlas({key = "HomestuckBlinds",atlas_table = 'ANIMATION_ATLAS',frames = 8,px = 34,py = 34,path = {['default'] = 'Blinds.png'}}):register()
+SMODS.Atlas({key = "HomestuckVouchers", path = "vouchers.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
 
 -- SMODS.Atlas({key = "HomestuckZodiacBooster", path = "booster_zodiac.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
 

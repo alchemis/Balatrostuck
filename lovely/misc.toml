@@ -273,4 +273,23 @@ payload = '''
 times = 1
 
 
+[[patches]]
+[patches.pattern]
+target = '=[SMODS _ "src/overrides.lua"]'
+pattern = "v.current_weight = v.get_weight and v:get_weight() or v.weight or 1"
+position = "after"
+times = 1
+line_prepend = '$indent'
+match_indent = true
+payload = '''
+if next(SMODS.find_card('v_bstuck_riseup')) then
+    if v.kind ~= 'aspect' and v.kind ~= 'zodiac' then
+        v.current_weight = v.current_weight - 0.1
+    elseif v.kind == 'aspect' then
+        v.current_weight = v.current_weight + 0.1
+    end
+end
+'''
 
+
+		

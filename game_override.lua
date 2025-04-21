@@ -67,6 +67,9 @@ function Game:update(dt)
     self.C.SECONDARY_SET.Aspect[2] = left_colour_aspect[2] * (1 - progress) + right_colour_aspect[2] * progress
     self.C.SECONDARY_SET.Aspect[3] = left_colour_aspect[3] * (1 - progress) + right_colour_aspect[3] * progress
 
+
+
+
     -- G.ARGS.LOC_COLOURS["aspect"] = G.C.SECONDARY_SET.Aspect
     -- G.ARGS.LOC_COLOURS["zodiac"] = G.C.SECONDARY_SET.Zodiac
 end

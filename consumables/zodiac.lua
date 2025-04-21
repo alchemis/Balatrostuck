@@ -4,6 +4,7 @@ SMODS.ConsumableType{
   collection_rows = { 6, 7 },
   primary_colour = G.C.SET.Zodiac,
   secondary_colour = G.C.SECONDARY_SET.Zodiac,
+  shop_rate = 4,
   loc_txt = {
     name = 'Zodiac',
     collection = 'Zodiac',
