@@ -28,7 +28,7 @@ SMODS.Booster{
             end
         end
 
-        local key = get_zodiac(qualityControl)
+        local key = get_zodiac(qualityControl,true)
         local card = SMODS.create_card({set = "Zodiac", area = G.pack_cards, key = key, skip_materialize = true, soulable = true, key_append = "gam"})
         return card
         

@@ -8,7 +8,8 @@ Balatrostuck.INIT = {
     Spectrals = {},
     Seals = {},
     Blinds = {},
-    Vouchers = {}
+    Vouchers = {},
+    Decks = {}
 
 }
 

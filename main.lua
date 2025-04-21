@@ -180,6 +180,10 @@ local spectral_list = {
     '13ofstars'
 }
 
+local deck_list = {
+    'dersite'
+}
+
 batch_load("jokers")
 batch_load("aspects")
 batch_load("zodiacs")
@@ -190,6 +194,7 @@ batch_load("spectrals")
 batch_load("seals")
 batch_load("blinds")
 batch_load("vouchers")
+batch_load("decks")
 
 bstuck_joker_keys = {}
 
@@ -230,6 +235,10 @@ for _, voucher in ipairs(voucher_list) do
     Balatrostuck.INIT.Vouchers["v_"..voucher]()
 end
 
+for _, deck in ipairs(deck_list) do
+    Balatrostuck.INIT.Decks["b_"..deck]()
+end
+
 SMODS.Sound({key = "HomestuckHeroicDeath", path = 'johnfuckingdies.ogg'})
 SMODS.Sound({key = "HomestuckJustDeath", path = 'shhh.ogg'})
 SMODS.Sound({key = "HomestuckParadoxSaved", path = 'paradoxSaved.ogg'})
@@ -250,6 +259,7 @@ SMODS.Atlas({key = "HomestuckJokersAnimated", path = "hsjokersanimated.png", px 
 SMODS.Atlas({key = "TheCalibornJoker", path = "caliborn.png",  px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
 SMODS.Atlas({key = "HomestuckBlinds",atlas_table = 'ANIMATION_ATLAS',frames = 8,px = 34,py = 34,path = {['default'] = 'Blinds.png'}}):register()
 SMODS.Atlas({key = "HomestuckVouchers", path = "vouchers.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
+SMODS.Atlas({key = "HomestuckDecks", path = "decks.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
 
 -- SMODS.Atlas({key = "HomestuckZodiacBooster", path = "booster_zodiac.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
 

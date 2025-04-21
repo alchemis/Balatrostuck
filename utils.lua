@@ -162,7 +162,8 @@ end
 
 
 
-function get_aspect_for_pack(normalize_weights)
+function get_aspect_for_pack(normalize_weights,pack)
+    G.GAME.gamer_choices = G.GAME.gamer_choices or {}
     local pool = {
         {key = 'blood',weight = 0,onestar = false},
         {key = 'breath',weight = 0,onestar = false},
@@ -179,16 +180,19 @@ function get_aspect_for_pack(normalize_weights)
         {key = 'piss',weight = 0.9,onestar = false}
     }
 
-    if normalize_weights then
+    if normalize_weights or next(SMODS.find_card('v_bstuck_giftofgab')) then
         for i=1, #pool do
             pool[i].weight = 0
         end
     end
 
+    
+
+
     if not next(find_joker("Showman")) then
         for i = #pool, 1, -1 do 
             local entry = pool[i]
-            if tableContains(G.GAME.gamer_choices,'c_bstuck_' .. pool[i].key) then
+            if tableContains(G.GAME.gamer_choices,'c_bstuck_' .. pool[i].key) and pack then
                 table.remove(pool, i)
             else
                 local conKeys = {}
@@ -241,7 +245,7 @@ end
 
 
 
-function get_zodiac(normalize_weights)
+function get_zodiac(normalize_weights,pack)
     G.GAME.gamer_choices = G.GAME.gamer_choices or {}
     local pool = {
         {key = 'aries',weight = 0.9,onestar = false},
@@ -259,7 +263,7 @@ function get_zodiac(normalize_weights)
         {key = 'ophiuchus',weight = 0.9,onestar = false}
     }
 
-    if normalize_weights then
+    if normalize_weights or next(SMODS.find_card('v_bstuck_giftofgab')) then
         for i=1, #pool do
             pool[i].weight = 0
         end
@@ -268,7 +272,7 @@ function get_zodiac(normalize_weights)
     if not next(find_joker("Showman")) then
         for i = #pool, 1, -1 do 
             local entry = pool[i]
-            if tableContains(G.GAME.gamer_choices,'c_bstuck_' .. pool[i].key) then
+            if tableContains(G.GAME.gamer_choices,'c_bstuck_' .. pool[i].key) and pack then
                 table.remove(pool, i)
             else
                 local conKeys = {}

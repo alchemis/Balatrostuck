@@ -40,6 +40,7 @@ function Balatrostuck.INIT.Jokers.j_mirthful()
                                 delay = 0.0,
                                 func = (function()
                                         local zodiac = SMODS.create_card({set = 'Zodiac'})
+                                        zodiac:set_edition({negative = true})
                                         zodiac:add_to_deck()
                                         G.consumeables:emplace(zodiac)
                                         G.GAME.consumeable_buffer = 0

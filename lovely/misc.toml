@@ -289,6 +289,12 @@ if next(SMODS.find_card('v_bstuck_riseup')) then
         v.current_weight = v.current_weight + 0.1
     end
 end
+
+if G.GAME.selected_back.effect.center.key == 'b_bstuck_dersite' then
+    if v.kind == 'Celestial' then
+        v.current_weight = 0 
+    end
+end
 '''
 
 

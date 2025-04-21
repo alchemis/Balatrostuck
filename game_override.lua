@@ -249,3 +249,16 @@ function Card:set_base(card, initial)
     end
     setbase_ref(self,card,initial)
 end
+
+
+
+
+create_card_ref = create_card
+function create_card(_type, area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
+    if _type == 'zodiac' or _type == 'Zodiac' and forced_key == nil then
+        forced_key = get_zodiac()
+    end
+
+    return create_card_ref(_type, area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
+end
+
