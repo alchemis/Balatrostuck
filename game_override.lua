@@ -111,7 +111,7 @@ function Game:init_game_object()
         Ophiuchus = 0
     }
     ret.BALATROSTUCK.active_castes = {}
-    ret.BALATROSTUCK.strife_assignment = 'Unassigned'
+    ret.BALATROSTUCK.strife_assignment = {}
     ret.BALATROSTUCK.current_aspect = ''
     ret.BALATROSTUCK.pack_size_bonus = 0
     ret.BALATROSTUCK.bucket_suits = {'Diamonds','Clubs'}

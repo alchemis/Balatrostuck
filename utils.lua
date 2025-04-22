@@ -413,3 +413,71 @@ end
 function log2(x)
     return math.log(x) / math.log(2)
 end
+
+
+function create_UIBox_zodiacs(simple)
+    local hands = {
+        create_zodiac_row('Libra', simple)
+    }
+  
+    local t = {n=G.UIT.ROOT, config={align = "cm", minw = 3, padding = 0.1, r = 0.1, colour = G.C.CLEAR}, nodes={
+      {n=G.UIT.R, config={align = "cm", padding = 0.04}, nodes=
+        hands
+      },
+    }}
+    return t
+  end
+  
+
+
+
+  function create_zodiac_row(zodiac, simple)
+    local count = 0
+    if G.deck then
+        local ranks = {
+            Gemini = 2,
+            Taurus = 3,
+            Cancer = 4,
+            Leo = 5,
+            Virgo = 6,
+            Libra = 7,
+            Scorpio = 8,
+            Sagittarius = 9,
+            Capricorn = 10,
+            Aquarius = 11,
+            Pisces = 12,
+            Ophiuchus = 13,
+            Aries = 14
+        }
+        for _,v in ipairs(G.playing_cards) do
+            if v:get_id() == ranks[zodiac] then
+                count = count + 1
+            end
+        end
+    end
+      
+    
+    return (not simple and
+      {n=G.UIT.R, config={align = "cm", padding = 0.05, r = 0.1, colour = darken(G.C.JOKER_GREY, 0.1), emboss = 0.05, hover = true, force_focus = true, on_demand_tooltip = {text = localize(zodiac, 'zodiac_names')}}, nodes={
+        {n=G.UIT.C, config={align = "cl", padding = 0, minw = 5}, nodes={
+          {n=G.UIT.C, config={align = "cm", padding = 0.01, r = 0.1, colour = G.C.HAND_LEVELS[math.min(7, G.GAME.BALATROSTUCK.zodiac_levels[zodiac])], minw = 1.5, outline = 0.8, outline_colour = G.C.WHITE}, nodes={
+            {n=G.UIT.T, config={text = localize('k_level_prefix')..G.GAME.BALATROSTUCK.zodiac_levels[zodiac], scale = 0.5, colour = G.C.UI.TEXT_DARK}}
+          }},
+          {n=G.UIT.C, config={align = "cm", minw = 4.5, maxw = 4.5}, nodes={
+            {n=G.UIT.T, config={text = ' '..localize(zodiac,'zodiac_names'), scale = 0.45, colour = G.C.UI.TEXT_LIGHT, shadow = true}}
+          }}
+        }},
+        {n=G.UIT.C, config={align = "cm"}, nodes={
+            {n=G.UIT.T, config={text = '  #', scale = 0.45, colour = G.C.UI.TEXT_LIGHT, shadow = true}}
+          }},
+        {n=G.UIT.C, config={align = "cm", padding = 0.05, colour = G.C.L_BLACK,r = 0.1, minw = 0.9}, nodes={
+          {n=G.UIT.T, config={text = count, scale = 0.45, colour = G.C.FILTER, shadow = true}},
+        }}
+      }}
+    or {n=G.UIT.R, config={align = "cm", padding = 0.05, r = 0.1, colour = darken(G.C.JOKER_GREY, 0.1), force_focus = true, emboss = 0.05, hover = true, on_demand_tooltip = {text = localize(zodiac, 'zodiac_names')}, focus_args = {snap_to = (simple and handname == 'Straight Flush')}}, nodes={
+      {n=G.UIT.C, config={align = "cm", padding = 0, minw = 5}, nodes={
+          {n=G.UIT.T, config={text = localize(zodiac,'zodiac_names'), scale = 0.5, colour = G.C.UI.TEXT_LIGHT, shadow = true}}
+      }}
+    }})
+    or nil
+  end
