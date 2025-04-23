@@ -5,10 +5,11 @@ function Balatrostuck.INIT.Aspects.c_aspect_heart()
         loc_txt = {
             ['name'] = "Heart",
             ['text'] = {
-                [1] = 'Reduces amount',
-                [2] = 'of {C:blue}hands{} to 1',
-                [3] = '{C:attention}scoring cards',
-                [4] = 'give {C:white,X:mult}X#1#{} Mult each'
+                [1] = "", -- "{S:0.8}({S:0.8,V:1}lvl.#2#{S:0.8}){} Level up",
+                [2] = 'When a poker hand is',
+                [3] = '{C:attention}leveled up{}, it gains',
+                [4] = '{C:attention}#2#{} additional levels',
+                [5] = '{C:inactive}(Currently {C:attention}#3#{C:inactive} levels)'
             }
         },
         pos = {
