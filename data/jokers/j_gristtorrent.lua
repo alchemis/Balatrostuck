@@ -6,17 +6,18 @@ function Balatrostuck.INIT.Jokers.j_gristtorrent()
             extra = {
                 uses = 5,
                 money = 1,
-                tor = 1
+                tor = 1,
+                total = 5,
             }
         },
         loc_txt = {
             ['name'] = 'GristTorrent',
             ['text'] = {
-                [1] = 'Every played {C:attention}card{} permanently loses {C:blue}-2{} Chips',
-                [2] = 'when scored. The first {C:attention}5{} times this happens',
-                [3] = 'each round, earn {C:money}$1{}. The {C:attention}6th+{} time this happens',
-                [4] = 'each round, this Joker gains {C:money}$1{} of sell value',
-                [5] = '{C:inactive}({C:attention}5{C:inactive} remaining)'
+                [1] = 'Every played {C:attention}card{} permanently loses {C:blue}-#3#{} Chips',
+                [2] = 'when scored. The first {C:attention}#4#{} times this happens',
+                [3] = 'each round, earn {C:money}$#2#{}. The {C:attention}#5#th+{} time this happens',
+                [4] = 'each round, this Joker gains {C:money}$#2#{} of sell value',
+                [5] = '{C:inactive}({C:attention}#1#{C:inactive} remaining)'
             }
         },
         pos = {
@@ -32,7 +33,7 @@ function Balatrostuck.INIT.Jokers.j_gristtorrent()
         atlas = 'HomestuckJokers',
 
         loc_vars = function(self, info_queue, card)
-            return {vars = {card.ability.extra.uses, card.ability.extra.money, card.ability.extra.tor}}
+            return {vars = {card.ability.extra.uses, card.ability.extra.money, card.ability.extra.tor, card.ability.extra.total, card.ability.extra.total+1}}
         end,
 
         calculate = function(self, card, context)
@@ -62,7 +63,7 @@ function Balatrostuck.INIT.Jokers.j_gristtorrent()
                     }
 
             elseif context.end_of_round and not context.blueprint and not context.repetition and not context.individual then
-                card.ability.extra.uses = 5
+                card.ability.extra.uses = card.ability.extra.total
                 return {
                     message = localize('k_reset'),
                     colour = G.C.FILTER
