@@ -16,8 +16,8 @@ function Balatrostuck.INIT.Jokers.j_objectduality()
             }
         },
         pos = {
-            x = 2,
-            y = 0
+            x = 0,
+            y = 12
          },
         cost = 4,
         rarity = 2,
