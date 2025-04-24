@@ -57,6 +57,7 @@ function Balatrostuck.INIT.Jokers.j_gristtorrent()
                     card:set_cost()
                     return {
                         message = localize('k_val_up'),
+                        message_card = card,
                         colour = G.C.MONEY
                     }
 
