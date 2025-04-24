@@ -221,14 +221,42 @@ end
 SMODS.Booster:take_ownership_by_kind('Standard', {
     create_card = function(self, card, i)
         local _key = nil
-        -- if SMODS.find_card('j_bstuck_clown') then
-        --     local _pool = {}
-        --     for _,v in pairs(G.P_CARDS) do
-        --         local id = v.value
-        --         if tonumber(id) t
+        if next(SMODS.find_card('j_bstuck_clownincar')) then
+            local _pool = {}
+            local _suits = {}
+            local peepee = {
+                c_bstuck_gemini = "2",
+                c_bstuck_taurus = "3",
+                c_bstuck_cancer = "4",
+                c_bstuck_leo = "5",
+                c_bstuck_virgo = "6",
+                c_bstuck_libra = "7",
+                c_bstuck_scorpio = "8",
+                c_bstuck_sagittarius = "9",
+                c_bstuck_capricorn = "10",
+                c_bstuck_aquarius = "Jack",
+                c_bstuck_pisces = "Queen",
+                c_bstuck_ophiuchus = "King",
+                c_bstuck_aries = "Ace"
+            }
+
+            for k,v in pairs(SMODS.Suits) do
+                _suits[#_suits+1] = v.card_key
+            end
+
+            for i=1, #G.consumeables.cards do
+                if peepee[G.consumeables.cards[i].config.center.key] then
+                    for j=1, #_suits do
+                        _pool[#_pool+1] = _suits[j] .. '_' .. peepee[G.consumeables.cards[i].config.center.key]
+                    end
+                end
+            end
+
             
-        --     -- code this later!
-        -- end
+            if #_pool > 0 then
+                _key = pseudorandom_element(_pool,pseudoseed('Clown'))
+            end
+        end
         
         local _edition = poll_edition('standard_edition'..G.GAME.round_resets.ante, 2, true)
         if G.GAME.selected_back.effect.center.key == 'b_bstuck_prospitan' then
@@ -237,7 +265,7 @@ SMODS.Booster:take_ownership_by_kind('Standard', {
         
         
         local _seal = SMODS.poll_seal({mod = 10})
-        return {set = (pseudorandom(pseudoseed('stdset'..G.GAME.round_resets.ante)) > 0.6) and "Enhanced" or "Base", edition = _edition, seal = _seal, area = G.pack_cards, skip_materialize = true, soulable = true, key_append = "sta"}
+        return {key = _key, set = (pseudorandom(pseudoseed('stdset'..G.GAME.round_resets.ante)) > 0.6) and "Enhanced" or "Base", edition = _edition, seal = _seal, area = G.pack_cards, skip_materialize = true, soulable = true, key_append = "sta"}
     end,
    true
 })

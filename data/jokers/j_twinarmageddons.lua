@@ -1,4 +1,16 @@
 function Balatrostuck.INIT.Jokers.j_twinarmageddons()
+    local cool2tuff =SMODS.Gradient{
+        key = 'SOLLUX_GRAD',
+        colours = {
+            HEX('009dff'),
+            HEX('fe5f55')
+        },
+        cycle = 1,
+        interpolation = 'trig' 
+    }
+
+
+
     SMODS.Joker{
         name = "Twin Armageddons",
         key = "twinarmageddons",
@@ -27,11 +39,9 @@ function Balatrostuck.INIT.Jokers.j_twinarmageddons()
         unlocked = true,
         discovered = true,
         atlas = 'HomestuckJokers',
-
         loc_vars = function(self, info_queue, twincard)
             return {vars = {twincard.ability.extra.hand}}
         end,
-
         calculate = function(self,card,context)
             if context.cardarea == G.jokers and context.joker_main then
             elseif context.cardarea == G.play and context.individual and next(context.poker_hands[card.ability.extra.hand]) and not ((next(context.poker_hands['Full House'])) or next(context.poker_hands['Flush House'])) then
@@ -44,6 +54,9 @@ function Balatrostuck.INIT.Jokers.j_twinarmageddons()
                     twincard = card
                 }
             end
+        end,
+        set_card_type_badge = function(self, card, badges)
+            badges[1] = create_badge(localize('k_rare'), cool2tuff, nil, 1.2)
         end
     }
 end
