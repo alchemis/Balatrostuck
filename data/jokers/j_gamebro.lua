@@ -39,10 +39,12 @@ function Balatrostuck.INIT.Jokers.j_gamebro()
 
         calculate = function(self, card, context)                
             if context.joker_main and context.cardarea == G.jokers then
-                for k, v in ipairs(context.scoring_hand) do
-                    if SMODS.get_enhancements(v).m_bonus == true then
-                        card.ability.extra.odds = card.ability.extra.odds + card.ability.extra.odds_increase
-                        card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_increase
+                if not context.blueprint then
+                    for k, v in ipairs(context.scoring_hand) do
+                        if SMODS.get_enhancements(v).m_bonus == true then
+                            card.ability.extra.odds = card.ability.extra.odds + card.ability.extra.odds_increase
+                            card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_increase
+                        end
                     end
                 end
                 if pseudorandom("tokeepitreal") < card.ability.extra.odds / card.ability.extra.odds_divisor then
