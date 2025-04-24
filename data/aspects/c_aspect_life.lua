@@ -10,7 +10,7 @@ function Balatrostuck.INIT.Aspects.c_aspect_life()
                 [3] = "to hand when round begins,",
                 [4] = "every {C:green}Paradox{} card anywhere",
                 [5] = "gives {C:money}$#3#{} at end of round",
-                [6] = "{C:inactive}(Currently {C:green}+#4#}{C:inactive} and {C:money}$#5#{C:inactive})"
+                [6] = "{C:inactive}(Currently {C:green}+#4#{C:inactive} and {C:money}$#5#{C:inactive})"
             }
         },
         pos = {

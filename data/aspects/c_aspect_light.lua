@@ -5,8 +5,10 @@ function Balatrostuck.INIT.Aspects.c_aspect_light()
         loc_txt = {
             ['name'] = "Light",
             ['text'] = {
-                [1] = 'Held consumables',
-                [2] = 'give {C:white,X:mult}X#1#{} Mult each'
+                [1] = "", -- "{S:0.8}({S:0.8,V:1}lvl.#2#{S:0.8}){} Level up",
+                [2] = 'Cards in your {C:attention}consumable',
+                [3] = 'area give {X:mult,C:white}X#2#{} Mult',
+                [4] = '{C:inactive}(Currently {X:mult,C:white}X#3#{C:inactive} Mult)'
             }
         },
         pos = {
