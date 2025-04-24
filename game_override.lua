@@ -220,9 +220,15 @@ end
 
 SMODS.Booster:take_ownership_by_kind('Standard', {
     create_card = function(self, card, i)
-        if SMODS.find_card('j_bstuck_clown') then
-            -- code this later!
-        end
+        local _key = nil
+        -- if SMODS.find_card('j_bstuck_clown') then
+        --     local _pool = {}
+        --     for _,v in pairs(G.P_CARDS) do
+        --         local id = v.value
+        --         if tonumber(id) t
+            
+        --     -- code this later!
+        -- end
         
         local _edition = poll_edition('standard_edition'..G.GAME.round_resets.ante, 2, true)
         if G.GAME.selected_back.effect.center.key == 'b_bstuck_prospitan' then
