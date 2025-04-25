@@ -423,6 +423,13 @@ function create_UIBox_zodiacs(simple)
         create_zodiac_row('Leo', simple),
         create_zodiac_row('Virgo', simple),
         create_zodiac_row('Libra', simple)
+        create_zodiac_row('Libra', simple),
+        create_zodiac_row('Scorpio', simple),
+        create_zodiac_row('Sagittarius', simple),
+        create_zodiac_row('Capricorn', simple),
+        create_zodiac_row('Aquarius', simple),
+        create_zodiac_row('Pisces', simple),
+        create_zodiac_row('Ophiuchus', simple)
     }
   
     local t = {n=G.UIT.ROOT, config={align = "cm", minw = 3, padding = 0.1, r = 0.1, colour = G.C.CLEAR}, nodes={
@@ -485,7 +492,7 @@ function create_UIBox_zodiacs(simple)
           {n=G.UIT.T, config={text = count, scale = 0.45, colour = G.C.FILTER, shadow = true}},
         }}
       }}
-    or {n=G.UIT.R, config={align = "cm", padding = 0.05, r = 0.1, colour = darken(G.C.JOKER_GREY, 0.1), force_focus = true, emboss = 0.05, hover = true, on_demand_tooltip = {text = localize(zodiac, 'zodiac_names'), filler = {func = create_UIBox_zodiac_tip, args = zodiac}}, focus_args = {snap_to = (simple and handname == 'Straight Flush')}}, nodes={
+    or {n=G.UIT.R, config={align = "cm", padding = 0.05, r = 0.1, colour = darken(G.C.JOKER_GREY, 0.1), force_focus = true, emboss = 0.05, hover = true, on_demand_tooltip = {text = localize(zodiac, 'zodiac_names'), filler = {func = create_UIBox_zodiac_tip, args = zodiac}}, focus_args = {snap_to = (simple)}}, nodes={
       {n=G.UIT.C, config={align = "cm", padding = 0, minw = 5}, nodes={
           {n=G.UIT.T, config={text = localize(zodiac,'zodiac_names'), scale = 0.5, colour = G.C.UI.TEXT_LIGHT, shadow = true}}
       }}
@@ -505,13 +512,17 @@ function create_UIBox_zodiac_tip(zodiac)
         Cancer = {4+lvl},
         Leo = {G.GAME.probabilities.normal,lvl},
         Virgo = {3*lvl},
-        Libra = {1 + (lvl/ 10)}
+        Libra = {1 + (lvl/ 10)},
+        Scorpio = {lvl, (lvl~=1 and 's' or '')},
+        Sagittarius = {lvl*25},
+        Capricorn = {math.max(lvl), 1/math.max(lvl, 1)},
+        Aquarius = {lvl, (lvl~=1 and 's' or '')},
+        Pisces = {lvl*2},
+        Ophiuchus = {1.25 ^ lvl}
     }
 
-
-
-
-    local text = localize{type = 'text', key = zodiac, vars = _zodiac_vars[zodiac]}
+    local text = localize{type = 'text', key = zodiac, vars = {vars = _zodiac_vars}}
+    
 
     return {n=G.UIT.R, config={align = "cm", colour = G.C.WHITE, r = 0.1}, nodes=text}
 end
