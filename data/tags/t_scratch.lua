@@ -19,7 +19,7 @@ function Balatrostuck.INIT.Tags.t_scratch()
         atlas = 'HomestuckTags',
 
         in_pool = function(self)
-            return (G.GAME.round_resets.ante > 3)
+            return (G.GAME.round_resets.ante > 3) and not G.GAME.BALATROSTUCK.scratched
         end,
 
         loc_vars = function(self, info_queue, card)
@@ -28,9 +28,14 @@ function Balatrostuck.INIT.Tags.t_scratch()
         end,
         
         apply = function(self, tag, context)
-            tag:yep("Ify!",G.C.Green,
+            G.GAME.BALATROSTUCK.scratchcolors = {G.C.RED, G.C.VRISKA, G.C.BLIND['Small']}
+            G.GAME.BALATROSTUCK.scratched = G.GAME.BALATROSTUCK.scratched and (G.GAME.BALATROSTUCK.scratched + 1) or 1
+            if G.GAME.BALATROSTUCK.scratched > #G.GAME.BALATROSTUCK.scratchcolors then G.GAME.BALATROSTUCK.scratched = 1 end
+            play_sound('bstuck_HomestuckScratch')
+            ease_background_colour_blind(G.GAME.BALATROSTUCK.scratchcolors[G.GAME.BALATROSTUCK.scratched])
+            tag:yep("?",G.C.Green,
             function()
-
+            
                 G.E_MANAGER:add_event(Event({
                     trigger = 'immediate',
                     func = function()
@@ -60,30 +65,28 @@ function Balatrostuck.INIT.Tags.t_scratch()
                 local dumb = {0,0.9,1,1}
 
                 for j=1, #G.jokers.cards do 
+                    local rarity = G.jokers.cards[j].config.center.rarity
+                    local legendary = nil
+                    if rarity == 1 then
+                      rarity = 0
+                    elseif rarity == 2 then
+                      rarity = 0.9
+                    elseif rarity == 3 then
+                      rarity = 0.99
+                    elseif rarity == 4 then
+                      rarity = nil
+                      legendary = true
+                    end
+                    G.jokers.cards[j]:start_dissolve(nil, true)
                     G.E_MANAGER:add_event(Event({
-                        func = function()
-                            if type(card.config.center.rarity) ~= 'number' then
-                                card.config.center.rarity = 3
-                            end
-                            local _pool, _pool_key = get_current_pool('Joker', dumb[card.config.center.rarity], nil, nil)
-                            center = pseudorandom_element(_pool, pseudoseed(_pool_key))
-                            local it = 1
-                            while center == 'UNAVAILABLE' do
-                                it = it + 1
-                                center = pseudorandom_element(_pool, pseudoseed(_pool_key..'_resample'..it))
-                            end
-
-                            G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.1,func = function() card:flip();play_sound('card1', percent);card:juice_up(0.3, 0.3);return true end }))
-                            G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.1,func = function()
-                                card:remove_from_deck()
-                                card.config.center = G.P_CENTERS[center]
-                                card:set_ability(card.config.center,true)
-                                card:add_to_deck()
-                                return true 
-                            end}))
-                            G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.1,func = function() card:flip();play_sound('tarot2', percent);card:juice_up(0.3, 0.3);return true end }))
-                            return true
-                        end
+                      trigger = "after",
+                      delay = 0.4,
+                      func = function()
+                        local card = create_card("Joker", G.jokers, legendary, rarity, true, nil, nil, "IstoleThisCodeFromCryptid")
+                        card:add_to_deck()
+                        G.jokers:emplace(card)
+                        return true
+                      end,
                     }))
                 end
 

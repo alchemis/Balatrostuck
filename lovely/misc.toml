@@ -4,8 +4,22 @@ version = "1.0.0"
 dump_lua = true
 priority = 0
 
-
-
+#Scratch colors
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = "ease_background_colour{new_colour = G.C.BLIND['Small'], contrast = 1}"
+position = "at"
+payload = '''
+if G.GAME.BALATROSTUCK.scratched then
+ease_background_colour{new_colour = G.GAME.BALATROSTUCK.scratchcolors[G.GAME.BALATROSTUCK.scratched], special_colour = darken(G.C.BLACK, 0.1), contrast = 2}
+else
+ease_background_colour{new_colour = G.C.BLIND['Small'], contrast = 1}
+end
+'''
+match_indent = true
+times = 1
+overwrite = true
 
 
 #Debuff functionality
