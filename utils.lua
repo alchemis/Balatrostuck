@@ -540,10 +540,5 @@ function create_UIBox_zodiac_tip(zodiac)
         table.insert(_returnnodes,{n=G.UIT.R, config={align = "cm"}, nodes=_nodes[i]})
     end
     
-    sendInfoMessage(tprint(_returnnodes))
-    return{n=G.UIT.C, config={align = "cm"}, nodes=_returnnodes}     -- 0
-
-  
-    
-    
+    return{n=G.UIT.C, config={align = "cm"}, nodes=_returnnodes}     -- 0    
 end
