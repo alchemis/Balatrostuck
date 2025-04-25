@@ -1,13 +1,13 @@
 function Balatrostuck.INIT.Jokers.j_innapropriatebucket()
     SMODS.Joker{
-        name = "Innapropriate Bucket",
+        name = "Inappropriate Bucket",
         key = "innapropriatebucket",
         config = {
             extra = {
             }
         },
         loc_txt = {
-            ['name'] = 'Innapropriate Bucket',
+            ['name'] = 'Inappropriate Bucket',
             ['text'] = {
                 [1] = "{V:1}#1#{} also count as {V:2}#2#{},",
                 [2] = "suits change at end of round"
