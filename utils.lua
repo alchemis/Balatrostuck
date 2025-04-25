@@ -455,10 +455,16 @@ function create_UIBox_zodiacs(simple)
             end
         end
     end
-      
-    
+    full_UI_table = {
+        main = {},
+        info = {},
+        type = {},
+        name = nil,
+        badges = badges or {}
+    }
+
     return (not simple and
-      {n=G.UIT.R, config={align = "cm", padding = 0.05, r = 0.1, colour = darken(G.C.JOKER_GREY, 0.1), emboss = 0.05, hover = true, force_focus = true, on_demand_tooltip = {text = localize(zodiac, 'zodiac_names')}}, nodes={
+      {n=G.UIT.R, config={align = "cm", padding = 0.05, r = 0.1, colour = darken(G.C.JOKER_GREY, 0.1), emboss = 0.05, hover = true, force_focus = true, on_demand_tooltip = {text = nil, filler = {func = create_UIBox_zodiac_tip, args = zodiac}}}, nodes={
         {n=G.UIT.C, config={align = "cl", padding = 0, minw = 5}, nodes={
           {n=G.UIT.C, config={align = "cm", padding = 0.01, r = 0.1, colour = G.C.HAND_LEVELS[math.min(7, G.GAME.BALATROSTUCK.zodiac_levels[zodiac])], minw = 1.5, outline = 0.8, outline_colour = G.C.WHITE}, nodes={
             {n=G.UIT.T, config={text = localize('k_level_prefix')..G.GAME.BALATROSTUCK.zodiac_levels[zodiac], scale = 0.5, colour = G.C.UI.TEXT_DARK}}
@@ -474,10 +480,27 @@ function create_UIBox_zodiacs(simple)
           {n=G.UIT.T, config={text = count, scale = 0.45, colour = G.C.FILTER, shadow = true}},
         }}
       }}
-    or {n=G.UIT.R, config={align = "cm", padding = 0.05, r = 0.1, colour = darken(G.C.JOKER_GREY, 0.1), force_focus = true, emboss = 0.05, hover = true, on_demand_tooltip = {text = localize(zodiac, 'zodiac_names')}, focus_args = {snap_to = (simple and handname == 'Straight Flush')}}, nodes={
+    or {n=G.UIT.R, config={align = "cm", padding = 0.05, r = 0.1, colour = darken(G.C.JOKER_GREY, 0.1), force_focus = true, emboss = 0.05, hover = true, on_demand_tooltip = {text = localize(zodiac, 'zodiac_names'), filler = {func = create_UIBox_zodiac_tip, args = zodiac}}, focus_args = {snap_to = (simple and handname == 'Straight Flush')}}, nodes={
       {n=G.UIT.C, config={align = "cm", padding = 0, minw = 5}, nodes={
           {n=G.UIT.T, config={text = localize(zodiac,'zodiac_names'), scale = 0.5, colour = G.C.UI.TEXT_LIGHT, shadow = true}}
       }}
     }})
     or nil
   end
+
+
+
+function create_UIBox_zodiac_tip(zodiac)
+    local lvl = G.GAME.BALATROSTUCK.zodiac_levels[zodiac]
+    
+    local _zodiac_vars = {
+        Libra = {1 + (lvl/ 10)}
+    }
+
+
+
+
+    local text = localize{type = 'text', key = 'Libra', vars = {vars = {0}}}
+
+    return {n=G.UIT.R, config={align = "cm", colour = G.C.WHITE, r = 0.1}, nodes=text}
+end

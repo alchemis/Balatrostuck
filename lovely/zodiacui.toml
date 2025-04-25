@@ -25,17 +25,3 @@ match_indent = true
 times = 1
 
 
-[[patches]]
-[patches.pattern]
-target = "functions/misc_functions.lua"
-pattern = "elseif args.type == 'text' then"
-position = "before"
-payload = '''
-elseif args.type == 'zodiac_desc' then
-
-
-'''
-match_indent = true
-times = 1
-
-
