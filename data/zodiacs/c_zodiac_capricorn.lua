@@ -14,11 +14,11 @@ function Balatrostuck.INIT.Zodiacs.c_zodiac_capricorn()
         loc_txt = {
             ['name'] = "Capricorn",
             ['text'] = {
-                [1] = "{S:0.8}({S:0.8, V:1}lvl.#1#{S:0.8}){} Level up",
-                [2] = "Played {C:attention}10s{} give {X:mult,C:white}X#2#{} Mult", --X2 should be the next level's value
-                [3] = "when scored, held {C:attention}10s",
-                [4] = "give {X:mult,C:white}X#3#{} Mult",          --X0.5 should be the next level's value
-                [5] = "{C:inactive}(Currently {X:mult,C:white}X#4#{C:inactive} and {X:mult,C:white}X#5#{C:inactive})"    --should be the current level values respectively
+                "{S:0.8}({S:0.8, V:1}lvl.#1#{S:0.8}){} Level up",
+                "Played {C:attention}10s{} give {X:mult,C:white}X#2#{} Mult", --X2 should be the next level's value
+                "when scored, held {C:attention}10s",
+                "give {X:mult,C:white}X#3#{} Mult",          --X0.5 should be the next level's value
+                "{C:inactive}(Currently {X:mult,C:white}X#4#{C:inactive} and {X:mult,C:white}X#5#{C:inactive})"    --should be the current level values respectively
             }                                   
         },
         cost = 4,
