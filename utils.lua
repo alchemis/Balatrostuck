@@ -417,6 +417,11 @@ end
 
 function create_UIBox_zodiacs(simple)
     local hands = {
+        create_zodiac_row('Gemini', simple),
+        create_zodiac_row('Taurus', simple),
+        create_zodiac_row('Cancer', simple),
+        create_zodiac_row('Leo', simple),
+        create_zodiac_row('Virgo', simple),
         create_zodiac_row('Libra', simple)
     }
   
@@ -494,13 +499,19 @@ function create_UIBox_zodiac_tip(zodiac)
     local lvl = G.GAME.BALATROSTUCK.zodiac_levels[zodiac]
     
     local _zodiac_vars = {
+        Aries = {0,lvl/2},
+        Gemini = {lvl,lvl ~= 1 and 's' or ''},
+        Taurus = {0.95^lvl},
+        Cancer = {4+lvl},
+        Leo = {G.GAME.probabilities.normal,lvl},
+        Virgo = {3*lvl},
         Libra = {1 + (lvl/ 10)}
     }
 
 
 
 
-    local text = localize{type = 'text', key = 'Libra', vars = {vars = {0}}}
+    local text = localize{type = 'text', key = zodiac, vars = _zodiac_vars[zodiac]}
 
     return {n=G.UIT.R, config={align = "cm", colour = G.C.WHITE, r = 0.1}, nodes=text}
 end
