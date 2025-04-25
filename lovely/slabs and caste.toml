@@ -127,7 +127,7 @@ match_indent = true
 payload = '''
 if G.GAME.slab ~= nil then
     local eval = nil
-    eval = G.GAME.slab:calculate({level_up_hand = true, amount = amount},true)
+    eval = G.GAME.slab:calculate({level_up_hand = true, amount = amount},false)
     if eval then amount = eval.amount end
 end
 '''
