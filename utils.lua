@@ -422,14 +422,14 @@ function create_UIBox_zodiacs(simple)
         create_zodiac_row('Cancer', simple),
         create_zodiac_row('Leo', simple),
         create_zodiac_row('Virgo', simple),
-        create_zodiac_row('Libra', simple)
         create_zodiac_row('Libra', simple),
         create_zodiac_row('Scorpio', simple),
         create_zodiac_row('Sagittarius', simple),
         create_zodiac_row('Capricorn', simple),
         create_zodiac_row('Aquarius', simple),
         create_zodiac_row('Pisces', simple),
-        create_zodiac_row('Ophiuchus', simple)
+        create_zodiac_row('Ophiuchus', simple),
+        create_zodiac_row('Aries', simple),
     }
   
     local t = {n=G.UIT.ROOT, config={align = "cm", minw = 3, padding = 0.1, r = 0.1, colour = G.C.CLEAR}, nodes={
@@ -478,7 +478,7 @@ function create_UIBox_zodiacs(simple)
     return (not simple and
       {n=G.UIT.R, config={align = "cm", padding = 0.05, r = 0.1, colour = darken(G.C.JOKER_GREY, 0.1), emboss = 0.05, hover = true, force_focus = true, on_demand_tooltip = {text = nil, filler = {func = create_UIBox_zodiac_tip, args = zodiac}}}, nodes={
         {n=G.UIT.C, config={align = "cl", padding = 0, minw = 5}, nodes={
-          {n=G.UIT.C, config={align = "cm", padding = 0.01, r = 0.1, colour = G.C.HAND_LEVELS[math.min(7, G.GAME.BALATROSTUCK.zodiac_levels[zodiac])], minw = 1.5, outline = 0.8, outline_colour = G.C.WHITE}, nodes={
+          {n=G.UIT.C, config={align = "cm", padding = 0.01, r = 0.1, colour = G.C.HAND_LEVELS[math.min(7, math.max(1,G.GAME.BALATROSTUCK.zodiac_levels[zodiac]))], minw = 1.5, outline = 0.8, outline_colour = G.C.WHITE}, nodes={
             {n=G.UIT.T, config={text = localize('k_level_prefix')..G.GAME.BALATROSTUCK.zodiac_levels[zodiac], scale = 0.5, colour = G.C.UI.TEXT_DARK}}
           }},
           {n=G.UIT.C, config={align = "cm", minw = 4.5, maxw = 4.5}, nodes={
@@ -503,10 +503,10 @@ function create_UIBox_zodiacs(simple)
 
 
 function create_UIBox_zodiac_tip(zodiac)
-    local lvl = G.GAME.BALATROSTUCK.zodiac_levels[zodiac]
-    
+    local lvl = math.max(1,G.GAME.BALATROSTUCK.zodiac_levels[zodiac])
+    play_sound('paper1',0.95 + math.random()*0.1, 0.3)
     local _zodiac_vars = {
-        Aries = {0,lvl/2},
+        Aries = {lvl/2},
         Gemini = {lvl,lvl ~= 1 and 's' or ''},
         Taurus = {0.95^lvl},
         Cancer = {4+lvl},
@@ -520,9 +520,30 @@ function create_UIBox_zodiac_tip(zodiac)
         Pisces = {lvl*2},
         Ophiuchus = {1.25 ^ lvl}
     }
-
-    local text = localize{type = 'text', key = zodiac, vars = {vars = _zodiac_vars}}
+    local _nodes = {}
+    local _returnnodes = {}
     
 
-    return {n=G.UIT.R, config={align = "cm", colour = G.C.WHITE, r = 0.1}, nodes=text}
+    if G.GAME.BALATROSTUCK.zodiac_levels[zodiac] < 1 then
+        local inactivenodes = {}
+        local text = localize{type = 'descriptions', set = 'zodiacui', key = 'Inactive', vars = _zodiac_vars[zodiac], nodes = inactivenodes}
+        for i=1,#inactivenodes do
+            table.insert(_returnnodes,{n=G.UIT.R, config={align = "cm"}, nodes=inactivenodes[i]})
+        end
+    end
+
+
+    local text = localize{type = 'descriptions', set = 'zodiacui', key = zodiac, vars = _zodiac_vars[zodiac], nodes = _nodes}
+    
+
+    for i=1,#_nodes do
+        table.insert(_returnnodes,{n=G.UIT.R, config={align = "cm"}, nodes=_nodes[i]})
+    end
+    
+    sendInfoMessage(tprint(_returnnodes))
+    return{n=G.UIT.C, config={align = "cm"}, nodes=_returnnodes}     -- 0
+
+  
+    
+    
 end
