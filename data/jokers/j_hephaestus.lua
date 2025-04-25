@@ -38,11 +38,13 @@ function Balatrostuck.INIT.Jokers.j_hephaestus()
         calculate = function(self, card, context)
             if context.repetition and context.cardarea == G.hand 
             and (next(context.card_effects[1]) or #context.card_effects > 1) then
-                return {
-                    message = localize('k_again_ex'),
-                    repetitions = card.ability.extra,
-                    card = card
-                }
+                if SMODS.get_enhancements(context.other_card).m_steel == true then
+                    return {
+                        message = localize('k_again_ex'),
+                        repetitions = card.ability.extra,
+                        card = card
+                    }
+                end
             end 
             
             
