@@ -13,6 +13,7 @@ SMODS.Booster{
         group_name = 'Aspect Pack'
     },
     kind = 'aspect',
+    cost = 4,
     weight = 0.3,
     pos = { x = 0, y = 0 },
     create_card = function(self, card,i)

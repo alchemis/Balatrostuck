@@ -13,6 +13,7 @@ SMODS.Booster{
         group_name = 'Zodiac Pack'
     },
     kind = 'zodiac',
+    cost = 6,
     weight = 1,
     pos = { x = 2, y = 1 },
     create_card = function(self, card,i)

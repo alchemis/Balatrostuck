@@ -14,6 +14,7 @@ SMODS.Booster{
     },
     kind = 'zodiac',
     weight = 1,
+    cost = 8,
     pos = { x = 3, y = 1 },
     create_card = function(self, card,i)
         if i == 1 or G.GAME.gamer_choices == nil then
