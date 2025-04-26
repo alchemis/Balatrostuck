@@ -5,7 +5,10 @@ function Balatrostuck.INIT.Jokers.j_cruxitedowel()
         key = "cruxitedowel",
         config = {
             extra = {
-                consumables_orders = {}
+                first_consum = nil,
+                second_consum = nil,
+                index = {},
+                tildeath = 3
             }
         },
         loc_txt = {
@@ -14,9 +17,12 @@ function Balatrostuck.INIT.Jokers.j_cruxitedowel()
                 [1] = "{C:attention}Alchemize{} a {C:green}Paradox {C:purple}Tarot{} card every",
                 [2] = "{C:attention}2{} {C:attention}non-{C:green}Paradox {C:attention}consumables{} used,",
                 [3] = "destroyed after {C:attention}3{} {C:green}Paradox {C:purple}Tarots{} used",
-                [4] = "{C:inactive}(Currently {C:attention}0{C:inactive}/2)"
+                [4] = "{C:inactive}(Currently {C:attention}#1#{C:inactive}/2)"
             }
         },
+        loc_vars = function(self, info_queue, card)
+            return { vars = {#card.ability.extra.index} }
+        end,
         pos = {
             x = 4,
             y = 1
@@ -30,32 +36,43 @@ function Balatrostuck.INIT.Jokers.j_cruxitedowel()
         atlas = 'HomestuckJokers',
         calculate = function(self, card, context)
             if context.using_consumeable then
-                if #card.ability.extra.consumables_orders < 3 and not context.blueprint then
-                    table.insert(card.ability.extra.consumables_orders, context.consumeable.ability.order)
-                end
-    
-                if #card.ability.extra.consumables_orders == 3 then
-                    local table = card.ability.extra.consumables_orders
-                    local alch_idx = ((bitoper(bitoper(table[1], table[2], AND), table[3], OR) - 1)) % #G.P_CENTER_POOLS["Alchemical"] + 1
-                    local alch_name = G.P_CENTER_POOLS["Alchemical"][alch_idx].key
-    
-                    if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
-                        G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
-                        G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
-                            play_sound('timpani')
-                            local chemicalcard = create_card('Alchemical', G.consumables, nil, nil, nil, nil, alch_name, 'crux')
-                            chemicalcard:add_to_deck()
-                            if G.GAME.used_vouchers.v_cauldron and pseudorandom('cauldron') > 0.5 then
-                                chemicalcard:set_edition({negative = true}, true)
-                            end
-                            G.consumeables:emplace(chemicalcard)
-                            G.GAME.consumeable_buffer = 0
-                        return true end }))
+                local _card = context.consumeable
+                local _pool = G.P_CENTER_POOLS[_card.config.center.set]
+                local tarot_pool = G.P_CENTER_POOLS["Tarot"]
+                local new_tarot = "c_fool"
+                local alchemy = 0
+
+                if not (_card.edition and _card.edition.key == 'e_bstuck_paradox') then
+                    if card.ability.extra.first_consum then card.ability.extra.second_consum = _card.config.center.key end
+                    if not card.ability.extra.first_consum then card.ability.extra.first_consum = _card.config.center.key end
+
+                    for i = 1, table_length(_pool) do
+                        if _pool[i].key == _card.config.center.key then 
+                            card.ability.extra.index[#card.ability.extra.index+1] = i
+                            print(i)
+                            break
+                        end
                     end
     
-                    if not context.blueprint then
-                        card.ability.extra.consumables_orders = {}
+                    if #card.ability.extra.index == 2 then 
+                        alchemy = math.max(0, math.mod( bit.bor( math.abs(card.ability.extra.index[1]-card.ability.extra.index[2]), bit.lshift(card.ability.extra.index[1]+card.ability.extra.index[2], 21)) , 22 )) 
+                        new_tarot = tarot_pool[alchemy].key
+                        G.E_MANAGER:add_event(Event({
+                            func = function()
+                            local card = SMODS.create_card{key = new_tarot, no_edition = true}
+                            card:set_edition('e_bstuck_paradox', true)
+                            card:add_to_deck()
+                            G.consumeables:emplace(card)
+                            return true
+                        end
+                        }))
+                        card.ability.extra.index = {}
+                        card.ability.extra.first_consum = nil
+                        card.ability.extra.second_consum = nil
                     end
+                else
+                    card.ability.extra.tildeath = card.ability.extra.tildeath-1
+                    if card.ability.extra.tildeath == 0 then card:start_dissolve() end    
                 end
             end
         end
