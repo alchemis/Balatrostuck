@@ -15,8 +15,12 @@ function Balatrostuck.INIT.Jokers.j_vodkamutini()
         },
         pos = {
             x = 2,
-            y = 0
+            y = 12
          },
+        soul_pos = {
+            x = 1,
+            y = 12
+        },
         cost = 8,
         rarity = 3,
         blueprint_compat = true,
