@@ -47,7 +47,7 @@ function Balatrostuck.INIT.Jokers.j_pawnrevolution()
                         G.playing_card = (G.playing_card and G.playing_card + 1) or 1
                         local _card = copy_card(raised_card)
                         _card:start_materialize({G.C.PARADOX},firstmat)
-                        firstmat = true
+                        local firstmat = true
                         _card:set_edition('e_bstuck_paradox',true,true)
                         G.hand:emplace(_card)
                         G.GAME.blind:debuff_card(_card)
