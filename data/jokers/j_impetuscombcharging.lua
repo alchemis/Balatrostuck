@@ -56,7 +56,9 @@ function Balatrostuck.INIT.Jokers.j_impetuscombcharging()
                         return true 
                     end}))
                     G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.15,func = function() card:flip();play_sound('tarot2', percent);card:juice_up(0.3, 0.3);return true end }))
-                    card:juice_up()
+                    card:juice_up(0.8, 0.5)
+                    card.ability.extra_value = 7
+                    card:set_cost()
                     play_sound('bstuck_HomestuckSword')
                     return{message = "Sepulchritude!"}
                 end
