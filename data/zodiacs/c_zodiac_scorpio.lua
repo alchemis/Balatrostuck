@@ -66,7 +66,7 @@ function Balatrostuck.INIT.Zodiacs.c_zodiac_scorpio()
                     G.GAME.BALATROSTUCK.vriska_luck = G.GAME.BALATROSTUCK.vriska_luck * 2
                     G.GAME.probabilities.normal = G.GAME.probabilities.normal * G.GAME.BALATROSTUCK.vriska_luck
                     return {
-                        message = 'Upgrade!',
+                        message = 'Upgr8!',
                         colour = G.C.GREEN,
                         card = context.other_card
                     }
