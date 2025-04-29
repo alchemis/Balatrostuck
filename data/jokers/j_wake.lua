@@ -7,15 +7,15 @@ function Balatrostuck.INIT.Jokers.j_wake()
             }
         },
         loc_txt = {
-            ['name'] = 'Dark Scholar',
+            ['name'] = 'Wake',
             ['text'] = {
                 [1] = "Played Jacks give +1 hand when scored and are destroyed",
                 [2] = "If this card is sold during a blind create paradox copies of jacks destroyed by it"
             }
         },
         pos = {
-            x = 2,
-            y = 0
+            x = 8,
+            y = 10
          },
         cost = 9,
         rarity = 3,
