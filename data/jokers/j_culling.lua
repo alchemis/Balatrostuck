@@ -14,8 +14,8 @@ function Balatrostuck.INIT.Jokers.j_culling()
             }
         },
         pos = {
-            x = 2,
-            y = 0
+            x = 3,
+            y = 12
          },
         cost = 5,
         rarity = 1,
