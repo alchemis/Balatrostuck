@@ -3,7 +3,7 @@ function Balatrostuck.INIT.Jokers.j_nepetajoker()
         name = "nepetajoker",
         key = "nepetajoker",
         config = {
-            extra = {mult = 3, mult_gain = 0, suit_a = 'Spades', suit_b = 'Hearts'}
+            extra = {mult = 2, mult_gain = 0, suit_a = 'Spades', suit_b = 'Hearts'}
         },
         loc_txt = {
             ['name'] = 'Rogue Matchmaker',
