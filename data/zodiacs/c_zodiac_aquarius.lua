@@ -52,24 +52,26 @@ function Balatrostuck.INIT.Zodiacs.c_zodiac_aquarius()
         name = 'Aquarius',
         rank = 11,
         apply = function(self,context)
-            if context.remove_playing_cards then
+            if context.remove_playing_cards or context.paradox_ify then
                 for i=1, #context.removed do
                     if context.removed[i]:get_id() == self.ability.rank then
-                        G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
-                            local tagkey = get_next_tag_key()
-                            local tag = Tag(tagkey)
-                            if tagkey == 'tag_orbital' then
-                                local _poker_hands = {}
-                                for k, v in pairs(G.GAME.hands) do
-                                    if v.visible then _poker_hands[#_poker_hands+1] = k end
+                        for i=1, self:level() do
+                            G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
+                                local tagkey = get_next_tag_key()
+                                local tag = Tag(tagkey)
+                                if tagkey == 'tag_orbital' then
+                                    local _poker_hands = {}
+                                    for k, v in pairs(G.GAME.hands) do
+                                        if v.visible then _poker_hands[#_poker_hands+1] = k end
+                                    end
+                                    
+                                    tag.ability.orbital_hand = pseudorandom_element(_poker_hands, pseudoseed('orbital'))
                                 end
-                                
-                                tag.ability.orbital_hand = pseudorandom_element(_poker_hands, pseudoseed('orbital'))
-                            end
-                            play_sound('timpani')
-                            add_tag(tag)
-                            return true
-                        end}))
+                                play_sound('timpani')
+                                add_tag(tag)
+                                return true
+                            end}))
+                        end
                     end
                 end
             end

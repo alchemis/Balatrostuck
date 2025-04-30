@@ -9,15 +9,15 @@ function Balatrostuck.INIT.Jokers.j_aceDick()
         loc_txt = {
             name = 'Ace Dick',
             text = {'{C:mult}+#1#{} Mult and {C:chips}+#2#{} Chips,',
-                    'always goes last'}
+                    'always goes last'},
+            unlock = {'Unlocked by',
+                    'eating the Apple'}
         },
         pos = {x = 7, y = 8},
         cost = 6,
         rarity = 2,
         blueprint_compat = false,
         eternal_compat = true,
-        unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
             if context.ace_dick and not context.blueprint then 
@@ -28,6 +28,10 @@ function Balatrostuck.INIT.Jokers.j_aceDick()
                 card_eval_status_text(card,'chips',card.ability.extra.chips,nil,nil,{message = localize { type = 'variable', key = 'a_chips', vars = { card.ability.extra.chips } }})
                 return hand_chips, mult
             end
+        end,
+        check_for_unlock = function(self,args)
+            
+
         end
     }
 end

@@ -49,27 +49,24 @@ function Balatrostuck.INIT.Zodiacs.c_zodiac_taurus()
         name = 'Taurus',
         rank = 3,
         apply = function(self,context)
-            
-
             if context.discard and context.other_card:get_id() == self.ability.rank then
                 return {
                     func = function()
-                        G.E_MANAGER:add_event(Event({
-                            func = function()
-                            play_sound('xchips',0.8,0.4)
+                        play_sound('xchips',0.8,0.4)
+                        local peepee = math.floor(G.GAME.blind.chips * (0.95^self:level()))
+                        local amount = G.GAME.blind.chips - peepee
+
+                        for i=1, 5 do
                             G.E_MANAGER:add_event(Event({
-                                trigger = 'ease',
-                                blockable = false,
-                                ref_table = G.GAME.blind,
-                                ref_value = 'chips',
-                                delay = 1,
-                                ease_to = G.GAME.blind.chips * (0.95^self:level()),
-                                func = (function(t) 
+                                func = function()
+                                    G.GAME.blind.chips = G.GAME.blind.chips - (amount/5)
                                     G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
-                                    return t end)
+                                    return true
+                                end
                             }))
-                            return true
-                        end}))
+                            delay(0.05)
+                        end
+                        G.GAME.blind.chips = math.floor( G.GAME.blind.chips)
                     end
                 }
             end
