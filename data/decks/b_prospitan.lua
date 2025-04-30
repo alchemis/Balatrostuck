@@ -2,8 +2,12 @@ function Balatrostuck.INIT.Decks.b_prospitan()
     SMODS.Back {
         key = 'prospitan',
         loc_txt = {
-            name = "Prospitan Deck",
-            text = {}
+            name = "Prospitian Deck",
+            text = {
+                "Standard Packs are $4 cheaper",
+                "Cards in Standard Packs are Paradox",
+                "Paradox cards appear in starting hand"
+            }
         },
         atlas = 'HomestuckDecks',
         pos = {x = 1,y = 1},

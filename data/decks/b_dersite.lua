@@ -3,7 +3,11 @@ function Balatrostuck.INIT.Decks.b_dersite()
         key = 'dersite',
         loc_txt = {
             name = "Dersite Deck",
-            text = {}
+            text = {
+                "Planet Packs and Planet Cards",
+                "no longer appear in the shop",
+                "Increased Zodiac odds"
+            }
         },
         atlas = 'HomestuckDecks',
         pos = {x = 0,y = 1},
