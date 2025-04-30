@@ -12,7 +12,7 @@ Balatrostuck.INIT = {
     Decks = {}
 
 }
-
+Balatrostuck.peanut_gallery = false
 
 -- this should techncially create a new uibox
 -- that's gonna be above tags

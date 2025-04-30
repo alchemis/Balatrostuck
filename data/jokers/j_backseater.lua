@@ -23,6 +23,9 @@ function Balatrostuck.INIT.Jokers.j_backseater()
         eternal_compat = true,
         unlocked = true,
         discovered = true,
-        atlas = 'HomestuckJokers'
+        atlas = 'HomestuckJokers',
+        in_pool = function(self)
+            return Balatrostuck.peanut_gallery
+        end
     }
 end 

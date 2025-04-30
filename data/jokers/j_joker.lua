@@ -30,6 +30,9 @@ function Balatrostuck.INIT.Jokers.j_joker()
             y = 4
         },
         loc_vars = function(self, info_queue, card)
+        end,
+        in_pool = function(self)
+            return Balatrostuck.peanut_gallery
         end
     }
 end

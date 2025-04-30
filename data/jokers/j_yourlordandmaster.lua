@@ -29,6 +29,9 @@ function Balatrostuck.INIT.Jokers.j_yourlordandmaster()
         frames = 250,
         dimensions = {x=15,y=15},
         animation_speed = 50,
-        photosensitive = false
+        photosensitive = false,
+        in_pool = function(self)
+            return Balatrostuck.peanut_gallery
+        end
     }
 end 
