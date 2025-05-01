@@ -11,7 +11,7 @@ function Balatrostuck.INIT.Jokers.j_aceDick()
             text = {'{C:mult}+#1#{} Mult and {C:chips}+#2#{} Chips,',
                     'always goes last'},
             unlock = {'Unlocked by',
-                    'eating the Apple'}
+                    'finishing Act 1'}
         },
         pos = {x = 7, y = 8},
         cost = 6,

@@ -22,7 +22,6 @@ function Balatrostuck.INIT.Jokers.j_snowman()
         blueprint_compat = true,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
             if context.individual and context.cardarea == G.hand and not context.end_of_round then

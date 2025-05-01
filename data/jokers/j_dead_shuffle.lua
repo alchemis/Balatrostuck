@@ -29,7 +29,6 @@ function Balatrostuck.INIT.Jokers.j_dead_shuffle()
         blueprint_compat = true,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
         loc_vars = function(self, info_queue, card)
             return {vars = {card.ability.extra.xmult, card.ability.extra.suit, card.ability.extra.total}}

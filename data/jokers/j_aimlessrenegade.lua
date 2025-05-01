@@ -17,7 +17,9 @@ function Balatrostuck.INIT.Jokers.j_aimlessrenegade()
                 [2] = "gains {C:mult}+#1#{} Mult, {C:attention}destroys{} a random Joker,",
                 [3] = "and creates a {C:paradox}Paradox {C:attention}Judgement card",
                 [4] = "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
-            }
+            },
+            unlock = {'Unlocked by',
+            'finishing Act 1'}
         },
         pos = {
             x = 3,
@@ -27,8 +29,8 @@ function Balatrostuck.INIT.Jokers.j_aimlessrenegade()
         rarity = 1,
         blueprint_compat = true,
         eternal_compat = true,
-        unlocked = true,
-        discovered = true,
+        unlocked = false,
+        discovered = false,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
             if context.setting_blind then
@@ -72,6 +74,11 @@ function Balatrostuck.INIT.Jokers.j_aimlessrenegade()
                     mult = card.ability.extra.mult,
                     card = card
                 }
+            end
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
             end
         end
     }

@@ -24,7 +24,6 @@ function Balatrostuck.INIT.Jokers.j_lucky_break()
         blueprint_compat = true,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
         remove_from_deck = function(self,card,from_debuff)
             if card.ability.extra.broken then

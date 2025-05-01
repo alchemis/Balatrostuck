@@ -22,7 +22,6 @@ function Balatrostuck.INIT.Jokers.j_enterthemedium()
         blueprint_compat = true,
         eternal_compat = false,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
             if context.end_of_round and G.GAME.blind.boss and context.main_eval then

@@ -17,7 +17,9 @@ function Balatrostuck.INIT.Jokers.j_balletslippers()
                 [3] = "poker hand changes each hand,",
                 [4] = "{C:attention}resets{} if a different hand is played",
                 [5] = "{C:inactive}(Currently {C:mult}+#3#{C:inactive} Mult)"
-            }
+            },
+        unlock = {'Unlocked by',
+                'finishing Act 1'}
         },
         pos = {
             x = 6, -- 6 for abated, 7 for active
@@ -28,7 +30,6 @@ function Balatrostuck.INIT.Jokers.j_balletslippers()
         blueprint_compat = true,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
 
         set_ability = function(self, card, initial, delay_sprites)
@@ -86,6 +87,11 @@ function Balatrostuck.INIT.Jokers.j_balletslippers()
                   message = localize { type = 'variable', key = 'a_mult', vars = { card.ability.extra.mult } }
                 }
             end        
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
+            end
         end
     }
 end 

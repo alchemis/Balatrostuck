@@ -22,7 +22,6 @@ function Balatrostuck.INIT.Jokers.j_applejuice()
         blueprint_compat = false,
         eternal_compat = false,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
 
         loc_vars = function(self, info_queue, card)

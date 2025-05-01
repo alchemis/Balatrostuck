@@ -28,7 +28,6 @@ function Balatrostuck.INIT.Jokers.j_questbed()
         blueprint_compat = true,
         eternal_compat = false,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
             if context.game_over then

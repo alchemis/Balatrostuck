@@ -17,7 +17,6 @@ function Balatrostuck.INIT.Jokers.j_tumor()
         blueprint_compat = true,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
             if context.joker_main and G.GAME.dollars == 0 then

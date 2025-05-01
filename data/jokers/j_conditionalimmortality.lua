@@ -28,7 +28,6 @@ function Balatrostuck.INIT.Jokers.j_conditionalimmortality()
         blueprint_compat = true,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
             if context.BSTUCK_joker_destroyed then

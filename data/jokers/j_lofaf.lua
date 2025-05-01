@@ -27,7 +27,6 @@ function Balatrostuck.INIT.Jokers.j_lofaf()
         blueprint_compat = true,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
             if context.end_of_round and context.cardarea == G.jokers and card.ability.extra.pack_bonus < card.ability.extra.max then

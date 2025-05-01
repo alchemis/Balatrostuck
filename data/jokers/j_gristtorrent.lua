@@ -29,7 +29,6 @@ function Balatrostuck.INIT.Jokers.j_gristtorrent()
         blueprint_compat = true,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
 
         loc_vars = function(self, info_queue, card)

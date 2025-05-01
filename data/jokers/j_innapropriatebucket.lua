@@ -25,7 +25,6 @@ function Balatrostuck.INIT.Jokers.j_innapropriatebucket()
         blueprint_compat = false,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
             if context.end_of_round then

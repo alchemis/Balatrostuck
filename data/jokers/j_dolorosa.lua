@@ -34,7 +34,6 @@ function Balatrostuck.INIT.Jokers.j_dolorosa()
         blueprint_compat = false,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
 
         set_ability = function(self, card, initial, delay_sprites)

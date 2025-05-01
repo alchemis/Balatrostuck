@@ -23,7 +23,6 @@ function Balatrostuck.INIT.Jokers.j_whitequeen()
         blueprint_compat = true,
         eternal_compat = false,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
             if context.individual and context.cardarea == G.play then

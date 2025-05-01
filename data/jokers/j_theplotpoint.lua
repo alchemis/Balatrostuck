@@ -22,7 +22,6 @@ function Balatrostuck.INIT.Jokers.j_theplotpoint()
         blueprint_compat = true,
         eternal_compat = false,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokersAnimated',
         animated = true,
         frames = 8,

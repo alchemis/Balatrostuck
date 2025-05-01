@@ -23,7 +23,6 @@ function Balatrostuck.INIT.Jokers.j_typheus()
         blueprint_compat = true,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
         soul_pos = {
             x = 9,

@@ -14,7 +14,9 @@ function Balatrostuck.INIT.Jokers.j_batterwitch()
                 [2] = 'your {C:attention}highest level{} hand, it',
                 [3] = 'loses {C:attention}all{} levels and earn',
                 [4] = '{C:money}$#1#{} for each level lost'
-            }
+            },
+        unlock = {'Unlocked by',
+            'finishing Act 2'}
         },
         pos = {
             x = 1,
@@ -25,7 +27,6 @@ function Balatrostuck.INIT.Jokers.j_batterwitch()
         blueprint_compat = false,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
 
         loc_vars = function(self, info_queue, card)
@@ -65,6 +66,11 @@ function Balatrostuck.INIT.Jokers.j_batterwitch()
                     level_up_hand(card, text, false, -amount)
                     ease_dollars(amount * card.ability.extra.dollars)
                 end
+            end
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_ascend' then
+                unlock_card(self)
             end
         end
     }

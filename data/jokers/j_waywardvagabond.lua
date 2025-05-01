@@ -25,7 +25,6 @@ function Balatrostuck.INIT.Jokers.j_waywardvagabond()
         blueprint_compat = true,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
         calculate = function(self, card, context)
             if context.debuff_card and context.debuff_card:get_id() == 13 then

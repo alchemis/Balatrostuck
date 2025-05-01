@@ -26,7 +26,6 @@ function Balatrostuck.INIT.Jokers.j_jetpack()
         blueprint_compat = true,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
 
         loc_vars = function(self, info_queue, card)

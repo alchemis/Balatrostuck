@@ -22,7 +22,6 @@ function Balatrostuck.INIT.Jokers.j_wake()
         blueprint_compat = true,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers'
     }
 end 

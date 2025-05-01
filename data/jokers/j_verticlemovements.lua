@@ -19,7 +19,6 @@ function Balatrostuck.INIT.Jokers.j_verticlemovements()
         blueprint_compat = true,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
             if context.store_joker_replace and context.shop_card.ability.set == 'Joker' and not context.blueprint then

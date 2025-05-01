@@ -25,7 +25,6 @@ function Balatrostuck.INIT.Jokers.j_alltheirons()
         blueprint_compat = true,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
         calculate = function(self, card, context)
             if context.individual and context.cardarea == G.play and context.other_card:get_id() == 8 then

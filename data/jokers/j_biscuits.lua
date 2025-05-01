@@ -27,7 +27,6 @@ function Balatrostuck.INIT.Jokers.j_biscuits()
         blueprint_compat = false,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
         in_pool = function(self,args)
             return false

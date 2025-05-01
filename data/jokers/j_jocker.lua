@@ -21,7 +21,6 @@ function Balatrostuck.INIT.Jokers.j_jocker()
         blueprint_compat = true,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
             if context.setting_blind and context.cardarea == G.jokers then 

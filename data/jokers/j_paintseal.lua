@@ -25,7 +25,6 @@ function Balatrostuck.INIT.Jokers.j_paintseal()
         blueprint_compat = true,
         eternal_compat = false,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
             local zodiacs = {'gemini','taurus','cancer','leo','virgo','libra','scorpio','sagittarius','capricorn','aquarius','pisces','ophiuchus','aries'}

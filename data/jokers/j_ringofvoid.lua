@@ -22,7 +22,6 @@ function Balatrostuck.INIT.Jokers.j_ringofvoid()
         blueprint_compat = true,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
             if context.end_of_round and context.cardarea == G.jokers and G.GAME.blind.boss then

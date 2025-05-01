@@ -20,7 +20,6 @@ function Balatrostuck.INIT.Jokers.j_ringoflife()
         blueprint_compat = true,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
         calculate = function(self, card, context)
             if context.remove_playing_cards then

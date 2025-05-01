@@ -27,7 +27,6 @@ function Balatrostuck.INIT.Jokers.j_therapture()
         blueprint_compat = true,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
             if context.selling_self then

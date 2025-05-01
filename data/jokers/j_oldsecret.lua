@@ -23,7 +23,6 @@ function Balatrostuck.INIT.Jokers.j_oldsecret()
         blueprint_compat = true,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers'
     }
 end 

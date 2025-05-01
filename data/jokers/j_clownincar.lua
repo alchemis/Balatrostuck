@@ -23,7 +23,6 @@ function Balatrostuck.INIT.Jokers.j_clownincar()
         blueprint_compat = false,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers'
     }
 end 

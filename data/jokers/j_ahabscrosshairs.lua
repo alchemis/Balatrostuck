@@ -19,7 +19,7 @@ function Balatrostuck.INIT.Jokers.j_ahabscrosshairs()
                 [4] = "{C:inactive}(Currently {X:red,C:white}X#3#{C:inactive} Mult)."
             },
             unlock = {'Unlocked by',
-            'obtaining Ascend'}
+            'finishing Act 2'}
         },
         pos = {
             x = 9,

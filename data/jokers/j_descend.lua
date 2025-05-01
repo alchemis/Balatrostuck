@@ -30,7 +30,6 @@ function Balatrostuck.INIT.Jokers.j_descend()
         blueprint_compat = true,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
         calculate = function(Self,card,context)
             if context.joker_main then

@@ -27,7 +27,6 @@ function Balatrostuck.INIT.Jokers.j_note_desolation()
         blueprint_compat = true,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
         add_to_deck = function(self,card,from_debuff)
             G.GAME.round_resets.reroll_cost = G.GAME.round_resets.reroll_cost - 1

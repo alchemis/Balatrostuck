@@ -37,7 +37,6 @@ function Balatrostuck.INIT.Jokers.j_twinarmageddons()
         blueprint_compat = true,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
         loc_vars = function(self, info_queue, twincard)
             return {vars = {twincard.ability.extra.hand}}

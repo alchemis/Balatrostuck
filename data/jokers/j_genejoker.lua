@@ -25,7 +25,6 @@ function Balatrostuck.INIT.Jokers.j_genejoker()
         blueprint_compat = true,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
             if context.paradox_created then

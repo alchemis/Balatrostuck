@@ -26,7 +26,6 @@ function Balatrostuck.INIT.Jokers.j_tanglebuddies()
         blueprint_compat = true,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
         calculate = function (self,card,context)
             if context.individual and context.cardarea == G.play and not (context.repetition) then

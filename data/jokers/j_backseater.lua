@@ -22,7 +22,6 @@ function Balatrostuck.INIT.Jokers.j_backseater()
         blueprint_compat = false,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
         in_pool = function(self)
             return Balatrostuck.peanut_gallery

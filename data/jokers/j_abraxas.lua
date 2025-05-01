@@ -25,7 +25,7 @@ function Balatrostuck.INIT.Jokers.j_abraxas()
         blueprint_compat = true,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
+        discovered = false,
         atlas = 'HomestuckJokers',
         soul_pos = {
             x = 6,

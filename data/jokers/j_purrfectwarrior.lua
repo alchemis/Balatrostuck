@@ -26,7 +26,6 @@ function Balatrostuck.INIT.Jokers.j_purrfectwarrior()
         blueprint_compat = false,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         animated = true,
         frames = 8,
         animation_speed = 20,

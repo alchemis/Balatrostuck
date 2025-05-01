@@ -22,7 +22,6 @@ function Balatrostuck.INIT.Jokers.j_roundtwo()
         blueprint_compat = true,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
         add_to_deck = function(self,card,from_debuff)
             G.GAME.starting_params.ante_scaling = G.GAME.starting_params.ante_scaling * card.ability.extra.ante_scaling

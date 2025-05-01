@@ -26,7 +26,6 @@ function Balatrostuck.INIT.Jokers.j_yaldabaoth()
         blueprint_compat = true,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
         soul_pos = {
             x = 5,

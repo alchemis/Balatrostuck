@@ -32,7 +32,6 @@ function Balatrostuck.INIT.Jokers.j_cruxitedowel()
         blueprint_compat = false,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
         calculate = function(self, card, context)
             if context.using_consumeable then

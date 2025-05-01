@@ -23,7 +23,6 @@ function Balatrostuck.INIT.Jokers.j_jokermode()
         blueprint_compat = true,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
 
         loc_vars = function(self, infoqueue, card)

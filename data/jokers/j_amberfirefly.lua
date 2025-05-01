@@ -13,7 +13,9 @@ function Balatrostuck.INIT.Jokers.j_amberfirefly()
                 [2] = "card with a {C:purple}Purple Seal{} into",
                 [3] = "deck when {C:attention}Blind{} is selected",
                 [4] = "{C:attention}-1{} hand size"
-            }
+            },
+        unlock = {'Unlocked by',
+                'finishing Act 1'}
         },
         pos = {
             x = 8,
@@ -23,8 +25,8 @@ function Balatrostuck.INIT.Jokers.j_amberfirefly()
         rarity = 1,
         blueprint_compat = true,
         eternal_compat = true,
-        unlocked = true,
-        discovered = true,
+        unlocked = false,
+        discovered = false,
         atlas = 'HomestuckJokers',
         add_to_deck = function(self,card,from_debuff)
             G.hand:change_size(-1)
@@ -57,5 +59,10 @@ function Balatrostuck.INIT.Jokers.j_amberfirefly()
                 end
             end
         end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
+            end
+        end
     }
 end 

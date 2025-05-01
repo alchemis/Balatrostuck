@@ -26,7 +26,6 @@ function Balatrostuck.INIT.Jokers.j_whatpumpkin()
         blueprint_compat = true,
         eternal_compat = false,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
 
         loc_vars = function(self, info_queue, card)

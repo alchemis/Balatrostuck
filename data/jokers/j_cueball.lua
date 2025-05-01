@@ -29,7 +29,6 @@ function Balatrostuck.INIT.Jokers.j_cueball()
         blueprint_compat = false,
         eternal_compat = false,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
             if context.after and pseudorandom('cueball') < G.GAME.probabilities.normal/100 then

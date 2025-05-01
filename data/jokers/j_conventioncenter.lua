@@ -21,7 +21,6 @@ function Balatrostuck.INIT.Jokers.j_conventioncenter()
         blueprint_compat = false,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
         add_to_deck = function(self,card,from_debuff)
             SMODS.change_booster_limit(card.ability.extra.shop_size)

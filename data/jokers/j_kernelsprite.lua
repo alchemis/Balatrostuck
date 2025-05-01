@@ -51,7 +51,6 @@ function Balatrostuck.INIT.Jokers.j_kernelsprite()
         blueprint_compat = true,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
 
         set_ability = function(self, card, initial, delay_sprites)

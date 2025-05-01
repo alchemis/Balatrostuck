@@ -27,7 +27,6 @@ function Balatrostuck.INIT.Jokers.j_dadswallet()
         blueprint_compat = false,
         eternal_compat = true,
         unlocked = true,
-        discovered = true,
         atlas = 'HomestuckJokers',
         add_to_deck = function(self,card,from_debuff)
             card.ability.extra.slots_gain = math.min(card.ability.extra.slots_max,math.floor(G.GAME.dollars / card.ability.extra.money))
