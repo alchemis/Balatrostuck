@@ -54,13 +54,63 @@ function Slab:calculate(_context,trigger)
 end
 
 
+-- UI
+
 
 SlabIcon = Moveable:extend()
 
-function SlabIcon:init()
-  
+function SlabIcon:init(X,Y,W,H)
+  Moveable.init(self,X, Y, W, H)
+  self.children = {}
+  self.children.sprite = Sprite(self.T.x,self.T.y,self.T.w,self.T.h,G.ASSET_ATLAS['tags'],{x=0,y=0})
+  self.children.sprite.T.scale = 1
+  self.children.sprite:define_draw_steps({
+    {shader = 'dissolve', shadow_height = 0.05},
+    {shader = 'dissolve'},
+  })
+  self.states.float = true
+  self.states.hover.can = true
+  self.states.drag.can = false
+  self.states.collide.can = true
+  self.children.sprite.config = {tag = self, force_focus = true}
+  self.children.sprite:set_role({major = self, role_type = 'Glued', draw_major = self})
+
+
+
+  self.tilt_var = {mx = 0, my = 0, amt = 0}
+  self.ambient_tilt = 0.3
+  self.zoom = true
+  self.states.collide.can = true
+  self.children.sprite.states = self.states
+  self.states.collide.can = true
+
+  self.shadow_height = 0
+
+  if getmetatable(self) == SlabIcon then 
+    table.insert(G.I.CARD, self)
+  end
 end
 
+
+
+function SlabIcon:draw()
+  if not self.states.visible then return end
+  self.tilt_var = self.tilt_var or {}
+  self.tilt_var.mx, self.tilt_var.my =G.CONTROLLER.cursor_position.x,G.CONTROLLER.cursor_position.y
+
+  self.children.sprite.role.draw_major = self
+  self.children.sprite:draw_shader('dissolve', 0.1)
+  self.children.sprite:draw_shader('dissolve')    
+  for k, v in pairs(self.children) do 
+      if k ~= 'sprite' then
+          v.VT.scale = self.VT.scale
+          v:draw()
+      end
+  end
+
+
+
+end  
 
 
 function Slab:level(default)
