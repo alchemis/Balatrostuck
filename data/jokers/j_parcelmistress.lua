@@ -18,8 +18,8 @@ function Balatrostuck.INIT.Jokers.j_parcelmistress()
             return {vars = {card.ability.extra.mult,card.ability.extra.mult * card.ability.extra.seal_count}}
         end,
         pos = {
-            x = 2,
-            y = 0
+            x = 4,
+            y = 12
          },
         cost = 3,
         rarity = 1,
