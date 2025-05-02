@@ -64,25 +64,23 @@ function SlabIcon:init(X,Y,W,H)
   self.children = {}
   self.children.sprite = Sprite(self.T.x,self.T.y,self.T.w,self.T.h,G.ASSET_ATLAS['bstuck_HomestuckSlabs'],{x=0,y=0})
   self.children.sprite.T.scale = 1
+  self.children.sprite.config = {force_focus = true}
   self.children.sprite:define_draw_steps({
     {shader = 'dissolve', shadow_height = 0.05},
     {shader = 'dissolve'},
   })
+  self.children.sprite:set_role({major = self, role_type = 'Glued', draw_major = self})
+
   self.states.float = false
   self.states.hover.can = true
   self.states.drag.can = false
   self.states.collide.can = true
-  self.children.sprite.config = {force_focus = true}
-  self.children.sprite:set_role({major = self, role_type = 'Glued', draw_major = self})
   self.states.visible = G.GAME.slab ~= nil
-
+  self.children.sprite.states = self.states
 
   self.tilt_var = {mx = 0, my = 0, amt = 0}
   self.ambient_tilt = 0.3
   self.zoom = true
-  self.states.collide.can = true
-  self.children.sprite.states = self.states
-  self.states.collide.can = true
 
   self.shadow_height = 0
   self:update_atlas()
@@ -91,10 +89,6 @@ function SlabIcon:init(X,Y,W,H)
     table.insert(G.I.CARD, self)
   end
 end
-
-
-
-
 
 function SlabIcon:get_uibox_table(tag_sprite)
   local name_to_check, loc_vars = self.name, {}
@@ -112,7 +106,6 @@ function SlabIcon:get_uibox_table(tag_sprite)
   self.ability_UIBox_table = generate_card_ui(G.P_TAGS['tag_handy'], nil, loc_vars, (self.hide_ability) and 'Undiscovered' or 'Tag', nil, (self.hide_ability))
   return self
 end
-
 
 function SlabIcon:hover()
   if not G.CONTROLLER.dragging.target or G.CONTROLLER.using_touch then 
@@ -133,9 +126,6 @@ function SlabIcon:stop_hover()
   self.hovering = false
   Node.stop_hover(self)
 end
-
-
-
 
 
 function SlabIcon:update_atlas()
@@ -159,12 +149,12 @@ function SlabIcon:draw()
   self:draw_boundingrect()
 end  
 
-
 function Slab:level(default)
   local aspect = string.gsub(self.key, "slab_bstuck_", "")
   aspect = string.gsub(aspect, "^%l", string.upper)
   return G.GAME.BALATROSTUCK.aspect_levels[aspect] or default or 0
 end
+
 
 function Slab:increase_level(amount)
   amount = amount or 1
