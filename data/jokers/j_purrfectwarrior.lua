@@ -15,7 +15,9 @@ function Balatrostuck.INIT.Jokers.j_purrfectwarrior()
                 [1] = 'Gain {C:blue}+#1#{} hand for each',
                 [2] = '{C:attention}#2#{} Hand Levels you have',
                 [3] = '{C:inactive}(Currently {C:blue}+#3#{C:inactive} Hands)'
-            }
+            },
+            unlock = {'Unlocked by',
+                    'finishing Act 1'}
         },
         pos = {
             x = 0,
@@ -25,7 +27,7 @@ function Balatrostuck.INIT.Jokers.j_purrfectwarrior()
         rarity = 3,
         blueprint_compat = false,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         animated = true,
         frames = 8,
         animation_speed = 20,
@@ -58,6 +60,11 @@ function Balatrostuck.INIT.Jokers.j_purrfectwarrior()
                     ease_hands_played(thunk)
                     card.ability.extra.h_plays = math.floor(math.max((sum_levels()-12)/5,0))
                 end
+            end
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
             end
         end
     }

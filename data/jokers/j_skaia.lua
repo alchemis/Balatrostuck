@@ -12,7 +12,9 @@ function Balatrostuck.INIT.Jokers.j_skaia()
             ['text'] = {
                 [1] = "Create a {C:paradox}paradox{} copy of every", 
                 [2] = "{C:mult}discarded{} card.",
-            }
+            },
+            unlock = {'Unlocked by',
+                    'finishing Act 1'}
         },
         pos = {
             x = 4,
@@ -22,7 +24,7 @@ function Balatrostuck.INIT.Jokers.j_skaia()
         rarity = 3,
         blueprint_compat = true,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
 
         calculate = function(self,card,context)
@@ -35,6 +37,11 @@ function Balatrostuck.INIT.Jokers.j_skaia()
                     table.insert(G.playing_cards, pCard)
                     G.hand:emplace(pCard)
                 end
+            end
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
             end
         end
     }

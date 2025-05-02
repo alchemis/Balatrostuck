@@ -17,7 +17,9 @@ function Balatrostuck.INIT.Jokers.j_ascend()
                 [1] = "This Joker gains {C:mult}+#1#{} Mult for each",
                 [2] = "unique {C:inactive}(rank-wise) {C:attention}#2#{} played",
                 [3] = "{C:inactive}(Currently {C:mult}+#3#{C:inactive} Mult)"
-            }
+            },
+            unlock = {'Unlocked by',
+                    'finishing Act 1'}
         },
         pos = {
             x = 0,
@@ -27,7 +29,7 @@ function Balatrostuck.INIT.Jokers.j_ascend()
         rarity = 2,
         blueprint_compat = true,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
 
         loc_vars = function(self, info_queue, card)
@@ -82,6 +84,11 @@ function Balatrostuck.INIT.Jokers.j_ascend()
         end,
         in_pool = function(self,args)
             return G.GAME.pool_flags.bstuck_actprogress >= 1
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
+            end
         end
     }
 end

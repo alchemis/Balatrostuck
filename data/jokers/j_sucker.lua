@@ -15,7 +15,9 @@ function Balatrostuck.INIT.Jokers.j_sucker()
                 [1] = 'Every round {C:green}probability{} denominator',
                 [2] = 'and {C:mult}Mult{} value decrease by 1',
                 [3] = '{C:inactive}(Currently: {}{C:green}#1# in #2#{} {C:inactive}chance of {}{C:white,X:mult}X#2#{} Mult{C:inactive}){}'
-            }
+            },
+            unlock = {'Unlocked by',
+                    'finishing Act 1'}
         },
         pos = {
             x = 3,
@@ -25,7 +27,7 @@ function Balatrostuck.INIT.Jokers.j_sucker()
         rarity = 2,
         blueprint_compat = true,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
 
         loc_vars = function(self, info_queue, card)
@@ -87,6 +89,11 @@ function Balatrostuck.INIT.Jokers.j_sucker()
                         colour = G.C.RED
                     }
                 end
+            end
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
             end
         end
     }

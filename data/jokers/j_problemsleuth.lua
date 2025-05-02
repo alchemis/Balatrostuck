@@ -11,7 +11,9 @@ function Balatrostuck.INIT.Jokers.j_problemsleuth()
             ['text'] = {
                 [1] = "Scored face cards give 2$ if played",
                 [2] = "hand contrains a 3-Of-A-Kind"
-            }
+            },
+            unlock = {'Unlocked by',
+                    'finishing Act 1'}
         },
         pos = {
             x = 3,
@@ -21,7 +23,12 @@ function Balatrostuck.INIT.Jokers.j_problemsleuth()
         rarity = 2,
         blueprint_compat = true,
         eternal_compat = true,
-        unlocked = true,
-        atlas = 'HomestuckJokers'
+        unlocked = false,
+        atlas = 'HomestuckJokers',
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
+            end
+        end
     }
 end 

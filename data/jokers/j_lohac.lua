@@ -16,7 +16,9 @@ function Balatrostuck.INIT.Jokers.j_lohac()
                 [2] = "selected if previous round's",
                 [3] = "score was {C:attention,E:2,S:1.1}set on fire"
 
-            }
+            },
+            unlock = {'Unlocked by',
+                    'finishing Act 1'}
         },
         pos = {
             x = 1,
@@ -26,7 +28,7 @@ function Balatrostuck.INIT.Jokers.j_lohac()
         rarity = 2,
         blueprint_compat = true,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
         loc_vars = function (self, info_queue, card)
             return {vars = {card.ability.extra.hands}}
@@ -45,6 +47,11 @@ function Balatrostuck.INIT.Jokers.j_lohac()
                 ease_hands_played(card.ability.extra.hands)
                 card_eval_status_text(context.blueprint_card or card, 'extra', nil, nil, nil, {message = localize{type = 'variable', key = 'a_hands', vars = {card.ability.extra.hands}}})
                 card.ability.extra.active = false
+            end
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
             end
         end
     }

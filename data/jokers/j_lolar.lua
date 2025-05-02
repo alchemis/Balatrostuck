@@ -15,7 +15,9 @@ function Balatrostuck.INIT.Jokers.j_lolar()
                 [2] = "for each empty {C:attention}Joker{} slot",
                 [3] = "when a hand is played",
                 [4] = "{C:inactive}(Currently {C:chips}+#1#{} {C:inactive}Chips){}"
-            }
+            },
+            unlock = {'Unlocked by',
+                    'finishing Act 1'}
         },
         pos = {
             x = 2,
@@ -25,7 +27,7 @@ function Balatrostuck.INIT.Jokers.j_lolar()
         rarity = 2,
         blueprint_compat = true,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
         loc_vars = function(self, info_queue, card)
             return {vars = {card.ability.extra.chips, card.ability.extra.chip_mod}}
@@ -47,6 +49,11 @@ function Balatrostuck.INIT.Jokers.j_lolar()
                         card = card
                     }
                 end
+            end
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
             end
         end
     }

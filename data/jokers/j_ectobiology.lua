@@ -11,7 +11,9 @@ function Balatrostuck.INIT.Jokers.j_ectobiology()
             ['text'] = {
                 [1] = "When {C:attention}Blind{} is selected, create a",
                 [2] = "{C:paradox}Paradox{} copy of {C:attention}Joker{} to the right"
-            }
+            },
+            unlock = {'Unlocked by',
+                    'finishing Act 1'}
         },
         pos = {
             x = 5,
@@ -21,7 +23,7 @@ function Balatrostuck.INIT.Jokers.j_ectobiology()
         rarity = 3,
         blueprint_compat = true,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
             if context.setting_blind and context.cardarea == G.jokers then
@@ -49,6 +51,11 @@ function Balatrostuck.INIT.Jokers.j_ectobiology()
                         end
                     }))
                 end
+            end
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
             end
         end
     }

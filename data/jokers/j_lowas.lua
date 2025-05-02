@@ -17,7 +17,9 @@ function Balatrostuck.INIT.Jokers.j_lowas()
                 [1] = "When {C:attention}Blind{} is selected,",
                 [2] = "shuffle {C:attention}#1# {C:green}Paradox{} {C:attention}Gold{}",
                 [3] = "cards into deck"
-            }
+            },
+            unlock = {'Unlocked by',
+                    'finishing Act 1'}
         },
         pos = {
             x = 0,
@@ -27,7 +29,7 @@ function Balatrostuck.INIT.Jokers.j_lowas()
         rarity = 2,
         blueprint_compat = true,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
             if context.setting_blind then
@@ -43,6 +45,11 @@ function Balatrostuck.INIT.Jokers.j_lowas()
                         end
                     })
                 end
+            end
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
             end
         end
     }

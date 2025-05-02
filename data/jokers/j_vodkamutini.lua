@@ -11,7 +11,9 @@ function Balatrostuck.INIT.Jokers.j_vodkamutini()
             ['text'] = {
                 [1] = "When a paradox card is created",
                 [2] = "create a non-paradox copy of it."
-            }
+            },
+            unlock = {'Unlocked by',
+                    'finishing Act 1'}
         },
         pos = {
             x = 2,
@@ -25,7 +27,7 @@ function Balatrostuck.INIT.Jokers.j_vodkamutini()
         rarity = 3,
         blueprint_compat = true,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
 
         calculate = function(self,card,context)
@@ -77,6 +79,11 @@ function Balatrostuck.INIT.Jokers.j_vodkamutini()
                     return true end }))
                 end
 
+            end
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
             end
         end
     }

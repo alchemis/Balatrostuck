@@ -11,7 +11,9 @@ function Balatrostuck.INIT.Jokers.j_lordoftime()
                 [1] = "{C:blue}+3{} Hands",
                 [2] = "At end of round,",
                 [3] = "transforms into {C:attention}Muse of Space"
-            }
+            },
+            unlock = {'Unlocked by',
+                    'finishing Act 1'}
         },
         pos = {
             x = 3,
@@ -21,7 +23,7 @@ function Balatrostuck.INIT.Jokers.j_lordoftime()
         rarity = 3,
         blueprint_compat = false,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
             if context.end_of_round and context.cardarea == G.jokers and not context.blueprint then
@@ -41,6 +43,11 @@ function Balatrostuck.INIT.Jokers.j_lordoftime()
         end,
         remove_from_deck = function(self,card,from_debuff)
             G.GAME.round_resets.hands = G.GAME.round_resets.hands - card.ability.extra.hands
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
+            end
         end
     }
 end 

@@ -11,7 +11,9 @@ function Balatrostuck.INIT.Jokers.j_mobiusdoublereacharound()
                 [1] = "If played hand contains a {C:attention}Straight,",
                 [2] = "played cards have a {C:green}#1# in #2#{} chance",
                 [3] = "to create a {C:zodiac}Zodiac{} card when scored"
-            }
+            },
+            unlock = {'Unlocked by',
+                    'finishing Act 1'}
         },
         pos = {
             x = 6,
@@ -24,7 +26,7 @@ function Balatrostuck.INIT.Jokers.j_mobiusdoublereacharound()
         rarity = 2,
         blueprint_compat = true,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
             if context.individual and context.cardarea == G.play and next(context.poker_hands['Straight']) then
@@ -48,6 +50,11 @@ function Balatrostuck.INIT.Jokers.j_mobiusdoublereacharound()
                         card = card
                     }
                 end
+            end
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
             end
         end
     }

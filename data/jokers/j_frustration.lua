@@ -16,7 +16,9 @@ function Balatrostuck.INIT.Jokers.j_frustration()
                 [1] = "This Joker gains {C:chips}+#1# Chips{} for",
                 [2] = "every {C:attention}non-scoring{} card played",
                 [3] = "{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chips)"
-            }
+            },
+            unlock = {'Unlocked by',
+                    'finishing Act 1'}
         },
         pos = {
             x = 1,
@@ -26,7 +28,7 @@ function Balatrostuck.INIT.Jokers.j_frustration()
         rarity = 2,
         blueprint_compat = true,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
 
         loc_vars = function(self, info_queue, card)
@@ -46,6 +48,11 @@ function Balatrostuck.INIT.Jokers.j_frustration()
                     chip_mod = card.ability.extra.chips_total,
                     colour = G.C.CHIPS
                 }
+            end
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
             end
         end
     }

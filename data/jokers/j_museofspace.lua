@@ -11,7 +11,9 @@ function Balatrostuck.INIT.Jokers.j_museofspace()
                 [1] = "{C:attention}+3{} hand size",
                 [2] = "At end of round,",
                 [3] = "transforms into {C:attention}Lord of Time"
-            }
+            },
+            unlock = {'Unlocked by',
+                    'finishing Act 1'}
         },
         pos = {
             x = 4,
@@ -21,7 +23,7 @@ function Balatrostuck.INIT.Jokers.j_museofspace()
         rarity = 3,
         blueprint_compat = false,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
             if context.end_of_round and context.cardarea == G.jokers and not context.blueprint then
@@ -41,6 +43,11 @@ function Balatrostuck.INIT.Jokers.j_museofspace()
         end,
         remove_from_deck = function(self,card,from_debuff)
             G.hand:change_size(-card.ability.extra.h_size)
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
+            end
         end
     }
 end 

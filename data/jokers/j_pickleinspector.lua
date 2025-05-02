@@ -15,7 +15,9 @@ function Balatrostuck.INIT.Jokers.j_pickleinspector()
                 [2] = "whenever {C:attention}a played or held card triggers,",
                 [3] = "resets at end of round",
                 [4] = "{C:inactive}(Currently {X:red,C:white}X#2#{C:inactive} Mult)"
-            }
+            },
+            unlock = {'Unlocked by',
+                    'finishing Act 1'}
         },
         pos = {
             x = 8,
@@ -25,7 +27,7 @@ function Balatrostuck.INIT.Jokers.j_pickleinspector()
         rarity = 2,
         blueprint_compat = true,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
         loc_vars = function(self,info_queue,card)
             return {vars = {card.ability.extra.xmult_gain, card.ability.extra.xmult}}
@@ -61,6 +63,11 @@ function Balatrostuck.INIT.Jokers.j_pickleinspector()
                   message = localize { type = 'variable', key = 'a_xmult', vars = { card.ability.extra.xmult } }
                 }
             end        
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
+            end
         end
     }
 end 
