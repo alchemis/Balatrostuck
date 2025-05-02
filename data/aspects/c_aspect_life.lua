@@ -39,7 +39,7 @@ function Balatrostuck.INIT.Aspects.c_aspect_life()
         atlas = 'HomestuckAspectSlabs',
         pos = {
             x = 0,
-            y = 0
+            y = 2
         },
         config = {payout = 0},
         name = 'Aspect of Life',

@@ -338,3 +338,33 @@ end
 
 
 		
+[[patches]]
+[patches.pattern]
+target = "game.lua"
+pattern = "G.playing_cards = {}"
+position = "after"
+match_indent = true
+payload = '''
+self.ui_slab = SlabIcon(0,0,0.8,0.8)
+'''
+times = 1
+
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = "G.hand:hard_set_VT()"
+position = "before"
+match_indent = true
+payload = '''
+G.ui_slab.T.x = 19
+G.ui_slab.T.y = 3
+
+G.ui_slab:hard_set_VT()
+
+
+'''
+times = 1
+
+
+
+
