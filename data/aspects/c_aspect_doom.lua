@@ -38,8 +38,8 @@ function Balatrostuck.INIT.Aspects.c_aspect_doom()
         key = 'doom',
         atlas = 'HomestuckAspectSlabs',
         pos = {
-            x = 3,
-            y = 0
+            x = 1,
+            y = 2
         },
         config = {},
         name = 'Aspect of Doom',

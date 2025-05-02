@@ -43,7 +43,7 @@ function Balatrostuck.INIT.Aspects.c_aspect_rage()
         key = 'rage',
         atlas = 'HomestuckAspectSlabs',
         pos = {
-            x = 3,
+            x = 2,
             y = 0
         },
         config = {},

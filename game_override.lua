@@ -139,7 +139,8 @@ function Game:start_run(args)
 
     if self.GAME.BALATROSTUCK.current_aspect ~= '' or nil then
         local _slab = Slab('slab_bstuck_' .. self.GAME.BALATROSTUCK.current_aspect)
-        self.GAME.slab = _slab    
+        self.GAME.slab = _slab
+        G.ui_slab:update_atlas()
     end
 end
     
