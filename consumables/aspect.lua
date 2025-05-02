@@ -127,7 +127,6 @@ function SlabIcon:stop_hover()
   Node.stop_hover(self)
 end
 
-
 function SlabIcon:update_atlas()
   if G.GAME.slab then
     self.children.sprite:set_sprite_pos(G.GAME.slab.pos)
@@ -149,12 +148,13 @@ function SlabIcon:draw()
   self:draw_boundingrect()
 end  
 
+-- leveling
+
 function Slab:level(default)
   local aspect = string.gsub(self.key, "slab_bstuck_", "")
   aspect = string.gsub(aspect, "^%l", string.upper)
   return G.GAME.BALATROSTUCK.aspect_levels[aspect] or default or 0
 end
-
 
 function Slab:increase_level(amount)
   amount = amount or 1
