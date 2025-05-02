@@ -62,19 +62,19 @@ SlabIcon = Moveable:extend()
 function SlabIcon:init(X,Y,W,H)
   Moveable.init(self,X, Y, W, H)
   self.children = {}
-  self.children.sprite = Sprite(self.T.x,self.T.y,self.T.w,self.T.h,G.ASSET_ATLAS['tags'],{x=0,y=0})
+  self.children.sprite = Sprite(self.T.x,self.T.y,self.T.w,self.T.h,G.ASSET_ATLAS['bstuck_HomestuckSlabs'],{x=0,y=0})
   self.children.sprite.T.scale = 1
   self.children.sprite:define_draw_steps({
     {shader = 'dissolve', shadow_height = 0.05},
     {shader = 'dissolve'},
   })
-  self.states.float = true
+  self.states.float = false
   self.states.hover.can = true
   self.states.drag.can = false
   self.states.collide.can = true
-  self.children.sprite.config = {tag = self, force_focus = true}
+  self.children.sprite.config = {force_focus = true}
   self.children.sprite:set_role({major = self, role_type = 'Glued', draw_major = self})
-
+  self.states.visible = G.GAME.slab ~= nil
 
 
   self.tilt_var = {mx = 0, my = 0, amt = 0}
@@ -85,6 +85,7 @@ function SlabIcon:init(X,Y,W,H)
   self.states.collide.can = true
 
   self.shadow_height = 0
+  self:update_atlas()
 
   if getmetatable(self) == SlabIcon then 
     table.insert(G.I.CARD, self)
@@ -93,23 +94,69 @@ end
 
 
 
+
+
+function SlabIcon:get_uibox_table(tag_sprite)
+  local name_to_check, loc_vars = self.name, {}
+  if name_to_check == 'Uncommon Tag' then
+  elseif name_to_check == 'Investment Tag' then loc_vars = {self.config.dollars}
+  elseif name_to_check == 'Handy Tag' then loc_vars = {self.config.dollars_per_hand, self.config.dollars_per_hand*(G.GAME.hands_played or 0)}
+  elseif name_to_check == 'Garbage Tag' then loc_vars = {self.config.dollars_per_discard, self.config.dollars_per_discard*(G.GAME.unused_discards or 0)}
+  elseif name_to_check == 'Juggle Tag' then loc_vars = {self.config.h_size}
+  elseif name_to_check == 'Top-up Tag' then loc_vars = {self.config.spawn_jokers}
+  elseif name_to_check == 'Skip Tag' then loc_vars = {self.config.skip_bonus, self.config.skip_bonus*((G.GAME.skips or 0)+1)}
+  elseif name_to_check == 'Orbital Tag' then loc_vars = {
+      (self.ability.orbital_hand == '['..localize('k_poker_hand')..']') and self.ability.orbital_hand or localize(self.ability.orbital_hand, 'poker_hands'), self.config.levels}
+  elseif name_to_check == 'Economy Tag' then loc_vars = {self.config.max}
+  end
+  self.ability_UIBox_table = generate_card_ui(G.P_TAGS['tag_handy'], nil, loc_vars, (self.hide_ability) and 'Undiscovered' or 'Tag', nil, (self.hide_ability))
+  return self
+end
+
+
+function SlabIcon:hover()
+  if not G.CONTROLLER.dragging.target or G.CONTROLLER.using_touch then 
+    if not self.hovering and self.states.visible then
+      self.hovering = true
+      self:juice_up(0.05, 0.03)
+      play_sound('paper1', math.random()*0.1 + 0.55, 0.42)
+      play_sound('tarot2', math.random()*0.1 + 0.55, 0.09)
+    end
+    self:get_uibox_table()
+    self.config.h_popup =  G.UIDEF.card_h_popup(self)
+    self.config.h_popup_config ={align = 'cl', offset = {x=-0.1,y=0},parent = self}
+    Node.hover(self)
+  end
+end
+
+function SlabIcon:stop_hover()
+  self.hovering = false
+  Node.stop_hover(self)
+end
+
+
+
+
+
+function SlabIcon:update_atlas()
+  if G.GAME.slab then
+    self.children.sprite:set_sprite_pos(G.GAME.slab.pos)
+  else
+    self.children.sprite:set_sprite_pos({x=1,y=3})
+  end
+end
+
 function SlabIcon:draw()
   if not self.states.visible then return end
-  self.tilt_var = self.tilt_var or {}
-  self.tilt_var.mx, self.tilt_var.my =G.CONTROLLER.cursor_position.x,G.CONTROLLER.cursor_position.y
+  love.graphics.setShader()
 
-  self.children.sprite.role.draw_major = self
-  self.children.sprite:draw_shader('dissolve', 0.1)
+
+  self.children.sprite:draw_shader('dissolve', 0.05)
   self.children.sprite:draw_shader('dissolve')    
-  for k, v in pairs(self.children) do 
-      if k ~= 'sprite' then
-          v.VT.scale = self.VT.scale
-          v:draw()
-      end
-  end
 
 
-
+  add_to_drawhash(self)
+  self:draw_boundingrect()
 end  
 
 
@@ -172,8 +219,29 @@ function add_slab(_slab)
     G.GAME.slab = _slab
     _slab:increase_level()
     _slab:calculate({ activated = true, after_level_up = true, is_new = true },true)
+    G.E_MANAGER:add_event(Event({
+      func = function()
+        G.ui_slab.states.visible = true
+        G.ui_slab:update_atlas()
+        G.ui_slab:juice_up()
+        play_sound('bstuck_HomestuckAscend',0.7,0.1)
+        play_sound('chips1', math.random()*0.1 + 0.55, 0.42)
+        play_sound('timpani')
+        return true
+      end
+    }))
     return
   end
+  
+  G.E_MANAGER:add_event(Event({
+    func = function()
+      G.ui_slab:update_atlas()
+      G.ui_slab:juice_up()
+      play_sound('bstuck_HomestuckAscend',0.7,0.1)
+      play_sound('chips1', math.random()*0.1 + 0.55, 0.42)
+      return true
+    end
+  }))
 
   old_slab = G.GAME.slab
   G.GAME.slab = _slab
