@@ -31,6 +31,7 @@ function Balatrostuck.INIT.Jokers.j_hephaestus()
     
         loc_vars = function(self, info_queue, card)
             info_queue[#info_queue+1] = G.P_CENTERS.m_steel
+            art_credit('akai', info_queue)
             return {vars = {card.ability.extra}}
         end,
 

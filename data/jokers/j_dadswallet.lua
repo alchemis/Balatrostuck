@@ -45,6 +45,7 @@ function Balatrostuck.INIT.Jokers.j_dadswallet()
             end
         end,
         loc_vars = function(self, info_queue, card)
+            art_credit('akai', info_queue)
             return {vars = {card.ability.extra.money, card.ability.extra.slots_gain, card.ability.extra.slots_current, card.ability.extra.slots_max}}
         end,
         check_for_unlock = function(self,args)

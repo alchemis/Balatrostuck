@@ -15,6 +15,7 @@ function Balatrostuck.INIT.Jokers.j_dolorosa()
             }
         },
         loc_vars = function(self, info_queue, card)
+            art_credit('akai', info_queue)
             info_queue[#info_queue + 1] = G.P_CENTERS["m_wild"]
             info_queue[#info_queue + 1] = G.P_CENTERS[card.ability.extra.clothes]
             return {

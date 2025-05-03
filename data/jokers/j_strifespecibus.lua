@@ -27,6 +27,7 @@ function Balatrostuck.INIT.Jokers.j_strifespecibus()
         atlas = 'HomestuckJokers',
 
         loc_vars = function(self, info_queue, card)
+            art_credit('akai', info_queue)
             local color = card.ability.extra.hand == "Unassigned" and G.C.JOKER_GREY or G.C.SPECIBUS
             return {
                 main_end = {

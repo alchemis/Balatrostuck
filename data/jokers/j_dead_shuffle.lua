@@ -31,6 +31,7 @@ function Balatrostuck.INIT.Jokers.j_dead_shuffle()
         unlocked = true,
         atlas = 'HomestuckJokers',
         loc_vars = function(self, info_queue, card)
+            art_credit('akai', info_queue)
             return {vars = {card.ability.extra.xmult, card.ability.extra.suit, card.ability.extra.total}}
         end,
         calculate = function(self, card, context)

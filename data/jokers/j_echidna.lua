@@ -30,6 +30,7 @@ function Balatrostuck.INIT.Jokers.j_echidna()
             y = 9
         },
         loc_vars = function (self, info_queue, card) 
+            art_credit('akai', info_queue)
             info_queue[#info_queue + 1 ] = {key="tag_bstuck_scratch", set="Tag"}
         end,
         add_to_deck = function(self,card,from_debuff)

@@ -113,6 +113,7 @@ function Balatrostuck.INIT.Jokers.j_conditionalimmortality()
             end
         end,
         loc_vars = function(self, info_queue, card)
+            art_credit('akai', info_queue)
             info_queue[#info_queue+1] = G.P_CENTERS['j_joker'] or nil
             return {vars = {card.ability.extra.mult_mod, card.ability.extra.mult}}
         end,

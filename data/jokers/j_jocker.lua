@@ -22,6 +22,7 @@ function Balatrostuck.INIT.Jokers.j_jocker()
         eternal_compat = true,
         loc_vars = function(self, info_queue, card)
             info_queue[#info_queue + 1] = G.P_CENTERS['e_negative']
+            art_credit('akai', info_queue)
          end,
         unlocked = true,
         atlas = 'HomestuckJokers',

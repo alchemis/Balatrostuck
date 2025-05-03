@@ -29,6 +29,7 @@ function Balatrostuck.INIT.Jokers.j_lonegunbird()
         unlocked = false,
         atlas = 'HomestuckJokers',
         loc_vars = function(self, info_queue, card)
+            art_credit('akai', info_queue)
             return {vars = {card.ability.extra.rolls_needed, card.ability.extra.rolls}}
         end,
 

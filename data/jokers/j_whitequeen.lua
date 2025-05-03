@@ -51,6 +51,7 @@ function Balatrostuck.INIT.Jokers.j_whitequeen()
         end,
         loc_vars = function(self, info_queue, card) 
             info_queue[#info_queue + 1] = {key = 'gold_seal', set = 'Other'}
+            art_credit('akai', info_queue)
         end,
     }
 end

@@ -20,6 +20,7 @@ function Balatrostuck.INIT.Jokers.j_innapropriatebucket()
             y = 3
          },
         loc_vars = function(self,info_queue,card)
+            art_credit('akai', info_queue)
             return {vars = {G.GAME.BALATROSTUCK.bucket_suits[1],G.GAME.BALATROSTUCK.bucket_suits[2], colours = {G.C.SUITS[G.GAME.BALATROSTUCK.bucket_suits[1]], G.C.SUITS[G.GAME.BALATROSTUCK.bucket_suits[2]]}}}
         end,
         cost = 4,

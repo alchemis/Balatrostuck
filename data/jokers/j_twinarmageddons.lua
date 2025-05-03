@@ -39,6 +39,7 @@ function Balatrostuck.INIT.Jokers.j_twinarmageddons()
         unlocked = true,
         atlas = 'HomestuckJokers',
         loc_vars = function(self, info_queue, twincard)
+            art_credit('akai', info_queue)
             return {vars = {twincard.ability.extra.hand}}
         end,
         calculate = function(self,card,context)

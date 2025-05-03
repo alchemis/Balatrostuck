@@ -38,6 +38,7 @@ function Balatrostuck.INIT.Jokers.j_yaldabaoth()
             G.GAME.starting_params.ante_scaling = G.GAME.starting_params.ante_scaling / card.ability.extra.ante_scaling
         end,
         loc_vars = function(self, info_queue, card)
+            art_credit('akai', info_queue)
             return { vars = {card.ability.extra.xmult_mod, card.ability.extra.xmult}}
         end,
         calculate = function(self, card, context)

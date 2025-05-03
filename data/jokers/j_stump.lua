@@ -4,6 +4,7 @@ function Balatrostuck.INIT.Jokers.j_stump()
         key = 'stump',
         config = {extra = {chance = 2}},
         loc_vars = function(self, info_queue, card)
+            art_credit('akai', info_queue)
             return { vars = { card.ability.extra.chance} }
         end,   
         loc_txt = {

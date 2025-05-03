@@ -27,7 +27,8 @@ function Balatrostuck.INIT.Jokers.j_jokermode()
         unlocked = false,
         atlas = 'HomestuckJokers',
 
-        loc_vars = function(self, infoqueue, card)
+        loc_vars = function(self, info_queue, card)
+            art_credit('akai', info_queue)
             return{ vars = {card.ability.extra.chips, card.ability.extra.chip_gain}}
         end,
 

@@ -30,6 +30,7 @@ function Balatrostuck.INIT.Jokers.j_impetuscombcharging()
 
         loc_vars = function(self, info_queue, card)
             info_queue[#info_queue + 1] = G.P_TAGS['tag_d_six']
+            art_credit('akai', info_queue)
             return{ vars = {card.ability.extra.rerolls}}
         end,
 

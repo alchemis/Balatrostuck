@@ -28,6 +28,7 @@ function Balatrostuck.INIT.Jokers.j_darkscholar()
 
         loc_vars = function(self, info_queue, card)
             info_queue[#info_queue + 1] = G.P_CENTERS['e_negative']
+            art_credit('akai', info_queue)
             local key, vars
             if card.edition and card.edition.key == "e_negative" then
                 key = self.key .. "_alt"

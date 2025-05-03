@@ -43,6 +43,7 @@ function Balatrostuck.INIT.Jokers.j_genejoker()
         end,
         loc_vars = function (self, info_queue, card)
             info_queue[#info_queue + 1] = G.P_CENTERS['e_bstuck_paradox']
+            art_credit('akai', info_queue)
             return {vars = {card.ability.extra.chips, card.ability.extra.chip_mod}}
         end,
         check_for_unlock = function(self,args)

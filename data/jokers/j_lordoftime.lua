@@ -24,7 +24,8 @@ function Balatrostuck.INIT.Jokers.j_lordoftime()
         blueprint_compat = false,
         eternal_compat = true,
         unlocked = false,
-        loc_vars = function (self, info_queue, card) 
+        loc_vars = function (self, info_queue, card)
+            art_credit('akai', info_queue) 
             info_queue[#info_queue + 1] = {key="j_bstuck_museofspace", set = "Joker", config = {extra = {h_size = 3}}}
         end,
         atlas = 'HomestuckJokers',

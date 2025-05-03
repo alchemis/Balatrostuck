@@ -17,6 +17,7 @@ function Balatrostuck.INIT.Jokers.j_parcelmistress()
                     'finishing Act 1'}
         },
         loc_vars = function(self,info_queue,card)
+            art_credit('akai', info_queue)
             return {vars = {card.ability.extra.mult,card.ability.extra.mult * card.ability.extra.seal_count}}
         end,
         pos = {

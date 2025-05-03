@@ -15,6 +15,7 @@ function Balatrostuck.INIT.Jokers.j_mirthful()
             }
         },
         loc_vars = function(self,info_queue,card)
+            art_credit('akai', info_queue)
             return {vars = {card.ability.extra.num_odds * G.GAME.probabilities.normal, card.ability.extra.dom_odds }}
         end,
         pos = {

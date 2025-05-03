@@ -32,6 +32,7 @@ function Balatrostuck.INIT.Jokers.j_frustration()
         atlas = 'HomestuckJokers',
 
         loc_vars = function(self, info_queue, card)
+            art_credit('akai', info_queue)
             return {vars = {card.ability.extra.chips_amt, card.ability.extra.chips_total}}
         end,
 

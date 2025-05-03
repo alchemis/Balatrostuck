@@ -26,6 +26,7 @@ function Balatrostuck.INIT.Jokers.j_museofspace()
         unlocked = false,
         atlas = 'HomestuckJokers',
         loc_vars = function (self, info_queue, card) 
+            art_credit('akai', info_queue)
             info_queue[#info_queue + 1] = {key="j_bstuck_lordoftime", set = "Joker", config = {extra = {h_size = 3}}}
         end,
         calculate = function(self,card,context)

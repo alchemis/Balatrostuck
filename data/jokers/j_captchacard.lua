@@ -18,6 +18,7 @@ function Balatrostuck.INIT.Jokers.j_captchacard()
             }
         },
         loc_vars = function(self,info_queue,card)
+            art_credit('akai', info_queue)
             return {vars = {card.ability.extra.displayed_rank, card.ability.extra.suit, colours = {G.C.SUITS[card.ability.extra.suit]}}}
         end,
         pos = {

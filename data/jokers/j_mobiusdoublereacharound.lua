@@ -20,6 +20,7 @@ function Balatrostuck.INIT.Jokers.j_mobiusdoublereacharound()
             y = 3
          },
         loc_vars = function(self,info_queue,card)
+            art_credit('akai', info_queue)
             return{ vars = {G.GAME.probabilities.normal,card.ability.extra.odds}}
         end,
         cost = 6,

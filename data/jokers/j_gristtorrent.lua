@@ -34,6 +34,7 @@ function Balatrostuck.INIT.Jokers.j_gristtorrent()
         atlas = 'HomestuckJokers',
 
         loc_vars = function(self, info_queue, card)
+            art_credit('akai', info_queue)
             return {vars = {card.ability.extra.uses, card.ability.extra.money, card.ability.extra.tor, card.ability.extra.total, card.ability.extra.total+1}}
         end,
 

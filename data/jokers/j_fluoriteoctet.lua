@@ -37,6 +37,7 @@ function Balatrostuck.INIT.Jokers.j_fluoriteoctet()
         unlocked = true,
         atlas = 'HomestuckJokers',
         loc_vars = function(self, info_queue, card)
+            art_credit('akai', info_queue)
             return {
                 vars = {G.GAME.probabilities.normal},
                 main_end = {

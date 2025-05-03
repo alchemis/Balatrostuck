@@ -30,6 +30,7 @@ function Balatrostuck.INIT.Jokers.j_theplotpoint()
         animation_speed = 20,
         loc_vars = function (self, info_queue, card) 
             info_queue[#info_queue + 1 ] = G.P_CENTERS['c_black_hole']
+            art_credit('akai', info_queue)
         end,
         calculate = function(self,card,context)
             if context.selling_self then

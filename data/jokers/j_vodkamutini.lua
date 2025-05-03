@@ -31,6 +31,7 @@ function Balatrostuck.INIT.Jokers.j_vodkamutini()
         atlas = 'HomestuckJokers',
         loc_vars = function (self, info_queue, card) 
             info_queue[#info_queue + 1] = G.P_CENTERS['e_bstuck_paradox']
+            art_credit('akai', info_queue)
         end,
         calculate = function(self,card,context)
             if context.paradox_created then

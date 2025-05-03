@@ -47,6 +47,7 @@ function Balatrostuck.INIT.Jokers.j_clover()
         loc_vars = function (self, info_queue, card)
             info_queue[#info_queue + 1] = G.P_CENTERS['e_bstuck_paradox']
             info_queue[#info_queue + 1] = G.P_CENTERS['m_lucky']
+            art_credit('akai', info_queue)
             return {vars = {G.GAME.probabilities.normal}}
         end,
     }
