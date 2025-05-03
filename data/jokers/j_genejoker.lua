@@ -14,7 +14,9 @@ function Balatrostuck.INIT.Jokers.j_genejoker()
                 [1] = "This Joker gains {C:blue}+#2#{} Chips every",
                 [2] = "time a {C:green}Paradox{} card is {C:attention}created",
                 [3] = "{C:inactive}(Currently {C:blue}+#1# {C:inactive}Chips)"
-            }
+            },
+            unlock = {'Unlocked by',
+                    'finishing Act 1'}
         },
         pos = {
             x = 2,
@@ -24,7 +26,7 @@ function Balatrostuck.INIT.Jokers.j_genejoker()
         rarity = 1,
         blueprint_compat = true,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
             if context.paradox_created then
@@ -42,5 +44,10 @@ function Balatrostuck.INIT.Jokers.j_genejoker()
         loc_vars = function (self, info_queue, card)
             return {vars = {card.ability.extra.chips, card.ability.extra.chip_mod}}
         end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
+            end
+        end
     }
 end 

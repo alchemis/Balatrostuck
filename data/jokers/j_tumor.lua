@@ -9,14 +9,16 @@ function Balatrostuck.INIT.Jokers.j_tumor()
         loc_txt = {
             name = 'The Tumor',
             text = {'{X:mult,C:white}X#1#{} mult if',
-                    'you have exactly {C:money}0$.'}
+                    'you have exactly {C:money}0$.'},
+                    unlock = {'Unlocked by',
+                            'finishing Act 1'}
         },
         pos = {x = 7, y = 7},
         cost = 6,
         rarity = 1,
         blueprint_compat = true,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
             if context.joker_main and G.GAME.dollars == 0 then
@@ -25,6 +27,11 @@ function Balatrostuck.INIT.Jokers.j_tumor()
                     message = localize { type = 'variable', key = 'a_xmult', vars = { card.ability.extra.x_mult } },
                     card = card
                 }
+            end
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
             end
         end
     }

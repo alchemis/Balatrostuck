@@ -14,7 +14,9 @@ function Balatrostuck.INIT.Jokers.j_hotdogjuggler()
                 [1] = "Create a {C:zodiac}Zodiac{} card every",
                 [2] = "{C:attention}#2# {C:inactive}[#1#]{} cards discarded",
                 [3] = "{C:inactive}(Must have room)"
-            }
+            },
+            unlock = {'Unlocked by',
+                    'finishing Act 1'}
         },
         pos = {
             x = 2,
@@ -24,7 +26,7 @@ function Balatrostuck.INIT.Jokers.j_hotdogjuggler()
         rarity = 1,
         blueprint_compat = true,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
 
         loc_vars = function(self, info_queue, card)
@@ -53,6 +55,11 @@ function Balatrostuck.INIT.Jokers.j_hotdogjuggler()
                         card = card
                     }
                 end
+            end
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
             end
         end
     }

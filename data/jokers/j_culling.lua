@@ -11,7 +11,9 @@ function Balatrostuck.INIT.Jokers.j_culling()
                 [1] = "{C:mult}+20{} Mult if a card has been {C:attention}destroyed{} this round,", 
                 [2] = "played cards with {C:clubs}Clubs{} or {C:diamonds}Diamonds{} suit have a", 
                 [3] = "{C:green}1 in 4{} chance to be {C:attention}destroyed{} when scored"
-            }
+            },
+            unlock = {'Unlocked by',
+                    'finishing Act 1'}
         },
         pos = {
             x = 3,
@@ -21,7 +23,7 @@ function Balatrostuck.INIT.Jokers.j_culling()
         rarity = 1,
         blueprint_compat = true,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
             if context.setting_blind then
@@ -45,6 +47,11 @@ function Balatrostuck.INIT.Jokers.j_culling()
                 }
             end
 
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
+            end
         end
     }
 end 

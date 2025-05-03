@@ -11,7 +11,9 @@ function Balatrostuck.INIT.Jokers.j_roundtwo()
             ['name'] = 'Umbral Ultimatum',
             ['text'] = {
                 'bluh bluh X2 ante scaling + a rare joker after each boss'
-            }
+            },
+            unlock = {'Unlocked by',
+                    'finishing Act 1'}
         },
         pos = {
             x = 6,
@@ -21,7 +23,7 @@ function Balatrostuck.INIT.Jokers.j_roundtwo()
         rarity = 1,
         blueprint_compat = true,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
         add_to_deck = function(self,card,from_debuff)
             G.GAME.starting_params.ante_scaling = G.GAME.starting_params.ante_scaling * card.ability.extra.ante_scaling
@@ -51,6 +53,11 @@ function Balatrostuck.INIT.Jokers.j_roundtwo()
                         card = card
                     }
                 end
+            end
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
             end
         end
 

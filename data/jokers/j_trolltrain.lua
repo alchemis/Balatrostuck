@@ -10,7 +10,9 @@ function Balatrostuck.INIT.Jokers.j_trolltrain()
             ['text'] = {
                 [1] = "Scored cards give +4 mult",
                 [2] = "per zodiac level of their rank"
-            }
+            },
+            unlock = {'Unlocked by',
+                    'finishing Act 1'}
         },
         pos = {
             x = 9,
@@ -20,7 +22,7 @@ function Balatrostuck.INIT.Jokers.j_trolltrain()
         rarity = 1,
         blueprint_compat = true,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
             if context.individual and context.cardarea == G.play then
@@ -32,6 +34,11 @@ function Balatrostuck.INIT.Jokers.j_trolltrain()
                         }
                     end
                 end
+            end
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
             end
         end
     }

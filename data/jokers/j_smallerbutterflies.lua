@@ -11,7 +11,9 @@ function Balatrostuck.INIT.Jokers.j_smallerbutterflies()
             ['text'] = {
                 [1] = "1 in 3 chance for +3$",
                 [2] = "+33 chips"
-            }
+            },
+            unlock = {'Unlocked by',
+                    'finishing Act 1'}
         },
         pos = {
             x = 2,
@@ -21,7 +23,7 @@ function Balatrostuck.INIT.Jokers.j_smallerbutterflies()
         rarity = 1,
         blueprint_compat = true,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
             if context.joker_main then
@@ -33,6 +35,11 @@ function Balatrostuck.INIT.Jokers.j_smallerbutterflies()
                     effect.dollars = card.ability.extra.dollars
                 end
                 return effect
+            end
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
             end
         end
     }

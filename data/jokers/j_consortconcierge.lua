@@ -15,7 +15,9 @@ function Balatrostuck.INIT.Jokers.j_consortconcierge()
                 [1] = '{C:attention}+1 hand size{} each',
                 [2] = 'hand played this round',
                 [3] = '{C:inactive}(Currently {C:attention}+#1#{}/#2#{C:inactive})'
-            }
+            },
+            unlock = {'Unlocked by',
+                    'finishing Act 1'}
         },
         pos = {
             x = 9,
@@ -25,7 +27,7 @@ function Balatrostuck.INIT.Jokers.j_consortconcierge()
         rarity = 1,
         blueprint_compat = false,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
 
         loc_vars = function(self, info_queue, card)
@@ -46,6 +48,11 @@ function Balatrostuck.INIT.Jokers.j_consortconcierge()
                 card.ability.extra.h_size = 0
         end  
         
+    end,
+    check_for_unlock = function(self,args)
+        if args.type == 'bstuck_apple_eaten' then
+            unlock_card(self)
+        end
     end
     }
 end

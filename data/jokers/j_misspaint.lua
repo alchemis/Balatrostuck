@@ -11,7 +11,9 @@ function Balatrostuck.INIT.Jokers.j_misspaint()
                 [1] = "Gains {C:mult}+#1#{} Mult for every",
                 [2] = "card that {C:attention}changes suit",
                 [3] = "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
-            }
+            },
+            unlock = {'Unlocked by',
+                    'finishing Act 1'}
         },
         loc_vars = function(self,info_queue,card)
             return {vars = {card.ability.extra.mult, card.ability.extra.mult_gain}}
@@ -24,7 +26,7 @@ function Balatrostuck.INIT.Jokers.j_misspaint()
         rarity = 1,
         blueprint_compat = true,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
             if context.changing_suit then
@@ -40,6 +42,11 @@ function Balatrostuck.INIT.Jokers.j_misspaint()
                     mult = card.ability.extra.mult_gain,
                     card = card
                 }
+            end
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
             end
         end
     }

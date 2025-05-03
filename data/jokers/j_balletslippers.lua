@@ -29,7 +29,7 @@ function Balatrostuck.INIT.Jokers.j_balletslippers()
         rarity = 1,
         blueprint_compat = true,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
 
         set_ability = function(self, card, initial, delay_sprites)

@@ -12,6 +12,8 @@ function Balatrostuck.INIT.Jokers.j_wake()
                 [1] = "Played Jacks give +1 hand when scored and are destroyed",
                 [2] = "If this card is sold during a blind create paradox copies of jacks destroyed by it"
             },
+            unlock = {'Unlocked by',
+                    'finishing Act 4'}
             
         },
         pos = {

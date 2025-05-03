@@ -12,7 +12,9 @@ function Balatrostuck.INIT.Jokers.j_whitequeen()
                 [1] = "When a Queen of Diamonds",
                 [2] = "is scored give it a gold",
                 [3] = "seal and destroy this card"
-            }
+            },
+            unlock = {'Unlocked by',
+                    'finishing Act 1'}
         },
         pos = {
             x = 5,
@@ -22,7 +24,7 @@ function Balatrostuck.INIT.Jokers.j_whitequeen()
         rarity = 1,
         blueprint_compat = true,
         eternal_compat = false,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
             if context.individual and context.cardarea == G.play then
@@ -40,6 +42,11 @@ function Balatrostuck.INIT.Jokers.j_whitequeen()
                         card = context.other_card
                     }
                 end
+            end
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
             end
         end
     }

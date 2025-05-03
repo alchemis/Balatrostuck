@@ -11,7 +11,9 @@ function Balatrostuck.INIT.Jokers.j_waywardvagabond()
                 [1] = 'All {C:attention}Kings{} are debuffed',
                 [2] = 'other cards give {C:mult}+#1#{} Mult',
                 [3] = 'when {C:attention}scored{} or {C:attention}held in hand'
-            }
+            },
+            unlock = {'Unlocked by',
+                    'finishing Act 1'}
         },
         pos = {
             x = 9,
@@ -24,7 +26,7 @@ function Balatrostuck.INIT.Jokers.j_waywardvagabond()
         rarity = 2,
         blueprint_compat = true,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
         calculate = function(self, card, context)
             if context.debuff_card and context.debuff_card:get_id() == 13 then
@@ -51,6 +53,11 @@ function Balatrostuck.INIT.Jokers.j_waywardvagabond()
                         card = card
                     }
                 end
+            end
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
             end
         end
     }

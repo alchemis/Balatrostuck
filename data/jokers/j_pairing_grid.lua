@@ -14,7 +14,9 @@ function Balatrostuck.INIT.Jokers.j_pairing_grid()
                 [1] = '{C:mult}+#1#{} Mult for each {C:attention}unique',
                 [2] = '{C:attention}suit{} scored this hand, or',
                 [3] = '{C:mult}+#2#{} Mult if {C:attention}all four suits'
-            }
+            },
+            unlock = {'Unlocked by',
+                    'finishing Act 1'}
         },
         pos = {
             x = 9,
@@ -24,7 +26,7 @@ function Balatrostuck.INIT.Jokers.j_pairing_grid()
         rarity = 1,
         blueprint_compat = true,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
 
         loc_vars = function(self, info_queue, card)
@@ -81,6 +83,11 @@ function Balatrostuck.INIT.Jokers.j_pairing_grid()
                         mult_mod = card.ability.extra.mult*thunk
                     }
                 end
+            end
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
             end
         end
     }

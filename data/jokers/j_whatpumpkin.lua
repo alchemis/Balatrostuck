@@ -15,7 +15,9 @@ function Balatrostuck.INIT.Jokers.j_whatpumpkin()
                 [2] = '{C:green}#1# in #2#{} chance to create a',
                 [3] = '{C:green}paradox copy{} of itself when scored',
                 [4] = '{C:inactive}({C:attention}#3#{C:inactive} copies remaining)'
-            }
+            },
+            unlock = {'Unlocked by',
+                    'finishing Act 1'}
         },
         pos = {
             x = 1,
@@ -25,7 +27,7 @@ function Balatrostuck.INIT.Jokers.j_whatpumpkin()
         rarity = 1,
         blueprint_compat = true,
         eternal_compat = false,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
 
         loc_vars = function(self, info_queue, card)
@@ -75,6 +77,11 @@ function Balatrostuck.INIT.Jokers.j_whatpumpkin()
                         end
                     end
                 end
+            end
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
             end
         end
     }

@@ -14,7 +14,9 @@ function Balatrostuck.INIT.Jokers.j_lonegunbird()
                 [1] = 'Gain a random {C:attention}Tag{} every',
                 [2] = '{C:attention}#1#{} rerolls in the shop',
                 [3] = '{C:inactive}(Currently {C:attention}#2#{C:inactive}/#1#)'
-            }
+            },
+            unlock = {'Unlocked by',
+                    'finishing Act 1'}
         },
         pos = {
             x = 8,
@@ -24,7 +26,7 @@ function Balatrostuck.INIT.Jokers.j_lonegunbird()
         rarity = 1,
         blueprint_compat = false,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
         loc_vars = function(self, info_queue, card)
             return {vars = {card.ability.extra.rolls_needed, card.ability.extra.rolls}}
@@ -53,6 +55,11 @@ function Balatrostuck.INIT.Jokers.j_lonegunbird()
                         return true
                     end}))
                 end
+            end
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
             end
         end
     }

@@ -17,7 +17,9 @@ function Balatrostuck.INIT.Jokers.j_kernelsprite()
                 [3] = "At start of round, create two {C:green}Paradox",
                 [4] = "cards with the {C:attention}stored{} rank and suits",
                 [5] = "{C:inactive}(#2#) (#3#)"
-            }
+            },
+            unlock = {'Unlocked by',
+                    'finishing Act 1'}
         },
 
         loc_vars = function(self, info_queue, card)
@@ -50,7 +52,7 @@ function Balatrostuck.INIT.Jokers.j_kernelsprite()
         rarity = 2,
         blueprint_compat = true,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
 
         set_ability = function(self, card, initial, delay_sprites)
@@ -94,6 +96,11 @@ function Balatrostuck.INIT.Jokers.j_kernelsprite()
                     card_eval_status_text(context.blueprint_card or card, 'extra', nil, nil, nil, {message = "Kerneled!"})
                 end
                 return true end }))
+            end
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
             end
         end
     }

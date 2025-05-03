@@ -11,7 +11,9 @@ function Balatrostuck.INIT.Jokers.j_innapropriatebucket()
             ['text'] = {
                 [1] = "{V:1}#1#{} also count as {V:2}#2#{},",
                 [2] = "suits change at end of round"
-            }
+            },
+            unlock = {'Unlocked by',
+                    'finishing Act 1'}
         },
         pos = {
             x = 2,
@@ -24,7 +26,7 @@ function Balatrostuck.INIT.Jokers.j_innapropriatebucket()
         rarity = 1,
         blueprint_compat = false,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
             if context.end_of_round then
@@ -42,6 +44,11 @@ function Balatrostuck.INIT.Jokers.j_innapropriatebucket()
                 G.GAME.BALATROSTUCK.bucket_suits[1] = chosen_suits[1]
                 G.GAME.BALATROSTUCK.bucket_suits[2] = chosen_suits[2]
             end
-        end      
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
+            end
+        end   
     }
 end 

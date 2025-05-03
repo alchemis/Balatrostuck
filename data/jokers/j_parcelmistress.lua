@@ -12,7 +12,9 @@ function Balatrostuck.INIT.Jokers.j_parcelmistress()
                 [2] = "card with a seal",
                 [3] = "in your full deck",
                 [4] = "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
-            }
+            },
+            unlock = {'Unlocked by',
+                    'finishing Act 1'}
         },
         loc_vars = function(self,info_queue,card)
             return {vars = {card.ability.extra.mult,card.ability.extra.mult * card.ability.extra.seal_count}}
@@ -25,7 +27,7 @@ function Balatrostuck.INIT.Jokers.j_parcelmistress()
         rarity = 1,
         blueprint_compat = true,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
             card.ability.extra.seal_count = 0
@@ -40,6 +42,11 @@ function Balatrostuck.INIT.Jokers.j_parcelmistress()
                     mult = card.ability.extra.seal_count * card.ability.extra.mult,
                     card = card
                 }
+            end
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
             end
         end
     }

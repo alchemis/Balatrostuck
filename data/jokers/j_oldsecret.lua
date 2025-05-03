@@ -12,7 +12,9 @@ function Balatrostuck.INIT.Jokers.j_oldsecret()
                 [1] = "A random held {C:attention}consumeable{} becomes",
                 [2] = "{C:green}Paradox{} at end of round, {C:green}Paradox",
                 [3] = "consumeables cannot be destroyed"
-            }
+            },
+            unlock = {'Unlocked by',
+                    'finishing Act 1'}
         },
         pos = {
             x = 9,
@@ -22,7 +24,12 @@ function Balatrostuck.INIT.Jokers.j_oldsecret()
         rarity = 3,
         blueprint_compat = true,
         eternal_compat = true,
-        unlocked = true,
-        atlas = 'HomestuckJokers'
+        unlocked = false,
+        atlas = 'HomestuckJokers',
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_apple_eaten' then
+                unlock_card(self)
+            end
+        end
     }
 end 
