@@ -7,6 +7,7 @@ function Balatrostuck.INIT.Jokers.j_lowas()
             extra = 3
         },
         loc_vars = function(self,info_queue,card)
+            art_credit('yokcos', info_queue)
             info_queue[#info_queue + 1] = G.P_CENTERS['e_bstuck_paradox']
             info_queue[#info_queue + 1] = G.P_CENTERS['m_gold']
             return {

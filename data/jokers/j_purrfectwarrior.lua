@@ -29,12 +29,13 @@ function Balatrostuck.INIT.Jokers.j_purrfectwarrior()
         eternal_compat = true,
         unlocked = false,
         animated = true,
-        frames = 8,
+        frames = 2,
         animation_speed = 20,
         photosensitive = true,
         atlas = 'HomestuckJokersAnimated',
 
         loc_vars = function(self, info_queue, card)
+            art_credit('baqly', info_queue)
             return {vars = {card.ability.extra.h_gain, card.ability.extra.levels, card.ability.extra.h_plays}}
         end,
 

@@ -15,6 +15,7 @@ function Balatrostuck.INIT.Jokers.j_verticlemovements()
             y = 2
          },
         loc_vars = function (self, info_queue, card) 
+            art_credit('delirium', info_queue)
             info_queue[#info_queue + 1] = G.P_CENTERS['e_bstuck_paradox']
         end,
         cost = 8,

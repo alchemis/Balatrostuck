@@ -47,6 +47,7 @@ function Balatrostuck.INIT.Jokers.j_balletslippers()
         end,
 
         loc_vars = function(self,info_queue,card)
+            art_credit('akai', info_queue)
             return {vars = {card.ability.extra.mult_gain, card.ability.extra.to_do_poker_hand, card.ability.extra.mult}}
         end,
 

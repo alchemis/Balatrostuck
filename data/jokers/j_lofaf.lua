@@ -16,6 +16,7 @@ function Balatrostuck.INIT.Jokers.j_lofaf()
             }
         },
         loc_vars = function(self,info_queue,card)
+            art_credit('yokcos', info_queue)
             return {vars = {card.ability.extra.pack_bonus}}
         end,
         pos = {

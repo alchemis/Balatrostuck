@@ -29,6 +29,7 @@ function Balatrostuck.INIT.Jokers.j_jetpack()
         atlas = 'HomestuckJokers',
 
         loc_vars = function(self, info_queue, card)
+            art_credit('yokcos', info_queue)
             return {vars = {card.ability.extra.mult, G.GAME.probabilities.normal, card.ability.extra.denominator}}
         end,
 

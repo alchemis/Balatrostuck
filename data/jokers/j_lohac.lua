@@ -31,6 +31,7 @@ function Balatrostuck.INIT.Jokers.j_lohac()
         unlocked = false,
         atlas = 'HomestuckJokers',
         loc_vars = function (self, info_queue, card)
+            art_credit('yokcos', info_queue)
             return {vars = {card.ability.extra.hands}}
         end,
         calculate = function (self, card, context)

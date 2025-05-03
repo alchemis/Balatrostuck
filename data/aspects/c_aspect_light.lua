@@ -23,6 +23,8 @@ function Balatrostuck.INIT.Aspects.c_aspect_light()
         discovered = true,
         atlas = "HomestuckAspects",
         loc_vars = function(self, info_queue)
+            art_credit('akai', info_queue)
+            art_credit('yokcos', info_queue)
             return {
                 vars = {
                     1+(G.GAME.BALATROSTUCK.aspect_levels[self.name] or 0)*0.5

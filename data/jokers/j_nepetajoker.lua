@@ -19,6 +19,7 @@ function Balatrostuck.INIT.Jokers.j_nepetajoker()
             y = 2
          },
         loc_vars = function(self,info_queue,card)
+            art_credit('lyman', info_queue)
             return {vars = {card.ability.extra.mult, card.ability.extra.mult_gain, card.ability.extra.suit_a, card.ability.extra.suit_b, 
                     colours = {G.C.SUITS[card.ability.extra.suit_a],G.C.SUITS[card.ability.extra.suit_b]}}}
         end,

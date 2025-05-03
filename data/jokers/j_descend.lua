@@ -23,6 +23,9 @@ function Balatrostuck.INIT.Jokers.j_descend()
             unlock = {'Unlocked by',
             'finishing Act 3'}
         },
+        loc_vars = function (self, info_queue, card) 
+            art_credit('lyman', info_queue)
+        end,
         pos = {
             x = 2,
             y = 7

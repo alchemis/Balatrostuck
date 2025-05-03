@@ -8,13 +8,15 @@ function Balatrostuck.INIT.Spectrals.c_spectral_thetreasure()
             text = {
                 [1] = 'All Aspects gain 1 permanent level',
                 [2] = '-1 joker slot',
-                [3] = 'Art by Lyman'
             }
         },
         pos = {
             x = 0,
             y = 0
         },
+        loc_vars = function (self, info_queue, card) 
+            art_credit('lyman', info_queue)
+        end,
         atlas = 'HomestuckSpectrals',
         can_use = function(self,card)
             -- checks if you have at least 1 joker slot to remove

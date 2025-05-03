@@ -178,6 +178,9 @@ function tableContains(table, value)
 end
 
 
+function art_credit(artist_name, info) 
+    info[#info+1] = { key = "art_bstuck_"..artist_name, set = 'Other'}
+end
 
 
 
@@ -561,7 +564,6 @@ function create_UIBox_zodiac_tip(zodiac)
     local _nodes = {}
     local _returnnodes = {}
     
-
     if G.GAME.BALATROSTUCK.zodiac_levels[zodiac] < 1 then
         local inactivenodes = {}
         local text = localize{type = 'descriptions', set = 'zodiacui', key = 'Inactive', vars = _zodiac_vars[zodiac], nodes = inactivenodes}

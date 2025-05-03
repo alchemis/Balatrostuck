@@ -62,6 +62,7 @@ function Balatrostuck.INIT.Jokers.j_cueball()
             end
         end,
         loc_vars = function(self, info_queue, card)
+            art_credit('yokcos', info_queue)
             local get_card_name = function(card)
                 if card then
                     local rank = card.base.value

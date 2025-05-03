@@ -33,6 +33,7 @@ function Balatrostuck.INIT.Jokers.j_ascend()
         atlas = 'HomestuckJokers',
 
         loc_vars = function(self, info_queue, card)
+            art_credit('akai', info_queue)
             return {vars = {card.ability.extra.mult, card.ability.extra.hand, card.ability.extra.mult_total}}
         end,
 

@@ -23,6 +23,8 @@ function Balatrostuck.INIT.Aspects.c_aspect_mind()
         discovered = true,
         atlas = "HomestuckAspects",
         loc_vars = function(self, info_queue)
+            art_credit('akai', info_queue)
+            art_credit('yokcos', info_queue)
             return {
                 vars = {
                     (G.GAME.BALATROSTUCK.aspect_levels[self.name] or 0)

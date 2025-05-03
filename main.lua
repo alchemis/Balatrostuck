@@ -45,9 +45,14 @@ loc_colour('red')
 -- Change later maybe!!!!!!
 G.ARGS.LOC_COLOURS['paradox'] = HEX("4EA752")
 G.ARGS.LOC_COLOURS['caliborn'] = HEX("009c68")
-
-
-
+-- artist colors
+G.ARGS.LOC_COLOURS['baqly'] = HEX("c10c1c")
+G.ARGS.LOC_COLOURS['akai'] = HEX("1793D1")
+G.ARGS.LOC_COLOURS['yokcos'] = HEX('7a417d')
+G.ARGS.LOC_COLOURS['delirium'] = HEX('FF7F7F')
+G.ARGS.LOC_COLOURS['lyman'] = HEX('27ca01')
+G.ARGS.LOC_COLOURS['miser'] = HEX('696969')
+G.ARGS.LOC_COLOURS['garb'] = HEX('8c5c90')
 
 
 

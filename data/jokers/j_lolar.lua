@@ -30,6 +30,7 @@ function Balatrostuck.INIT.Jokers.j_lolar()
         unlocked = false,
         atlas = 'HomestuckJokers',
         loc_vars = function(self, info_queue, card)
+            art_credit('yokcos', info_queue)
             return {vars = {card.ability.extra.chips, card.ability.extra.chip_mod}}
         end,
     

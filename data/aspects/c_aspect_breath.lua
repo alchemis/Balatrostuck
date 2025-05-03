@@ -22,6 +22,8 @@ function Balatrostuck.INIT.Aspects.c_aspect_breath()
         discovered = true,
         atlas = "HomestuckAspects",
         loc_vars = function(self, info_queue)
+            art_credit('akai', info_queue)
+            art_credit('yokcos', info_queue)
             return {
                 vars = {
                     self:level()

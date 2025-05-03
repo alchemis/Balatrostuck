@@ -17,6 +17,9 @@ function Balatrostuck.INIT.Jokers.j_backseater()
             x = 1,
             y = 10
          },
+        loc_vars = function (self, info_queue, card) 
+            art_credit('akai', info_queue)
+        end,
         cost = 8,
         rarity = 2,
         blueprint_compat = false,

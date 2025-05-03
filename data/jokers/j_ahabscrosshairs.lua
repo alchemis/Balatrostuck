@@ -6,6 +6,7 @@ function Balatrostuck.INIT.Jokers.j_ahabscrosshairs()
             extra = {x_mult_per = 0.25, money = 16, x_mult = 1}
         },
         loc_vars = function(self,info_queue,card)
+            art_credit('akai', info_queue)
             return {
                 vars = {card.ability.extra.x_mult_per,card.ability.extra.money,card.ability.extra.x_mult}
             }

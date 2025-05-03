@@ -6,10 +6,6 @@ function Balatrostuck.INIT.Jokers.j_aimlessrenegade()
             extra = { mult = 0, multgain = 5
             }
         },
-        loc_vars = function(self,info_queue,card)
-            info_queue[#info_queue+1] = G.P_CENTERS['e_bstuck_paradox']
-            return {vars = {card.ability.extra.multgain, card.ability.extra.mult}}
-        end,
         loc_txt = {
             ['name'] = 'Aimless Renegade',
             ['text'] = {
@@ -82,8 +78,10 @@ function Balatrostuck.INIT.Jokers.j_aimlessrenegade()
             end
         end,
         loc_vars = function(self, info_queue, card) 
+            art_credit('akai', info_queue)
             info_queue[#info_queue + 1] = G.P_CENTERS['e_bstuck_paradox']
             info_queue[#info_queue + 1] = G.P_CENTERS['c_judgement']
+            return {vars = {card.ability.extra.multgain, card.ability.extra.mult}}
         end,
     }
 end 

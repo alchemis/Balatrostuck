@@ -7,6 +7,7 @@ function Balatrostuck.INIT.Jokers.j_alltheirons()
             }
         },
         loc_vars = function(self,info_queue,card)
+            art_credit('akai', info_queue)
             return {vars = {math.floor(math.min(413,log2(G.GAME.probabilities.normal)+1))}}
         end,
         loc_txt = {

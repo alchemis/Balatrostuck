@@ -27,6 +27,15 @@ function Balatrostuck.INIT.Aspects.c_aspect_hope()
         end,
         can_use = function(self)
             return true
+        end,
+        loc_vars = function(self, info_queue)
+            art_credit('akai', info_queue)
+            art_credit('yokcos', info_queue)
+            return {
+                vars = {
+                    self:level()
+                }
+            }
         end
     }
 

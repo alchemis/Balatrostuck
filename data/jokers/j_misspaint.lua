@@ -16,6 +16,7 @@ function Balatrostuck.INIT.Jokers.j_misspaint()
                     'finishing Act 1'}
         },
         loc_vars = function(self,info_queue,card)
+            art_credit('garb', info_queue)
             return {vars = {card.ability.extra.mult, card.ability.extra.mult_gain}}
         end,
         pos = {
