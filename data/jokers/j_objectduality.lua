@@ -30,6 +30,10 @@ function Balatrostuck.INIT.Jokers.j_objectduality()
         eternal_compat = true,
         unlocked = false,
         atlas = 'HomestuckJokers',
+        loc_vars = function(self, info_queue, card)
+            art_credit('akai', info_queue)
+            return {vars = {}}
+        end,
         calculate = function(self,card,context)
             if context.first_hand_drawn then
                 local eval = function() return G.GAME.current_round.hands_played == 0 end

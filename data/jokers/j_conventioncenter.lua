@@ -22,6 +22,10 @@ function Balatrostuck.INIT.Jokers.j_conventioncenter()
         eternal_compat = true,
         unlocked = true,
         atlas = 'HomestuckJokers',
+        loc_vars = function(self, info_queue, card)
+            art_credit('akai', info_queue)
+            return {vars = {}}
+        end,
         add_to_deck = function(self,card,from_debuff)
             SMODS.change_booster_limit(card.ability.extra.shop_size)
         end,

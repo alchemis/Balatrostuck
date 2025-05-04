@@ -26,6 +26,10 @@ function Balatrostuck.INIT.Jokers.j_joker()
         eternal_compat = true,
         unlocked = false,
         atlas = 'HomestuckJokers',
+        loc_vars = function(self, info_queue, card)
+            art_credit('akai', info_queue)
+            return {vars = {}}
+        end,
         soul_pos = {
             x = 5,
             y = 4

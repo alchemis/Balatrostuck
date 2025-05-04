@@ -23,6 +23,10 @@ function Balatrostuck.INIT.Jokers.j_snowman()
         eternal_compat = true,
         unlocked = true,
         atlas = 'HomestuckJokers',
+        loc_vars = function(self, info_queue, card)
+            art_credit('akai', info_queue)
+            return {vars = {}}
+        end,
         calculate = function(self,card,context)
             if context.individual and context.cardarea == G.hand and not context.end_of_round then
                 if context.other_card:is_face() and not context.other_card.debuff then

@@ -26,6 +26,10 @@ function Balatrostuck.INIT.Jokers.j_horrorterrors()
         eternal_compat = true,
         unlocked = true,
         atlas = 'HomestuckJokers',
+        loc_vars = function(self, info_queue, card)
+            art_credit('akai', info_queue)
+            return {vars = {}}
+        end,
         calculate = function (self, card, context)
             if context.individual and context.cardarea == G.play and not (context.repetition) then
                 local horrorcard = context.other_card

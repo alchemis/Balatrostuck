@@ -24,6 +24,10 @@ function Balatrostuck.INIT.Jokers.j_typheus()
         eternal_compat = true,
         unlocked = true,
         atlas = 'HomestuckJokers',
+        loc_vars = function(self, info_queue, card)
+            art_credit('akai', info_queue)
+            return {vars = {}}
+        end,
         soul_pos = {
             x = 9,
             y = 9

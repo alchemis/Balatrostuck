@@ -22,6 +22,10 @@ function Balatrostuck.INIT.Jokers.j_signofthesignless()
         eternal_compat = false,
         unlocked = true,
         atlas = 'HomestuckJokers',
+        loc_vars = function(self, info_queue, card)
+            art_credit('akai', info_queue)
+            return {vars = {}}
+        end,
         calculate = function(self,card,context)
             local zodiacs = {'Gemini','Taurus','Cancer','Leo','Virgo','Libra','Scorpio','Sagittarius','Capricorn','Aquarius','Pisces','Ophiuchus','Aries'}
             if context.individual and context.cardarea == G.play and #context.full_hand == 1 then

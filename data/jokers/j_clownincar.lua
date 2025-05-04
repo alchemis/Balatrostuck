@@ -26,6 +26,10 @@ function Balatrostuck.INIT.Jokers.j_clownincar()
         eternal_compat = true,
         unlocked = false,
         atlas = 'HomestuckJokers',
+        loc_vars = function(self, info_queue, card)
+            art_credit('akai', info_queue)
+            return {vars = {}}
+        end,
         check_for_unlock = function(self,args)
             if args.type == 'bstuck_ascend' then
                 unlock_card(self)

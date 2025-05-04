@@ -25,6 +25,10 @@ function Balatrostuck.INIT.Jokers.j_lucky_break()
         eternal_compat = true,
         unlocked = true,
         atlas = 'HomestuckJokers',
+        loc_vars = function(self, info_queue, card)
+            art_credit('akai', info_queue)
+            return {vars = {}}
+        end,
         remove_from_deck = function(self,card,from_debuff)
             if card.ability.extra.broken then
                 card.ability.extra.broken = false

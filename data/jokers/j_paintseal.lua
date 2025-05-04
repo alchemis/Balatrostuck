@@ -26,6 +26,10 @@ function Balatrostuck.INIT.Jokers.j_paintseal()
         eternal_compat = false,
         unlocked = true,
         atlas = 'HomestuckJokers',
+        loc_vars = function(self, info_queue, card)
+            art_credit('akai', info_queue)
+            return {vars = {}}
+        end,
         calculate = function(self,card,context)
             local zodiacs = {'gemini','taurus','cancer','leo','virgo','libra','scorpio','sagittarius','capricorn','aquarius','pisces','ophiuchus','aries'}
 

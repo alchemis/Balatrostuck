@@ -25,6 +25,10 @@ function Balatrostuck.INIT.Jokers.j_culling()
         eternal_compat = true,
         unlocked = false,
         atlas = 'HomestuckJokers',
+        loc_vars = function(self, info_queue, card)
+            art_credit('akai', info_queue)
+            return {vars = {}}
+        end,
         calculate = function(self,card,context)
             if context.setting_blind then
                 card.ability.extra.give_mult = false

@@ -25,6 +25,10 @@ function Balatrostuck.INIT.Jokers.j_roundtwo()
         eternal_compat = true,
         unlocked = false,
         atlas = 'HomestuckJokers',
+        loc_vars = function(self, info_queue, card)
+            art_credit('akai', info_queue)
+            return {vars = {}}
+        end,
         add_to_deck = function(self,card,from_debuff)
             G.GAME.starting_params.ante_scaling = G.GAME.starting_params.ante_scaling * card.ability.extra.ante_scaling
         end,

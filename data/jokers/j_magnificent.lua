@@ -24,7 +24,10 @@ function Balatrostuck.INIT.Jokers.j_magnificent()
         eternal_compat = true,
         unlocked = false,
         atlas = 'HomestuckJokers',
-
+        loc_vars = function(self, info_queue, card)
+            art_credit('akai', info_queue)
+            return {vars = {}}
+        end,
         calculate = function (self, context)
         end,
         check_for_unlock = function(self,args)

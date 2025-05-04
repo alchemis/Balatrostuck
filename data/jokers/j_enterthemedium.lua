@@ -25,6 +25,10 @@ function Balatrostuck.INIT.Jokers.j_enterthemedium()
         eternal_compat = false,
         unlocked = false,
         atlas = 'HomestuckJokers',
+        loc_vars = function(self, info_queue, card)
+            art_credit('akai', info_queue)
+            return {vars = {}}
+        end,
         calculate = function(self,card,context)
             if context.end_of_round and G.GAME.blind.boss and context.main_eval then
                 local pool = get_current_pool('Joker')

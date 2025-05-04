@@ -23,6 +23,10 @@ function Balatrostuck.INIT.Jokers.j_ringoflife()
         eternal_compat = true,
         unlocked = false,
         atlas = 'HomestuckJokers',
+        loc_vars = function(self, info_queue, card)
+            art_credit('akai', info_queue)
+            return {vars = {}}
+        end,
         calculate = function(self, card, context)
             if context.remove_playing_cards then
                 for i=1, #context.removed do

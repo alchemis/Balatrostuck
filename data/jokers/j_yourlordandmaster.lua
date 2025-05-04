@@ -26,6 +26,10 @@ function Balatrostuck.INIT.Jokers.j_yourlordandmaster()
         eternal_compat = true,
         unlocked = false,
         atlas = 'TheCalibornJoker',
+        loc_vars = function(self, info_queue, card)
+            art_credit('akai', info_queue)
+            return {vars = {}}
+        end,
         animated = true,
         frames = 250,
         dimensions = {x=15,y=15},

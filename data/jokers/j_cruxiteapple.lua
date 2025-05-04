@@ -25,6 +25,10 @@ function Balatrostuck.INIT.Jokers.j_cruxiteapple()
         unlocked = true,
         discovered = true,
         atlas = 'HomestuckJokers',
+        loc_vars = function(self, info_queue, card)
+            art_credit('akai', info_queue)
+            return {vars = {}}
+        end,
         calculate = function(self,card,context)
             if context.end_of_round and context.cardarea == G.jokers and G.GAME.current_round.hands_left == 0 then
                 add_tag(Tag('tag_d_six'))
