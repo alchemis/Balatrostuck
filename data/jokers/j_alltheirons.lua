@@ -13,7 +13,7 @@ function Balatrostuck.INIT.Jokers.j_alltheirons()
         loc_txt = {
             ['name'] = 'All the Irons',
             ['text'] = {
-                [1] = "Played {C:attention}8s{} give",
+                [1] = "Each played {C:attention}8{} gives ",
                 [2] = "{C:green}$#1#{} when scored"
             }
         },
