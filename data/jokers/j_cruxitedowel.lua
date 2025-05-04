@@ -14,9 +14,9 @@ function Balatrostuck.INIT.Jokers.j_cruxitedowel()
         loc_txt = {
             ['name'] = 'Cruxite Dowel',
             ['text'] = {
-                [1] = "{C:attention}Alchemize{} a {C:green}Paradox {C:purple}Tarot{} card every",
-                [2] = "{C:attention}2{} {C:attention}non-{C:green}Paradox {C:attention}consumables{} used,",
-                [3] = "destroyed after {C:attention}3{} {C:green}Paradox {C:purple}Tarots{} used",
+                [1] = "{C:attention}Alchemize{} a {C:paradox}Paradox {C:purple}Tarot{} card every",
+                [2] = "{C:attention}2{} {C:attention}non-{C:paradox}Paradox {C:attention}consumables{} used,",
+                [3] = "destroyed after {C:attention}3{} {C:paradox}Paradox {C:purple}Tarots{} used",
                 [4] = "{C:inactive}(Currently {C:attention}#1#{C:inactive}/2)"
             }
         },

@@ -10,7 +10,7 @@ function Balatrostuck.INIT.Jokers.j_whoisthis()
             ['name'] = 'Who Even Is This?',
             ['text'] = {
                 [1] = 'Creates a random',
-                [2] = '{C:green}Paradox{} joker when',
+                [2] = '{C:paradox}Paradox{} joker when',
                 [3] = 'blind is selected'
             },
             unlock = {'Unlocked by',

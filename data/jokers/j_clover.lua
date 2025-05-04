@@ -10,7 +10,7 @@ function Balatrostuck.INIT.Jokers.j_clover()
             ['name'] = 'Clover',
             ['text'] = {
                 [1] = "When round begins, create {C:green}#1#",
-                [2] = "{C:attention}Lucky {C:green}Paradox {C:clubs}4 of Clubs{} in hand"
+                [2] = "{C:attention}Lucky {C:paradox}Paradox {C:clubs}4 of Clubs{} in hand"
             }
         },
         pos = {

@@ -11,7 +11,7 @@ function Balatrostuck.INIT.Jokers.j_objectduality()
             ['text'] = {
                 [1] = "If first played {C:attention}poker hand{} of",
                 [2] = "round is a {C:attention}High Card{}, create",
-                [3] = "the {C:green}Paradox{} Joker corresponding ",
+                [3] = "the {C:paradox}Paradox{} Joker corresponding ",
                 [4] = "to each scoring card"
             },
             check_for_unlock = function(self,args)

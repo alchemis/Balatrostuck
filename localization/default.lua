@@ -125,7 +125,7 @@ return {
                 text = {
                     "When played {C:attention}Kings{} are scored, a",
                     "random card held in hand becomes",
-                    "{C:green}Paradox{} and gives {X:mult,C:white}X#1#{} Mult", --next level value
+                    "{C:paradox}Paradox{} and gives {X:mult,C:white}X#1#{} Mult", --next level value
                 }
             }
         }

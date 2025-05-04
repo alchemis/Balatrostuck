@@ -6,7 +6,7 @@ function Balatrostuck.INIT.Tags.t_parcelpyxis()
         loc_txt = {
             ['name'] = 'Parcel Pyxis Tag',
             ['text'] = {
-                [1] = 'Create {C:attention}2 {C:green}Paradox',
+                [1] = 'Create {C:attention}2 {C:paradox}Paradox',
                 [2] = '{C:spectral}Spectral{} cards that',
                 [3] = 'create seals'
             }

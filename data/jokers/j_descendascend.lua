@@ -11,7 +11,7 @@ function Balatrostuck.INIT.Jokers.j_descendascend()
             ['name'] = 'Descendascend', 
             ['text'] = {
                 [1] = "Gain a {C:attention}Buffoon Tag{} at end of shop,",
-                [2] = "{C:attention}Jokers{} in {C:attention}Buffoon Packs{} are {C:green}Paradox"
+                [2] = "{C:attention}Jokers{} in {C:attention}Buffoon Packs{} are {C:paradox}Paradox"
             }
         },
         pos = {

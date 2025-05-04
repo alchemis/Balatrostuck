@@ -18,7 +18,7 @@ function Balatrostuck.INIT.Jokers.j_lowas()
             ['name'] = 'Wind and Shade',
             ['text'] = {
                 [1] = "When {C:attention}Blind{} is selected,",
-                [2] = "shuffle {C:attention}#1# {C:green}Paradox{} {C:attention}Gold{}",
+                [2] = "shuffle {C:attention}#1# {C:paradox}Paradox{} {C:attention}Gold{}",
                 [3] = "cards into deck"
             },
             unlock = {'Unlocked by',

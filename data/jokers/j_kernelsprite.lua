@@ -14,7 +14,7 @@ function Balatrostuck.INIT.Jokers.j_kernelsprite()
             ['text'] = {
                 [1] = "The next {C:attention}#1# discards{} that have only",
                 [2] = "{C:attention}1 card{} are {C:red}destroyed{} and {C:attention}stored{}.",
-                [3] = "At start of round, create two {C:green}Paradox",
+                [3] = "At start of round, create two {C:paradox}Paradox",
                 [4] = "cards with the {C:attention}stored{} rank and suits",
                 [5] = "{C:inactive}(#2#) (#3#)"
             },

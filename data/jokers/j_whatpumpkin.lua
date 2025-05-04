@@ -13,7 +13,7 @@ function Balatrostuck.INIT.Jokers.j_whatpumpkin()
             ['text'] = {
                 [1] = 'Played cards have a',
                 [2] = '{C:green}#1# in #2#{} chance to create a',
-                [3] = '{C:green}paradox copy{} of itself when scored',
+                [3] = '{C:paradox}Paradox{} copy of itself when scored',
                 [4] = '{C:inactive}({C:attention}#3#{C:inactive} copies remaining)'
             },
             unlock = {'Unlocked by',

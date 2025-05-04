@@ -11,7 +11,7 @@ function Balatrostuck.INIT.Jokers.j_frogbreeding()
         loc_txt = {
             ['name'] = 'Frog Breeding',
             ['text'] = {
-                [1] = "Create a {C:green}Paradox copy",
+                [1] = "Create a {C:paradox}Paradox{} copy",
                 [2] = "of the {C:attention}first{} consumable",
                 [3] = "used each round",
                 [4] = "{C:inactive}({C:attention}#1#{C:inactive} rounds remaining)"

@@ -12,7 +12,7 @@ function Balatrostuck.INIT.Jokers.j_genejoker()
             ['name'] = 'Gene Joker',
             ['text'] = {
                 [1] = "This Joker gains {C:blue}+#2#{} Chips every",
-                [2] = "time a {C:green}Paradox{} card is {C:attention}created",
+                [2] = "time a {C:paradox}Paradox{} card is {C:attention}created",
                 [3] = "{C:inactive}(Currently {C:blue}+#1# {C:inactive}Chips)"
             },
             unlock = {'Unlocked by',

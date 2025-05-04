@@ -6,9 +6,9 @@ function Balatrostuck.INIT.Aspects.c_aspect_life()
             ['name'] = "Life",
             ['text'] = {
                 [1] = "", -- "{S:0.8}({S:0.8,V:1}lvl.#2#{S:0.8}){} Level up",
-                [2] = "Add {C:attention}#2#{} random {C:green}Paradox{} cards",
+                [2] = "Add {C:attention}#2#{} random {C:paradox}Paradox{} cards",
                 [3] = "to hand when round begins,",
-                [4] = "every {C:green}Paradox{} card anywhere",
+                [4] = "every {C:paradox}Paradox{} card anywhere",
                 [5] = "gives {C:money}$#3#{} at end of round",
                 [6] = "{C:inactive}(Currently {C:green}+#4#{C:inactive} and {C:money}$#5#{C:inactive})"
             }

@@ -13,7 +13,7 @@ function Balatrostuck.INIT.Jokers.j_vasterror()
             ['name'] = 'Twelve by Twelve',
             ['text'] = {
                 [1] = "Every {C:green}#1# rerolls{} in the shop, add",
-                [2] = "{C:green}Paradox{} edition and a {C:blue}Blue Seal",
+                [2] = "{C:paradox}Paradox{} edition and a {C:blue}Blue Seal",
                 [3] = "to a {C:attention}random{} playing card in {C:attention}deck",
                 [4] = "{C:inactive}(Currently {C:attention}#2#{C:inactive}/#1# rerolls)"
             }
