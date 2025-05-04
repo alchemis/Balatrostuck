@@ -10,9 +10,13 @@ function Balatrostuck.INIT.Jokers.j_strifespecibus()
         loc_txt = {
             ['name'] = 'Strife Specibus',
             ['text'] = {
-                [1] = 'Gives {C:mult}+20{} Mult',
-                [2] = 'After first hand played',
-                [3] = 'disallows all other hands',
+                -- [1] = 'Gives {C:mult}+20{} Mult',
+                -- [2] = 'After first hand played',
+                -- [3] = 'disallows all other hands',
+                '{C:red}+20{} Mult before cards',
+                'are scored, all other',
+                '{C:attention}hand types{} are {C:red}not {C:red}allowed{}',
+                'after next hand is played'
             }
         },
         pos = {
