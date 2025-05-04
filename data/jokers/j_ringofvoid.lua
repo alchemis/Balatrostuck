@@ -9,8 +9,8 @@ function Balatrostuck.INIT.Jokers.j_ringofvoid()
         loc_txt = {
             ['name'] = 'Ring of Void',
             ['text'] = {
-                [1] = "Gain a Negative Tag",
-                [2] = "at end of ante"
+                [1] = "Gain a {C:dark_edition}Negative Tag",
+                [2] = "at end of {C:attention}ante"
             },
             unlock = {'Unlocked by',
             'finishing Act 3'}
