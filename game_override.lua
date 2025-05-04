@@ -61,16 +61,28 @@ function Game:update(dt)
         G.C.RAGE
     }
 
+    local paradox_list = {
+        G.C.PARADOX1,
+        G.C.PARADOX2,
+    }
+
     local anim_timer = self.TIMERS.REAL*1.5
+    local anim_timer_pdox = self.TIMERS.REAL*2
     local progress = anim_timer % 1
+    local pdox_progress = anim_timer_pdox % 1
     local chosen_zodiac_pair = (anim_timer - progress) % #zodiac_list + 1
     local chosen_aspect_pair = (anim_timer - progress) % #aspect_list + 1
+    local chosen_paradox_pair = (anim_timer_pdox - pdox_progress) % #paradox_list + 1
 
     local left_colour = zodiac_list[chosen_zodiac_pair]
     local right_colour = zodiac_list[chosen_zodiac_pair % #zodiac_list + 1] -- this works?
 
     local left_colour_aspect = aspect_list[chosen_aspect_pair]
     local right_colour_aspect = aspect_list[chosen_aspect_pair % #aspect_list + 1] -- this works?
+
+    local left_colour_paradox = paradox_list[chosen_paradox_pair]
+    local right_colour_paradox = paradox_list[chosen_paradox_pair % #paradox_list + 1] -- this works?
+
 
     self.C.SECONDARY_SET.Zodiac[1] = left_colour[1] * (1 - progress) + right_colour[1] * progress
     self.C.SECONDARY_SET.Zodiac[2] = left_colour[2] * (1 - progress) + right_colour[2] * progress
@@ -81,9 +93,9 @@ function Game:update(dt)
     self.C.SECONDARY_SET.Aspect[2] = left_colour_aspect[2] * (1 - progress) + right_colour_aspect[2] * progress
     self.C.SECONDARY_SET.Aspect[3] = left_colour_aspect[3] * (1 - progress) + right_colour_aspect[3] * progress
 
-
-
-
+    self.C.PARADOX[1] = left_colour_paradox[1] * (1 - pdox_progress) + right_colour_paradox[1] * pdox_progress
+    self.C.PARADOX[2] = left_colour_paradox[2] * (1 - pdox_progress) + right_colour_paradox[2] * pdox_progress
+    self.C.PARADOX[3] = left_colour_paradox[3] * (1 - pdox_progress) + right_colour_paradox[3] * pdox_progress
     -- G.ARGS.LOC_COLOURS["aspect"] = G.C.SECONDARY_SET.Aspect
     -- G.ARGS.LOC_COLOURS["zodiac"] = G.C.SECONDARY_SET.Zodiac
 end

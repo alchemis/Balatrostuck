@@ -20,8 +20,9 @@ G.C.DOOM = HEX('20401f')
 G.C.HOPE = HEX('FFE094')
 G.C.RAGE = HEX('9c4dad')
 
-
 G.C.PARADOX = HEX('4EA752')
+G.C.PARADOX1 = HEX('4EA752')
+G.C.PARADOX2 = HEX('9dd54d')
 G.C.CALIBORN = HEX("009c68")
 
 G.C.ZODIAC = {
@@ -45,7 +46,7 @@ G.C.ZODIAC = {
 -- DON'T REMOVE, THIS ALLOWS US TO ADD LOC_COLOURS!!!!
 loc_colour('red')
 -- Change later maybe!!!!!!
-G.ARGS.LOC_COLOURS['paradox'] = HEX("4EA752")
+G.ARGS.LOC_COLOURS['paradox'] = G.C.PARADOX
 G.ARGS.LOC_COLOURS['caliborn'] = HEX("009c68")
 -- artist colors
 G.ARGS.LOC_COLOURS['baqly'] = HEX("c10c1c")

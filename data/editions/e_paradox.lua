@@ -14,7 +14,11 @@ function Balatrostuck.INIT.Editions.e_paradox()
         loc_txt = {
             name = 'Paradox',
             label = 'Paradox',
-            text = { '{C:red}Destroyed{} at the end of blind', 'occupies {C:dark_edition}no space{}' },
+            text = { 
+                '{C:red}Disappears{} at',
+                'the end of blind', 
+                'occupies {C:dark_edition}no space{}' 
+            },
         },
         extra_cost = -3,
         config = {card_limit = 1},
