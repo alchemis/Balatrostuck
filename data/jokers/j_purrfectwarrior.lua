@@ -12,9 +12,9 @@ function Balatrostuck.INIT.Jokers.j_purrfectwarrior()
         loc_txt = {
             ['name'] = 'Purrfect Warrior',
             ['text'] = {
-                [1] = 'Gain {C:blue}+#1#{} hand for each',
-                [2] = '{C:attention}#2#{} Hand Levels you have',
-                [3] = '{C:inactive}(Currently {C:blue}+#3#{C:inactive} Hands)'
+                '{C:blue}+#1#{} hand each round for every',
+                '{C:attention}#2#{} hand levels above level {C:attention}1',
+                '{C:inactive}(Currently {C:blue}+#3#{C:inactive} hands)'
             },
             unlock = {'Unlocked by',
                     'finishing Act 1'}
