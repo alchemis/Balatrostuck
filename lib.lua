@@ -35,16 +35,18 @@ G.bstuck_team = {
         color = HEX('323232'), -- placeholder
         depts = {
             "Direction",
+            "Stagehand",
             "Design"
         }
     },
 
     campfire = {
-        name = "campfireCollective",
+        name = "CampfireCollective",
         color = HEX('323232'), -- placeholder
         depts = {
             "Direction",
-            "Design"
+            "Design",
+            "Programming"
         }
     },
 
