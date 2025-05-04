@@ -8,10 +8,11 @@ function Balatrostuck.INIT.Jokers.j_nepetajoker()
         loc_txt = {
             ['name'] = 'Rogue Matchmaker',
             ['text'] = {
-                [1] = "This Joker gains {C:mult}+#1#{} Mult if played hand",
-                [2] = "contains a scoring {V:1}#3#{} and {V:2}#4#{}",
-                [3] = "card, suits change every round",
-                [4] = "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
+                "This Joker gains {C:mult}+#1#{} Mult if",
+                "played hand contains a scoring",
+                "{V:1}#3#{} and {V:2}#4#{} card",
+                "{s:0.8}Suits change every round{}",
+                "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
             }
         },
         pos = {
