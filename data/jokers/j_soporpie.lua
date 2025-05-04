@@ -11,9 +11,13 @@ function Balatrostuck.INIT.Jokers.j_soporpie()
         loc_txt = {
             ['name'] = 'Sopor Pie',
             ['text'] = {
-                [1] = '{C:blue}+#2# Chips{} every round',
-                [2] = '{C:attention}-1 hand size per round',
-                [3] = '{C:inactive}(Currently: {C:blue}+#1# Chips{}{C:inactive})'
+                -- [1] = '{C:blue}+#2# Chips{} every round',
+                -- [2] = '{C:attention}-1 hand size per round',
+                -- [3] = '{C:inactive}(Currently: {C:blue}+#1# Chips{}{C:inactive})'
+                '{C:blue}+100{} Chips, {C:attention}-1{} hand size,',
+                'increases by {C:blue}100{} and',
+                'reduces by {C:red}1{} every round',
+
             }
         },
         pos = {
