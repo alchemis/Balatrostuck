@@ -9,9 +9,10 @@ function Balatrostuck.INIT.Jokers.j_snowman()
         loc_txt = {
             ['name'] = 'Snowman',
             ['text'] = {
-                [1] = "Each {C:attention}8{} is considered a {C:attention}face card{}",
-                [2] = "Each {C:attention}face{} card held in hand",
-                [3] = "gives {C:mult}+1{} mult"
+                "Each {C:attention}8{} is considered",
+                "a {C:attention}face{} card, {C:attention}face{}",
+                "cards held in hand",
+                "give {C:mult}+1{} Mult"
             }
         },
         pos = {
