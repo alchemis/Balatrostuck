@@ -14,10 +14,10 @@ function Balatrostuck.INIT.Jokers.j_questbed()
         loc_txt = {
             ['name'] = 'Quest Bed',
             ['text'] = {
-                [1] = 'Upon {C:attention}death{} destroy',
-                [2] = 'all jokers and add',
-                [3] = '{C:attention}#1#{} levels to',
-                [4] = 'current {C:aspect}Aspect{}'
+                'Prevents Death',
+                'then adds {C:attention}2{} levels',
+                'to current {C:aspect}Aspect',
+                '{C:red,E:2}destroys all jokers{}',
             }
         },
         pos = {
@@ -25,7 +25,7 @@ function Balatrostuck.INIT.Jokers.j_questbed()
             y = 0
          },
         cost = 7,
-        rarity = 2,
+        rarity = 3,
         blueprint_compat = true,
         eternal_compat = false,
         unlocked = true,
