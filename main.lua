@@ -102,6 +102,7 @@ NFS.load(mod.path.."consumables/aspect.lua")()
 NFS.load(mod.path.."consumables/zodiac.lua")()
 NFS.load(mod.path.."game_override.lua")()
 NFS.load(mod.path.."utils.lua")()
+NFS.load(mod.path.."ui_helper.lua")()
 
 local joker_list = {
 
@@ -281,6 +282,7 @@ SMODS.Atlas({key = "HomestuckBlinds",atlas_table = 'ANIMATION_ATLAS',frames = 8,
 SMODS.Atlas({key = "HomestuckVouchers", path = "vouchers.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
 SMODS.Atlas({key = "HomestuckDecks", path = "decks.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
 SMODS.Atlas({key = "HomestuckSlabs", path = "aspect_icons.png", px = 34, py = 34, atlas_table = "ASSET_ATLAS"}):register()
+SMODS.Atlas({key = "bstuck_logo", path="balatrostuck.png", px=469, py=98, atlas_table="ASSET_ATLAS"}):register()
 
 -- SMODS.Atlas({key = "HomestuckZodiacBooster", path = "booster_zodiac.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
 
