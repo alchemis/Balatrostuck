@@ -9,7 +9,7 @@ function Balatrostuck.INIT.Jokers.j_signofthesignless()
             ['name'] = 'Sign of the Signless',
             ['text'] = {
                 "If played hand is a single {C:attention}Wild Card{}",
-                "level up the {C:zodiac}Zodiac{} of that rank,",
+                "create the corresponding {C:zodiac}Zodiac{} card,",
                 "{C:green}1 in #1#{} chance to {C:red,E:2}self destruct{}",
                 "and reset all {C:zodiac}Zodiac{} levels to {C:attention}0"
             }
