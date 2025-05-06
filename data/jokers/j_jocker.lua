@@ -9,10 +9,10 @@ function Balatrostuck.INIT.Jokers.j_jocker()
         loc_txt = {
             ['name'] = 'Jocker',
             ['text'] = {
-                [1] = 'Create a {C:dark_edition}Negative{}',
-                [2] = 'copy of this Joker',
-                [3] = 'after {C:attention}beating{} or',
-                [4] = '{C:attention}skipping{} a blind',
+                -- [1] = 'Create a {C:dark_edition}Negative{}',
+                -- [2] = 'copy of this Joker',
+                -- [3] = 'after {C:attention}beating{} or',
+                -- [4] = '{C:attention}skipping{} a blind',
             }
         },
         pos = { x = 5, y = 2},
@@ -23,6 +23,11 @@ function Balatrostuck.INIT.Jokers.j_jocker()
         loc_vars = function(self, info_queue, card)
             info_queue[#info_queue + 1] = G.P_CENTERS['e_negative']
             art_credit('akai', info_queue)
+            local balastuck = Sprite(0,0,(1*348/232)*1.6, 1.6,G.ASSET_ATLAS["bstuck_howhigh"], {x=0, y=0})
+            balastuck.states.drag.can = false
+            return {
+                main_start = {BSUI.Col(BSUI.Config.Basic, {BSUI.Image(balastuck)})}
+            }
          end,
         unlocked = true,
         atlas = 'HomestuckJokers',

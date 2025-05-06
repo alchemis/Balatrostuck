@@ -208,9 +208,7 @@ SMODS.Atlas({key = "HomestuckVouchers", path = "vouchers.png", px = 71, py = 95,
 SMODS.Atlas({key = "HomestuckDecks", path = "decks.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
 SMODS.Atlas({key = "HomestuckSlabs", path = "aspect_icons.png", px = 34, py = 34, atlas_table = "ASSET_ATLAS"}):register()
 SMODS.Atlas({key = "bstuck_logo", path="balatrostuck.png", px=469, py=98, atlas_table="ASSET_ATLAS"}):register()
-
-
-sendDebugMessage(G.localization.descriptions.Zodiac)
+SMODS.Atlas({key = "bstuck_howhigh", path="howhigh.png", px=348, py=232, atlas_table="ASSET_ATLAS"}):register()
 
 local UI, load_error = SMODS.load_file("bstuckui.lua")
 if load_error then
