@@ -32,7 +32,7 @@ function Balatrostuck.INIT.Aspects.c_aspect_light()
                 main_start = {BSUI.Modules.GameText.LevelUp(G.C.UI.TEXT_DARK, level+1)}, -- replace with aspect colors later
                 main_end = (level > 0 and {BSUI.Modules.GameText.CurrentValue({
                     BSUI.Modules.GameText.Format('X'..current, G.C.WHITE, G.C.RED),
-                    BSUI.Modules.GameText.Format(' Mult')
+                    BSUI.Modules.GameText.Format(' Mult', G.C.UI.TEXT_INACTIVE)
                 })} or {})
             }
         end,
