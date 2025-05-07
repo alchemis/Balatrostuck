@@ -45,8 +45,8 @@ function Balatrostuck.INIT.Aspects.c_aspect_doom()
                     BSUI.Modules.GameText.Format(
                     'level'..(current ~= 1 and 's' or '')..' and ', G.C.UI.TEXT_INACTIVE
                     ),
-                    BSUI.Modules.GameText.Format('1 in'..self:level()+1, G.C.GREEN)
-                })})
+                    BSUI.Modules.GameText.Format('1 in '..self:level()+1, G.C.GREEN)
+                })} or {})
             }
         end
     }
