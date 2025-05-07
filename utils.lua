@@ -482,7 +482,7 @@ function create_UIBox_zodiacs(simple)
     -- }}
 
     local t = BSUI.Root({align = "cm", minw = 3, padding = 0.1, r = 0.1, colour = G.C.CLEAR}, {
-        BSUI.Row({align = "cm", padding = 0.04}, {hands})
+        BSUI.Row({align = "cm", padding = 0.04}, hands)
     })
 
     return t
