@@ -35,28 +35,11 @@ function Balatrostuck.INIT.Jokers.j_strifespecibus()
             local color = card.ability.extra.hand == "Unassigned" and G.C.JOKER_GREY or G.C.SPECIBUS
             return {
                 main_end = {
-                    {
-                        n = G.UIT.C,
-                        config = {align = "bm", minh = 0.45},
-                        nodes = {
-                            {
-                                n = G.UIT.C,
-                                config = {align = "m", colour = color, r = 0.05, padding = 0.08},
-                                nodes = {
-                                    {
-                                        n = G.UIT.T,
-                                        config = {
-                                            ref_table = card.ability.extra,
-                                            ref_value = "hand",
-                                            colour = G.C.UI.TEXT_LIGHT,
-                                            scale = 0.32 * 0.8
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+                    BSUI.Col({align = "cm", minh = 0.45}, {
+                        BSUI.Row({align = "cm", colour = color, r = 0.05, padding = 0.08}, {
+                            BSUI.Text(card.ability.extra.hand, G.C.UI.TEXT_LIGHT, 0.32 * 0.8, true)
+                        })
+                })}
             }            
         end,
         calculate = function (self, card, context)

@@ -53,13 +53,20 @@ function Balatrostuck.INIT.Spectrals.c_spectral_jailkey()
 
             return {
                 main_end = {
-                    {n=G.UIT.C, config={align = "bm", padding = 0.02}, nodes={
-                        {n=G.UIT.C, config={align = "m", colour = colour, r = 0.05, padding = 0.05}, nodes={
-                            {n=G.UIT.T, config={text = ' '..doublename..' ', colour = G.C.UI.TEXT_LIGHT, scale = 0.3, shadow = true}},
-                        }}
-                    }}
-                },
-               loc_vars = {last_tarot_planet}
+                    BSUI.Col({align = "bm", padding = 0.02}, {
+                        BSUI.Row({align = "m", colour = colour, r = 0.05, padding = 0.05}, {
+                            BSUI.Text(' '..doublename..' ', G.C.UI.TEXT_LIGHT, 0.3, true)
+                    })
+                })},
+
+                -- main_end = {
+                --     {n=G.UIT.C, config={align = "bm", padding = 0.02}, nodes={
+                --         {n=G.UIT.C, config={align = "m", colour = colour, r = 0.05, padding = 0.05}, nodes={
+                --             {n=G.UIT.T, config={text = ' '..doublename..' ', colour = G.C.UI.TEXT_LIGHT, scale = 0.3, shadow = true}},
+                --         }}
+                --     }}
+                -- },
+               --loc_vars = {last_tarot_planet}
             } 
         end,
         loc_txt = {
