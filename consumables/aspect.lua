@@ -180,12 +180,61 @@ function SlabIcon:get_uibox_table(tag_sprite)
   local aspect = G.GAME.BALATROSTUCK.current_aspect or nil
   if aspect then 
 
+    -- Get the aspect card from the centers
     local aspect_card = G.P_CENTERS['c_bstuck_'..aspect]
 
-    self.ability_UIBox_table = generate_card_ui(
+    -- Generate UI table - this is important for structure
+    -- the actual contents we yeet the hell out later
+    local card_ui = generate_card_ui(
       aspect_card,
-      nil, aspect_card:get_formula(aspect_card:level()))
+      nil, aspect_card:get_formula(aspect_card:level()-1))
+      
+    local nodes = {}
+    local ret = {}
 
+    -- use localization trick to recalculate the UI properly
+    localize{
+        type = 'descriptions', 
+        set = 'Aspect', 
+        key = 'c_bstuck_'..aspect, 
+        vars = aspect_card:get_formula(aspect_card:level()), 
+        nodes = ret
+    }
+
+    -- decimate the info_queue
+    card_ui.info = {}
+
+    -- move localization to a nodes table
+    for i=1,#ret do
+      table.insert(nodes, ret[i])
+    end
+
+    -- add the last element of the main card ui - not sure why 
+    -- but this prevents a crash from the Balalala parser
+    nodes[#nodes+1] = (card_ui.main)[#table]
+    
+    -- replace main nodes with recalculated nodes
+    card_ui.main = nodes
+
+    -- values copied from previewing table of a generated name dynatext 
+    -- will need to learn more about what each param does here
+    table.insert(card_ui.name[1].nodes, 1, BSUI.Image(DynaText({
+      y_offset = -0.6,
+      scale = 0.53,
+      W = 1.2927,
+      silent = true,
+      pop_in_rate = 4,
+      maxw = 5,
+      bump = true,
+      H = 0.4399,
+      string = '(lvl.'..aspect_card:level()..') ',
+      pop_in = 0,
+      spacing = 3.84,
+      colours = {G.C.WHITE},
+      shadow = true,
+    })))
+
+    self.ability_UIBox_table = card_ui
   end
   return self
 end
