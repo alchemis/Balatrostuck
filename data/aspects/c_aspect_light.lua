@@ -20,20 +20,6 @@ function Balatrostuck.INIT.Aspects.c_aspect_light()
         cost = 4,
         discovered = true,
         atlas = "HomestuckAspects",
-        loc_vars = function(self, info_queue)
-            art_credit2('akai', 'yokcos', info_queue)
-            local level = G.GAME.BALATROSTUCK.aspect_levels[self.name] or 0
-            local formula = 1 + ((level+1)/2)
-            local current = 1 + (level/2)
-            return {
-                vars = {formula},
-                main_start = {BSUI.Modules.GameText.LevelUp(G.C.UI.TEXT_DARK, level+1)}, -- replace with aspect colors later
-                main_end = (level > 0 and {BSUI.Modules.GameText.CurrentValue({
-                    BSUI.Modules.GameText.XMult(current),
-                    BSUI.Modules.GameText.Inactive(' Mult')
-                })} or {})
-            }
-        end,
         use = function(self, context)
             self:switch_slab()
         end,

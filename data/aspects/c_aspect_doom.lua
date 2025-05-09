@@ -7,8 +7,8 @@ function Balatrostuck.INIT.Aspects.c_aspect_doom()
             text = {
                 'When you use a {C:zodiac}Zodiac{} card',
                 'the corresponding {C:zodiac}Zodiac{} gains',
-                '#1# additional level#3# but has',
-                'a 1 in #2# chance to reset',
+                '#1# additional level#2# but has',
+                'a 1 in #3# chance to reset',
                 'all other Zodiacs to 0'
             }
         },
@@ -29,24 +29,6 @@ function Balatrostuck.INIT.Aspects.c_aspect_doom()
         can_use = function(self)
             return true
         end,
-        loc_vars = function(self, info_queue)
-            art_credit2('akai', 'yokcos', info_queue)
-            local next = self:get_formula(self:level())
-            local current = self:get_formula(self:next_level())
-            return {
-                vars = {
-                    next.amt,
-                    next.chance,
-                    (next.amt ~= 1 and 's' or '')
-                },
-                main_start = {BSUI.Modules.GameText.LevelUp(self:get_level_color(), self:next_level())},
-                main_end = (self:level() > 0 and {BSUI.Modules.GameText.CurrentValue({
-                    BSUI.Modules.GameText.Format(current.amt..' ', G.C.IMPORTANT),
-                    BSUI.Modules.GameText.Inactive('level'..(current.amt ~= 1 and 's' or '')..' and '),
-                    BSUI.Modules.GameText.Chance(current.chance)
-                })} or {})
-            }
-        end
     }
 
 

@@ -19,20 +19,6 @@ function Balatrostuck.INIT.Aspects.c_aspect_time()
         cost = 4,
         discovered = true,
         atlas = "HomestuckAspects",
-        loc_vars = function(self, info_queue)
-            art_credit2('akai', 'yokcos', info_queue)
-            return {
-                vars = {
-                    summation(self:level()+1),
-                    (self:level()+1 ~= 1 and 's' or '')
-                },
-                main_start = {BSUI.Modules.GameText.LevelUp(G.C.UI.TEXT_DARK, self:level()+1)},
-                main_end = (self:level() > 0 and {BSUI.Modules.GameText.CurrentValue({
-                    BSUI.Modules.GameText.Format('+'..self:level(), G.C.BLUE),
-                    BSUI.Modules.GameText.Inactive(' hand'..(self:level() ~= 1 and 's' or ''))
-                })} or {})
-            }
-        end,
         use = function(self, context)
             self:switch_slab()
         end,

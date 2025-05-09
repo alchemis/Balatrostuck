@@ -26,20 +26,6 @@ function Balatrostuck.INIT.Aspects.c_aspect_hope()
         can_use = function(self)
             return true
         end,
-        loc_vars = function(self, info_queue)
-            art_credit2('akai', 'yokcos', info_queue)
-            return {
-                vars = {
-                    self:level()+1,
-                    ((self:level()+1) ~= 1 and 's' or '')
-                },
-                main_start = {BSUI.Modules.GameText.LevelUp(G.C.UI.TEXT_DARK, self:level()+1)},
-                main_end = (self:level() > 0 and {BSUI.Modules.GameText.CurrentValue({
-                    BSUI.Modules.GameText.Format('+'..self:level(), G.C.IMPORTANT),
-                    BSUI.Modules.GameText.Inactive(' card'..(self:level() ~= 1 and 's' or ''))
-                })} or {})
-            }
-        end
     }
 
     Balatrostuck.Slab{

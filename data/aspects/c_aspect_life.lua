@@ -28,21 +28,6 @@ function Balatrostuck.INIT.Aspects.c_aspect_life()
         can_use = function(self)
             return true
         end,
-        loc_vars = function(self, info_queue)
-            art_credit2('akai', 'yokcos', info_queue)
-            return {
-                vars = {
-                    self:level()+2,
-                    (self:level()+1)*2
-                },
-                main_start = {BSUI.Modules.GameText.LevelUp(G.C.UI.TEXT_DARK, self:level()+1)},
-                main_end = (self:level() > 0 and {BSUI.Modules.GameText.CurrentValue({
-                    BSUI.Modules.GameText.Format('+'..self:level()+1, G.C.PARADOX),
-                    BSUI.Modules.GameText.Inactive(' and '),
-                    BSUI.Modules.GameText.Money('$'..self:level()*2)
-                })} or {})
-            }
-        end
     }
 
 

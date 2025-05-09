@@ -74,7 +74,7 @@ return {
                 text = {'{C:inactive}(Currently {C:chips}+#1#{} permament chips{C:inactive})'}
             },
             c_bstuck_leo_current = {
-                text = {'{C:inactive}(Currently {C:money}$#1#{C:inactive})'}
+                text = {'{C:inactive}(Currently {C:money}$#2#{C:inactive})'}
             },
             c_bstuck_virgo_current = {
                 text = {'{C:inactive}(Currently {C:mult}+#1#{C:inactive} Mult)'}
@@ -100,7 +100,47 @@ return {
             c_bstuck_ophiuchus_current = {
                 text = {'{C:inactive}(Currently {C:mult}+#1#{C:inactive} Mult)'}
             }
-
+        },
+        Aspect = {
+            c_bstuck_blood_current = {
+                text = {'{C:inactive}(Currently {C:attention}#1# cards'}
+            },
+            c_bstuck_breath_current = {
+                text = {'{C:inactive}(Currently {C:attention}#1# reroll#2#'}
+            },
+            c_bstuck_doom_current = {
+                text = {'{C:inactive}(Currently {C:attention}#1# {C:inactive}level#2#)'}
+            },
+            c_bstuck_heart_current = {
+                text = {'{C:inactive}(Currently {C:attention}#1# {C:inactive}level#2#)'}
+            },
+            c_bstuck_hope_current = {
+                text = {'{C:inactive}(Currently {C:attention}+#1# {C:inactive}card#2#)'}
+            },
+            c_bstuck_life_current = {
+                text = {'{C:inactive}(Currently {C:paradox}#1# {C:inactive}and {C:money}$#2#{C:inactive})'}
+            },
+            c_bstuck_light_current = {
+                text = {'{C:inactive}(Currently {C:white,X:mult}X#1# {C:inactive}Mult)'}
+            },
+            c_bstuck_mind_current = {
+                text = {'{C:inactive}(Currently {C:attention}#1# {C:inactive}cop#2#)'}
+            },
+            c_bstuck_piss_current = {
+                text = {'{C:inactive}(Currently {C:paradox}#1# {C:inactive}Jokers)'}
+            },
+            c_bstuck_rage_current = {
+                text = {'{C:inactive}(Currently {C:white,X:mult}X#1# {C:inactive}Mult)'}
+            },
+            c_bstuck_space_current = {
+                text = {'{C:attention}+#1# {C:inactive}hand size)'}
+            },
+            c_bstuck_time_current = {
+                text = {'{C:inactive}(Currently {C:blue}+#1# {C:inactive}hand#2# each round)'}
+            },
+            c_bstuck_void_current = {
+                text = {'{C:inactive}(Currently {C:dark_edition}#1# {C:inactive}or fewer)'}
+            }
         },
         zodiacui = {
             Inactive = {

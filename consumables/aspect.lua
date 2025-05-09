@@ -35,28 +35,76 @@ function Balatrostuck.Aspect:get_level_color()
 end
 
 function Balatrostuck.Aspect:get_formula(level)
-  if self.name == 'Blood' then return level+1
+  if self.name == 'Blood' then 
+    return {level+1}
   
   elseif self.name == 'Breath' or
-         self.name == 'Hope' or
-         self.name == 'Mind' then
-    return level
+         self.name == 'Hope' then
+    return {level, level~=1 and 's' or ''}
 
-  elseif self.name == 'Doom' then return {amt = summation(level) + get_grollars(), chance = level+2}
+  elseif self.name == 'Mind' then
+    return {level, level~=1 and 'ies' or 'y'}
+
+  elseif self.name == 'Doom' then
+    return {
+      summation(level) + get_grollars(), 
+      (summation(level) + get_grollars())~=1 and 's' or '',
+      level+2
+    }
 
   elseif self.name == 'Heart' or
          self.name == 'Space' or
          self.name == 'Time' or
          self.name == 'Void' then
-    return summation(level)
+    return {
+      summation(level), 
+      summation(level)~=1 and 's' or ''
+    }
 
-  elseif self.name == 'Life' then return {amt = level+1, money = level*2}
-  elseif self.name == 'Light' then return 1 + level/2
-  elseif self.name == 'Piss' then return summation(level+1)
-  elseif self.name == 'Rage' then return level*0.25
-  else return 0
+  elseif self.name == 'Life' then 
+    return {level+1, level*2}
+
+  elseif self.name == 'Light' then 
+    return {1 + level/2}
+
+  elseif self.name == 'Piss' then 
+    return {summation(level+1)}
+
+  elseif self.name == 'Rage' then 
+    return {level*0.25}
+
+  else return {}
+  
   end
 end
+
+function Balatrostuck.Aspect:loc_vars(info_queue, card)
+  art_credit2('akai', 'yokcos', info_queue)
+
+  local ret = {}
+  local nodes = {}
+
+  localize{
+      type = 'descriptions',
+      set = 'Aspect',
+      key = "c_bstuck_"..(string.lower(self.name)).."_current",
+      vars = self:get_formula(self:level()),
+      nodes = ret
+  }
+
+  for i=1,#ret do
+      table.insert(nodes, BSUI.Row({align = "cm"}, ret[i]))
+  end
+
+  return {
+      vars = self:get_formula(self:next_level()),
+
+      main_start = {BSUI.Modules.GameText.LevelUp(self:get_level_color(), self:next_level() )},
+
+      main_end = self:level() > 0 and {BSUI.Row(BSUI.Config.Basic, nodes)} or {}
+  }
+end
+
 
 Slab = Object:extend()
 function Slab:init(key)

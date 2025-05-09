@@ -23,6 +23,7 @@
 
             elseif _c.name == 'Hope' then return G.C.HOPE
             elseif _c.name == 'Rage' then return G.C.RAGE
+            elseif _c.name == 'Piss' then return G.C.PARADOX
 
             end
         end

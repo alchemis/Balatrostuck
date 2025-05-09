@@ -90,7 +90,7 @@ function Balatrostuck.Zodiac:get_formula(level)
     return {level * 2}
 
   elseif self.name == 'Ophiuchus' then
-    return {level ^ 1.25}
+    return {1.25 ^ level}
 
   else return nil
 

@@ -19,20 +19,6 @@ function Balatrostuck.INIT.Aspects.c_aspect_breath()
         cost = 4,
         discovered = true,
         atlas = "HomestuckAspects",
-        loc_vars = function(self, info_queue)
-            art_credit2('akai', 'yokcos', info_queue)
-            return {
-                vars = {
-                    self:get_formula(self:next_level()),
-                    (self:get_formula(self:next_level()) ~= 1 and 's' or '')
-                },
-                main_start = {BSUI.Modules.GameText.LevelUp(self:get_level_color(), self:next_level())},
-                main_end = (self:level() > 0 and {BSUI.Modules.GameText.CurrentValue({
-                    BSUI.Modules.GameText.Format(self:get_formula(self:level()), G.C.IMPORTANT),
-                    BSUI.Modules.GameText.Inactive(' reroll'..(self:get_formula(self:level()) ~= 1 and 's' or ''))
-                })} or {})
-            }
-        end,
         use = function(self, context)
             self:switch_slab()
         end,
