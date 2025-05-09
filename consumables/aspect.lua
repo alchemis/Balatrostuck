@@ -177,19 +177,16 @@ end
 
 
 function SlabIcon:get_uibox_table(tag_sprite)
-  local name_to_check, loc_vars = self.name, {}
-  if name_to_check == 'Uncommon Tag' then
-  elseif name_to_check == 'Investment Tag' then loc_vars = {self.config.dollars}
-  elseif name_to_check == 'Handy Tag' then loc_vars = {self.config.dollars_per_hand, self.config.dollars_per_hand*(G.GAME.hands_played or 0)}
-  elseif name_to_check == 'Garbage Tag' then loc_vars = {self.config.dollars_per_discard, self.config.dollars_per_discard*(G.GAME.unused_discards or 0)}
-  elseif name_to_check == 'Juggle Tag' then loc_vars = {self.config.h_size}
-  elseif name_to_check == 'Top-up Tag' then loc_vars = {self.config.spawn_jokers}
-  elseif name_to_check == 'Skip Tag' then loc_vars = {self.config.skip_bonus, self.config.skip_bonus*((G.GAME.skips or 0)+1)}
-  elseif name_to_check == 'Orbital Tag' then loc_vars = {
-      (self.ability.orbital_hand == '['..localize('k_poker_hand')..']') and self.ability.orbital_hand or localize(self.ability.orbital_hand, 'poker_hands'), self.config.levels}
-  elseif name_to_check == 'Economy Tag' then loc_vars = {self.config.max}
+  local aspect = G.GAME.BALATROSTUCK.current_aspect or nil
+  if aspect then 
+
+    local aspect_card = G.P_CENTERS['c_bstuck_'..aspect]
+
+    self.ability_UIBox_table = generate_card_ui(
+      aspect_card,
+      nil, aspect_card:get_formula(aspect_card:level()))
+
   end
-  self.ability_UIBox_table = generate_card_ui(G.P_TAGS['tag_handy'], nil, loc_vars, (self.hide_ability) and 'Undiscovered' or 'Tag', nil, (self.hide_ability))
   return self
 end
 

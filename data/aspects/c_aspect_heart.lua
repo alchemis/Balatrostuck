@@ -21,6 +21,12 @@ function Balatrostuck.INIT.Aspects.c_aspect_heart()
         cost = 4,
         discovered = true,
         atlas = "HomestuckAspects",
+        use = function(self, context)
+            self:switch_slab()
+        end,
+        can_use = function(self)
+            return true
+        end,
     }
 
     Balatrostuck.Slab{
