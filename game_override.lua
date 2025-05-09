@@ -197,7 +197,7 @@ end
 
 local draw_ref = Card.draw
 function Card:draw(layer)
-    if self.config.center.animated then
+    if self.config.center.animated and self.config.center.discovered then
         self.animTime = self.animTime or G.TIMERS.REAL
         self.animPos = self.animPos or copy_table(self.config.center.pos)
 

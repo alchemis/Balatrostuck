@@ -49,7 +49,9 @@ return {
                     "a {C:tarot}Tarot{} card is used,",
                     "goes {C:dark_edition}Grimdark{} at {C:attention}+#2#",
                     "{C:inactive}(Currently: {C:attention}+#1#{} hand size)"
-                }    
+                },
+                unlock = {'Unlocked by',
+                'finishing Act 4'}
             },
             j_bstuck_darkscholar_alt = {
                 name = 'Dark Scholar',
@@ -57,7 +59,9 @@ return {
                     "{X:mult,C:white} X#3# {} Mult if a {C:tarot}Tarot{} card",
                     "has been used this round",
                     "otherwise {X:mult,C:white} X#4# {} Mult"
-                    }        
+                    },
+                unlock = {'Unlocked by',
+                'finishing Act 4'}
             }
         },
         Zodiac = {
