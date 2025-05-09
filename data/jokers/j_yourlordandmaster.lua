@@ -9,9 +9,9 @@ function Balatrostuck.INIT.Jokers.j_yourlordandmaster()
         loc_txt = {
             ['name'] = 'YOUR LORD AND MASTER',
             ['text'] = {
-                "{C:caliborn}YOU DO NOT NEED TO KNOW MY WAYS.",
-                "{C:caliborn}MY PUTRID SOUL WILL MAKE A MOCKERY",
-                "{C:caliborn}OF THIS GLORIFIED GAME OF SOLITAIRE."
+                --"{C:caliborn}YOU DO NOT NEED TO KNOW MY WAYS.",
+                --"{C:caliborn}MY PUTRID SOUL WILL MAKE A MOCKERY",
+                --"{C:caliborn}OF THIS GLORIFIED GAME OF SOLITAIRE."
             },
             unlock = {'Unlocked by',
             'finishing Act 6'}
@@ -29,7 +29,14 @@ function Balatrostuck.INIT.Jokers.j_yourlordandmaster()
         loc_vars = function(self, info_queue, card)
             info_queue[#info_queue+1] = {key='warn_bstuck_wip', set='Other'}
             art_credit('akai', info_queue)
-            return {vars = {}}
+            return {
+                vars = {},
+                main_end = {BSUI.Modules.GameText.HomestuckLog({
+                    'YOU DO NOT NEED TO KNOW MY WAYS.',
+                    'MY PUTRID SOUL WILL MAKE A MOCKERY',
+                    'OF THIS GLORIFIED GAME OF SOLITAIRE.'
+                }, G.C.CALIBORN)}
+            }
         end,
         animated = true,
         frames = 250,

@@ -32,14 +32,9 @@ function Balatrostuck.INIT.Jokers.j_strifespecibus()
 
         loc_vars = function(self, info_queue, card)
             art_credit('akai', info_queue)
-            local color = card.ability.extra.hand == "Unassigned" and G.C.JOKER_GREY or G.C.SPECIBUS
+            local colour = card.ability.extra.hand == "Unassigned" and G.C.JOKER_GREY or G.C.SPECIBUS
             return {
-                main_end = {
-                    BSUI.Col({align = "cm", minh = 0.45}, {
-                        BSUI.Row({align = "cm", colour = color, r = 0.05, padding = 0.08}, {
-                            BSUI.Text(card.ability.extra.hand, G.C.UI.TEXT_LIGHT, 0.32 * 0.8, true)
-                        })
-                })}
+                main_end = {BSUI.Modules.GameText.FormatBadge(card.ability.extra.hand, colour)}
             }            
         end,
         calculate = function (self, card, context)

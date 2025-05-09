@@ -23,13 +23,13 @@ function Balatrostuck.INIT.Aspects.c_aspect_breath()
             art_credit2('akai', 'yokcos', info_queue)
             return {
                 vars = {
-                    self:level()+1,
-                    ((self:level()+1) ~= 1 and 's' or '')
+                    self:get_formula(self:next_level()),
+                    (self:get_formula(self:next_level()) ~= 1 and 's' or '')
                 },
-                main_start = {BSUI.Modules.GameText.LevelUp(G.C.UI.TEXT_DARK, self:level()+1)},
+                main_start = {BSUI.Modules.GameText.LevelUp(self:get_level_color(), self:level()+1)},
                 main_end = (self:level() > 0 and {BSUI.Modules.GameText.CurrentValue({
-                    BSUI.Modules.GameText.Format(self:level(), G.C.IMPORTANT),
-                    BSUI.Modules.GameText.Inactive(' reroll'..(self:level() ~= 1 and 's' or ''))
+                    BSUI.Modules.GameText.Format(self:get_formula(self:level()), G.C.IMPORTANT),
+                    BSUI.Modules.GameText.Inactive(' reroll'..(self:get_formula(self:level()) ~= 1 and 's' or ''))
                 })} or {})
             }
         end,

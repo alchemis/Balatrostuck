@@ -45,16 +45,52 @@ BSUI.Modules.GameText.Chance = function (num)
     return BSUI.Modules.GameText.Format(G.C.GAME.probabilities.normal..' in '..num, G.C.GREEN)
 end
 
+BSUI.Modules.GameText.FormatBadge = function (text, colour)
+    return BSUI.Col({align = "cm", minh = 0.45}, {
+        BSUI.Row({align = "cm", colour = colour, r = 0.05, padding = 0.08}, {
+            BSUI.Text(text, G.C.UI.TEXT_LIGHT, BSUI.TextScale*0.8, true)
+        })
+})
+end
+
+BSUI.Modules.GameText.EccheladderRung = function (text, colour, top)
+    local width = top and 4.2 or 4
+    local scale = text == "Poker Face Maintenance Staff" and 0.9 or 1
+    return BSUI.Col({align = "cm", minh = 0.45, minw = width, padding=0}, {
+        BSUI.Row({align = "cm", colour = colour, minw = width, r = nil, padding = 0.1, outline_colour = darken(colour, 0.66), outline = 1.2}, {
+            BSUI.Text(text, G.C.UI.TEXT_LIGHT, BSUI.TextScale*scale, true)
+        })
+    })
+end
+
+BSUI.Modules.GameText.HomestuckLog = function (lines, color)
+    local box_col = HEX('dfdfdf')
+
+    local ret = {}
+
+    for _,line in pairs(lines) do
+        ret[#ret+1] = BSUI.Row({align='bm', padding=0, colour=G.C.CLEAR}, {BSUI.Text(line, color, BSUI.TextScale, false)})
+    end
+
+    return BSUI.Col(BSUI.Config.PanelOutlined('bm', 0.05, box_col, darken(box_col, 0.3), 1), {
+        BSUI.Row({align = "cm", colour = darken(box_col, 0.5), r = 0.05, padding = 0.08}, {
+            BSUI.Text('Open Jokerlog', G.C.UI.TEXT_LIGHT, BSUI.TextScale*0.8, true)
+        }),
+        BSUI.Row(BSUI.Config.Basic, {BSUI.Pad(0, 0.1)}),
+        BSUI.Row(BSUI.Config.Basic, {BSUI.Col(BSUI.Config.Basic, ret)})
+    })
+end
+
 BSUI.Modules.GameText.CurrentValue = function (table)
     local ret = {}
 
-    ret[#ret+1] = BSUI.Modules.GameText.Format('(Currently ', G.C.UI.TEXT_INACTIVE)
+    ret[#ret+1] = BSUI.Modules.GameText.Inactive('(Currently ')
 
     for _,format in pairs(table) do
         ret[#ret+1] = format
     end
 
-    ret[#ret+1] = BSUI.Modules.GameText.Format(')', G.C.UI.TEXT_INACTIVE)
+    ret[#ret+1] = BSUI.Modules.GameText.Inactive(')')
 
     return BSUI.Row(BSUI.Config.Basic, ret)
 end

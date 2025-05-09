@@ -25,7 +25,7 @@ function Balatrostuck.INIT.Aspects.c_aspect_heart()
             art_credit2('akai', 'yokcos', info_queue)
             return {
                 vars = {
-                    summation(self:level()+1)
+                    self:get_formula(self:next_level())
                 },
                 main_start = {BSUI.Modules.GameText.LevelUp(G.C.UI.TEXT_DARK, self:level()+1)},
                 main_end = (self:level() > 0 and {BSUI.Modules.GameText.CurrentValue({
