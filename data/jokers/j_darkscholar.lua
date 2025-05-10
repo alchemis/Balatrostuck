@@ -15,8 +15,8 @@ function Balatrostuck.INIT.Jokers.j_darkscholar()
             }
         },
         pos = {
-            x = 2,
-            y = 0
+            x = 8, -- 7 for negative
+            y = 12
          },
         -- loc_txt is in localization/default.lua
         cost = 10,
@@ -30,11 +30,13 @@ function Balatrostuck.INIT.Jokers.j_darkscholar()
             info_queue[#info_queue + 1] = G.P_CENTERS['e_negative']
             local returntable = {vars = {card.ability.extra.h_size, card.ability.extra.h_max, card.ability.extra.Xmult_up, card.ability.extra.Xmult_down} }
             
+            self.pos = {x = 8, y = 12}
             art_credit('akai', info_queue)
             if card.config.center.discovered then
                 local key, vars
                 if card.edition and card.edition.key == "e_negative" then
                     returntable.key = self.key .. "_alt"
+                    self.pos = {x = 7, y = 12}
                 end
             end
             return returntable
