@@ -179,7 +179,7 @@ end
 
 
 function art_credit(artist_name, info) 
-    if not G.mod_settings.per_card_credits then return end
+    if not G.SETTINGS.bstuck_per_card_credits then return end
 
     local artist = G.bstuck_team[artist_name]
     info[#info+1] = { key = 'art_bstuck_1', set = 'Other', vars = {artist.name, colours={artist.color}}}
@@ -187,7 +187,7 @@ end
 
 
 function art_credit2(artist_name1, artist_name2, info) 
-    if not G.mod_settings.per_card_credits then return end
+    if not G.SETTINGS.bstuck_per_card_credits then return end
 
     local artist1 = G.bstuck_team[artist_name1]
     local artist2 = G.bstuck_team[artist_name2]

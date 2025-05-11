@@ -1,11 +1,10 @@
-SMODS.current_mod.extra_tabs = function() --Credits tab
+SMODS.current_mod.extra_tabs = function()
     local scale = 0.42
     local imageScale = 2.4
     local balastuck = Sprite(0,0,(1*469/98)*imageScale,imageScale,G.ASSET_ATLAS["bstuck_logo"], {x=0, y=0})
     balastuck.states.drag.can = false
 
-
-    local function dept_Direction() 
+    local function dept_Direction()
         return BSUI.Row( BSUI.Config.Panel('cm', 0.125, G.C.BLACK, nil, 0.1), {
             BSUI.Col( BSUI.Config.Basic, {
                 BSUI.Modules.Credits.Header(G.C.MIND, 'Direction', scale),
@@ -64,7 +63,7 @@ SMODS.current_mod.extra_tabs = function() --Credits tab
         })
     end
 
-    local function dept_Programming() 
+    local function dept_Programming()
         return BSUI.Row( BSUI.Config.Panel('cm', 0.125, G.C.BLACK, nil, 0.1), {
             BSUI.Col( BSUI.Config.Basic, {
                 BSUI.Modules.Credits.Header(G.C.BREATH, 'Programming', scale),
@@ -107,10 +106,10 @@ SMODS.current_mod.extra_tabs = function() --Credits tab
                 BSUI.Row( BSUI.Config.Basic, {
                     BSUI.Modules.Credits.Names({
                         'Balatro by LocalThunk',
-                        'Homestuck by Andrew Hussie', 
-                        'Cool and New Webcomic by o', 
+                        'Homestuck by Andrew Hussie',
+                        'Cool and New Webcomic by o',
                         'Ligmastuck by Ymi',
-                        'Vast Error by DECONRECONSTRUCTION', 
+                        'Vast Error by DECONRECONSTRUCTION',
                         'Karkat Goes to a Convention by Cole'
                     }, scale*0.75),
                 })
@@ -119,36 +118,114 @@ SMODS.current_mod.extra_tabs = function() --Credits tab
     end
 
     return {
-        label = "Credits",
-        tab_definition_function = function()
-        return BSUI.Root(BSUI.Config.Basic, {
-            BSUI.Row(BSUI.Config.Basic, {BSUI.Image(balastuck)}),
-            BSUI.Row(BSUI.Config.Basic, {
-                BSUI.Col( BSUI.Config.Basic, {
-                    dept_Direction(),
-                    BSUI.Row( BSUI.Config.Basic, {BSUI.Pad(0.0, 0.125)}),
-                    dept_MusicSFX(),
-                    BSUI.Row( BSUI.Config.Basic, {BSUI.Pad(0.0, 0.125)}),
-                    dept_Trailer()
-                }),
-    
-                BSUI.Col( BSUI.Config.Basic, {BSUI.Pad(0.125, 0.0)}),
-    
-                BSUI.Col( BSUI.Config.Basic, {
-                    dept_Artwork(),
-                    BSUI.Row( BSUI.Config.Basic, {BSUI.Pad(0.0, 0.125)}),
-                    dept_Programming()
-                }),
-    
-                BSUI.Col( BSUI.Config.Basic, {BSUI.Pad(0.125, 0.0)}),
-    
-                BSUI.Col( BSUI.Config.Basic, {
-                    dept_Playtesting(),
-                    BSUI.Row( BSUI.Config.Basic, {BSUI.Pad(0.0, 0.125)}),
-                    dept_Acknowledgements()
-                }),
-            }) 
-        })
-        end
+        {
+            label = "Settings",
+            tab_definition_function = function ()
+                return BSUI.Root(BSUI.Config.Basic, {
+                    BSUI.Row(BSUI.Config.Basic, {create_toggle({
+                        label = 'Per card Credits',
+                        ref_table = G.SETTINGS,
+                        ref_value = 'bstuck_per_card_credits',
+                        info = {'Display artist credits with each card\'s information'}
+                    })}),
+                    BSUI.PadRow(0.2),
+                    BSUI.Row(BSUI.Config.Basic, {create_option_cycle({
+                        options = {'Regular', 'Reduced', 'None'},
+                        label = 'Animation Mode',
+                        opt_callback = 'bstuck_animation_change',
+                        ref_table = G.SETTINGS,
+                        ref_value = 'bstuck_animation_mode',
+                        info = {'Display animated and photosensitive content'}
+                    })}),
+                    BSUI.PadRow(0.2),
+                    BSUI.Row(BSUI.Config.Basic, {create_option_cycle({
+                        options = {'1X', '0.75X', '0.5X', '0.33X'},
+                        label = 'Animation Speed',
+                        opt_callback = 'bstuck_animation_speed_change',
+                        ref_table = G.SETTINGS,
+                        ref_value = 'bstuck_animation_speed',
+                        info = {'Rate of animation for cards'}
+                    })}),
+                    BSUI.PadRow(0.2),
+                    BSUI.Row(BSUI.Config.Basic, {create_option_cycle({
+                        current_option = G.SETTINGS.bstuck_jocker_limit-7,
+                        options = {'128', '256', '512', '1024', '2048', 'Unlimited'},
+                        label = 'Jocker Limit',
+                        opt_callback = 'bstuck_jocker_limit_change',
+                        ref_table = G.SETTINGS,
+                        ref_value = 'bstuck_jocker_limit',
+                        info = {'Amount of spawnable Jockers before the game forces a crash'}
+                    })}),
+                })
+            end
+        },
+
+        -- reference for create_toggle(args)
+        -- args.active_colour = args.active_colour or G.C.RED
+        -- args.inactive_colour = args.inactive_colour or G.C.BLACK
+        -- args.w = args.w or 3
+        -- args.h = args.h or 0.5
+        -- args.scale = args.scale or 1
+        -- args.label = args.label or 'TEST?'
+        -- args.label_scale = args.label_scale or 0.4
+        -- args.ref_table = args.ref_table or {}
+        -- args.ref_value = args.ref_value or 'test'
+        -- args.callback - function to call
+      
+        -- reference for create_option_cycle(args)
+        -- args = args or {}
+        -- args.colour = args.colour or G.C.RED
+        -- args.options = args.options or {
+        --   'Option 1',
+        --   'Option 2'
+        -- }
+        -- args.current_option = args.current_option or 1
+        -- args.current_option_val = args.options[args.current_option]
+        -- args.opt_callback = args.opt_callback or nil (i think this is the function callback)
+        -- args.scale = args.scale or 1
+        -- args.ref_table = args.ref_table or nil
+        -- args.ref_value = args.ref_value or nil
+        -- args.w = (args.w or 2.5)*args.scale
+        -- args.h = (args.h or 0.8)*args.scale
+        -- args.text_scale = (args.text_scale or 0.5)*args.scale
+        -- args.l = '<'
+        -- args.r = '>'
+        -- args.focus_args = args.focus_args or {}
+        -- args.focus_args.type = 'cycle'
+
+        {
+            label = "Credits",
+            tab_definition_function = function()
+            return BSUI.Root(BSUI.Config.Basic, {
+                BSUI.Row(BSUI.Config.Basic, {BSUI.Image(balastuck)}),
+                BSUI.Row(BSUI.Config.Basic, {
+                    BSUI.Col( BSUI.Config.Basic, {
+                        dept_Direction(),
+                        BSUI.Row( BSUI.Config.Basic, {BSUI.Pad(0.0, 0.125)}),
+                        dept_MusicSFX(),
+                        BSUI.Row( BSUI.Config.Basic, {BSUI.Pad(0.0, 0.125)}),
+                        dept_Trailer()
+                    }),
+
+                    BSUI.Col( BSUI.Config.Basic, {BSUI.Pad(0.125, 0.0)}),
+
+                    BSUI.Col( BSUI.Config.Basic, {
+                        dept_Artwork(),
+                        BSUI.Row( BSUI.Config.Basic, {BSUI.Pad(0.0, 0.125)}),
+                        dept_Programming()
+                    }),
+
+                    BSUI.Col( BSUI.Config.Basic, {BSUI.Pad(0.125, 0.0)}),
+
+                    BSUI.Col( BSUI.Config.Basic, {
+                        dept_Playtesting(),
+                        BSUI.Row( BSUI.Config.Basic, {BSUI.Pad(0.0, 0.125)}),
+                        dept_Acknowledgements()
+                    }),
+                })
+            })
+            end
+            },
+
     }
 end
