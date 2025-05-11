@@ -56,7 +56,8 @@ function Balatrostuck.INIT.Jokers.j_twinarmageddons()
             end
         end,
         set_card_type_badge = function(self, card, badges)
-            badges[1] = create_badge(localize('k_rare'), cool2tuff, nil, 1.2)
+            local colour = G.SETTINGS.bstuck_animation_mode == 1 and cool2tuff or G.C.RED
+            badges[1] = create_badge(localize('k_rare'), colour, nil, 1.2)
         end
     }
 end

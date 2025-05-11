@@ -197,12 +197,17 @@ end
 
 local draw_ref = Card.draw
 function Card:draw(layer)
-    if self.config.center.animated and self.config.center.discovered then
+    -- why did you make this setting in this way akai /hj
+    local ihatethis = {1,0.75,0.5,0.33}
+    local animScale = ihatethis[G.SETTINGS.bstuck_animation_speed or 1]
+
+
+    if self.config.center.animated and self.config.center.discovered and not ((G.SETTINGS.bstuck_animation_mode == 2 and self.config.center.photosensitive )or G.SETTINGS.bstuck_animation_mode == 3) then
         self.animTime = self.animTime or G.TIMERS.REAL
         self.animPos = self.animPos or copy_table(self.config.center.pos)
 
         -- per frame
-        if self.animTime + (1/self.config.center.animation_speed) <= G.TIMERS.REAL then
+        if self.animTime + (1/self.config.center.animation_speed / animScale) <= G.TIMERS.REAL then
             if self.config.center.dimensions then
                 self.animPos.x = self.animPos.x + 1
                 if self.animPos.x >= self.config.center.dimensions.x then
