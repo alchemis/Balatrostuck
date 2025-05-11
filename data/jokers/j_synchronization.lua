@@ -11,8 +11,9 @@ function Balatrostuck.INIT.Jokers.j_synchronization()
         loc_txt = {
             ['name'] = 'Synchronization',
             ['text'] = {
-                [1] = '{C:white,X:mult}X#1#{} Mult if {C:attention}2 face cards{}',
-                [2] = 'have been destroyed this {C:attention}ante'
+                '{C:white,X:mult}X#1#{} Mult after {C:attention}2 face cards{}',
+                'have been destroyed this {C:attention}ante',
+                '{C:inactive}#2#'
             }
         },
         pos = {
@@ -28,7 +29,13 @@ function Balatrostuck.INIT.Jokers.j_synchronization()
 
         loc_vars = function(self, info_queue, card)
             art_credit('akai', info_queue)
-            return {vars = {card.ability.extra.Xmult}}
+            local string = card.ability.extra.faces < 2 and 2-card.ability.extra.faces..' remaining' or 'Active!'
+            return {
+                vars = {
+                    card.ability.extra.Xmult,
+                    string
+                }
+            }
         end,
 
         calculate = function(self, card, context)
