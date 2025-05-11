@@ -8,10 +8,9 @@ function Balatrostuck.INIT.Jokers.j_typheus()
         loc_txt = {
             ['name'] = 'Typheus',
             ['text'] = {
-                [1] = 'Debuffed cards act',
-                [2] = 'as all enhancements,',
-                [3] = 'debuffs all held ',
-                [4] = 'cards {C:attention}each hand{}'
+                'All cards inside {C:attention}packs',
+                'and in the {C:attention}shop{} always',
+                'spawn with an {C:dark_edition}Edition'
             }
         },
         pos = {
