@@ -22,7 +22,7 @@ function Balatrostuck.INIT.Jokers.j_twinarmageddons()
         loc_txt = {
             ['name'] = 'Twin Armageddons',
             ['text'] = {
-                [1] = 'If {C:attention}played hand is',
+                [1] = 'If {C:attention}played hand{} is',
                 [2] = '{C:attention}#1#{}, played cards',
                 [3] = 'give {C:red}Mult{} equal to their',
                 [4] = "{C:blue}Chips{} value when scored"
