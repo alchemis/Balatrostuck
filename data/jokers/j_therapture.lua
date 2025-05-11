@@ -10,9 +10,11 @@ function Balatrostuck.INIT.Jokers.j_therapture()
         loc_txt = {
             ['name'] = 'The Rapture',
             ['text'] = {
-                [1] = "Destroys played cards after scoring. Each destroyed",
-                [2] = "scoring card adds {C:white,X:mult}X#1#{}. If you sell this Joker you lose.",
-                [3] = "{C:inactive}(Currently {C:white,X:mult}X#2#{C:inactive} Mult)"
+                'This Joker gains {C:white,X:mult}X#1#{} Mult',
+                'for each {C:attention}played card{}, all',
+                'played cards are {E:2,C:red}destroyed',
+                '{E:2,C:red}Sell this card to Game Over',
+                '{C:inactive}(Currently {C:white,X:mult}X#2# {C:inactive} Mult)'
             },
             unlock = {'Unlocked by',
             'finishing Act 2'}
