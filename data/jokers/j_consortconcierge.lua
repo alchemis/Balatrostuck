@@ -24,7 +24,7 @@ function Balatrostuck.INIT.Jokers.j_consortconcierge()
             y = 1
          },
         cost = 4,
-        rarity = 1,
+        rarity = 2,
         blueprint_compat = false,
         eternal_compat = true,
         unlocked = false,
