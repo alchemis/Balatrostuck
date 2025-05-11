@@ -19,8 +19,8 @@ function Balatrostuck.INIT.Jokers.j_hotdogjuggler()
                     'finishing Act 1'}
         },
         pos = {
-            x = 2,
-            y = 0
+            x = 6,
+            y = 12
          },
         cost = 5,
         rarity = 1,
