@@ -4,7 +4,8 @@ function Balatrostuck.INIT.Jokers.j_beyondcanon()
         name = "Beyond Canon",
         key = "beyondcanon",
         config = { extra = {
-            Xmult = 2
+            Xmult = 2,
+            banned_hands = {}
         }},
         loc_txt = {
             ['name'] = 'Beyond Canon',
@@ -35,7 +36,23 @@ function Balatrostuck.INIT.Jokers.j_beyondcanon()
         end, 
 
         calculate = function (self, card, context)
+            if context.debuff_hand then
+                for i=1, #card.ability.extra.banned_hands do
+                    if context.scoring_name == card.ability.extra.banned_hands[i] then
+                        return {
+                            debuff_text = 'Poker hands previously played this ante are not allowed.',
+                            debuff = true
+                        }
+                    end
+                end
+            end
+            
+            if context.end_of_round and context.cardarea == G.jokers and G.GAME.blind.boss then
+                card.ability.extra.banned_hands = {}
+            end
+
             if context.cardarea == G.jokers and context.joker_main then
+                card.ability.extra.banned_hands[#card.ability.extra.banned_hands+1] = context.scoring_name
                 return {
                     message = localize { type = 'variable', key = 'a_xmult', vars = { card.ability.extra.Xmult^G.GAME.round_resets.ante } },
                     Xmult_mod = card.ability.extra.Xmult^G.GAME.round_resets.ante,
