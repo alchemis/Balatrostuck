@@ -9,9 +9,8 @@ function Balatrostuck.INIT.Jokers.j_whitequeen()
         loc_txt = {
             ['name'] = 'White Queen',
             ['text'] = {
-                [1] = "When a Queen of Diamonds",
-                [2] = "is scored give it a gold",
-                [3] = "seal and destroy this card"
+                'Played {C:attention}Queens{} of {C:diamonds}Diamonds',
+                'gain a {C:money}Gold Seal{}'
             },
             unlock = {'Unlocked by',
                     'finishing Act 1'}
