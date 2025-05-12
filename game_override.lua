@@ -200,6 +200,10 @@ function Card:draw(layer)
     -- why did you make this setting in this way akai /hj
     local ihatethis = {1,0.75,0.5,0.33}
     local animScale = ihatethis[G.SETTINGS.bstuck_animation_speed or 1]
+    
+    if self.config.center.key == 'j_bstuck_darkscholar' and (self.edition and self.edition.negative) and self.config.center.discovered then
+        self.children.center:set_sprite_pos({x=7,y=12})
+    end
 
 
     if self.config.center.animated and self.config.center.discovered and not ((G.SETTINGS.bstuck_animation_mode == 2 and self.config.center.photosensitive )or G.SETTINGS.bstuck_animation_mode == 3) then

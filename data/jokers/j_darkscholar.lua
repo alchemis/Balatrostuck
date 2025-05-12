@@ -43,13 +43,13 @@ function Balatrostuck.INIT.Jokers.j_darkscholar()
         end,
 
         remove_from_deck = function(self, card, from_debuff)
-            if card.edition.key ~= "e_negative" then
+            if card.edition and card.edition.negative then
                 G.hand:change_size(-card.ability.extra.h_size)
             end
         end,
 
         calculate = function(self, card, context)
-            if context.using_consumeable and not (card.edition and card.edition.key == "e_negative") and context.consumeable.ability.set == 'Tarot' then
+            if context.using_consumeable and not (card.edition and card.edition.key == "e_negative") and context.consumeable.ability.set == 'Tarot' and not context.blueprint then
                 card.ability.extra.h_size = card.ability.extra.h_size + 1
                 G.hand:change_size(1)
 
@@ -60,6 +60,8 @@ function Balatrostuck.INIT.Jokers.j_darkscholar()
                     G.hand:change_size(-card.ability.extra.h_size)
                     card.ability.extra.h_size = 0
                     return {message = "Grimdark!", colour = G.C.DARK_EDITION}
+                else
+                    card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize{type = 'variable', key = 'a_handsize', vars = {card.ability.extra.h_size}}})
                 end
             end
 
