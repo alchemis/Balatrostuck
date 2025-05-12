@@ -13,8 +13,8 @@ function Balatrostuck.INIT.Jokers.j_conventioncenter()
             }
         },
         pos = {
-            x = 2,
-            y = 0
+            x = 9,
+            y = 12
          },
         cost = 3,
         rarity = 1,

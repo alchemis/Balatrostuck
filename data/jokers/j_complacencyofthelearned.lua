@@ -22,8 +22,8 @@ function Balatrostuck.INIT.Jokers.j_complacencyofthelearned()
             'finishing Act 4'}
         },
         pos = {
-            x = 2,
-            y = 0
+            x = 9,
+            y = 12
          },
         cost = 6,
         rarity = 2,
