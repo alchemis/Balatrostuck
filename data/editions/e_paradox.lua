@@ -37,7 +37,7 @@ function Balatrostuck.INIT.Editions.e_paradox()
                 end
 
                 -- deletion
-                if not next(SMODS.find_card('j_bstuck_biscuits')) then
+                if not next(SMODS.find_card('j_bstuck_biscuits')) and not (card.ability.consumeable and next(SMODS.find_card('j_bstuck_oldsecret'))) then
                     if context.cardarea == G.hand or (context.cardarea ~= G.deck and context.cardarea ~= G.discard) then
                         G.E_MANAGER:add_event(Event({
                             func = function()

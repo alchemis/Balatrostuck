@@ -26,6 +26,26 @@ function Balatrostuck.INIT.Jokers.j_oldsecret()
         eternal_compat = true,
         unlocked = false,
         atlas = 'HomestuckJokers',
+        calculate = function(self,card,context)
+            if context.end_of_round and context.cardarea == G.jokers then
+                local _pool = {}
+                for i=1, #G.consumeables.cards do
+                    if G.consumeables.cards[i].edition == nil then
+                        _pool[#_pool+1] = G.consumeables.cards[i]
+                    end
+                end
+                if #_pool >= 1 then
+                    local _card = pseudorandom_element(_pool,pseudoseed('oldsecret')) 
+                    G.E_MANAGER:add_event(Event({
+                        func = function()
+                            _card:set_edition('e_bstuck_paradox',true)
+                            card:juice_up()
+                            return true
+                        end
+                    }))
+                end
+            end
+        end,
         check_for_unlock = function(self,args)
             if args.type == 'bstuck_apple_eaten' then
                 unlock_card(self)
