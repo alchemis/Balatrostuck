@@ -281,6 +281,13 @@ SMODS.Booster:take_ownership_by_kind('Buffoon', {
 SMODS.Booster:take_ownership_by_kind('Standard', {
     create_card = function(self, card, i)
         local _key = nil
+        local _edition = poll_edition('standard_edition'..G.GAME.round_resets.ante, 2, true)
+        local _seal = SMODS.poll_seal({mod = 10})
+        if G.GAME.selected_back.effect.center.key == 'b_bstuck_prospitan' then
+            _edition = 'e_bstuck_paradox'
+        end
+
+
         if next(SMODS.find_card('j_bstuck_clownincar')) then
             local _pool = {}
             local _suits = {}
@@ -293,11 +300,11 @@ SMODS.Booster:take_ownership_by_kind('Standard', {
                 c_bstuck_libra = "7",
                 c_bstuck_scorpio = "8",
                 c_bstuck_sagittarius = "9",
-                c_bstuck_capricorn = "10",
-                c_bstuck_aquarius = "Jack",
-                c_bstuck_pisces = "Queen",
-                c_bstuck_ophiuchus = "King",
-                c_bstuck_aries = "Ace"
+                c_bstuck_capricorn = "T",
+                c_bstuck_aquarius = "J",
+                c_bstuck_pisces = "Q",
+                c_bstuck_ophiuchus = "K",
+                c_bstuck_aries = "A"
             }
 
             for k,v in pairs(SMODS.Suits) do
@@ -314,17 +321,19 @@ SMODS.Booster:take_ownership_by_kind('Standard', {
 
             
             if #_pool > 0 then
-                _key = pseudorandom_element(_pool,pseudoseed('Clown'))
+                local _ehancement = SMODS.poll_enhancement({}) or 'c_base'
+                local _front = pseudorandom_element(_pool,pseudoseed('Clown'))
+                local _card = Card(G.jokers.T.x + G.jokers.T.w/2, G.jokers.T.y, G.CARD_W, G.CARD_H, G.P_CARDS[_front], G.P_CENTERS[_ehancement],{playing_card = playing_card})            
+                _card:set_edition(_edition)
+                _card:set_seal(_seal)
+                return _card
             end
         end
         
-        local _edition = poll_edition('standard_edition'..G.GAME.round_resets.ante, 2, true)
-        if G.GAME.selected_back.effect.center.key == 'b_bstuck_prospitan' then
-            _edition = 'e_bstuck_paradox'
-        end
+        
+
         
         
-        local _seal = SMODS.poll_seal({mod = 10})
         return {key = _key, set = (pseudorandom(pseudoseed('stdset'..G.GAME.round_resets.ante)) > 0.6) and "Enhanced" or "Base", edition = _edition, seal = _seal, area = G.pack_cards, skip_materialize = true, soulable = true, key_append = "sta"}
     end,
    true
