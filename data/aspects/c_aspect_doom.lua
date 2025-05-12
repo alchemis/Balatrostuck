@@ -5,11 +5,15 @@ function Balatrostuck.INIT.Aspects.c_aspect_doom()
         loc_txt = {
             name = "Doom",
             text = {
-                'When you use a {C:zodiac}Zodiac{} card',
-                'the corresponding {C:zodiac}Zodiac{} gains',
-                '#1# additional level#2# but has',
-                'a 1 in #3# chance to reset',
-                'all other Zodiacs to 0'
+                '{C:zodiac}Zodiac{} cards give {C:green}#1#{} additional',
+                'level#2# and have a {C:green}1 in #3#',
+                'chance to reset all other',
+                '{C:zodiac}Zodiacs{} to {C:red}level 0{} when used'
+                -- 'When you use a {C:zodiac}Zodiac{} card',
+                -- 'the corresponding {C:zodiac}Zodiac{} gains',
+                -- '#1# additional level#2# but has',
+                -- 'a 1 in #3# chance to reset',
+                -- 'all other Zodiacs to 0'
             }
         },
         pos = {

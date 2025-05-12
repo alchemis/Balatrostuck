@@ -113,7 +113,7 @@ return {
                 text = {'{C:inactive}(Currently {C:attention}#1# reroll#2#'}
             },
             c_bstuck_doom_current = {
-                text = {'{C:inactive}(Currently {C:attention}#1# {C:inactive}level#2#)'}
+                text = {'{C:inactive}(Currently {C:green}#1# {C:inactive}level#2# and {C:green}1 in #3#{C:inactive})'}
             },
             c_bstuck_heart_current = {
                 text = {'{C:inactive}(Currently {C:attention}#1# {C:inactive}level#2#)'}
