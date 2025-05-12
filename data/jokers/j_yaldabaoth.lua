@@ -10,11 +10,8 @@ function Balatrostuck.INIT.Jokers.j_yaldabaoth()
         loc_txt = {
             ['name'] = 'Yaldabaoth',
             ['text'] = {
-                [1] = 'Gains {C:white,X:mult}X#1#{} Mult per',
-                [2] = 'unused {C:red}discard{} at',
-                [3] = 'the end of round',
-                [4] = '{C:inactive}Resets on discard',
-                [5] = '{C:inactive}(Currently: {C:white,X:mult}X#2#{} {C:inactive}Mult)'
+                '{C:attention}+5{} levels in',
+                'current {C:aspect}Aspect'
             }
         },
         pos = {
