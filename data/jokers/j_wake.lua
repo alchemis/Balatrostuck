@@ -4,16 +4,18 @@ function Balatrostuck.INIT.Jokers.j_wake()
         key = "wake",
         config = {
             extra = {
+                xmult_mod = 0.2,
+                hands = 2
             }
         },
         loc_txt = {
             ['name'] = 'Wake',
             ['text'] = {
-                'Gives {C:white,X:mult}X0.2{} Mult',
+                'Gives {C:white,X:mult}X#1#{} Mult',
                 'for each remaining',
                 '{C:attention}hand{}, discarded',
                 '{C:attention}Jacks{} give {C:blue}+2{} hands',
-                '{C:inactive}(Currently {C:white,X:mult}X0 {C:inactive} Mult)'
+                '{C:inactive}(Currently {C:white,X:mult}X#2# {C:inactive} Mult)'
 
                 -- 'Discarded Jacks',
                 -- 'give {C:blue}+2{} hands,',
@@ -29,8 +31,15 @@ function Balatrostuck.INIT.Jokers.j_wake()
             
         },
         loc_vars = function (self, info_queue, card) 
-            info_queue[#info_queue + 1] = G.P_CENTERS['e_bstuck_paradox']
             art_credit('akai', info_queue)
+            return {
+                vars = {
+                    card.ability.extra.xmult_mod,
+                    1 + (card.ability.extra.xmult_mod * G.GAME.current_round.hands_left),
+                    card.ability.extra.hands
+
+                }
+            }
         end,
         pos = {
             x = 8,
@@ -42,6 +51,19 @@ function Balatrostuck.INIT.Jokers.j_wake()
         eternal_compat = true,
         unlocked = false,
         atlas = 'HomestuckJokers',
+        calculate = function(self,card,context)
+            if context.joker_main then
+                return {
+                    xmult = 1 + (card.ability.extra.xmult_mod * G.GAME.current_round.hands_left),
+                    card = card
+                }
+            end
+
+            if context.discard and context.other_card:get_id() == 11 then
+                ease_hands_played(card.ability.extra.hands)
+                card_eval_status_text(context.blueprint_card or card, 'extra', nil, nil, nil, {message = localize{type = 'variable', key = 'a_hands', vars = {card.ability.extra.hands}}})
+            end
+        end,
         check_for_unlock = function(self,args)
             if args.type == 'bstuck_descend' then
                 unlock_card(self)
