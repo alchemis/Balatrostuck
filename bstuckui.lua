@@ -55,10 +55,14 @@ SMODS.current_mod.extra_tabs = function()
                 BSUI.Modules.Credits.Header(G.C.LIGHT, 'Artwork', scale),
                 BSUI.Row( BSUI.Config.Basic, {BSUI.Pad(0.0, 0.12)}),
                 BSUI.Row( BSUI.Config.Basic, {
-                    BSUI.Modules.Credits.Names({'Akai', 'Yokcos', 'garb', 'Baqly'}, scale),
+                    BSUI.Modules.Credits.Names({'Akai', 'Yokcos',}, scale),
                     BSUI.Col( BSUI.Config.Basic, {BSUI.Pad(0.2, 0.0)}),
-                    BSUI.Modules.Credits.Names({'bconlon', 'Lyman', 'Miser', 'Delirium'}, scale)
+                    BSUI.Modules.Credits.Names({'garb', 'Baqly', 'bconlon'}, scale),
+                    BSUI.Col( BSUI.Config.Basic, {BSUI.Pad(0.2, 0.0)}),
+                    BSUI.Modules.Credits.Names({'Lyman', 'Miser', 'Delirium'}, scale)
                 }),
+                BSUI.Row( BSUI.Config.Basic, {BSUI.Pad(0.0, 0.075)}),
+                BSUI.Row( BSUI.Config.Basic, {BSUI.Modules.Credits.Name('SagaciousCejai', scale*0.88)}),
             })
         })
     end
@@ -69,15 +73,18 @@ SMODS.current_mod.extra_tabs = function()
                 BSUI.Modules.Credits.Header(G.C.BREATH, 'Programming', scale),
                 BSUI.Row( BSUI.Config.Basic, {BSUI.Pad(0.0, 0.12)}),
                 BSUI.Row( BSUI.Config.Basic, {
-                    BSUI.Modules.Credits.Names({'Akai', 'garb', 'Victin'}, scale),
+                    BSUI.Modules.Credits.Names({'Akai', 'garb',}, scale),
                     BSUI.Col( BSUI.Config.Basic, {BSUI.Pad(0.2, 0.0)}),
-                    BSUI.Modules.Credits.Names({'bconlon', 'Yokcos', 'Delirium'}, scale)
+                    BSUI.Modules.Credits.Names({ 'Victin', 'bconlon'}, scale),
+                    BSUI.Col( BSUI.Config.Basic, {BSUI.Pad(0.2, 0.0)}),
+                    BSUI.Modules.Credits.Names({'Yokcos', 'Delirium'}, scale)
                 }),
                 BSUI.Row( BSUI.Config.Basic, {BSUI.Pad(0.0, 0.075)}),
-                BSUI.Row( BSUI.Config.Basic, {BSUI.Modules.Credits.Name('CampfireCollective', scale*0.88)}),
-                BSUI.Row( BSUI.Config.Basic, {BSUI.Pad(0.0, 0.125)}),
-                BSUI.Row( BSUI.Config.Basic, {BSUI.Modules.Credits.Name('cozyGalvinism', scale)}),
-                BSUI.Row( BSUI.Config.Basic, {BSUI.Pad(0.0, 0.1)}),
+                BSUI.Row( BSUI.Config.Basic, {
+                    BSUI.Modules.Credits.Names({'CampfireCollective', 'cozyGalvinism'}, scale*0.88),
+                    BSUI.Col( BSUI.Config.Basic, {BSUI.Pad(0.2, 0.0)}),
+                    BSUI.Modules.Credits.Names({'lord-ruby', 'dangerbites'}, scale*0.88),
+                }),
             })
         })
     end
@@ -88,12 +95,16 @@ SMODS.current_mod.extra_tabs = function()
                 BSUI.Modules.Credits.Header(G.C.BLOOD, 'Playtesting', scale),
                 BSUI.Row( BSUI.Config.Basic, {BSUI.Pad(0.0, 0.12)}),
                 BSUI.Row( BSUI.Config.Basic, {
-                    BSUI.Modules.Credits.Names({'JadedDraconevix', 'conchors', 'Chloe (Teki)'}, scale*0.9),
+                    BSUI.Modules.Credits.Names({'conchors', 'Victin'}, scale*0.9),
                     BSUI.Col( BSUI.Config.Basic, {BSUI.Pad(0.2, 0.0)}),
-                    BSUI.Modules.Credits.Names({'Miser', 'Snowroom', 'Victin'}, scale*0.9)
+                    BSUI.Modules.Credits.Names({'Miser', 'Snowroom'}, scale*0.9),
+                    BSUI.Col( BSUI.Config.Basic, {BSUI.Pad(0.2, 0.0)}),
+                    BSUI.Modules.Credits.Names({'Chloe (Teki)', 'pescia'}, scale*0.9)
                 }),
                 BSUI.Row( BSUI.Config.Basic, {BSUI.Pad(0.0, 0.075)}),
                 BSUI.Row( BSUI.Config.Basic, {BSUI.Modules.Credits.Name('SagaciousCejai', scale*0.88)}),
+                BSUI.Row( BSUI.Config.Basic, {BSUI.Pad(0.0, 0.1)}),
+                BSUI.Row( BSUI.Config.Basic, {BSUI.Modules.Credits.Name('JadedDraconevix', scale*0.88)})
             }),
         })
     end
