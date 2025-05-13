@@ -1,5 +1,5 @@
 SMODS.current_mod.extra_tabs = function()
-    local scale = 0.42
+    local scale = BSUI.TextScale*1.2
     local imageScale = 2.4
     local balastuck = Sprite(0,0,(1*469/98)*imageScale,imageScale,G.ASSET_ATLAS["bstuck_logo"], {x=0, y=0})
     balastuck.states.drag.can = false
@@ -27,6 +27,8 @@ SMODS.current_mod.extra_tabs = function()
                 BSUI.Modules.Credits.Header(G.C.RAGE, ' Music / SFX ', scale),
                 BSUI.Row( BSUI.Config.Basic, {BSUI.Pad(0.0, 0.12)}),
                 BSUI.Row( BSUI.Config.Basic, {BSUI.Modules.Credits.Name('Delirium', scale)}),
+                BSUI.Row( BSUI.Config.Basic, {BSUI.Pad(0.0, 0.12)}),
+                BSUI.Row( BSUI.Config.Basic, {BSUI.Modules.Credits.Name('dangerbites', scale)}),
                 BSUI.Row( BSUI.Config.Basic, {BSUI.Pad(0.0, 0.1)}),
             })
         })
@@ -63,6 +65,7 @@ SMODS.current_mod.extra_tabs = function()
                 }),
                 BSUI.Row( BSUI.Config.Basic, {BSUI.Pad(0.0, 0.075)}),
                 BSUI.Row( BSUI.Config.Basic, {BSUI.Modules.Credits.Name('SagaciousCejai', scale*0.88)}),
+                BSUI.Row( BSUI.Config.Basic, {BSUI.Pad(0.0, 0.1)}),
             })
         })
     end
@@ -84,6 +87,7 @@ SMODS.current_mod.extra_tabs = function()
                     BSUI.Modules.Credits.Names({'CampfireCollective', 'cozyGalvinism'}, scale*0.88),
                     BSUI.Col( BSUI.Config.Basic, {BSUI.Pad(0.2, 0.0)}),
                     BSUI.Modules.Credits.Names({'lord-ruby', 'dangerbites'}, scale*0.88),
+                    BSUI.Row( BSUI.Config.Basic, {BSUI.Pad(0.0, 0.1)}),
                 }),
             })
         })
@@ -104,7 +108,8 @@ SMODS.current_mod.extra_tabs = function()
                 BSUI.Row( BSUI.Config.Basic, {BSUI.Pad(0.0, 0.075)}),
                 BSUI.Row( BSUI.Config.Basic, {BSUI.Modules.Credits.Name('SagaciousCejai', scale*0.88)}),
                 BSUI.Row( BSUI.Config.Basic, {BSUI.Pad(0.0, 0.1)}),
-                BSUI.Row( BSUI.Config.Basic, {BSUI.Modules.Credits.Name('JadedDraconevix', scale*0.88)})
+                BSUI.Row( BSUI.Config.Basic, {BSUI.Modules.Credits.Name('JadedDraconevix', scale*0.88)}),
+                BSUI.Row( BSUI.Config.Basic, {BSUI.Pad(0.0, 0.1)}),
             }),
         })
     end
