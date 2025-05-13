@@ -2,7 +2,7 @@ SMODS.Booster{
     key = 'sburb_booster',
     atlas = 'HomestuckAspectBooster',
     config = {extra = 12, choose = 1},
-    discovered = true,
+    discovered = false,
     loc_txt = {
         ['name'] = 'Sburb Pack',
         ['text'] = {

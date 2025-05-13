@@ -28,7 +28,7 @@ function Balatrostuck.INIT.Zodiacs.c_zodiac_cancer()
         end,
         can_use = function() return true end,
         cost = 4,
-        discovered = true,
+        discovered = false,
         atlas = "HomestuckZodiacs"
     }
 

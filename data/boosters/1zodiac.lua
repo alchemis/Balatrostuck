@@ -2,7 +2,7 @@ SMODS.Booster{
     key = 'zodiac_booster',
     atlas = 'HomestuckAspectBooster',
     config = {extra = 3, choose = 1},
-    discovered = true,
+    discovered = false,
     loc_txt = {
         ['name'] = 'Zodiac Pack',
         ['text'] = {

@@ -21,7 +21,7 @@ function Balatrostuck.INIT.Zodiacs.c_zodiac_libra()
             }
         },
         cost = 4,
-        discovered = true,
+        discovered = false,
         atlas = "HomestuckZodiacs",
         use = function(self, card, area, copier)
             G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.9, func = function()

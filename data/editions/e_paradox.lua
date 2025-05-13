@@ -25,7 +25,7 @@ function Balatrostuck.INIT.Editions.e_paradox()
         sound = { sound = "bstuck_HomestuckParadox", per = 0.7, vol = 0.4 },
         badge_colour = HEX('6ABE30'),
         unlocked = true,
-        discovered = true,
+        discovered = false,
         calculate = function(self,card,context)
             if context.end_of_round and context.other_card == nil then
                 
