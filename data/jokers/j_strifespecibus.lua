@@ -4,7 +4,8 @@ function Balatrostuck.INIT.Jokers.j_strifespecibus()
         key = "strifespecibus",
         config = {
             extra = {
-                hand = "Unassigned"
+                hand = "Unassigned",
+                mult = 20
             }
         },
         loc_txt = {
@@ -13,7 +14,7 @@ function Balatrostuck.INIT.Jokers.j_strifespecibus()
                 -- [1] = 'Gives {C:mult}+20{} Mult',
                 -- [2] = 'After first hand played',
                 -- [3] = 'disallows all other hands',
-                '{C:red}+20{} Mult before cards',
+                '{C:red}+#1#{} Mult before cards',
                 'are scored, all other',
                 '{C:attention}hand types{} are {C:red}not {C:red}allowed{}',
                 'after next hand is played'
@@ -34,6 +35,7 @@ function Balatrostuck.INIT.Jokers.j_strifespecibus()
             art_credit('akai', info_queue)
             local colour = card.ability.extra.hand == "Unassigned" and G.C.JOKER_GREY or G.C.SPECIBUS
             return {
+                vars = {card.ability.extra.mult},
                 main_end = {BSUI.Modules.GameText.FormatBadge(card.ability.extra.hand, colour)}
             }            
         end,
@@ -66,15 +68,15 @@ function Balatrostuck.INIT.Jokers.j_strifespecibus()
             
             
         
-            if context.cardarea == G.jokers and context.joker_main then
+            if context.modify_hand then
                 if card.ability.extra.hand == 'Unassigned' and not G.GAME.BALATROSTUCK.strife_assignment[context.scoring_name] then
                     G.GAME.BALATROSTUCK.strife_assignment[context.scoring_name] = true
                     card.ability.extra.hand = context.scoring_name
                 end
-                return {
-                    mult = 20,
-                    card = card
-                }
+                mult = mult + card.ability.extra.mult
+                update_hand_text({delay = 0}, {chips = card.ability.extra.chips and hand_chips, mult = card.ability.extra.mult and mult})
+                card_eval_status_text(card,'mult',card.ability.extra.mult,nil,nil,{message = localize { type = 'variable', key = 'a_mult', vars = { card.ability.extra.mult } }})
+                return hand_chips, mult
             end
         end,
         remove_from_deck = function(self,card,from_debuff)
