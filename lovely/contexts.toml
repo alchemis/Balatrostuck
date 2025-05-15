@@ -142,5 +142,16 @@ SMODS.calculate_context({bstuck_post_shuffle_deck = true})
 match_indent = true
 times = 1
 
+[[patches]]
+[patches.pattern]
+target = "functions/state_events.lua"
+pattern = "G.deck:shuffle('nr'..G.GAME.round_resets.ante)"
+position = "before"
+payload = '''
+SMODS.calculate_context({bstuck_pre_shuffle_deck = true})
+'''
+match_indent = true
+times = 1
+
 
                     
