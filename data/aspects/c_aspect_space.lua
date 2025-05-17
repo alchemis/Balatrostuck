@@ -37,8 +37,13 @@ function Balatrostuck.INIT.Aspects.c_aspect_space()
         config = {},
         name = 'Aspect of Space',
         apply = function(self, slab, context) 
-            local peepee = summation(slab:level())
-            local poopoo = summation(slab:level() - 1)
+            local peepee 
+            local poopoo
+            
+            if context.activated or context.deactivated then     
+                peepee = summation(slab:level())
+                poopoo = summation(slab:level() - 1)
+            end
 
             if context.activated and context.after_level_up then
                 if context.returning then

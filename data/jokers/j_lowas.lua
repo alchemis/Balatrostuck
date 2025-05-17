@@ -39,10 +39,12 @@ function Balatrostuck.INIT.Jokers.j_lowas()
                 for i=1, card.ability.extra do
                     G.E_MANAGER:add_event(Event{
                         delay = 0.25, trigger = 'after', func = function()
-                            local _card = SMODS.create_card({enhancement = 'm_gold',set = 'Base'})
+                            local front = pseudorandom_element(G.P_CARDS, pseudoseed('cert_fr'))
+                            local _card = create_playing_card({
+                                front = front, 
+                                center = G.P_CENTERS.m_gold}, nil, nil, nil, {G.C.SECONDARY_SET.Enhanced})
                             card:juice_up()
                             _card:set_edition('e_bstuck_paradox',true,true)
-                            _card:start_materialize()
                             G.deck:emplace(_card,pseudorandom('LOWAS',1,#G.deck.cards))
                             return true
                         end

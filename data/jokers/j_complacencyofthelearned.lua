@@ -22,8 +22,8 @@ function Balatrostuck.INIT.Jokers.j_complacencyofthelearned()
             'finishing Act 4'}
         },
         pos = {
-            x = 9,
-            y = 12
+            x = 8,
+            y = 11
          },
         cost = 6,
         rarity = 2,
@@ -32,7 +32,7 @@ function Balatrostuck.INIT.Jokers.j_complacencyofthelearned()
         unlocked = false,
         atlas = 'HomestuckJokers',
         loc_vars = function(self,info_queue,card)
-            art_credit('akai', info_queue)
+            art_credit('garb', info_queue)
             info_queue[#info_queue + 1 ] = G.P_CENTERS['m_lucky'] 
             return {
                 vars = {card.ability.extra.x_mult}

@@ -10,18 +10,10 @@ function Balatrostuck.INIT.Vouchers.v_godtier()
         requires = {'v_bstuck_aspect_mastery'},
         redeem = function(self,card)
             if G.GAME.slab then
-                G.GAME.slab:increase_level(card.ability.extra)
-                local aspect = string.gsub(G.GAME.slab.key, "slab_bstuck_", "")
-                aspect = string.upper(aspect)
+                local anspect = string.gsub(G.GAME.slab.key, "slab_bstuck_", "")
+                G.GAME.BALATROSTUCK.current_aspect = anspect
+                add_slab(Slab('slab_bstuck_' .. anspect),1)
             end
-            G.E_MANAGER:add_event(Event({
-                func = function()
-                    G.ui_slab:juice_up()
-                    play_sound('bstuck_HomestuckAscend',0.7,0.1)
-                    play_sound('chips1', math.random()*0.1 + 0.55, 0.42)
-                    return true
-                end
-            }))
         end,
         in_pool = function(self,args)
             return G.GAME.slab ~= nil

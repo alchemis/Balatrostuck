@@ -38,8 +38,8 @@ function Balatrostuck.INIT.Aspects.c_aspect_piss()
         config = { discards_used = 0 },
         name = 'Aspect of Piss',
         apply = function(self, slab, context)
-            for i=1,  summation(slab:level()+1) do
-                if context.setting_blind then
+            if context.setting_blind then
+                for i=1,  summation(slab:level()+1) do
                     G.GAME.joker_buffer = G.GAME.joker_buffer + 1
                     G.E_MANAGER:add_event(Event({
                         trigger = 'before',

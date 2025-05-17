@@ -37,18 +37,26 @@ function Balatrostuck.INIT.Aspects.c_aspect_breath()
         config = {},
         name = 'Aspect of Breath',
         apply = function(self, slab, context)
-            local peepee = slab:level()
-            local poopoo = slab:level() - 1
+            local peepee 
+            local poopoo
+            
+            if context.activated or context.deactivated then     
+                peepee = slab:level()
+                poopoo = slab:level() - 1
+            end
 
             if context.activated and context.after_level_up then
                 if context.returning then
                     SMODS.change_free_rerolls(peepee)
+                    return {true}
                 else
                     SMODS.change_free_rerolls(peepee-poopoo)
+                    return {true}
                 end
             end
             if context.deactivated and context.before_level_down then
                 SMODS.change_free_rerolls(-peepee)
+                return {true}
             end
         end
     }
