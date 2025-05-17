@@ -38,8 +38,13 @@ function Balatrostuck.INIT.Aspects.c_aspect_hope()
         config = {},
         name = 'Aspect of Hope',
         apply = function(self, slab, context) 
-            local peepee = slab:level()
-            local poopoo = slab:level() - 1
+            local peepee 
+            local poopoo
+            
+            if context.activated or context.deactivated then     
+                peepee = slab:level()
+                poopoo = slab:level() - 1
+            end
 
             if context.activated and context.after_level_up then
                 if context.returning then

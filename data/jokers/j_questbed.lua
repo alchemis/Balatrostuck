@@ -34,12 +34,14 @@ function Balatrostuck.INIT.Jokers.j_questbed()
             if context.game_over then
                 local color = G.C.WHITE
                 if G.GAME.slab then
-                    G.GAME.slab:increase_level(card.ability.extra)
                     local aspect = string.gsub(G.GAME.slab.key, "slab_bstuck_", "")
                     aspect = string.upper(aspect)
                     color = G.C[aspect]
+                    local anspect = string.gsub(G.GAME.slab.key, "slab_bstuck_", "")
+                    G.GAME.BALATROSTUCK.current_aspect = anspect
+                    add_slab(Slab('slab_bstuck_' .. anspect),card.ability.extra)
                 end
-                                
+              
                 
                 -- if card.edition and card.edition.key == 'e_bstuck_paradox' then
                 --     G.E_MANAGER:add_event(Event({
@@ -55,9 +57,6 @@ function Balatrostuck.INIT.Jokers.j_questbed()
     
                 G.E_MANAGER:add_event(Event({
                     func = function()
-                        play_sound('bstuck_HomestuckAscend',0.7,0.1)
-                        G.ui_slab:juice_up()
-                        play_sound('chips1', math.random()*0.1 + 0.55, 0.42)
                         card:shatter()
                         return true
                     end

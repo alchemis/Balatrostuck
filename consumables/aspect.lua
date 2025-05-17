@@ -130,6 +130,9 @@ end
 
 function Slab:calculate(_context,trigger)
   if not self.triggered then
+
+    
+    
     local obj = Balatrostuck.Slabs[self.key]
     local res
     if obj and obj.apply and type(obj.apply) == 'function' then
@@ -301,7 +304,6 @@ function Slab:level(default)
   local level = G.GAME.BALATROSTUCK.aspect_levels[aspect] or default or 0
   local hi = {}
   SMODS.calculate_context({aspect_level = true, aspect = key},hi)
-  sendInfoMessage(tprint(hi))
   for i=1, #hi do
     for k,v in pairs(hi[i]) do
       if v and v.amount then
@@ -359,10 +361,11 @@ Balatrostuck.Slab = SMODS.GameObject:extend{
   end
 }
 
-function add_slab(_slab)
+function add_slab(_slab,amount)
+  amount = amount or 1
   if G.GAME.slab == nil then
     G.GAME.slab = _slab
-    _slab:increase_level()
+    _slab:increase_level(amount)
     _slab:calculate({ activated = true, after_level_up = true, is_new = true },true)
     G.E_MANAGER:add_event(Event({
       func = function()
@@ -400,7 +403,7 @@ function add_slab(_slab)
 
   local prevLevel = _slab:level() >= 1 and old_slab.key ~= _slab.key
   _slab:calculate({ activated = true, old_slab = old_slab, before_level_up = true, returning = prevLevel},true)
-  _slab:increase_level()
+  _slab:increase_level(amount)
   _slab:calculate({ activated = true, old_slab = old_slab, after_level_up = true, returning = prevLevel},true)
   sendInfoMessage("LEVEL UP ".._slab.name.." to ".._slab:level())
 end
