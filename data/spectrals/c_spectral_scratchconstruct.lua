@@ -6,8 +6,9 @@ function Balatrostuck.INIT.Spectrals.c_spectral_scratchconstruct()
         loc_txt = {
             name = 'Scratch Construct',
             text = {
-                [1] = 'Randomize the ranks, suits and',
-                [2] = 'enhancements of all held cards'
+                'Converts all cards in hand',
+                'to random {C:attention}Ranks{}, {C:attention}Suits',
+                'and {C:attention}Enhancements'
             }
         },
         pos = {
