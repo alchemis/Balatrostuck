@@ -6,7 +6,7 @@ function Balatrostuck.INIT.Spectrals.c_spectral_13ofstars()
         loc_txt = {
             name = '13 of Stars',
             text = {
-                [1] = 'Create {E:2,C:paradox}Biscuits',
+                [1] = 'Create {E:2,C:paradox} Biscuits',
                 [2] = '{C:inactive}(Must have room)'
             }
         },
