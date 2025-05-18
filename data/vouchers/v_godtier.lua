@@ -3,7 +3,10 @@ function Balatrostuck.INIT.Vouchers.v_godtier()
         key = 'godtier',
         loc_txt = {
             name = 'Godtier',
-            text = {'Gain +1 level on current aspect'}
+            text = {
+                '{C:attention}+1{} level in',
+                'current {C:current_aspect}Aspect'
+            }
         },
         pos = {x=1,y=1},
         atlas = 'HomestuckVouchers',
