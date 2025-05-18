@@ -4,7 +4,11 @@ function Balatrostuck.INIT.Vouchers.v_aspect_mastery()
         config = {extra = 1},
         loc_txt = {
             name = 'Aspect Mastery',
-            text = {'Current aspect always appear in aspect packs'}
+            text = {
+                '{C:attention}Aspect Packs{} always',
+                'contain the {C:aspect}Aspect{} card',
+                'for your current {C:aspect}Aspect'
+            },
         },
         pos = {x=1,y=0},
         atlas = 'HomestuckVouchers',
