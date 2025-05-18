@@ -15,8 +15,8 @@ function Balatrostuck.INIT.Editions.e_paradox()
             name = 'Paradox',
             label = 'Paradox',
             text = { 
-                '{C:red}Disappears{} at',
-                'the end of blind', 
+                '{C:paradox}Disappears{} at',
+                'the end of round', 
                 'occupies {C:dark_edition}no space{}' 
             },
         },
