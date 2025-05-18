@@ -3,8 +3,11 @@ function Balatrostuck.INIT.Vouchers.v_giftofgab()
         key = 'giftofgab',
         loc_txt = {
             name = 'Gift Of Gab',
-            text = {'Every zodiac gets the same odd of spawning',
-                    'Every aspect gets the same odd of spawning'
+            text = {
+                'Every {C:zodiac}Zodiac{} gets the ',
+                'same odd of spawning,',
+                'Every {C:aspect}Aspect{} gets the',
+                'same odd of spawning'
             }
         },
         pos = {x=0,y=1},
