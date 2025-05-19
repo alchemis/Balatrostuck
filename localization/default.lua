@@ -223,6 +223,15 @@ return {
         }
     },
     misc = {
+        quips={
+            john_bought={
+                "{C:blue}JOHN: hey there!"
+            },
+            john_cost={
+                "{C:blue}JOHN: do you want to see my balls",
+            },
+
+        },
         zodiac_names = {
             Taurus = 'Taurus',
             Gemini = 'Gemini',

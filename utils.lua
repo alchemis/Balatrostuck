@@ -1,5 +1,46 @@
 OR, XOR, AND = 1, 3, 4
 
+function Card:dialogue_say_stuff(n, not_first, pitch)
+    self.talking = true
+    local pitch = pitch or 1
+    if not not_first then 
+        G.E_MANAGER:add_event(Event({trigger = "after", delay = 0.1, func = function()
+            if self.children.speech_bubble then self.children.speech_bubble.states.visible = true end
+            self:dialogue_say_stuff(n, true, pitch)
+        return true end}))
+    else
+        if n <= 0 then self.talking = false; return end
+        play_sound('voice'..math.random(1, 11), pitch*G.SPEEDFACTOR*(math.random()*0.2+1), 0.5)
+        self:juice_up()
+        G.E_MANAGER:add_event(Event({trigger = "after", blockable = false, blocking = false, delay = 0.13, func = function()
+            self:dialogue_say_stuff(n-1, true, pitch)
+        return true end}))
+    end
+end
+
+function Card:add_dialogue(text_key, align, yap_amount, baba_pitch)
+    if self.children.speech_bubble then self.children.speech_bubble:remove() end
+    self.config.speech_bubble_align = {align=align or 'bm', offset = {x=0,y=0},parent = self}
+    self.children.speech_bubble = 
+    UIBox{
+        definition = G.UIDEF.speech_bubble(text_key, {quip = true}),
+        config = self.config.speech_bubble_align
+    }
+    self.children.speech_bubble:set_role{role_type = "Minor", xy_bond = "Strong", r_bond = "Strong", major = self}
+    self.children.speech_bubble.states.visible = false
+    local yap_amount = yap_amount or 5
+    local baba_pitch = baba_pitch or 1
+    self:dialogue_say_stuff(yap_amount, nil, baba_pitch)
+end
+
+function Card:remove_dialogue(timer)
+    local timer = timer or 0
+    G.E_MANAGER:add_event(Event({trigger = "after", blockable = false, blocking = false, delay = timer, func = function()
+        if self.children.speech_bubble then self.children.speech_bubble:remove(); self.children.speech_bubble = nil end
+    return true end}))
+end
+
+
 function bitoper(a, b, oper)
     local r, m, s = 0, 2^31
     repeat
