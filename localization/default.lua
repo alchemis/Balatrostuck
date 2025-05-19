@@ -21,6 +21,9 @@ return {
             },
             c_bstuck_levelup = {
                 text = {'{s:1.1,E:2,V:1}(lvl.1){} Level up'}
+            },
+            bstuck_scratchwarning = {
+                text = {'{C:scratch}#1# in 1000 chance', '{C:scratch}to self destruct'}
             }
         },
         Joker = {

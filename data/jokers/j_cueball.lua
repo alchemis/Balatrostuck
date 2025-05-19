@@ -10,7 +10,7 @@ function Balatrostuck.INIT.Jokers.j_cueball()
         loc_txt = {
             ['name'] = 'Magic Cue Ball',
             ['text'] = {
-                'Next cards are',
+                'Displays the next {C:attention}3{} cards',
             }
         },
         pos = {
@@ -134,14 +134,15 @@ function Balatrostuck.INIT.Jokers.j_cueball()
     
             --card.calculate_joker({generate_ui = true})
             local ret = {}
+
+            local cardarea = CardArea(
+                0,0,
+                2*G.CARD_W,
+                0.75*G.CARD_H, 
+                {card_limit = 3, type = 'title', highlight_limit = 0}
+            )
+            
             if G.deck and G.deck.cards then
-                local cardarea = CardArea(
-                    0,0,
-                    2*G.CARD_W,
-                    0.75*G.CARD_H, 
-                    {card_limit = 3, type = 'title', highlight_limit = 0}
-                )
-                
                 for k, v in ipairs(card.ability.extra.cards) do
                     local chungus = Card(0,0, 0.5*G.CARD_W, 0.5*G.CARD_H, G.P_CARDS[v.name], v.center)
                     if card.added_to_deck then chungus.edition = v.edition end
@@ -153,14 +154,38 @@ function Balatrostuck.INIT.Jokers.j_cueball()
                     cardarea:emplace(chungus)
                 end
 
-                ret[1] = BSUI.Image(cardarea)
             else
+                for i=1, 3, 1 do
+                    local chungus = Card(0,0, 0.5*G.CARD_W, 0.5*G.CARD_H, G.P_CARDS['H_4'], G.P_CENTERS.c_base)
+                    chungus.sprite_facing = 'back'
+                    chungus:juice_up(0.3, 0.2)
+                    ease_value(chungus.T, 'scale', 0.25,nil,'REAL',true,0.2)
+                    cardarea:emplace(chungus)
+                end
+            end
 
+            ret[1] = BSUI.Image(cardarea)
+
+            local ret2 = {}
+            local nodes = {}
+            
+            localize{
+                type = 'descriptions',
+                set = 'Other',
+                key = "bstuck_scratchwarning",
+                vars = {G.GAME.probabilities.normal},
+                nodes = ret2
+            }
+          
+            for i=1,#ret2 do
+                table.insert(nodes, BSUI.Row({align = "cm"}, ret2[i]))
             end
             
             return {
                 main_end = {
-                    BSUI.Row(BSUI.Config.Basic, ret)
+                    BSUI.PadRow(0.1),
+                    BSUI.Row(BSUI.Config.Basic, ret),
+                    BSUI.Row(BSUI.Config.Basic, nodes)
                 }
             }
         end

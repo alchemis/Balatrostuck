@@ -23,6 +23,8 @@ G.C.CALIBORN = HEX("009c68")
 G.C.SUCKERS = HEX('000666')
 G.C.CURRENT_ASPECT = HEX('000000')
 
+G.C.SCRATCH = HEX('e4e4e4')
+
 G.C.ZODIAC = {
     Aries = HEX('a10000'),
     Taurus = HEX('a25203'),
@@ -45,7 +47,8 @@ loc_colour('red')
 G.ARGS.LOC_COLOURS['paradox'] = G.C.PARADOX
 G.ARGS.LOC_COLOURS['suckers'] = G.C.SUCKERS
 G.ARGS.LOC_COLOURS['caliborn'] = HEX("009c68")
-
+G.ARGS.LOC_COLOURS['scratch'] = G.C.SCRATCH
+ 
 -- temporary!!!!!!!! will be changed to cooler colors
 G.C.ZODIAC_LEVELS = {
     HEX("efefef"),
