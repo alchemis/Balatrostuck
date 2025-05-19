@@ -609,3 +609,8 @@ end
 
 
 
+function get_cur_back_sprite(_card)
+    local atlas = G.ASSET_ATLAS[(G.GAME.viewed_back or G.GAME.selected_back) and ((G.GAME.viewed_back or G.GAME.selected_back)[G.SETTINGS.colourblind_option and 'hc_atlas' or 'lc_atlas'] or (G.GAME.viewed_back or G.GAME.selected_back).atlas) or 'centers']
+    local pos = _card.params.bypass_back or (_card.playing_card and G.GAME[_card.back].pos or G.P_CENTERS['b_red'].pos)
+    return atlas, pos
+end
