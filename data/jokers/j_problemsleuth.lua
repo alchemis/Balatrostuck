@@ -24,8 +24,12 @@ function Balatrostuck.INIT.Jokers.j_problemsleuth()
         blueprint_compat = true,
         eternal_compat = true,
         unlocked = false,
+        in_pool = function ()
+            return Balatrostuck.peanut_gallery
+        end,
         atlas = 'HomestuckJokers',
         loc_vars = function(self, info_queue, card)
+            info_queue[#info_queue+1] = {key='warn_bstuck_wip', set='Other'}
             art_credit('akai', info_queue)
             return {vars = {}}
         end,
