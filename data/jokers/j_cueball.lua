@@ -4,20 +4,13 @@ function Balatrostuck.INIT.Jokers.j_cueball()
         key = "cueball",
         config = {
             extra = {
-                card1 = "Nothing",
-                card2 = "Nothing",
-                card3 = "Nothing",
+                cards = {nil, nil, nil}
             }
         },
         loc_txt = {
             ['name'] = 'Magic Cue Ball',
             ['text'] = {
-                [1] = 'Next cards are',
-                [2] = '{C:attention}#1#{},',
-                [3] = '{C:attention}#2#{}, and',
-                [4] = '{C:attention}#3#{}',
-                [5] = '{C:white}(suckers.){C:green}#4# in 1000{}{C:white}chance to',
-                [6] = '{C:white}destroy all jokers'
+                'Next cards are',
             }
         },
         pos = {
@@ -65,11 +58,18 @@ function Balatrostuck.INIT.Jokers.j_cueball()
             art_credit('yokcos', info_queue)
             local get_card_name = function(card)
                 if card then
-                    local rank = card.base.value
-                    local suit = card.base.suit
+                    local suit_prefix = string.sub(card.base.suit, 1, 1)..'_'
+                    local rank_suffix = card.base.id
+                    if rank_suffix < 10 then rank_suffix = tostring(rank_suffix)
+                    elseif rank_suffix == 10 then rank_suffix = 'T'
+                    elseif rank_suffix == 11 then rank_suffix = 'J'
+                    elseif rank_suffix == 12 then rank_suffix = 'Q'
+                    elseif rank_suffix == 13 then rank_suffix = 'K'
+                    elseif rank_suffix == 14 then rank_suffix = 'A'
+                    end
         
                     if card.ability.effect ~= 'Stone Card' then
-                        return localize(rank, 'ranks') .. " of " .. localize(suit, "suits_plural")
+                        return suit_prefix..rank_suffix
                     else
                         return "Stone"
                     end
@@ -93,32 +93,76 @@ function Balatrostuck.INIT.Jokers.j_cueball()
                     end
                     
                     if #cards > 0 then
-                        card.ability.extra.card1 = get_card_name(cards[1])
+                        card.ability.extra.cards[1] = {
+                            name = get_card_name(cards[1]),
+                            seal = cards[1]:get_seal(true),
+                            center = cards[1].config.center,
+                            edition = cards[1].edition or nil,
+                            debuff = cards[1].debuff,
+                            juice = true
+                        }
                     else
-                        card.ability.extra.card1 = "Nothing"
+                        card.ability.extra.cards[1] = nil
                     end
                     
                     if #cards > 1 then
-                        card.ability.extra.card2 = get_card_name(cards[2])
+                        card.ability.extra.cards[2] = {
+                            name = get_card_name(cards[2]),
+                            seal = cards[2]:get_seal(true),
+                            center = cards[2].config.center,
+                            edition = cards[2].edition or nil,
+                            debuff = cards[2].debuff,
+                            juice = true
+                        }
                     else
-                        card.ability.extra.card2 = "Nothing"
+                        card.ability.extra.cards[2] = nil
                     end
                     
                     if #cards > 2 then
-                        card.ability.extra.card3 = get_card_name(cards[3])
+                        card.ability.extra.cards[3] = {
+                            name = get_card_name(cards[3]),
+                            seal = cards[3]:get_seal(true),
+                            center = cards[3].config.center,
+                            edition = cards[3].edition or nil,
+                            debuff = cards[3].debuff,
+                            juice = true
+                        }
                     else
-                        card.ability.extra.card3 = "Nothing"
+                        card.ability.extra.cards[3] = nil
                     end
                 end
     
             --card.calculate_joker({generate_ui = true})
+            local ret = {}
+            if G.deck and G.deck.cards then
+                local cardarea = CardArea(
+                    0,0,
+                    2*G.CARD_W,
+                    0.75*G.CARD_H, 
+                    {card_limit = 3, type = 'title', highlight_limit = 0}
+                )
+                
+                for k, v in ipairs(card.ability.extra.cards) do
+                    local chungus = Card(0,0, 0.5*G.CARD_W, 0.5*G.CARD_H, G.P_CARDS[v.name], v.center)
+                    if card.added_to_deck then chungus.edition = v.edition end
+                    chungus.seal = v.seal
+                    chungus.debuff = v.debuff
+                    chungus.sprite_facing = card.added_to_deck and 'front' or 'back'
+                    if v.juice then chungus:juice_up(0.3, 0.2) end
+                    ease_value(chungus.T, 'scale', v.juice and 0.25 or -0.15,nil,'REAL',true,0.2)
+                    cardarea:emplace(chungus)
+                end
+
+                ret[1] = BSUI.Image(cardarea)
+            else
+
+            end
+            
             return {
-                vars = {
-                    card.ability.extra.card1, 
-                    card.ability.extra.card2, 
-                    card.ability.extra.card3,
-                    G.GAME.probabilities.normal
-                }}
+                main_end = {
+                    BSUI.Row(BSUI.Config.Basic, ret)
+                }
+            }
         end
     }
 end
