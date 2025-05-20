@@ -23,7 +23,7 @@ function Balatrostuck.INIT.Jokers.j_purrfectwarrior()
             x = 0,
             y = 2
         },
-        cost = 10,
+        cost = 8,
         rarity = 3,
         blueprint_compat = false,
         eternal_compat = true,

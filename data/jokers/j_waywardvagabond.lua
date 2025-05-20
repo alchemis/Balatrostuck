@@ -23,7 +23,7 @@ function Balatrostuck.INIT.Jokers.j_waywardvagabond()
             art_credit('akai', info_queue)
             return{vars = {card.ability.extra.mult}}
         end,
-        cost = 3,
+        cost = 4,
         rarity = 2,
         blueprint_compat = true,
         eternal_compat = true,
