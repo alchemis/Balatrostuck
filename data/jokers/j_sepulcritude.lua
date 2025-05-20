@@ -30,12 +30,13 @@ function Balatrostuck.INIT.Jokers.j_sepulcritude()
         frames = 8,
         animation_speed = 20,
         photosensitive = true,
-
         loc_vars = function(self, info_queue, card)
             art_credit('akai', info_queue)
             return {vars = {card.ability.extra.Xmult}}
         end,
-
+        in_pool = function(self,args)
+            return false
+        end,
         calculate = function(self, card, context)
             if context.joker_main and context.scoring_name == "Three of a Kind" then
                 local all_good = 0
