@@ -6,6 +6,10 @@ PG.John = {}
 PG.Vriska = {}
 PG.Caliborn = {}
 
+function PG.John:pick_random(set)
+    return pseudorandom_element(self[set], pseudoseed('windything'))
+end
+
 PG.John.shop_events = {
     free_voucher = {
         quip = 'john_free_voucher',
@@ -45,4 +49,6 @@ PG.John.shop_events = {
     },
 }
 
-PG.John.round_events = {}
+PG.John.round_events = {
+    
+}
