@@ -30,6 +30,7 @@ NFS.load(mod.path.."consumables/main.lua")()
 NFS.load(mod.path.."consumables/aspect.lua")()
 NFS.load(mod.path.."consumables/zodiac.lua")()
 NFS.load(mod.path.."game_override.lua")()
+NFS.load(mod.path.."pg_events.lua")()
 
 
 local joker_list = {
