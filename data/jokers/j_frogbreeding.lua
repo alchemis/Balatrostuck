@@ -21,7 +21,7 @@ function Balatrostuck.INIT.Jokers.j_frogbreeding()
             x = 5,
             y = 10
          },
-        cost = 1,
+        cost = 6,
         rarity = 3,
         blueprint_compat = true,
         eternal_compat = false,
