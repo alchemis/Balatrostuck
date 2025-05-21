@@ -18,17 +18,7 @@ match_indent = true
 times = 1
 
 
-# Context.changing_suit
-[[patches]]
-[patches.pattern]
-target = "card.lua"
-pattern = 'function Card:change_suit(new_suit)'
-position = "after"
-payload = '''
-SMODS.calculate_context({changing_suit = true, other_card = self, new_suit = new_suit})
-'''
-match_indent = true
-times = 1
+
 
 
 
