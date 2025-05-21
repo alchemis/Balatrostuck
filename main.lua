@@ -224,7 +224,5 @@ end
 
 
 mod.optional_features = { 
-    cardareas = { unscored = true, deck = true, discard = true},
-    quantum_enhancements = true,
-    post_trigger = true
+    cardareas = { unscored = true, deck = true, discard = true}
 }
