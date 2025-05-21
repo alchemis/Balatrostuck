@@ -29,7 +29,7 @@ function Balatrostuck.INIT.Jokers.j_problemsleuth()
         eternal_compat = true,
         unlocked = false,
         in_pool = function ()
-            return Balatrostuck.peanut_gallery
+            return true
         end,
         atlas = 'HomestuckJokers',
         loc_vars = function(self, info_queue, card)
