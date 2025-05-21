@@ -150,5 +150,20 @@ G.bstuck_team = {
 
 }
 
+
+Balatrostuck.enhancement_cards = {
+    m_bonus = 'c_heirophant',
+    m_wild = 'c_lovers',
+    m_steel = 'c_chariot',
+    m_stone = 'c_tower',
+    m_glass = 'c_justice',
+    m_gold = 'c_devil',
+    m_lucky = 'c_magician',
+    m_mult = 'c_empress'
+}
+
+
+
+
 -- this should techncially create a new uibox
 -- that's gonna be above tags

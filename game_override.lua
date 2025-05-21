@@ -375,8 +375,10 @@ end
 
 setbase_ref = Card.set_base
 function Card:set_base(card, initial)
-    if not initial and card then
+    if not initial and card and self.base.suit then
         if card.suit ~= self.base.suit then
+            changeSuitAmount = (changeSuitAmount or 0) + 1
+            sendInfoMessage('CHANGING SUIT CALLED: ' .. changeSuitAmount)
             SMODS.calculate_context({changing_suit = true, other_card = self, new_suit = card.suit})
         end
     end
