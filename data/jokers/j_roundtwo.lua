@@ -4,7 +4,7 @@ function Balatrostuck.INIT.Jokers.j_roundtwo()
         key = "roundtwo",
         config = {
             extra = { 
-                ante_scaling = 3
+                ante_scaling = 2
             }
         },
         loc_txt = {
@@ -48,17 +48,6 @@ function Balatrostuck.INIT.Jokers.j_roundtwo()
                             return true
                     end}))
                     card_eval_status_text(context.blueprint_card or card, 'extra', nil, nil, nil, {message = localize('k_plus_joker'), colour = G.C.RED})
-                end
-            
-                if not context.blueprint then
-                    G.GAME.starting_params.ante_scaling = G.GAME.starting_params.ante_scaling / card.ability.extra.ante_scaling
-                    card.ability.extra.ante_scaling = card.ability.extra.ante_scaling * 2
-                    G.GAME.starting_params.ante_scaling = G.GAME.starting_params.ante_scaling * card.ability.extra.ante_scaling
-
-                    return {
-                        message = 'X' .. card.ability.extra.ante_scaling .. ' Blind Requirement!',
-                        card = card
-                    }
                 end
             end
         end,
