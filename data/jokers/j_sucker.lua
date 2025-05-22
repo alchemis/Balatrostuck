@@ -63,7 +63,7 @@ function Balatrostuck.INIT.Jokers.j_sucker()
                         trigger = 'before',
                         delay = 0.0,
                         func = function()
-                        local card = create_card('Joker', G.jokers, nil, nil, nil, nil, 'j_sucker', 'suc')
+                        local card = create_card('Joker', G.jokers, nil, nil, nil, nil, 'j_bstuck_sucker', 'suc')
                         card:set_edition(nil, nil, true)
                         card:add_to_deck()
                         G.jokers:emplace(card)
