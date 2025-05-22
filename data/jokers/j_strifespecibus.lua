@@ -83,7 +83,7 @@ function Balatrostuck.INIT.Jokers.j_strifespecibus()
             local dupe = nil
 
             for i=1, #G.jokers.cards do
-                if G.jokers.cards[i].ability.extra and G.jokers.cards[i].ability.extra.hand == card.ability.extra.hand then
+                if type(G.jokers.cards[i].ability.extra) == 'table' and G.jokers.cards[i].ability.extra.hand == card.ability.extra.hand then
                     dupe = true
                 end
             end
