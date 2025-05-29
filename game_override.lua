@@ -244,7 +244,7 @@ end
 
 local shatter_ref = Card.shatter
 function Card:shatter()
-    if self.edition and self.edition.key == 'e_bstuck_paradox' and next(SMODS.find_card('j_bstuck_biscuits')) and self.config.center.key ~= 'j_bstuck_questbed' then
+    if not self.being_used and self.edition and self.edition.key == 'e_bstuck_paradox' and next(SMODS.find_card('j_bstuck_biscuits')) and self.config.center.key ~= 'j_bstuck_questbed' then
         self.getting_sliced = nil
         play_sound('bstuck_HomestuckParadoxSaved',0.7,0.7)
         card_eval_status_text(self, 'extra', nil, nil, nil, {message = localize('k_safe_ex')})
