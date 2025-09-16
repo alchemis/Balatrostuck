@@ -1,0 +1,19 @@
+
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+#Jetpack
+[[patches]]
+[patches.pattern]
+target = "functions/state_events.lua"
+pattern = '''
+G.STATE = G.STATES.GAME_OVER
+'''
+position = "after"
+payload = '''
+check_for_unlock({type = 'bstuck_jetpack'})
+'''
+match_indent = true
+times = 1
