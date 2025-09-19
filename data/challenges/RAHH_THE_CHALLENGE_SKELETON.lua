@@ -1,3 +1,4 @@
+-- delete this before release
 local not_skeleton = {}
 for k, v in pairs(G.P_CENTER_POOLS.Joker) do
     if v.key ~= "j_mr_bones" then
