@@ -70,7 +70,7 @@ local joker_list = {
 "impetuscombcharging", "sepulcritude", "dadswallet", "gamebro", "complacencyofthelearned",
 
 -- Page 18
-"conditionalimmortality", "theplotpoint", "objectduality","joker", "questbed",
+"joker", "theplotpoint", "objectduality","conditionalimmortality", "questbed",
 "yourlordandmaster", "magnificent", "jokermode", "crowbarsfelt", "signofthesignless",
 "echidna", "abraxas", "yaldabaoth", "hephaestus","typheus",
 -- "donotship"
@@ -97,7 +97,6 @@ local seal_list = {
 }
 
 local blind_list = {
-    "demoness","summoner","helmsman","sufferer","disciple","dolorosa","legislacerator","manipulator","executioner","subjuggulator","orphaner","bettycrocker"
 }
 
 local voucher_list = {
