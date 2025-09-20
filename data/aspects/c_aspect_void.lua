@@ -20,7 +20,7 @@ function Balatrostuck.INIT.Aspects.c_aspect_void()
             y = 3
         },
         cost = 4,
-        discovered = true,
+        discovered = false,
         atlas = "HomestuckAspects",
         use = function(self, context)
             self:switch_slab()
