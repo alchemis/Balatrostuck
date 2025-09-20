@@ -13,7 +13,7 @@ function Balatrostuck.INIT.Jokers.j_signofthesignless()
                 "{C:green}1 in #1#{} chance to {C:red,E:2}self destruct{}",
                 "and reset all {C:zodiac}Zodiac{} levels to {C:attention}0"
             },
-            unlock = {"{C:attention}Discover{} every", "{C:zodiac}Zodiac{}"}
+            unlock = {"{C:attention}Discover{} every", "{C:zodiac}Zodiac{} card"}
         },
         pos = {
             x = 1,
