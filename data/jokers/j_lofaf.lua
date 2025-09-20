@@ -11,13 +11,22 @@ function Balatrostuck.INIT.Jokers.j_lofaf()
             ['text'] = {
                 [1] = "{C:attention}Booster packs{} have {C:attention}+0 ",
                 [2] = "cards to choose from,",
-                [3] = "{C:attention}+1{} at end of round",
+                [3] = "{C:attention}+#1#{} at end of round",
                 [4] = "{C:inactive}(Up to +3){}"
-            }
+            },
+            unlock = {"Create {C:attention}100{}", "{C:paradox}Paradox{} cards", "{C:inactive}(#1#){}"}
         },
         loc_vars = function(self,info_queue,card)
             art_credit('yokcos', info_queue)
-            return {vars = {card.ability.extra.pack_bonus}}
+            return {vars = {card.ability.extra.pack_bonus }}
+        end,
+        locked_loc_vars = function(self,info_queue,card)
+            return {vars = {G.paradoxCounter or "0"}}
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_frostandfrogs' then
+                unlock_card(self)
+            end
         end,
         pos = {
             x = 3,
@@ -27,7 +36,7 @@ function Balatrostuck.INIT.Jokers.j_lofaf()
         rarity = 2,
         blueprint_compat = true,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
             if context.end_of_round and context.cardarea == G.jokers and card.ability.extra.pack_bonus < card.ability.extra.max then
