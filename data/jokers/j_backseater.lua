@@ -4,7 +4,7 @@ function Balatrostuck.INIT.Jokers.j_backseater()
         key = "backseater",
         config = {
             extra = {
-                tier = 4,
+                tier = 8,
                 odds2 = 8,
                 money2 = 16,
                 slots3 = 2,
@@ -54,7 +54,7 @@ function Balatrostuck.INIT.Jokers.j_backseater()
             elseif card.ability.extra.tier == 7 then
                 table[#table+1] = card.ability.extra.triggersneed7
             elseif card.ability.extra.tier == 8 then
-
+                table[#table+1] = card.ability.extra.score8
             end
             
             return {key = key, vars = table}
@@ -108,7 +108,7 @@ function Balatrostuck.INIT.Jokers.j_backseater()
                     if context.end_of_round and not context.individual and not context.repetition then
                         if G.jokers.config.card_limit - #G.jokers.cards >= card.ability.extra.slots3 then
                             card.ability.extra.tier = 4
-                            --TODO spawn shit
+                            SMODS.add_card{set = 'Joker', rarity = 0.98, key_append = 'vriska!!!!!!!!'} --TODO exclude 8r8k and octect
                         end
                     end
 
@@ -169,11 +169,55 @@ function Balatrostuck.INIT.Jokers.j_backseater()
 
 
                 elseif card.ability.extra.tier == 6 then --generate 8 consumable cards in a single blind, get +1 consumable slot permanently
-                    
+                    if context.end_of_round and not context.individual and not context.repetition then
+                        print('this one aint coded yet')
+                        card.ability.extra.tier = 7
+                    end   
+                
                 elseif card.ability.extra.tier == 7 then --score 20 cards in a single hand, get +1 hand size permanently
-                    
-                elseif card.ability.extra.tier == 8 then --get 16777216 points in a single hand, get 8r8k and octect
-                    
+                    if context.cardarea == G.play and context.individual then
+                        card.ability.extra.triggersdone7 = card.ability.extra.triggersdone7 + 1
+                        
+                    elseif context.after then
+                        if card.ability.extra.triggersdone7 >= card.ability.extra.triggersneed7 then
+                            card.ability.extra.tier = 8
+                            G.hand:change_size(1)
+                        else
+                            card.ability.extra.triggersdone7 = 0
+                        end
+                    end
+                elseif card.ability.extra.tier == 8 then --get 16,777,216 points in a single hand, get 8r8k and octect
+                    if context.ace_dick then
+                        local yet = false
+                        local scorec, scorem = hand_chips, mult
+                        for k, v in ipairs(G.jokers.cards) do
+                            if v == card then yet = true 
+                            elseif yet and v.name == 'Ace Dick' then
+                               scorec = scorec + 100
+                               scorem = scorem + 10
+                            end
+                        end
+                        if math.floor(scorec * scorem) >= card.ability.extra.score8 then
+                            G.E_MANAGER:add_event(Event({
+                                func = function()
+                                    SMODS.add_card{key = 'j_bstuck_lucky_break'}
+                                    SMODS.add_card{key = 'j_bstuck_fluoriteoctet'}
+                                    play_sound('tarot1')
+                                    card.T.r = -0.2
+                                    card:juice_up(0.3, 0.4)
+                                    card.states.drag.is = true
+                                    card.children.center.pinch.x = true
+                                    G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.3, blockable = false,
+                                        func = function()
+                                                G.jokers:remove_card(self)
+                                                card:remove()
+                                                card = nil
+                                            return true; end})) 
+                                    return true
+                                end
+                            }))
+                        end
+                    end
                 end
             end
         end
