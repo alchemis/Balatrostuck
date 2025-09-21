@@ -29,7 +29,7 @@ A Breath run will be massively different from a Blood run which will be massivel
 
 Every card rank has its own consumable, allowing you to level your 3s, Aces and 4s just like your Straights and Flushes!
 
-Unlike planets the Zodiac cards don't (just) increase their values, instead granting them new effects! Boost your luck-based effects with 8s, gain money with Queens and retrigger played 2s; each number now has their own set of synergies you can build atop of, allowing for many more builds and combinations.
+Unlike planets the Zodiac cards don't directly increase their values, instead granting them new effects! Boost your luck-based effects with 8s, gain money with Queens and retrigger played 2s; each number now has their own set of synergies you can build atop of, allowing for many more builds and combinations.
 
 <img width="219" height="359" alt="image" src="https://github.com/user-attachments/assets/37ac8f42-1182-49bd-ba0a-dcc2b59217ba" />
 <img width="301" height="202" alt="image" src="https://github.com/user-attachments/assets/a4afd903-0f14-4976-b198-512d24bd948e" />
