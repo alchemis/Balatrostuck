@@ -19,7 +19,7 @@ function Balatrostuck.INIT.Aspects.c_aspect_blood()
             y = 3
         },
         cost = 4,
-        discovered = true,
+        discovered = false,
         atlas = "HomestuckAspects",
         use = function(self, card, area, copier)
             self:switch_slab()

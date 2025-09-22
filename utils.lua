@@ -87,6 +87,18 @@ function sum_levels()
 end
 
 
+local bstuck_create_card = create_card
+function create_card(_type, area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
+    if G.consumeables and area == G.consumeables then
+        for i=1, #G.jokers.cards do
+            eval_card(G.jokers.cards[i], {bstuck_create_card = _type})
+        end
+    end
+
+    return bstuck_create_card(_type, area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
+end
+
+
 function get_innocuous(card,get_only_name)
     local hearts = {
         {'applejuice', true}, {'lusty_joker', false}, {'flower_pot', false}, {'complacencyofthelearned', true},
