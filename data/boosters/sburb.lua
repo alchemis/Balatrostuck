@@ -34,5 +34,10 @@ SMODS.Booster{
         end
 
         return {set = "Aspect", key = 'c_bstuck_' .. keys[i], area = G.pack_cards, skip_materialize = true, soulable = false, key_append = "buf"}
-    end
+    end,
+    ease_background_colour = function(self)
+        ease_colour(G.C.DYN_UI.MAIN, G.C.PARADOX)
+        ease_background_colour({ new_colour = G.C.PARADOX, special_colour = G.C.BLACK, contrast = 2 })
+    end,
+
 }
