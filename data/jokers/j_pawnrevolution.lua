@@ -15,8 +15,8 @@ function Balatrostuck.INIT.Jokers.j_pawnrevolution()
             }
         },
         pos = {
-            x = 9,
-            y = 12
+            x = 4,
+            y = 11
         },
         cost = 5,
         rarity = 1,
