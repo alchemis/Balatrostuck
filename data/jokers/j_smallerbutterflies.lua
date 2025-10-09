@@ -11,7 +11,7 @@ function Balatrostuck.INIT.Jokers.j_smallerbutterflies()
             ['text'] = {
                 'Played cards have',
                 'a {C:green}1 in 3{} chance to',
-                'give {C:money}$3{} and {C:blue}+33{} Chips','when scored',
+                'give {C:money}$3{} when scored'
             },
             unlock = {'Unlocked by',
                     'finishing Act 1'}
@@ -36,7 +36,6 @@ function Balatrostuck.INIT.Jokers.j_smallerbutterflies()
                     }
                 elseif pseudorandom('Butterfly') < G.GAME.probabilities.normal/card.ability.extra.odds then
                     return {
-                        chips = card.ability.extra.chips,
                         dollars = card.ability.extra.dollars,
                         card = card
                     }
