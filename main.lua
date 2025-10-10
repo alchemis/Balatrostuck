@@ -26,6 +26,7 @@ NFS.load(mod.path.."utils/color_defs.lua")()
 NFS.load(mod.path.."bsui/core.lua")()
 NFS.load(mod.path.."bsui/modules/credits.lua")()
 NFS.load(mod.path.."bsui/modules/gametext.lua")()
+NFS.load(mod.path.."bsui/modules/buttons.lua")()
 NFS.load(mod.path.."consumables/main.lua")()
 NFS.load(mod.path.."consumables/aspect.lua")()
 NFS.load(mod.path.."consumables/zodiac.lua")()
@@ -70,7 +71,7 @@ local joker_list = {
 "impetuscombcharging", "sepulcritude", "dadswallet", "gamebro", "complacencyofthelearned",
 
 -- Page 18
-"conditionalimmortality", "theplotpoint", "objectduality","joker", "questbed",
+"joker", "theplotpoint", "objectduality","conditionalimmortality", "questbed",
 "yourlordandmaster", "magnificent", "jokermode", "crowbarsfelt", "signofthesignless",
 "echidna", "abraxas", "yaldabaoth", "hephaestus","typheus",
 -- "donotship"
@@ -97,7 +98,6 @@ local seal_list = {
 }
 
 local blind_list = {
-    "demoness","summoner","helmsman","sufferer","disciple","dolorosa","legislacerator","manipulator","executioner","subjuggulator","orphaner","bettycrocker"
 }
 
 local voucher_list = {
@@ -137,12 +137,15 @@ batch_load("blinds")
 batch_load("vouchers")
 batch_load("decks")
 
+
 bstuck_joker_keys = {}
 
 for _, joker in ipairs(joker_list) do
     bstuck_joker_keys[#bstuck_joker_keys+1] = 'j_bstuck_' .. joker
     Balatrostuck.INIT.Jokers["j_"..joker]()
 end
+
+batch_load("challenges")
 
 for _, aspect in ipairs(aspect_list) do
     Balatrostuck.INIT.Aspects["c_aspect_"..aspect]()
@@ -194,6 +197,8 @@ SMODS.Sound({key = "HomestuckGrimdark", path = 'grimdark.ogg'})
 SMODS.Sound({key = "HomestuckBloodDrop", path = 'blood.ogg'})
 SMODS.Sound({key = "HomestuckDoom", path = 'doom.ogg'})
 SMODS.Sound({key = "HomestuckAscendAll", path = 'ascendAll.ogg'})
+SMODS.Sound({key = "music_HomestuckTitle", path = 'music_title.ogg', sync = false, pitch = 1, volume = 0.9, select_music_track = function() return (G.STATE == G.STATES.MENU) end})
+SMODS.Sound({key = "introPad1", path = 'homestuckintropad.ogg', prefix_config = { key = false }})
 
 SMODS.Atlas({key = "HomestuckJokers", path = "hsjokers.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
 SMODS.Atlas({key = "HomestuckZodiacs", path = "zodiac.png", px = 71, py = 95, atlas_table = "ASSET_ATLAS"}):register()
@@ -214,6 +219,32 @@ SMODS.Atlas({key = "bstuck_logo", path="balatrostuck.png", px=469, py=98, atlas_
 SMODS.Atlas({key = "bstuck_howhigh", path="howhigh.png", px=348, py=232, atlas_table="ASSET_ATLAS"}):register()
 SMODS.Atlas({key = "bstuck_scrollbar", path="scrollbar.png", px=11, py=232, atlas_table="ASSET_ATLAS"}):register()
 
+if not next(SMODS.find_mod("Cryptid")) then
+  SMODS.Atlas({
+    key = "balatro",
+    path = "Logo.png",
+    px = 469,
+    py = 216,
+    prefix_config = { key = false }
+  })
+end
+
+local main_menu_ref = Game.main_menu
+Game.main_menu = function(change_context)
+    local ret = main_menu_ref(change_context)
+    G.title_top.T.w = G.title_top.T.w * 1.7675 * 1.2
+    G.title_top.T.x = G.title_top.T.x - 0.8 * 1.8
+    G.SPLASH_BACK:define_draw_steps({ {
+        shader = 'splash',
+        send = {
+            { name = 'time',       ref_table = G.TIMERS, ref_value = 'REAL_SHADER' },
+            { name = 'vort_speed', val = 0.4 },
+            { name = 'colour_1',   ref_table = G.C,      ref_value = 'BSTUCK_T2' },
+            { name = 'colour_2',   ref_table = G.C,      ref_value = 'BSTUCK_T1' },
+        }
+    } }) 
+    return ret
+end
 
 local UI, load_error = SMODS.load_file("bstuckui.lua")
 if load_error then
@@ -222,6 +253,12 @@ else
   UI()
 end
 
+UnlockedByApple = {"skaia", "ectobiology", "purrfectwarrior", "vodkamutini", "lordoftime", "museofspace", "lofaf", "lowas", "lolar", "lohac", "sucker", "ascend", "mobiusdoublereacharound", "frustration", "problemsleuth", "aceDick", "pickleinspector", "whatpumpkin", "pairing_grid", "consortconcierge", "roundtwo", "tumor", "innapropriatebucket", "genejoker", "kernelsprite", "trolltrain", "misspaint", "culling", "smallerbutterflies", "hotdogjuggler", "waywardvagabond", "amberfirefly", "whitequeen", "parcelmistress", "aimlessrenegade"}
+UnlockedByAscend = {"beyondcanon", "batterwitch", "therapture", "ahabscrosshairs", "clownincar", "gristtorrent", "enterthemedium", "whoisthis"}
+UnlockedbyEnterTheMedium = {"faygo", "stump", "ringofvoid", "porkhollow", "ringoflife", "descend"}
+UnlockedByDescend = {"cascade", "wake", "complacencyofthelearned", "gamebro", "dadswallet", "darkscholar"}
+UnlockedByCascade = {"collide", "joker","theplotpoint"}
+UnlockedByCollide = { "yourlordandmaster", "conditionalimmortality", "objectduality"}
 
 mod.optional_features = { 
     cardareas = { unscored = true, deck = true, discard = true}

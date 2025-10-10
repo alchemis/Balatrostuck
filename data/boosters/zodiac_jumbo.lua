@@ -16,6 +16,10 @@ SMODS.Booster{
     weight = 1,
     cost = 6,
     pos = { x = 2, y = 1 },
+    --loc_vars = function(self, info_queue, card)
+    --        art_credit('akai', info_queue)
+     --       return {true}
+     --   end,
     create_card = function(self, card,i)
         if i == 1 or G.GAME.gamer_choices == nil then
             G.GAME.gamer_choices = {}
@@ -35,5 +39,10 @@ SMODS.Booster{
         
         
         
-    end
+    end,
+        ease_background_colour = function(self)
+               ease_colour(G.C.DYN_UI.MAIN, G.C.SECONDARY_SET.Zodiac)
+        ease_background_colour({ new_colour = G.C.SECONDARY_SET.Zodiac, special_colour = G.C.BLACK, contrast = 2 })
+    end,
+
 }

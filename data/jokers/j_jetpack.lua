@@ -15,7 +15,9 @@ function Balatrostuck.INIT.Jokers.j_jetpack()
                 [1] = "Played cards give {C:mult}+#1#{} Mult and",
                 [2] = "have a {C:green}#2# in #3#{} chance to be",
                 [3] = "{C:attention}permanently debuffed{} when scored"
-            }
+            },
+            unlock = {'{C:red}Lose{} a Run'}
+
         },
         pos = {
             x = 2,
@@ -25,12 +27,18 @@ function Balatrostuck.INIT.Jokers.j_jetpack()
         rarity = 2,
         blueprint_compat = true,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
 
         loc_vars = function(self, info_queue, card)
             art_credit('yokcos', info_queue)
             return {vars = {card.ability.extra.mult, G.GAME.probabilities.normal, card.ability.extra.denominator}}
+        end,
+
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_jetpack' then
+                unlock_card(self)
+            end
         end,
 
         calculate = function(self, card, context)

@@ -209,7 +209,7 @@ function Card:draw(layer)
     if self.config.center.key == 'j_bstuck_darkscholar' and (self.edition and self.edition.negative) and self.config.center.discovered then
         self.children.center:set_sprite_pos({x=7,y=12})
     elseif self.config.center.key == 'j_bstuck_darkscholar' and self.config.center.discovered then
-        self.children.center:set_sprite_pos(self.config.center.pos)
+        self.children.center:set_sprite_pos({x=8,y=12})
     end
 
 
@@ -244,7 +244,8 @@ end
 
 local shatter_ref = Card.shatter
 function Card:shatter()
-    if self.edition and self.edition.key == 'e_bstuck_paradox' and next(SMODS.find_card('j_bstuck_biscuits')) and self.config.center.key ~= 'j_bstuck_questbed' then
+    if self.config.center.key == "j_8_ball" then check_for_unlock({type = 'bstuck_vriska'}) end
+    if not self.being_used and self.edition and self.edition.key == 'e_bstuck_paradox' and next(SMODS.find_card('j_bstuck_biscuits')) and self.config.center.key ~= 'j_bstuck_questbed' then
         self.getting_sliced = nil
         play_sound('bstuck_HomestuckParadoxSaved',0.7,0.7)
         card_eval_status_text(self, 'extra', nil, nil, nil, {message = localize('k_safe_ex')})
@@ -286,9 +287,8 @@ SMODS.Booster:take_ownership_by_kind('Buffoon', {
         end
 
         return {set = "Joker", edition = _edition, area = G.pack_cards, skip_materialize = true}
-    end,
-   true
-})
+    end
+}, true)
 
 SMODS.Booster:take_ownership_by_kind('Standard', {
     create_card = function(self, card, i)
@@ -347,9 +347,8 @@ SMODS.Booster:take_ownership_by_kind('Standard', {
         
         
         return {key = _key, set = (pseudorandom(pseudoseed('stdset'..G.GAME.round_resets.ante)) > 0.6) and "Enhanced" or "Base", edition = _edition, seal = _seal, area = G.pack_cards, skip_materialize = true, soulable = true, key_append = "sta"}
-    end,
-   true
-})
+    end
+}, true)
 
 
 
@@ -406,3 +405,11 @@ function create_card(_type, area, legendary, _rarity, skip_materialize, soulable
     return _card
 end
 
+can_use_ref = Card.can_use_consumeable
+
+function Card:can_use_consumeable(any_state, skip_check)
+    if self.config.center.key == 'j_bstuck_problemsleuth' then
+        return true
+    end
+    return can_use_ref(self,any_state,skip_check)
+end

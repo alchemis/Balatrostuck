@@ -9,9 +9,7 @@ function Balatrostuck.INIT.Jokers.j_joker()
         loc_txt = {
             ['name'] = 'Joker',
             ['text'] = {
-                [1] = 'Gives {C:red}+4 Mult',
-                [2] = '{C:white}a',
-                [3] = '{C:blue}JOHN: hey there!'
+                [1] = '{C:mult}+4{} Mult',
             },
             unlock = {'Unlocked by',
             'finishing Act 6'}
@@ -41,6 +39,33 @@ function Balatrostuck.INIT.Jokers.j_joker()
         check_for_unlock = function(self,args)
             if args.type == 'bstuck_collide' then
                 unlock_card(self)
+            end
+        end,
+        add_to_deck = function(self, card)
+            card:add_dialogue("john_bought", "bm")
+            card:remove_dialogue(3)
+        end,
+        calculate = function(self, card, context)
+            if context.starting_shop or context.reroll_shop then
+                local activated = false
+                for k, v in pairs(G.shop_jokers.cards) do
+                    if v.cost == G.GAME.dollars + 1 then
+                        if not activated then
+                            card:add_dialogue("john_cost", "bm")
+                            card:remove_dialogue(7)
+
+                            G.E_MANAGER:add_event(Event({trigger = "after", delay = 2, func = function()
+                            v.cost = G.GAME.dollars
+                            v:juice_up()
+                            play_sound("coin1")
+                            return true end}))
+                            
+                            G.E_MANAGER:add_event(Event({trigger = "after", delay = 2, func = function()
+                            return true end}))
+                        end
+                        activated = true
+                    end
+                end
             end
         end
     }

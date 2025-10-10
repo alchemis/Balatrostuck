@@ -65,7 +65,83 @@ return {
                     },
                 unlock = {'Unlocked by',
                 'finishing Act 4'}
-            }
+            },
+            j_bstuck_backseater_1 ={
+                name = '8acks8er',
+                text = {
+                    '{C:dark_edition}Quest #1#:',
+                    'Play a {C:attention}Straight Flush'
+                }
+            },
+            j_bstuck_backseater_2 ={
+                name = '8acks8er',
+                text = {
+                    '{C:dark_edition}Quest #1#:',
+                    '{C:green}#2# in #3#{} chance to',
+                    'beat this quest each round'
+                }
+            },
+            j_bstuck_backseater_3 ={
+                name = '8acks8er',
+                text = {
+                    '{C:dark_edition}Quest #1#:',
+                    'Win a round with',
+                    '#2# {C:attention}empty{} Joker slots'
+                }
+            },
+            j_bstuck_backseater_4 ={
+                name = '8acks8er',
+                text = {
+                    '{C:dark_edition}Quest #1#:',
+                    'Skip both Blinds',
+                    'in one ante, then',
+                    'beat the Boss Blind'
+                }
+            },
+            j_bstuck_backseater_5 ={
+                name = '8acks8er',
+                text = {
+                    '{C:dark_edition}Quest #1#:',
+                    'Destroy #2# playing cards',
+                    'in a single round',
+                    '{C:inactive}(Currently {C:attention}#3#{C:inactive}/#2#)'
+                }
+            },
+            j_bstuck_backseater_6 ={
+                name = '8acks8er',
+                text = {
+                    '{C:dark_edition}Quest #1#:',
+                    'Create #2# Consumable',
+                    'Cards in one Blind',
+                    '{C:inactive}(Currently {C:attention}#3#{C:inactive}/#2#)'
+                }
+            },
+            j_bstuck_backseater_7 ={
+                name = '8acks8er',
+                text = {
+                    '{C:dark_edition}Quest #1#:',
+                    'Trigger played cards',
+                    '#2# times in one hand,',
+                    'then beat the Blind',
+                    '{C:inactive}(Currently {C:attention}#3#{C:inactive}/#2#)'
+                }
+            },
+            j_bstuck_backseater_8 ={
+                name = '8acks8er',
+                text = {
+                    '{C:dark_edition}Quest #1#:',
+                    'Score #2# Chips in one',
+                    'hand, then beat the Blind'
+                }
+            },
+            j_bstuck_backseater_0 ={
+                name = '8acks8er',
+                text = {
+                    '8ruh my quests 8roke',
+                    'cant have shit in',
+                    '{C:paradox}8alatrostuck'
+                }
+            },
         },
         Zodiac = {
             c_bstuck_aries_current = {
@@ -223,6 +299,115 @@ return {
         }
     },
     misc = {
+        quips={
+            john_bought={
+                "{C:blue}JOHN: hey there!"
+            },
+            john_balls={
+                "{C:blue}JOHN: do you want to see my balls",
+            },
+
+            john_cost={
+                "{C:blue}JOHN: don't worry, i got you!",
+            },
+            backseater_pickup={
+                "{C:Scorpio}AG: heyyyyyyyy there! fancy seeing you here",
+                "{C:Scorpio}I'm hiding from some post-canon nonsense,",
+                "{C:Scorpio}mind if I hang around for a 8it? :::;)",
+            },
+            backseater_quest_1_start={
+                "{C:Scorpio}AG: Ughhhhhhhh, I've seen gru8s",
+                "{C:Scorpio}play 8etter than you! Come oooooooon,",
+                "{C:Scorpio}give me a Str8 Flush at least!",
+            },
+            backseater_quest_1_done={
+                "{C:Scorpio}AG: Okay, may8e you're not",
+                "{C:Scorpio}completely useless after all! You can",
+                "{C:Scorpio}play a good hand if you want to."
+            },
+            backseater_quest_2_start={
+                "{C:Scorpio}AG: Real gamers cut to the chase.",
+                "{C:Scorpio}They power through all the nonsense",
+                "{C:Scorpio}and go for the gold. They cheat.",
+                "{C:Scorpio}It is time you learned to start cheating."
+            },
+            backseater_quest_2_done={
+                "{C:Scorpio}AG: Talk a8out a lucky 8r8k!!!!!!!!",
+                "{C:Scorpio}You're lucky you have me as a co-player, so I",
+                "{C:Scorpio}can challenge you and help you get strong.",
+                "{C:Scorpio}Here. Some cash for your trou8le."
+            },
+            backseater_quest_3_start={
+                "{C:Scorpio}AG: I think you can do 8etter though!",
+                "{C:Scorpio}8eat a 8lind like I taught you,",
+                "{C:Scorpio}8ut keep 2 slots empty. Good luck!"
+            },
+            backseater_quest_3_done={
+                "{C:Scorpio}AG: Now that I know you're not some half-thinkpan",
+                "{C:Scorpio}8oy skylark, it's time for your first REAL challenge!"
+            },
+            backseater_quest_4_start={
+                "{C:Scorpio}AG: Skip these 8a8y 8linds, go str8 for",
+                "{C:Scorpio}the 8oss! I know you can do it! ::::)"
+            },
+            backseater_quest_4_done={
+                "{C:Scorpio}AG: Hahahaha! I didn't actually think you'd",
+                "{C:Scorpio}pull it off. I was fully ready to 8ounce.",
+                "{C:Scorpio}Here, this next shop is on me."
+            },
+            backseater_quest_5_start={
+                "{C:Scorpio}AG: I wasn't going to mention it 8efore, 8ut your",
+                "{C:Scorpio}deck is preeeeeeeetty 8loated. I keep mine at",
+                "{C:Scorpio}only 8 cards, 8ut that m8 8e a bit too much for you.",
+                "{C:Scorpio}You should 8e a8le to take off at least 8 cards though!"
+            },
+            backseater_quest_5_done={
+                "{C:Scorpio}AG: What? You're expecting a reward? That was",
+                "{C:Scorpio}your reward, I made you thin out your misera8le",
+                "{C:Scorpio}deck to make it easier to manipul8!"
+            },
+            backseater_quest_6_start={
+                "{C:Scorpio}AG: If you want a reward, I've got another",
+                "{C:Scorpio}challenge for you. Gener8 8 consuma8les in a",
+                "{C:Scorpio}single 8lind. Shouldn't 8e too hard for a",
+                "{C:Scorpio}poker prodigy like yourself :::;)"
+            },
+            backseater_quest_6_done={
+                "{C:Scorpio}AG: Yeah!!!!!!!!! You're doing gr8, 8ut don't let that",
+                "{C:Scorpio}get to your head! You've still got a looooooot to learn",
+                "{C:Scorpio}from me 8efore you can be as gr8 as someone like me ::::)"
+            },
+            backseater_quest_7_start={
+                "{C:Scorpio}AG: You've got one challenge left 8efore that though.",
+                "{C:Scorpio}Show me what you're made of and trigger 20 cards",
+                "{E:2}in a single hand.{} {C:Scorpio}Sounds impossi8le? It very",
+                "{C:Scorpio}may well 8e for you. I won't tell you how to do it,",
+                "{C:Scorpio}figure it out yourself! You need to learn to 8e independent!"
+            },
+            backseater_quest_7_done={
+                "{C:Scorpio}Alrightttttttt I got a request for you",
+                "{C:Scorpio}now that you've finished your Vriska training.",
+                "{C:Scorpio}I gotta go soon, 8ut I need a 8it of a push.",
+                "{C:Scorpio}Multifiction travel, you know how it is.",
+            },
+            backseater_quest_8_start={
+                "{C:Scorpio}Score 16777216 chips in a single hand. If it sounds",
+                "{C:Scorpio}like a lot, it's 8ecause it is. 8eat it, and I'll",
+                "{C:Scorpio}throw you a little 8onus on my way out. 8ut I",
+                "{C:Scorpio}understand if you're not cut out for it."
+            },
+            backseater_quest_8_done={
+                "{C:Scorpio}AG: Anyway, my time's running out and I gotta 8ounce.",
+                "{C:Scorpio}For your trou8le I would like to pass my favorite jokers",
+                "{C:Scorpio}on to you. If my outrageously gr8 luck has any say in the",
+                "{C:Scorpio}matter, we will 8e meeting up in no time! L8r! <33333333"
+            },
+            backseater_invalid_tier={
+                "{C:Scorpio}Something meddled with my varia8les",
+                "{C:Scorpio}and I'm on an invalid quest num8er.",
+                "{C:Scorpio}Soooooooo, wanna make out?"
+            },
+        },
         zodiac_names = {
             Taurus = 'Taurus',
             Gemini = 'Gemini',

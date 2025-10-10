@@ -1,5 +1,46 @@
 OR, XOR, AND = 1, 3, 4
 
+function Card:dialogue_say_stuff(n, not_first, pitch)
+    self.talking = true
+    local pitch = pitch or 1
+    if not not_first then 
+        G.E_MANAGER:add_event(Event({trigger = "after", delay = 0.1, func = function()
+            if self.children.speech_bubble then self.children.speech_bubble.states.visible = true end
+            self:dialogue_say_stuff(n, true, pitch)
+        return true end}))
+    else
+        if n <= 0 then self.talking = false; return end
+        play_sound('voice'..math.random(1, 11), pitch*(math.random()*0.2+1), 0.5)
+        self:juice_up()
+        G.E_MANAGER:add_event(Event({trigger = "after", blockable = false, blocking = false, delay = 0.13, func = function()
+            self:dialogue_say_stuff(n-1, true, pitch)
+        return true end}))
+    end
+end
+
+function Card:add_dialogue(text_key, align, yap_amount, baba_pitch)
+    if self.children.speech_bubble then self.children.speech_bubble:remove() end
+    self.config.speech_bubble_align = {align=align or 'bm', offset = {x=0,y=0},parent = self}
+    self.children.speech_bubble = 
+    UIBox{
+        definition = G.UIDEF.speech_bubble(text_key, {quip = true}),
+        config = self.config.speech_bubble_align
+    }
+    self.children.speech_bubble:set_role{role_type = "Minor", xy_bond = "Strong", r_bond = "Strong", major = self}
+    self.children.speech_bubble.states.visible = false
+    local yap_amount = yap_amount or 5
+    local baba_pitch = baba_pitch or 1
+    self:dialogue_say_stuff(yap_amount, nil, baba_pitch)
+end
+
+function Card:remove_dialogue(timer)
+    local timer = (timer * G.SETTINGS.GAMESPEED) or 0
+    G.E_MANAGER:add_event(Event({trigger = "after", blockable = false, blocking = false, delay = timer, func = function()
+        if self.children.speech_bubble then self.children.speech_bubble:remove(); self.children.speech_bubble = nil end
+    return true end}))
+end
+
+
 function bitoper(a, b, oper)
     local r, m, s = 0, 2^31
     repeat
@@ -43,6 +84,18 @@ end
 
 function sum_levels()
     return ((G.GAME.hands['High Card'].level)+(G.GAME.hands['Pair'].level)+(G.GAME.hands['Two Pair'].level)+(G.GAME.hands['Three of a Kind'].level)+(G.GAME.hands['Straight'].level)+(G.GAME.hands['Flush'].level)+(G.GAME.hands['Full House'].level )+(G.GAME.hands['Four of a Kind'].level)+(G.GAME.hands['Straight Flush'].level)+(G.GAME.hands['Five of a Kind'].level)+(G.GAME.hands['Flush House'].level)+(G.GAME.hands['Flush Five'].level))
+end
+
+
+local bstuck_create_card = create_card
+function create_card(_type, area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
+    if G.consumeables and area == G.consumeables then
+        for i=1, #G.jokers.cards do
+            eval_card(G.jokers.cards[i], {bstuck_create_card = _type})
+        end
+    end
+
+    return bstuck_create_card(_type, area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
 end
 
 
@@ -531,4 +584,147 @@ function get_cur_back_sprite(_card)
     local atlas = G.ASSET_ATLAS[(G.GAME.viewed_back or G.GAME.selected_back) and ((G.GAME.viewed_back or G.GAME.selected_back)[G.SETTINGS.colourblind_option and 'hc_atlas' or 'lc_atlas'] or (G.GAME.viewed_back or G.GAME.selected_back).atlas) or 'centers']
     local pos = _card.params.bypass_back or (_card.playing_card and G.GAME[_card.back].pos or G.P_CENTERS['b_red'].pos)
     return atlas, pos
+end
+
+
+G.FUNCS.can_activate_joker = function(e)
+    
+    if e.config.ref_table:can_activate_joker() then 
+        e.config.colour = G.C.RED
+        e.config.button = 'activate_joker'
+    else
+        e.config.colour = G.C.UI.BACKGROUND_INACTIVE
+        e.config.button = nil
+    end
+end
+
+
+
+
+function Card:can_activate_joker(args)
+    local obj = self.config.center
+    if obj.can_activate and type(obj.can_activate) == 'function' then
+        return obj:can_activate(self, args)
+    end
+end
+
+
+function Card:activate_joker(args)
+    stop_use()
+    local obj = self.config.center
+    if obj.activate and type(obj.activate) == 'function' then
+        obj:activate(self, args)
+        return
+    end
+end
+
+
+function Card:activate_cost(args)
+    local obj = self.config.center
+    if obj.activate_cost and type(obj.activate_cost) == 'function' then
+        return obj:activate_cost(self, args)
+    end
+end
+
+
+G.FUNCS.activate_joker = function(e, mute, nosave)
+    e.config.button = nil
+    local card = e.config.ref_table
+    local area = card.area
+    local prev_state = G.STATE
+    local dont_dissolve = nil
+    local delay_fac = 1
+
+
+
+
+
+    G.TAROT_INTERRUPT = G.STATE
+    G.STATE = (G.STATE == G.STATES.TAROT_PACK and G.STATES.TAROT_PACK) or
+      (G.STATE == G.STATES.PLANET_PACK and G.STATES.PLANET_PACK) or
+      (G.STATE == G.STATES.SPECTRAL_PACK and G.STATES.SPECTRAL_PACK) or
+      (G.STATE == G.STATES.STANDARD_PACK and G.STATES.STANDARD_PACK) or
+      (G.STATE == G.STATES.BUFFOON_PACK and G.STATES.BUFFOON_PACK) or
+      G.STATES.PLAY_TAROT
+      
+    G.CONTROLLER.locks.use = true
+    if G.shop and not G.shop.alignment.offset.py then
+      G.shop.alignment.offset.py = G.shop.alignment.offset.y
+      G.shop.alignment.offset.y = G.ROOM.T.y + 29
+    end
+    if G.blind_select and not G.blind_select.alignment.offset.py then
+      G.blind_select.alignment.offset.py = G.blind_select.alignment.offset.y
+      G.blind_select.alignment.offset.y = G.ROOM.T.y + 39
+    end
+    if G.round_eval and not G.round_eval.alignment.offset.py then
+      G.round_eval.alignment.offset.py = G.round_eval.alignment.offset.y
+      G.round_eval.alignment.offset.y = G.ROOM.T.y + 29
+    end
+
+    if card.children.use_button then card.children.use_button:remove(); card.children.use_button = nil end
+    if card.children.sell_button then card.children.sell_button:remove(); card.children.sell_button = nil end
+    if card.children.price then card.children.price:remove(); card.children.price = nil end
+
+    
+    delay(0.2)
+    card:activate_joker()
+
+
+    G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.2,
+        func = function()
+            card:highlight(false)
+            G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.1,
+            func = function()
+                G.STATE = prev_state
+                G.TAROT_INTERRUPT=nil
+                G.CONTROLLER.locks.use = false
+
+                if (prev_state == G.STATES.TAROT_PACK or prev_state == G.STATES.PLANET_PACK or
+                  prev_state == G.STATES.SPECTRAL_PACK or prev_state == G.STATES.STANDARD_PACK or
+                  prev_state == G.STATES.BUFFOON_PACK) and G.booster_pack then
+                  if area == G.consumeables then
+                    G.booster_pack.alignment.offset.y = G.booster_pack.alignment.offset.py
+                    G.booster_pack.alignment.offset.py = nil
+                  elseif G.GAME.pack_choices and G.GAME.pack_choices > 1 then
+                    if G.booster_pack.alignment.offset.py then 
+                      G.booster_pack.alignment.offset.y = G.booster_pack.alignment.offset.py
+                      G.booster_pack.alignment.offset.py = nil
+                    end
+                    G.GAME.pack_choices = G.GAME.pack_choices - 1
+                  else
+                      G.CONTROLLER.interrupt.focus = true
+                      if prev_state == G.STATES.TAROT_PACK then inc_career_stat('c_tarot_reading_used', 1) end
+                      if prev_state == G.STATES.PLANET_PACK then inc_career_stat('c_planetarium_used', 1) end
+                      G.FUNCS.end_consumeable(nil, delay_fac)
+                  end
+                else
+                  if G.shop then 
+                    G.shop.alignment.offset.y = G.shop.alignment.offset.py
+                    G.shop.alignment.offset.py = nil
+                  end
+                  if G.blind_select then
+                    G.blind_select.alignment.offset.y = G.blind_select.alignment.offset.py
+                    G.blind_select.alignment.offset.py = nil
+                  end
+                  if G.round_eval then
+                    G.round_eval.alignment.offset.y = G.round_eval.alignment.offset.py
+                    G.round_eval.alignment.offset.py = nil
+                  end
+                  if area and area.cards[1] then 
+                    G.E_MANAGER:add_event(Event({func = function()
+                      G.E_MANAGER:add_event(Event({func = function()
+                        G.CONTROLLER.interrupt.focus = nil
+                        if card.ability.set == 'Voucher' then 
+                          G.CONTROLLER:snap_to({node = G.shop:get_UIE_by_ID('next_round_button')})
+                        elseif area then
+                          G.CONTROLLER:recall_cardarea_focus(area)
+                        end
+                      return true end }))
+                    return true end }))
+                  end
+                end
+            return true
+          end}))
+        return true
+    end}))
 end
