@@ -35,5 +35,10 @@ SMODS.Booster{
         
         
         
-    end
+    end,
+    ease_background_colour = function(self)
+        ease_colour(G.C.DYN_UI.MAIN, G.C.SECONDARY_SET.Zodiac)
+        ease_background_colour({ new_colour = G.C.SECONDARY_SET.Zodiac, special_colour = G.C.BLACK, contrast = 2 })
+    end,
+
 }

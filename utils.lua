@@ -1,5 +1,46 @@
 OR, XOR, AND = 1, 3, 4
 
+function Card:dialogue_say_stuff(n, not_first, pitch)
+    self.talking = true
+    local pitch = pitch or 1
+    if not not_first then 
+        G.E_MANAGER:add_event(Event({trigger = "after", delay = 0.1, func = function()
+            if self.children.speech_bubble then self.children.speech_bubble.states.visible = true end
+            self:dialogue_say_stuff(n, true, pitch)
+        return true end}))
+    else
+        if n <= 0 then self.talking = false; return end
+        play_sound('voice'..math.random(1, 11), pitch*(math.random()*0.2+1), 0.5)
+        self:juice_up()
+        G.E_MANAGER:add_event(Event({trigger = "after", blockable = false, blocking = false, delay = 0.13, func = function()
+            self:dialogue_say_stuff(n-1, true, pitch)
+        return true end}))
+    end
+end
+
+function Card:add_dialogue(text_key, align, yap_amount, baba_pitch)
+    if self.children.speech_bubble then self.children.speech_bubble:remove() end
+    self.config.speech_bubble_align = {align=align or 'bm', offset = {x=0,y=0},parent = self}
+    self.children.speech_bubble = 
+    UIBox{
+        definition = G.UIDEF.speech_bubble(text_key, {quip = true}),
+        config = self.config.speech_bubble_align
+    }
+    self.children.speech_bubble:set_role{role_type = "Minor", xy_bond = "Strong", r_bond = "Strong", major = self}
+    self.children.speech_bubble.states.visible = false
+    local yap_amount = yap_amount or 5
+    local baba_pitch = baba_pitch or 1
+    self:dialogue_say_stuff(yap_amount, nil, baba_pitch)
+end
+
+function Card:remove_dialogue(timer)
+    local timer = (timer * G.SETTINGS.GAMESPEED) or 0
+    G.E_MANAGER:add_event(Event({trigger = "after", blockable = false, blocking = false, delay = timer, func = function()
+        if self.children.speech_bubble then self.children.speech_bubble:remove(); self.children.speech_bubble = nil end
+    return true end}))
+end
+
+
 function bitoper(a, b, oper)
     local r, m, s = 0, 2^31
     repeat
@@ -43,6 +84,18 @@ end
 
 function sum_levels()
     return ((G.GAME.hands['High Card'].level)+(G.GAME.hands['Pair'].level)+(G.GAME.hands['Two Pair'].level)+(G.GAME.hands['Three of a Kind'].level)+(G.GAME.hands['Straight'].level)+(G.GAME.hands['Flush'].level)+(G.GAME.hands['Full House'].level )+(G.GAME.hands['Four of a Kind'].level)+(G.GAME.hands['Straight Flush'].level)+(G.GAME.hands['Five of a Kind'].level)+(G.GAME.hands['Flush House'].level)+(G.GAME.hands['Flush Five'].level))
+end
+
+
+local bstuck_create_card = create_card
+function create_card(_type, area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
+    if G.consumeables and area == G.consumeables then
+        for i=1, #G.jokers.cards do
+            eval_card(G.jokers.cards[i], {bstuck_create_card = _type})
+        end
+    end
+
+    return bstuck_create_card(_type, area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
 end
 
 
@@ -204,88 +257,6 @@ function art_credit2(artist_name1, artist_name2, info)
         }
     }
 end
-
-function get_aspect_for_pack(normalize_weights,pack)
-    G.GAME.gamer_choices = G.GAME.gamer_choices or {}
-    local pool = {
-        {key = 'blood',weight = 0,onestar = false},
-        {key = 'breath',weight = 0,onestar = false},
-        {key = 'hope',weight = 0.2,onestar = false},
-        {key = 'life',weight = 0.2,onestar = false},
-        {key = 'doom',weight = 0.2,onestar = false},    
-        {key = 'rage',weight = 0.2,onestar = false},
-        {key = 'mind',weight = 0.4,onestar = false},
-        {key = 'void',weight = 0.6,onestar = false},
-        {key = 'light',weight = 0.6,onestar = false},
-        {key = 'heart',weight = 0.6,onestar = false},
-        {key = 'time',weight = 0.8,onestar = false},
-        {key = 'space',weight = 0.8,onestar = false},
-        {key = 'piss',weight = 0.9,onestar = false}
-    }
-
-    if normalize_weights or next(SMODS.find_card('v_bstuck_giftofgab')) then
-        for i=1, #pool do
-            pool[i].weight = 0
-        end
-    end
-
-    
-
-
-    if not next(find_joker("Showman")) then
-        for i = #pool, 1, -1 do 
-            local entry = pool[i]
-            if tableContains(G.GAME.gamer_choices,'c_bstuck_' .. pool[i].key) and pack then
-                table.remove(pool, i)
-            else
-                local conKeys = {}
-                for j=1, #G.consumeables.cards do
-                    table.insert(conKeys,G.consumeables.cards[j].config.center.key)
-                end
-                if tableContains(conKeys,'c_bstuck_' .. pool[i].key) then
-                    table.remove(pool, i)
-                end
-            end
-        end
-    end
-
-
-
-
-    local poolLuck = pseudorandom('gamerPack')
-    local lowestWeight = 1
-
-
-    for i=1, #pool do
-        if pool[i].weight < lowestWeight then
-            lowestWeight = pool[i].weight
-        end
-    end
-    poolLuck = math.max(poolLuck,lowestWeight + pseudorandom('gamerPack',0.01,0.1))
-
-
-
-
-    local shuffledPool = shuffle(pool,'gamerPack')
-
-    for i=1, #shuffledPool do
-        if shuffledPool[i].weight < poolLuck and not (G.GAME.used_jokers['c_bstuck_' .. shuffledPool[i].key] and not next(find_joker("Showman"))) then
-            table.insert(G.GAME.gamer_choices,'c_bstuck_' .. shuffledPool[i].key)
-            return 'c_bstuck_' .. shuffledPool[i].key
-        end
-    end
-
-    return 'c_bstuck_breath'
-end
-
-
-
-
-
-
-
-
-
 
 
 function get_zodiac(normalize_weights,pack)

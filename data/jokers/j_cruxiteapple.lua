@@ -30,7 +30,7 @@ function Balatrostuck.INIT.Jokers.j_cruxiteapple()
             return {vars = {}}
         end,
         calculate = function(self,card,context)
-            if context.end_of_round and context.cardarea == G.jokers and G.GAME.current_round.hands_left == 0 then
+            if context.end_of_round and context.cardarea == G.jokers and G.GAME.current_round.hands_left == 0 and not context.game_over then
                 add_tag(Tag('tag_d_six'))
                 delay(0.1)
 
@@ -52,9 +52,13 @@ function Balatrostuck.INIT.Jokers.j_cruxiteapple()
                         return true
                     end
                 }))
-                check_for_unlock({type = 'bstuck_apple_eaten'})
-                if not (G.GAME.pool_flags.bstuck_actprogress and G.GAME.pool_flags.bstuck_actprogress <= 1) then
+                --check_for_unlock({type = 'bstuck_apple_eaten'})
+                if not G.GAME.pool_flags.bstuck_actprogress or (G.GAME.pool_flags.bstuck_actprogress <= 1) then
+                    for k,v in ipairs(UnlockedByApple) do
+                        G.P_CENTERS["j_bstuck_"..v].unlocked = true
+                    end
                     G.GAME.pool_flags.bstuck_actprogress = 1
+                    notify_bstuck_alert("j_bstuck_cruxiteapple", 1)
                 end
                 return {
                     message = 'Bitten!',

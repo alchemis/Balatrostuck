@@ -15,8 +15,8 @@ function Balatrostuck.INIT.Jokers.j_pawnrevolution()
             }
         },
         pos = {
-            x = 9,
-            y = 12
+            x = 4,
+            y = 11
         },
         cost = 5,
         rarity = 1,
@@ -45,21 +45,21 @@ function Balatrostuck.INIT.Jokers.j_pawnrevolution()
                     end
                 end
                 
+                G.playing_card = (G.playing_card and G.playing_card + 1) or 1
+                local _card = copy_card(raised_card, nil, nil, G.playing_card)
+                _card:add_to_deck()
+                _card:set_edition('e_bstuck_paradox')
+                G.deck.config.card_limit = G.deck.config.card_limit + 1
+                table.insert(G.playing_cards, _card)
+                G.hand:emplace(_card)
+                _card.states.visible = nil
+
                 G.E_MANAGER:add_event(Event({
-                    func = function() 
-                        G.playing_card = (G.playing_card and G.playing_card + 1) or 1
-                        local _card = copy_card(raised_card)
-                        _card:start_materialize({G.C.PARADOX},firstmat)
-                        local firstmat = true
-                        _card:set_edition('e_bstuck_paradox',true,true)
-                        G.hand:emplace(_card)
-                        G.GAME.blind:debuff_card(_card)
-                        G.hand:sort()
-                        if context.blueprint_card then context.blueprint_card:juice_up() else card:juice_up() end
-                        -- G.deck.config.card_limit = G.deck.config.card_limit + 1
-                        delay(0.1)
+                    func = function()
+                        _card:start_materialize()
                         return true
-                    end}))
+                    end
+                }))
                 playing_card_joker_effects({_card})
             end
         end

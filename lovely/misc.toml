@@ -8,6 +8,137 @@ priority = 0
 [[patches]]
 [patches.pattern]
 target = "functions/button_callbacks.lua"
+pattern = "G.FUNCS.unlock_all = function(e)"
+position = "after"
+payload = '''
+G.BStuck_acts_unlocked = {true, true, true, true, true, true, true}
+'''
+match_indent = true
+times = 1
+overwrite = false
+
+
+
+#Act Tracking
+[[patches]]
+[patches.pattern]
+target = "functions/state_events.lua"
+pattern = '''
+G.STATE = G.STATES.GAME_OVER
+'''
+position = "after"
+payload = '''
+G.BStuck_acts_unlocked =  (not G.BStuck_acts_unlocked and {}) or G.BStuck_acts_unlocked
+for i = 1, G.GAME.pool_flags.bstuck_actprogress do
+    G.BStuck_acts_unlocked[i] = true
+end
+'''
+match_indent = true
+times = 1
+
+#Make Act Structure Easier
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = "_pool[#_pool + 1] = v.key"
+position = "before"
+payload = '''
+G.BStuck_acts_unlocked = not G.BStuck_acts_unlocked and {} or G.BStuck_acts_unlocked
+local act_joker_keys = {"j_bstuck_cruxiteapple", "j_bstuck_ascend", "j_bstuck_enterthemedium", "j_bstuck_descend", "j_bstuck_cascade", "j_bstuck_collide"}
+if ((not G.GAME.pool_flags.bstuck_actprogress) or G.GAME.pool_flags.bstuck_actprogress == 0) or G.BStuck_acts_unlocked[G.GAME.pool_flags.bstuck_actprogress] then
+    if v.key == act_joker_keys[G.GAME.pool_flags.bstuck_actprogress+1] then
+        for i=1, 4 do
+            _pool[#_pool + 1] = v.key
+            _pool_size = _pool_size + 1
+        end
+    end
+end
+'''
+match_indent = true
+
+
+#Title Screen - Colors
+[[patches]]
+[patches.pattern]
+target = "globals.lua"
+pattern = '''
+RENTAL = HEX('b18f43'),
+'''
+position = "after"
+payload = '''
+BSTUCK_T1 = HEX("5B648C"),
+BSTUCK_T2 = HEX("409040"),
+'''
+match_indent = true
+times = 1
+
+#Title screen
+[[patches]]
+[patches.pattern]
+target = "game.lua"
+pattern = "replace_card:start_materialize({G.C.WHITE,G.C.WHITE}, nil, 1.2)"
+position = "after"
+payload = '''replace_card.states.visible = false'''
+match_indent = true
+overwrite = true
+
+[[patches]]
+[patches.pattern]
+target = "game.lua"
+pattern = "if #viable_unlockables > 0 then"
+position = "at"
+payload = '''if false then'''
+match_indent = true
+overwrite = true
+
+
+[[patches]]
+[patches.pattern]
+target = "game.lua"
+pattern = "replace_card:start_materialize({G.C.WHITE,G.C.WHITE}, true, 2.5)"
+position = "after"
+payload = '''replace_card.states.visible = false'''
+match_indent = true
+overwrite = true
+
+[[patches]]
+[patches.pattern]
+target = "game.lua"
+pattern = 'local SC_scale = 1.1*(G.debug_splash_size_toggle and 0.8 or 1)'
+position = "at"
+payload = '''local SC_scale = 1.1*(G.debug_splash_size_toggle and 0.8 or 1.3)'''
+match_indent = true
+overwrite = true
+
+#Splash Screen
+[[patches]]
+[patches.pattern]
+target = "game.lua"
+pattern = "SC = Card(G.ROOM.T.w/2 - SC_scale*G.CARD_W/2, 10. + G.ROOM.T.h/2 - SC_scale*G.CARD_H/2, SC_scale*G.CARD_W, SC_scale*G.CARD_H, G.P_CARDS.empty, G.P_CENTERS['j_joker'])"
+
+position = "at"
+payload = '''
+SC = Card(G.ROOM.T.w/2 - SC_scale*G.CARD_W/2, 10. + G.ROOM.T.h/2 - SC_scale*G.CARD_H/2, SC_scale*G.CARD_W, SC_scale*G.CARD_H, G.P_CARDS.empty, G.P_CENTERS['j_bstuck_cruxiteapple'])
+'''
+match_indent = true
+overwrite = true
+
+[[patches]]
+[patches.pattern]
+target = "game.lua"
+pattern = "card_size*G.CARD_W, card_size*G.CARD_H, pseudorandom_element(G.P_CARDS), G.P_CENTERS.c_base)"
+
+position = "at"
+payload = '''
+card_size*G.CARD_W, card_size*G.CARD_H, G.P_CARDS.empty, G.P_CENTERS[pseudorandom_element(bstuck_joker_keys)], {bypass_discovery_center = true, bypass_discovery_ui = true})
+'''
+match_indent = true
+overwrite = true
+
+#Echidna Tags
+[[patches]]
+[patches.pattern]
+target = "functions/button_callbacks.lua"
 pattern = "G.GAME.round_resets.blind_tags.Big = get_next_tag_key()"
 position = "at"
 payload = '''
@@ -168,8 +299,8 @@ target = "card.lua"
 pattern = "function Card:start_dissolve(dissolve_colours, silent, dissolve_time_fac, no_juice)"
 position = "after"
 payload = '''
-if (self.edition and self.edition.key == 'e_bstuck_paradox' and next(SMODS.find_card('j_bstuck_biscuits'))) or 
-    (self.edition and self.edition.key == 'e_bstuck_paradox' and self.ability.consumeable and next(SMODS.find_card('j_bstuck_oldsecret'))) then
+if (self.edition and self.edition.key == 'e_bstuck_paradox' and not self.being_used and next(SMODS.find_card('j_bstuck_biscuits'))) or 
+    (self.edition and self.edition.key == 'e_bstuck_paradox' and self.ability.consumeable and not self.being_used and next(SMODS.find_card('j_bstuck_oldsecret'))) then
     self.getting_sliced = nil
     play_sound('bstuck_HomestuckParadoxSaved',0.7,0.7)
     card_eval_status_text(self, 'extra', nil, nil, nil, {message = localize('k_safe_ex')})
@@ -193,6 +324,17 @@ pattern = "        self.area.config.type == 'joker' and"
 position = "after"
 payload = '''
 not (self.edition and self.edition.key == 'e_bstuck_paradox' and next(SMODS.find_card('j_bstuck_biscuits'))) and 
+'''
+match_indent = true
+times = 1
+
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = "function Card:use_consumeable(area, copier)"
+position = "after"
+payload = '''
+self.being_used = true
 '''
 match_indent = true
 times = 1

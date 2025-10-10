@@ -58,30 +58,36 @@ function Balatrostuck.INIT.Jokers.j_balletslippers()
                 for k, v in pairs(G.GAME.hands) do
                     if v.visible then _poker_hands[#_poker_hands+1] = k end
                 end
+
+
+                
+
+
                 local old_hand = card.ability.extra.to_do_poker_hand
                 card.ability.extra.to_do_poker_hand = nil    
 
                 while not card.ability.extra.to_do_poker_hand do
-                    card.ability.extra.to_do_poker_hand = pseudorandom_element(_poker_hands, pseudoseed((self.area and self.area.config.type == 'title') and 'false_to_do' or 'to_do'))
+                    card.ability.extra.to_do_poker_hand = pseudorandom_element(_poker_hands, pseudoseed('ballet'))
                     if card.ability.extra.to_do_poker_hand == old_hand then card.ability.extra.to_do_poker_hand = nil end
-                end    
+                end
             end
             
             if context.before and context.scoring_name == card.ability.extra.to_do_poker_hand then
-                card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_gain
-                return {
-                    card = card,
-                    message = localize('k_upgrade_ex')
-                }
+                if  context.scoring_name == card.ability.extra.to_do_poker_hand then
+                    card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_gain
+                    return {
+                        card = card,
+                        message = localize('k_upgrade_ex')
+                    }
+                else
+                    card.ability.extra.mult = 0
+                    return {
+                        card = card,
+                        message = localize('k_reset')
+                    }
+                end
             end
-
-            if context.before and context.scoring_name ~= card.ability.extra.to_do_poker_hand then
-                card.ability.extra.mult = 0
-                return {
-                    card = card,
-                    message = localize('k_reset')
-                }
-            end
+                
 
             if context.joker_main and card.ability.extra.mult > 0 then
                 return {

@@ -45,7 +45,7 @@ function Balatrostuck.INIT.Jokers.j_faygo()
                     end
                 end
                 return{
-                    chips = thunk,
+                    mult = thunk,
                     card = card
                 }
             end
