@@ -4,7 +4,7 @@ function Balatrostuck.INIT.Jokers.j_lonegunbird()
         key = "lonegunbird",
         config = {
             extra = {
-                rolls_needed = 6,
+                rolls_needed = 5,
                 rolls = 0
             }
         },
@@ -36,7 +36,7 @@ function Balatrostuck.INIT.Jokers.j_lonegunbird()
         calculate = function(self, card, context)
             if context.reroll_shop and not context.blueprint then
                 card.ability.extra.rolls = card.ability.extra.rolls + 1
-                if card.ability.extra.rolls >= 6 then
+                if card.ability.extra.rolls >= rolls_needed then
                     card_eval_status_text(card, 'extra', nil, nil, nil, {message = 'Tag!',colour = G.C.FILTER, card = card})
                     card.ability.extra.rolls = 0
                     G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
