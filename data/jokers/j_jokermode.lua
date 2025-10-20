@@ -10,8 +10,12 @@ function Balatrostuck.INIT.Jokers.j_jokermode()
             }
         },
         loc_txt = {
-            ['name'] = 'Joker Mode.',
-            ['text'] = {
+            ['name'] = 'Joker Mode',
+           ['text'] = {
+                [1] = "{C:zodiac}Gains {C:chips}+#2#{} {C:zodiac}Chips",
+                [2] = "{C:zodiac}if played hand",
+                [3] = "{C:zodiac}contains a {C:attention}Flush{}",
+                [4] = "{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chips)",
             },
             unlock = {'Unlocked by',
             'finishing Act 6'}

@@ -10,8 +10,13 @@ function Balatrostuck.INIT.Jokers.j_magnificent()
             }
         },
         loc_txt = {
-            ['name'] = 'MAGNIFICENT JOKER.',
+            ['name'] = 'MAGNIFICENT JOKER',
             ['text'] = {
+                [1] = "THIS JOKER DEPICTS A HANDSOME",
+                [2] = "YOUNG CHERUB. HE GAINS {C:white,X:chips}+0.4X{} {C:chips}CHIPS",
+                [3] = "FOR EACH {C:attention}KING{} HE IS PRESENTED WITH.",
+                [4] = "{C:inactive}(Currently {C:white,X:chips}X#1#{}{C:inactive} CHIPS){C:red} DO NOT SELL",
+                -- [5] = "DO NOT SELL.",
             },
             unlock = {'Unlocked by',
             'finishing Act 6'}
@@ -29,7 +34,7 @@ function Balatrostuck.INIT.Jokers.j_magnificent()
         loc_vars = function(self, info_queue, card)
             info_queue[#info_queue+1] = {key='warn_bstuck_wip', set='Other'}
             art_credit('akai', info_queue)
-            return {vars = {}}
+            return {vars = {card.ability.extra.xchips}}
         end,
         calculate = function (self,card,context)
             if context.before and context.cardarea == G.jokers then
