@@ -52,8 +52,6 @@ function Balatrostuck.INIT.Jokers.j_soporpie()
                     chip_mod = card.ability.extra.chips,
                     colour = G.C.CHIPS
                 }
-            elseif context.setting_blind and not (context.repetition or context.individual or context.blueprint) then
-                
             elseif context.end_of_round and not (context.repetition or context.individual or context.blueprint) then
                 card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chips_mod
                 card.ability.extra.h_size = card.ability.extra.h_size + 1
