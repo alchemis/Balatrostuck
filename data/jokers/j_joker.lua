@@ -4,7 +4,7 @@ function Balatrostuck.INIT.Jokers.j_joker()
         key = "joker",
         config = {
             extra = {
-                booster_repeat = 3
+                booster_repeat = 5
             }
         },
         loc_txt = {
@@ -21,7 +21,7 @@ function Balatrostuck.INIT.Jokers.j_joker()
         },
         cost = 2,
         rarity = 3,
-        blueprint_compat = true,
+        blueprint_compat = false,
         eternal_compat = true,
         unlocked = false,
         atlas = 'HomestuckJokers',
@@ -47,55 +47,63 @@ function Balatrostuck.INIT.Jokers.j_joker()
             card:remove_dialogue(3)
         end,
         calculate = function(self, card, context)
-            if context.starting_shop or context.reroll_shop then
-                local activated = false
-                for k, v in pairs(G.shop_jokers.cards) do
-                    if v.cost == G.GAME.dollars + 1 then
-                        if not activated then
-                            card:add_dialogue("john_cost", "bm")
-                            card:remove_dialogue(7)
+            if not context.blueprint then
+                if context.starting_shop or context.reroll_shop then
+                    local activated = false
+                    for k, v in pairs(G.shop_jokers.cards) do
+                        if v.cost == G.GAME.dollars + 1 then
+                            if not activated then
+                                card:add_dialogue("john_cost", "bm")
+                                card:remove_dialogue(7)
 
-                            G.E_MANAGER:add_event(Event({trigger = "after", delay = 2, func = function()
-                            v.cost = G.GAME.dollars
-                            v:juice_up()
-                            play_sound("coin1")
-                            return true end}))
-                            
-                            G.E_MANAGER:add_event(Event({trigger = "after", delay = 2, func = function()
-                            return true end}))
+                                G.E_MANAGER:add_event(Event({trigger = "after", delay = 2, func = function()
+                                v.cost = G.GAME.dollars
+                                v:juice_up()
+                                play_sound("coin1")
+                                return true end}))
+                                
+                                G.E_MANAGER:add_event(Event({trigger = "after", delay = 2, func = function()
+                                return true end}))
+                            end
+                            activated = true
                         end
-                        activated = true
                     end
+
+                elseif context.cardarea == G.play and context.repetition then
+                    if pseudorandom('john') < 1 / 8 then
+                        return {
+                            message = localize('k_again_ex'),
+                            repetitions = 1,
+                            card = card
+                        }
+                    end
+
+                elseif context.skipping_booster and not context.open_booster then
+                    if pseudorandom('john') < 1 / card.ability.extra.booster_repeat then
+                        card.ability.extra.booster_repeat = card.ability.extra.booster_repeat + 1
+                        local thunk = pseudorandom_element({1,2,3}, pseudoseed('john'))
+                        card:add_dialogue("john_pack_"..thunk, "bm")
+                        card:remove_dialogue(3)
+                        G.E_MANAGER:add_event(Event({
+                        func = (function()
+                            add_tag(Tag(pseudorandom_element({'tag_buffoon','tag_charm','tag_meteor','tag_standard','tag_ethereal','t_bstuck_matriorb','t_bstuck_spirograph'}, pseudoseed('john'))))
+                            play_sound('generic1', 0.9 + math.random()*0.1, 0.8)
+                            play_sound('holo1', 1.2 + math.random()*0.1, 0.4)
+                            return true
+                        end)
+                        }))
+                    end
+
+                elseif context.setting_blind then
+
+
+                elseif context.end_of_round and not context.individual and not context.repetition then
+                    if G.GAME.blind.boss then
+
+                    end
+
+                    card.ability.extra.booster_repeat = 5
                 end
-
-            elseif context.cardarea == G.play and context.repetition then
-                if pseudorandom('john') < 1 / 8 then
-                    return {
-                        message = localize('k_again_ex'),
-                        repetitions = 1,
-                        card = card
-                    }
-                end
-
-            elseif context.skipping_booster and not context.open_booster then
-                if pseudorandom('john') < 1 / card.ability.extra.booster_repeat then
-                    card.ability.extra.booster_repeat = card.ability.extra.booster_repeat + 1
-                    G.E_MANAGER:add_event(Event({
-                    func = (function()
-                        add_tag(Tag(pseudorandom_element({'tag_buffoon','tag_charm','tag_meteor','tag_standard','tag_ethereal','bstuck_t_matriorb','bstuck_t_spirograph'}, pseudoseed('john'))))
-                        play_sound('generic1', 0.9 + math.random()*0.1, 0.8)
-                        play_sound('holo1', 1.2 + math.random()*0.1, 0.4)
-                        return true
-                    end)
-                    }))
-                end
-
-            elseif context.end_of_round and not context.individual and not context.repetition then
-                if G.GAME.blind.boss then
-
-                end
-
-                card.ability.extra.booster_repeat = 3
             end
         end
     }
