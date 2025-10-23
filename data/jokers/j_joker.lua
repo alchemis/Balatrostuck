@@ -4,7 +4,8 @@ function Balatrostuck.INIT.Jokers.j_joker()
         key = "joker",
         config = {
             extra = {
-                booster_repeat = 5
+                booster_repeat = 5,
+                charity_money = 20
             }
         },
         loc_txt = {
@@ -100,6 +101,12 @@ function Balatrostuck.INIT.Jokers.j_joker()
                 elseif context.end_of_round and not context.individual and not context.repetition then
                     if G.GAME.blind.boss then
 
+                    end
+                    if G.GAME.dollars + G.GAME.dollar_buffer <= 0 and card.ability.extra.charity_money == 20 then
+                        ease_dollars(card.ability.extra.charity_money)
+                        card:add_dialogue("john_charity","bm")
+                        card:remove_dialogue(4)
+                        card.ability.extra.charity_money = 0
                     end
 
                     card.ability.extra.booster_repeat = 5
