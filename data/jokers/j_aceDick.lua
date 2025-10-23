@@ -15,7 +15,7 @@ function Balatrostuck.INIT.Jokers.j_aceDick()
                     'finishing Act 1'}
         },
         pos = {x = 7, y = 8},
-        cost = 6,
+        cost = 7,
         rarity = 2,
         blueprint_compat = false,
         eternal_compat = true,
