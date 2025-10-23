@@ -20,7 +20,7 @@ function Balatrostuck.INIT.Jokers.j_smallerbutterflies()
             x = 9,
             y = 12
          },
-        cost = 3,
+        cost = 5,
         rarity = 1,
         blueprint_compat = true,
         eternal_compat = true,
