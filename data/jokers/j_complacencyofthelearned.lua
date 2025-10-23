@@ -4,7 +4,7 @@ function Balatrostuck.INIT.Jokers.j_complacencyofthelearned()
         key = "complacencyofthelearned",
         config = {
             extra = {
-                x_mult = 6,
+                x_mult = 7,
                 scored = 0,
                 triggers = 0
             }
