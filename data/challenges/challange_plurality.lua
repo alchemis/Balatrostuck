@@ -18,14 +18,10 @@ SMODS.Challenge{
     }
     },
     consumeables = {
-        --[[
     { 
-        id = "",
-        edition = "",
-        eternal = false,
+        id = "c_black_hole",
 
     }
-        ]]
     },
     vouchers  = { --[[
     { 
