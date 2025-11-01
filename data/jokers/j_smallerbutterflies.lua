@@ -17,8 +17,8 @@ function Balatrostuck.INIT.Jokers.j_smallerbutterflies()
                     'finishing Act 1'}
         },
         pos = {
-            x = 9,
-            y = 12
+            x = 2,
+            y = 11
          },
         cost = 5,
         rarity = 1,
