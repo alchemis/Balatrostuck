@@ -10,7 +10,8 @@ SMODS.Booster{
             '{C:attention}#2#{} Zodiac{} cards to',
             'be used immediately' 
         },
-        group_name = 'Zodiac Pack'
+        group_name = 'Zodiac Pack',
+        kind = 'shop_pack'
     },
     kind = 'zodiac',
     cost = 4,

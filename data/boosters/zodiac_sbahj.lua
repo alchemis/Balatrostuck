@@ -1,10 +1,10 @@
 SMODS.Booster{
-    key = 'zodiac_mega_booster',
+    key = 'zodiac_sbahj_booster',
     atlas = 'HomestuckAspectBooster',
-    config = {extra = 5, choose = 2},
+    config = {extra = 3, choose = 1},
     discovered = false,
     loc_txt = {
-        ['name'] = 'MEGA Zodiac Pack',
+        ['name'] = 'Zodiac Pack',
         ['text'] = {
             'Choose {C:attention}#1#{} of up to',
             '{C:attention}#2#{} {C:zodiac}Zodiac{} cards to',
@@ -14,13 +14,9 @@ SMODS.Booster{
         kind = 'shop_pack'
     },
     kind = 'zodiac',
-    weight = 0.25,
-    cost = 8,
-    pos = { x = 3, y = 1 },
-   -- loc_vars = function(self, info_queue, card)
-    --        art_credit('akai', info_queue)
-     --       return {true}
-     --   end,
+    weight = 0.01,
+    cost = 4,
+    pos = { x = 1, y = 1 },
     create_card = function(self, card,i)
         if i == 1 or G.GAME.gamer_choices == nil then
             G.GAME.gamer_choices = {}
@@ -41,8 +37,8 @@ SMODS.Booster{
         
         
     end,
-        ease_background_colour = function(self)
-               ease_colour(G.C.DYN_UI.MAIN, G.C.SECONDARY_SET.Zodiac)
+    ease_background_colour = function(self)
+        ease_colour(G.C.DYN_UI.MAIN, G.C.SECONDARY_SET.Zodiac)
         ease_background_colour({ new_colour = G.C.SECONDARY_SET.Zodiac, special_colour = G.C.BLACK, contrast = 2 })
     end,
 

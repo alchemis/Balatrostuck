@@ -10,7 +10,8 @@ SMODS.Booster{
             '{C:attention}#2#{} {C:aspect}Aspect{} cards to',
             'be used immediately'
         },
-        group_name = 'Aspect Pack'
+        group_name = 'Aspect Pack',
+        kind = 'shop_pack'
     },
     kind = 'aspect',
     cost = 4,
