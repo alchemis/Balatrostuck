@@ -10,7 +10,7 @@ function Balatrostuck.INIT.Jokers.j_cloudwatching()
             ['name'] = 'Cloudwatching',
             ['text'] = {
                 [1] = "When round begins, create a {C:paradox}Paradox{} copy of",
-                [2] = "the {C:attention}15th card{} from the top of your {C:attention}deck",
+                [2] = "the {C:attention}10th card{} from the top of your {C:attention}deck",
                 [3] = "and add it to your {C:attention}hand"
             }
         },
@@ -27,9 +27,9 @@ function Balatrostuck.INIT.Jokers.j_cloudwatching()
         calculate = function (self, card, context)
             if context.first_hand_drawn then
                 local firstmat = nil
-                if #G.deck.cards >= 15 then
+                if #G.deck.cards >= 10 then
                     G.playing_card = (G.playing_card and G.playing_card + 1) or 1
-                    local _card = copy_card(G.deck.cards[#G.deck.cards-14], nil, nil, G.playing_card)
+                    local _card = copy_card(G.deck.cards[#G.deck.cards-9], nil, nil, G.playing_card)
                     _card:add_to_deck()
                     _card:set_edition('e_bstuck_paradox')
                     G.deck.config.card_limit = G.deck.config.card_limit + 1
