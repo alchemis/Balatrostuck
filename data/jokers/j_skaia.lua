@@ -10,10 +10,10 @@ function Balatrostuck.INIT.Jokers.j_skaia()
         loc_txt = {
             ['name'] = 'Skaia',
             ['text'] = {
-                "Create a {C:paradox}Paradox{} copy", 
-                "of every {C:attention}discarded{} card,",
-                "when {C:attention}Blind{} is selected",
-                "{C:red}-1{} discard"
+                "On {C:attention}first discard", 
+                "of round, create a",
+                "{C:paradox}Paradox{} copy of",
+                "each discarded card"
 
             },
             unlock = {'Unlocked by',
@@ -34,7 +34,7 @@ function Balatrostuck.INIT.Jokers.j_skaia()
             info_queue[#info_queue + 1] = G.P_CENTERS['e_bstuck_paradox']
         end,
         calculate = function(self,card,context)
-            if context.pre_discard then
+            if context.pre_discard and G.GAME.current_round.discards_used <= 0 then
                 for i = 1, #context.full_hand do
                     pCard = copy_card(context.full_hand[i], nil, nil, G.playing_card, true)
                     pCard:set_edition("e_bstuck_paradox")
