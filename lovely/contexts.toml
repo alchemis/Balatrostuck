@@ -4,7 +4,6 @@ dump_lua = true
 priority = 0
 
 
-
 # Context.Ace_Dick
 [[patches]]
 [patches.pattern]
@@ -16,11 +15,6 @@ SMODS.calculate_context({ace_dick = true})
 '''
 match_indent = true
 times = 1
-
-
-
-
-
 
 
 # Store Joker Modify 
@@ -80,15 +74,30 @@ pattern = "local card = create_card(v.type, area, nil, nil, nil, nil, nil, 'sho'
 position = "after"
 payload = '''
 SMODS.calculate_context({store_joker_replace = true, shop_card = card})
+if G.GAME.TIMETRAVEL_TIMER and G.GAME.TIMETRAVEL_KEY and G.GAME.TIMETRAVEL_TIMER <= G.GAME.round_resets.ante and card.ability.set == 'Joker' then
+    card:set_ability(G.P_CENTERS[G.GAME.TIMETRAVEL_KEY])
+
+    G.E_MANAGER:add_event(Event({trigger = 'after',delay = 1,
+        func = function()
+            john_2 = SMODS.create_card({key = "j_bstuck_joker"}) 
+            john_2.states.visible = false
+            G.shop_jokers:emplace(john_2)
+            john_2:start_materialize({G.C.BLUE, G.C.WHITE}, nil, 1.3)
+            john_2:add_dialogue("john_loop", "tm")
+            john_2.no_ui = true
+            return true
+        end}))
+
+    G.E_MANAGER:add_event(Event({trigger = 'after',delay = 7, blocking = false,
+        func = function()
+            john_2:start_dissolve({G.C.BLUE, G.C.WHITE}, nil, 1.3)
+            card:start_dissolve({G.C.BLUE, G.C.WHITE}, nil, 1.3)
+            return true
+        end}))
+end
 '''
 match_indent = true
 times = 1
-
-
-
-
-
-
 
 
 [[patches]]
@@ -104,7 +113,6 @@ end
 '''
 match_indent = true
 times = 1
-
 
 
 [[patches]]
@@ -142,6 +150,3 @@ SMODS.calculate_context({bstuck_pre_shuffle_deck = true})
 '''
 match_indent = true
 times = 1
-
-
-                    

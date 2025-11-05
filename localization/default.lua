@@ -314,7 +314,12 @@ return {
             john_balls={
                 "{C:blue}JOHN: do you want to see my balls",
             },
-
+            john_future={
+                "{C:blue}JOHN: I AM MAN FROM FUTURE THIS IS PLACING ORDER",
+            },
+            john_loop={
+                "{C:blue}JOHN: Sorry! Gotta close the loop!",
+            },
             john_cost={
                 "{C:blue}JOHN: dont worry, i got you!",
             },

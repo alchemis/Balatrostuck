@@ -48,6 +48,10 @@ function Balatrostuck.INIT.Jokers.j_joker()
             card:remove_dialogue(3)
         end,
         calculate = function(self, card, context)
+            if context.joker_main then
+                return {mult = 4}
+            end
+
             if not context.blueprint then
                 if context.starting_shop or context.reroll_shop then
                     local activated = false
@@ -89,8 +93,35 @@ function Balatrostuck.INIT.Jokers.j_joker()
                             card = card
                         }
                     end
-                end
 
+                elseif context.store_joker_create then
+                    if (not G.GAME.TIMETRAVEL_TIMER) and pseudorandom('john') < 1 / 1 then
+                        G.GAME.TIMETRAVEL_TIMER = G.GAME.round_resets.ante + 3
+                        G.E_MANAGER:add_event(Event({trigger = 'after',delay = 1,
+                        func = function()
+                            _card = create_card('Joker', G.shop_jokers, nil, 1, nil, nil, nil, 'rta')
+                            G.GAME.TIMETRAVEL_KEY = _card.config.center.key
+                            create_shop_card_ui(_card, 'Joker', G.shop_jokers)
+                            G.shop_jokers:emplace(_card)
+                            _card.states.visible = false
+                            _card:start_materialize({G.C.BLUE, G.C.WHITE}, nil, 1.6)
+                            _card:set_cost()      
+                            john_2 = SMODS.create_card({key = "j_bstuck_joker"}) 
+                            john_2.states.visible = false
+                            G.shop_jokers:emplace(john_2)
+                            john_2:start_materialize({G.C.BLUE, G.C.WHITE}, nil, 1.3)
+                            john_2:add_dialogue("john_future", "tm")
+                            john_2.no_ui = true
+                            return true
+                        end}))
+
+                    G.E_MANAGER:add_event(Event({trigger = 'after',delay = 7, blocking = false,
+                        func = function()
+                            john_2:start_dissolve({G.C.BLUE, G.C.WHITE}, nil, 1.3)
+                            return true
+                    end}))
+
+                    end
 
                 elseif context.skipping_booster and not context.open_booster then
                     if pseudorandom('john') < 1 / card.ability.extra.booster_repeat then
@@ -108,9 +139,7 @@ function Balatrostuck.INIT.Jokers.j_joker()
                         }))
                     end
 
-                elseif context.setting_blind then
-
-            if context.game_over and to_big(G.GAME.chips) / to_big(G.GAME.blind.chips) > to_big(0.25) and not card.ability.REVIVE_ACTIVATED then
+                elseif context.game_over and to_big(G.GAME.chips) / to_big(G.GAME.blind.chips) > to_big(0.25) and not card.ability.REVIVE_ACTIVATED then
                 G.E_MANAGER:add_event(Event({
                     func = function()
                         G.hand_text_area.blind_chips:juice_up()
@@ -127,13 +156,12 @@ function Balatrostuck.INIT.Jokers.j_joker()
                     saved = true,
                     colour = G.C.RED
                 }
-            end
 
                 elseif context.end_of_round and not context.individual and not context.repetition then
                     if G.GAME.blind.boss then
 
                     end
-                    if G.GAME.dollars + G.GAME.dollar_buffer <= 0 and card.ability.extra.charity_money == 20 then
+                    if (G.GAME.dollar_buffer and (G.GAME.dollars + G.GAME.dollar_buffer) or G.GAME.dollars) <= 0 and card.ability.extra.charity_money == 20 then
                         ease_dollars(card.ability.extra.charity_money)
                         card:add_dialogue("john_charity","bm")
                         card:remove_dialogue(4)
