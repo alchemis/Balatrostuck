@@ -97,6 +97,24 @@ function Balatrostuck.INIT.Jokers.j_joker()
 
                 elseif context.setting_blind then
 
+            if context.game_over and to_big(G.GAME.chips) / to_big(G.GAME.blind.chips) > to_big(0.25) and not card.ability.REVIVE_ACTIVATED then
+                G.E_MANAGER:add_event(Event({
+                    func = function()
+                        G.hand_text_area.blind_chips:juice_up()
+                        G.hand_text_area.game_chips:juice_up()
+                        play_sound('tarot1')  
+                        return true
+                    end
+                })) 
+                card.ability.REVIVE_ACTIVATED = true
+                card:add_dialogue("john_revive", "bm")
+                card:remove_dialogue(7)
+                return {
+                    message = localize('k_saved_ex'),
+                    saved = true,
+                    colour = G.C.RED
+                }
+            end
 
                 elseif context.end_of_round and not context.individual and not context.repetition then
                     if G.GAME.blind.boss then
