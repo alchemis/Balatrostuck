@@ -51,6 +51,17 @@ function Balatrostuck.INIT.Jokers.j_joker()
             if not context.blueprint then
                 if context.starting_shop or context.reroll_shop then
                     local activated = false
+                    if G.shop_jokers.cards[1].config.center.rarity and G.shop_jokers.cards[1].config.center.rarity == 1 and 
+                    G.shop_jokers.cards[2].config.center.rarity and G.shop_jokers.cards[2].config.center.rarity == 1 and
+                        (not card.ability.UNCOMMON_ANTE) or card.ability.UNCOMMON_ANTE and (G.GAME.round_resets.ante >= card.ability.UNCOMMON_ANTE) then
+                        card:add_dialogue("john_common", "bm")
+                        card:remove_dialogue(7)
+                        play_sound('generic1', 0.9 + math.random()*0.1, 0.8)
+                        play_sound('holo1', 1.2 + math.random()*0.1, 0.4)
+                        add_tag(Tag('tag_uncommon'))
+                        card.ability.UNCOMMON_ANTE = G.GAME.round_resets.ante + 2
+                    end
+
                     for k, v in pairs(G.shop_jokers.cards) do
                         if v.cost == G.GAME.dollars + 1 then
                             if not activated then
@@ -78,6 +89,8 @@ function Balatrostuck.INIT.Jokers.j_joker()
                             card = card
                         }
                     end
+                end
+
 
                 elseif context.skipping_booster and not context.open_booster then
                     if pseudorandom('john') < 1 / card.ability.extra.booster_repeat then
