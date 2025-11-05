@@ -19,7 +19,9 @@ function Balatrostuck.INIT.Jokers.j_soporpie()
                 'increases by {C:blue}100{} and',
                 'reduces by {C:red}1{} every round',
 
-            }
+            },
+            unlock = {'{C:red}Lose{} a Run',
+                    'at 0 handsize'}
         },
         pos = {
             x = 2,
@@ -29,12 +31,18 @@ function Balatrostuck.INIT.Jokers.j_soporpie()
         rarity = 1,
         blueprint_compat = true,
         eternal_compat = false,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
 
         loc_vars = function(self, info_queue, card)
             art_credit('akai', info_queue)
             return {vars = {card.ability.extra.chips, card.ability.extra.chips_mod, card.ability.extra.h_size}}
+        end,
+
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_soporpie' then
+                unlock_card(self)
+            end
         end,
 
         add_to_deck = function(self, card, from_debuff)

@@ -18,6 +18,36 @@ check_for_unlock({type = 'bstuck_jetpack'})
 match_indent = true
 times = 1
 
+#SoporPie1
+[[patches]]
+[patches.pattern]
+target = "functions/state_events.lua"
+pattern = '''
+G.STATE = G.STATES.GAME_OVER; G.STATE_COMPLETE = false 
+'''
+position = "after"
+payload = '''
+check_for_unlock({type = 'bstuck_soporpie'})
+'''
+match_indent = true
+times = 1
+
+#SoporPie2
+[[patches]]
+[patches.pattern]
+target = "game.lua"
+pattern = '''
+if #G.hand.cards < 1 and #G.deck.cards < 1 and #G.play.cards < 1 then
+'''
+position = "after"
+payload = '''
+if #G.deck.cards < 1 then
+check_for_unlock({type = 'bstuck_soporpie'})
+end
+'''
+match_indent = true
+times = 1
+
 #Signless
 [[patches]]
 [patches.pattern]
