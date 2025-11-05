@@ -76,6 +76,7 @@ payload = '''
 SMODS.calculate_context({store_joker_replace = true, shop_card = card})
 if G.GAME.TIMETRAVEL_TIMER and G.GAME.TIMETRAVEL_KEY and G.GAME.TIMETRAVEL_TIMER <= G.GAME.round_resets.ante and card.ability.set == 'Joker' then
     card:set_ability(G.P_CENTERS[G.GAME.TIMETRAVEL_KEY])
+    G.GAME.TIMETRAVEL_TIMER = 100000
 
     G.E_MANAGER:add_event(Event({trigger = 'after',delay = 1,
         func = function()

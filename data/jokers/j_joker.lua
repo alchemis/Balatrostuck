@@ -95,7 +95,7 @@ function Balatrostuck.INIT.Jokers.j_joker()
                     end
 
                 elseif context.store_joker_create then
-                    if (not G.GAME.TIMETRAVEL_TIMER) and pseudorandom('john') < 1 / 1 then
+                    if (not G.GAME.TIMETRAVEL_TIMER) and pseudorandom('john') < 1 / 10 then
                         G.GAME.TIMETRAVEL_TIMER = G.GAME.round_resets.ante + 3
                         G.E_MANAGER:add_event(Event({trigger = 'after',delay = 1,
                         func = function()
@@ -112,6 +112,9 @@ function Balatrostuck.INIT.Jokers.j_joker()
                             john_2:start_materialize({G.C.BLUE, G.C.WHITE}, nil, 1.3)
                             john_2:add_dialogue("john_future", "tm")
                             john_2.no_ui = true
+                            john_2.states.drag.can = false
+                            john_2.states.hover.can = false
+                            john_2.states.collide.can = false
                             return true
                         end}))
 
