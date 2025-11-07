@@ -27,7 +27,7 @@ function Balatrostuck.INIT.Jokers.j_tumor()
         unlocked = false,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
-            if context.joker_main and G.GAME.dollars == 0 then
+            if context.joker_main and G.GAME.dollars <= 0 then
                 return {
                     Xmult_mod = card.ability.extra.x_mult,
                     message = localize { type = 'variable', key = 'a_xmult', vars = { card.ability.extra.x_mult } },
