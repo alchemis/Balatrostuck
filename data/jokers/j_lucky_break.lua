@@ -13,7 +13,9 @@ function Balatrostuck.INIT.Jokers.j_lucky_break()
             ['text'] = {
                 [1] = 'All {C:green}chance-based{} effects succeed',
                 [2] = 'in the {C:attention}final hand{} of round',
-            }
+            },
+            unlock = {'Score 8^8 points or',
+                    'more in a single hand'}
         },
         pos = {
             x = 6,
@@ -23,12 +25,19 @@ function Balatrostuck.INIT.Jokers.j_lucky_break()
         rarity = 3,
         blueprint_compat = true,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
         loc_vars = function(self, info_queue, card)
             art_credit('akai', info_queue)
             return {vars = {}}
         end,
+
+    check_for_unlock = function(self,args)
+            if args.type == 'bstuck_luckybreak' then
+                unlock_card(self)
+            end
+        end,
+
         remove_from_deck = function(self,card,from_debuff)
             if card.ability.extra.broken then
                 card.ability.extra.broken = false

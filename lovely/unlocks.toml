@@ -76,3 +76,20 @@ payload = '''
 '''
 match_indent = true
 times = 1
+
+#FL1P
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = '''
+unlock_achievement('_100000k')
+        end
+'''
+position = "after"
+payload = '''
+ if args.chips >= 16777216 then
+            check_for_unlock({type = 'bstuck_luckybreak'})
+        end
+'''
+match_indent = true
+times = 1
