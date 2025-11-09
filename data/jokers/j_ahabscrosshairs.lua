@@ -3,7 +3,7 @@ function Balatrostuck.INIT.Jokers.j_ahabscrosshairs()
         name = "Ahabs Crosshairs",
         key = "ahabscrosshairs",
         config = {
-            extra = {x_mult_per = 0.25, money = 16, x_mult = 1}
+            extra = {x_mult_per = 0.20, money = 10, x_mult = 1}
         },
         loc_vars = function(self,info_queue,card)
             art_credit('akai', info_queue)
