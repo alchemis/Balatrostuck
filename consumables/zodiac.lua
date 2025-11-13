@@ -42,6 +42,12 @@ function Balatrostuck.Zodiac:add_caste(key)
 
 
   G.GAME.BALATROSTUCK.zodiac_levels[key] = G.GAME.BALATROSTUCK.zodiac_levels[key] + self:get_level_increase(key)
+  if G.GAME.BALATROSTUCK.zodiac_levels[key] >= 5 then
+  check_for_unlock({type = 'bstuck_giftofgab'})
+  end
+  if G.GAME.BALATROSTUCK.zodiac_levels.Scorpio >= 8 then
+  check_for_unlock({type = 'bstuck_backseater'})
+  end
 end
 
 function Balatrostuck.Zodiac:get_level_increase(key)

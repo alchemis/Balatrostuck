@@ -14,7 +14,9 @@ function Balatrostuck.INIT.Jokers.j_sepulcritude()
                 "contains a {C:attention}Three of a Kind",
                 "and a scoring {C:attention}face{} card"
 
-            }
+            },
+            unlock = {'Get an Aspect to',
+                    'level 5 or higher'}
         },
         pos = {
             x = 2,
@@ -24,7 +26,7 @@ function Balatrostuck.INIT.Jokers.j_sepulcritude()
         rarity = 3,
         blueprint_compat = true,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokersAnimated',
         animated = true,
         frames = 8,
@@ -37,6 +39,13 @@ function Balatrostuck.INIT.Jokers.j_sepulcritude()
         in_pool = function(self,args)
             return false
         end,
+
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_sepulchritude' then
+                unlock_card(self)
+            end
+        end,
+
         calculate = function(self, card, context)
             if context.joker_main and context.scoring_name == "Three of a Kind" then
                 local all_good = 0

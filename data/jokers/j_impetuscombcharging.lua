@@ -6,7 +6,9 @@ function Balatrostuck.INIT.Jokers.j_impetuscombcharging()
             extra = {
                 d6given = false,
                 rerolls = 0
-            }
+            },
+            unlock = {'Get an Aspect to',
+                    'level 5 or higher'}
         },
         loc_txt = {
             ['name'] = 'Impetus Comb Charging',
@@ -25,13 +27,19 @@ function Balatrostuck.INIT.Jokers.j_impetuscombcharging()
         rarity = 3,
         blueprint_compat = true,
         eternal_compat = false,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
 
         loc_vars = function(self, info_queue, card)
             info_queue[#info_queue + 1] = G.P_TAGS['tag_d_six']
             art_credit('akai', info_queue)
             return{ vars = {card.ability.extra.rerolls}}
+        end,
+
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_impetus' then
+                unlock_card(self)
+            end
         end,
 
         calculate = function(self, card, context)

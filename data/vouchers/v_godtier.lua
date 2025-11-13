@@ -6,7 +6,9 @@ function Balatrostuck.INIT.Vouchers.v_godtier()
             text = {
                 '{C:attention}+1{} level in',
                 'current {C:current_aspect}Aspect'
-            }
+            },
+            unlock = {'Get an Aspect to',
+                    'level 3 or higher'}
         },
         pos = {x=1,y=1},
         loc_vars = function(self, info_queue, card)
@@ -22,6 +24,12 @@ function Balatrostuck.INIT.Vouchers.v_godtier()
                 add_slab(Slab('slab_bstuck_' .. anspect),1)
             end
         end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_godtier' then
+                unlock_card(self)
+            end
+        end,
+        unlocked = false,
         in_pool = function(self,args)
             return G.GAME.slab ~= nil
         end

@@ -33,13 +33,10 @@ function Balatrostuck.INIT.Jokers.j_backseater()
                 }
             }
         },
-        -- loc_txt = {
-        --     ['name'] = '8acks8er',
-        --     ['text'] = {
-        --         [1] = "blegh",
-        --         [2] = "blegh"
-        --     }
-        -- },
+        loc_txt = {
+        unlock = {'Level up Scorpio',
+                    'to level 8'}
+        },
         pos = {
             x = 1,
             y = 10
@@ -84,6 +81,12 @@ function Balatrostuck.INIT.Jokers.j_backseater()
         atlas = 'HomestuckJokers',
         in_pool = function(self)
             return Balatrostuck.peanut_gallery
+        end,
+
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_backseater' then
+                unlock_card(self)
+            end
         end,
 
         add_to_deck = function(self, card)

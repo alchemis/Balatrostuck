@@ -320,6 +320,15 @@ function Slab:increase_level(amount)
   local aspect = string.gsub(self.key, "slab_bstuck_", "")
   aspect = string.gsub(aspect, "^%l", string.upper)
   G.GAME.BALATROSTUCK.aspect_levels[aspect] = G.GAME.BALATROSTUCK.aspect_levels[aspect] + amount
+         -- unlocks
+          if G.GAME.BALATROSTUCK.aspect_levels[aspect] >= 3 then
+            check_for_unlock({type = 'bstuck_godtier'})
+            if G.GAME.BALATROSTUCK.aspect_levels[aspect] >= 5 then
+            check_for_unlock({type = 'bstuck_impetus'})
+            check_for_unlock({type = 'bstuck_sepulchritude'})
+            end
+          end
+          --end of unlocks
 end
 
 function Slab:decrease_level(amount)
