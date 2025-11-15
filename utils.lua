@@ -127,7 +127,7 @@ function get_innocuous(card,get_only_name)
         {'onyx_agate', false}
     }
     local diamonds = {
-        {'credit_card', false},{'greedy_joker', false}, {'walkie_talkie', false},{'ticket', false},
+        {'credit_card', false},{'greedy_joker', false}, {'space', false},{'ticket', false},
         {'trading', false},{'gristtorrent',true}, {'alltheirons', true},{'gift',false},
         {'todo_list',false},{'draconiandignitary', true}, {'midas_mask', false},{'business',false},
         {'rough_gem', false}
