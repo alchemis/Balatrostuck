@@ -48,6 +48,7 @@ function Balatrostuck.INIT.Jokers.j_theplotpoint()
                 end
                 if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
                     local blackhole = SMODS.create_card({set = 'Zodiac', key = 'c_black_hole'})
+                    blackhole:set_edition('e_bstuck_paradox')
                     blackhole:add_to_deck()
                     G.consumeables:emplace(blackhole)
                     G.GAME.consumeable_buffer = 0
