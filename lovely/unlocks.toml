@@ -64,6 +64,24 @@ if test_for_signless then check_for_unlock({type = 'bstuck_signless'}) end
 match_indent = true
 times = 1
 
+#Questbed
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = "function Card:use_consumeable(area, copier)"
+position = "after"
+payload = '''
+local test_for_questbed = true
+for k, v in pairs(G.P_CENTER_POOLS['Aspect']) do
+    if not v.key == 'piss' then
+        if not v.discovered then test_for_questbed = nil end
+    end
+end
+if test_for_questbed then check_for_unlock({type = 'bstuck_questbed'}) end
+'''
+match_indent = true
+times = 1
+
 #Frost and Frogs
 [[patches]]
 [patches.pattern]

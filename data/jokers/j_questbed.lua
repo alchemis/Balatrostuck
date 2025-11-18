@@ -18,17 +18,25 @@ function Balatrostuck.INIT.Jokers.j_questbed()
                 'then adds {C:attention}2{} levels',
                 'to current {C:aspect}Aspect',
                 '{C:red,E:2}destroys all jokers{}',
-            }
+            },
+            unlock = {"{C:attention}Discover{} every", "{C:aspect}Aspect{} card"}
         },
         pos = {
             x = 1,
             y = 0
          },
+
+         check_for_unlock = function(self,args)
+            if args.type == 'bstuck_questbed' then
+                unlock_card(self)
+            end
+        end,
+
         cost = 7,
         rarity = 3,
         blueprint_compat = true,
         eternal_compat = false,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
         calculate = function(self,card,context)
             if context.game_over then
