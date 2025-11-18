@@ -30,6 +30,8 @@ SMODS.current_mod.extra_tabs = function()
                 BSUI.Row( BSUI.Config.Basic, {BSUI.Pad(0.0, 0.12)}),
                 BSUI.Row( BSUI.Config.Basic, {BSUI.Modules.Credits.Name('dangerbites', scale)}),
                 BSUI.Row( BSUI.Config.Basic, {BSUI.Pad(0.0, 0.1)}),
+                BSUI.Row( BSUI.Config.Basic, {BSUI.Modules.Credits.Name('JulianMOCs', scale)}),
+                BSUI.Row( BSUI.Config.Basic, {BSUI.Pad(0.0, 0.1)}),
             })
         })
     end
