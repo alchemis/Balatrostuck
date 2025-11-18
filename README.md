@@ -36,12 +36,32 @@ Unlike planets the Zodiac cards don't directly increase their values, instead gr
 
 
 ## Credits
-- **Yokcos** - Art, programming and debugging help
-- **parchmentengineer** - Brainstorming effects for Jokers and Aspect cards
-- **n4melyh4xor** - Balancing help and brainstorming
-- **itayfeder** - **Codex Arcanum** without which the consumable systems wouldn't exist
-- **spike berd** - Spectral card art
-- **VictinActive**, **Coro** - playtesting
-- **Andrew Hussie** - Homestuck 
-- **LocalThunk** - Balatro
-- [REMEMBER TO ADD EVERYONE WHO ISN'T HERE ALREADY]
+
+- **Direction:** Akai, Fazzie, CampfireCollective
+- **Artwork:** Akai, garb, Lyman, Baqly, Penny, Yokcos, bconian, Delirium, SagaciousCejai
+- **Programming:** Akai, Victin, Yokcos, garb, bcconion, Delirium, CampfireCollective, lord-ruby, cozyGalvanism, dangerbites
+- **Playtesting:** conchors, Penny, Chloe (Teki), Victin, Snowroom, pescia, SagaciousCejai, Jadedraconevix
+- **Music/SFX:** dangerbites, Delirium, JulianMOCs
+- **SAHCon Trailer:** shmig, sinewavey, Knightmare
+
+### **Acknowledgements:** 
+
+- Balatro by LocalThunk
+- Homestuck by Andrew Hussie
+- Cool and new Webcome by o
+- Ligmastuck my ymi
+- Vast Error by DECONRECONSTRUCTION
+- Karkat Goes To A Convention by Cole
+
+### Minor Art Credits
+
+These art credits could not be displayed in-game due to technical reasons.
+- Title Screen music - JulianMOCs
+- All 4 new decks - Akai
+- Felt Seal and Paradox Edition - Akai
+- Jail Key Spectral - Akai
+- Both regular Aspect packs, Zodiac pack, Zodiac Jumbo - Akai
+- Zodiac alternative art pack - Cejai
+- Aspect Jumbo pack - Garb
+- SBURB Pack - Delirium
+
