@@ -21,7 +21,7 @@ function Balatrostuck.INIT.Aspects.c_aspect_piss()
         no_collection = true,
         hidden = true,
         soul_set = 'Aspect',  
-        soul_rate = 0.013,
+        soul_rate = 0.0013,
         can_repeat_soul = false,
         atlas = "HomestuckAspects",
         use = function(self, card, area, copier)

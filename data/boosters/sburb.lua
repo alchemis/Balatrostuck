@@ -19,7 +19,7 @@ SMODS.Booster{
      --   end,
     set_ability = function(self, card, initial, delay_sprites)
         local odds = G.GAME.selected_back.effect.center.key == 'b_bstuck_frog' and 1 or 4
-        if pseudorandom('piss') < 1/odds and G.P_CENTERS['c_bstuck_piss'].unlocked then
+        if pseudorandom('piss') < 1/odds and G.P_CENTERS['c_bstuck_piss'].discovered then
             card.ability.extra = 13
         end
     end,
@@ -28,7 +28,7 @@ SMODS.Booster{
         local keys = {
             'breath', 'void', 'blood', 'time', 'heart', 'rage', 'light', 'hope', 'life', 'mind', 'doom','space', 'piss'
         }
-        if not G.P_CENTERS['c_bstuck_piss'].unlocked then
+        if not G.P_CENTERS['c_bstuck_piss'].discovered then
             table.remove(keys,#keys)
         end
 
