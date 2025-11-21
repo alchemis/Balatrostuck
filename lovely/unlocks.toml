@@ -73,7 +73,7 @@ position = "after"
 payload = '''
 local test_for_questbed = true
 for k, v in pairs(G.P_CENTER_POOLS['Aspect']) do
-    if not v.key == 'piss' then
+    if not v.no_collection then
         if not v.discovered then test_for_questbed = nil end
     end
 end
