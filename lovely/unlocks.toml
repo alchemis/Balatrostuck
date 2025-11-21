@@ -73,7 +73,7 @@ position = "after"
 payload = '''
 local test_for_questbed = true
 for k, v in pairs(G.P_CENTER_POOLS['Aspect']) do
-    if not v.key == 'piss' then
+    if not v.no_collection then
         if not v.discovered then test_for_questbed = nil end
     end
 end
@@ -150,6 +150,26 @@ payload = '''
            check_for_unlock({type = 'bstuck_convention'})
            check_for_unlock({type = 'bstuck_paintseal'})
         end
+'''
+match_indent = true
+times = 1
+
+
+
+
+
+#CHALLANGESTRIPLEBLINDSIZE
+[[patches]]
+[patches.pattern]
+target = "blind.lua"
+pattern = '''
+self.chips = get_blind_amount(G.GAME.round_resets.ante)*self.mult*G.GAME.starting_params.ante_scaling
+'''
+position = "after"
+payload = '''
+ if G.GAME.modifiers.tripleblindsize then
+    self.chips = self.chips * 3
+ end
 '''
 match_indent = true
 times = 1

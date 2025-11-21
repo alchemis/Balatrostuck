@@ -149,7 +149,7 @@ end
 local blacklist = {
 "j_bstuck_echidna","j_bstuck_abraxas","j_bstuck_yaldabaoth","j_bstuck_hephaestus","j_bstuck_typheus",
 "j_bstuck_yourlordandmaster", "j_bstuck_magnificent", "j_bstuck_jokermode", "j_bstuck_crowbarsfelt",
-"j_bstuck_joker", "j_bstuck_backseater", 'j_bstuck_biscuits'
+"j_bstuck_joker", "j_bstuck_backseater", 'j_bstuck_biscuits', "vodkamutini"
 }
 bstuck_title_jokers = copy_table(bstuck_joker_keys)
 for _, joker in ipairs(bstuck_title_jokers) do
