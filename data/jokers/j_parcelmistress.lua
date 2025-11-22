@@ -30,6 +30,14 @@ function Balatrostuck.INIT.Jokers.j_parcelmistress()
         eternal_compat = true,
         unlocked = false,
         atlas = 'HomestuckJokers',
+        in_pool = function(self, args)
+            for _, playing_card in ipairs(G.playing_cards or {}) do
+                if playing_card.ability and playing_card.ability.seal then
+                    return true
+                end
+            end
+        return false
+        end,   
         calculate = function(self,card,context)
             card.ability.extra.seal_count = 0
             for _, v in ipairs(G.playing_cards) do

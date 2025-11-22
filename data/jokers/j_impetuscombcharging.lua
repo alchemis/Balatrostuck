@@ -20,15 +20,19 @@ function Balatrostuck.INIT.Jokers.j_impetuscombcharging()
             }
         },
         pos = {
-            x = 9,
-            y = 12
+            x = 0,
+            y = 3
          },
         cost = 7,
         rarity = 3,
         blueprint_compat = true,
         eternal_compat = false,
         unlocked = false,
-        atlas = 'HomestuckJokers',
+        animated = true,
+        frames = 8,
+        animation_speed = 20,
+        photosensitive = true,
+        atlas = 'HomestuckJokersAnimated',
 
         loc_vars = function(self, info_queue, card)
             info_queue[#info_queue + 1] = G.P_TAGS['tag_d_six']
