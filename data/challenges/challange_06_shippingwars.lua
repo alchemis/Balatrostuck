@@ -39,10 +39,12 @@ SMODS.Challenge{
     } 
         ]]
     },
-    restrictions = { --[[
-        restrictions.banned_cards = {},
-        restrictions.banned_tags = {},
-        restrictions.banned_other = {},
-    ]]
+    restrictions = { 
+      banned_other = {
+        {id = 'bl_club', type = 'blind'},
+        {id = 'bl_goad', type = 'blind'},
+        {id = 'bl_window', type = 'blind'},
+        {id = 'bl_head', type = 'blind'}
+      }
     }
 }

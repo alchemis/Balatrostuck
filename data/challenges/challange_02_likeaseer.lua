@@ -11,12 +11,12 @@ SMODS.Challenge{
     jokers = {
         { 
         id = "j_bstuck_cloudwatching",
-        eternal = true,
+        eternal = false,
         pinned = false
     },
     { 
         id = "j_trio",
-        eternal = true,
+        eternal = false,
         pinned = false
     }
     },
