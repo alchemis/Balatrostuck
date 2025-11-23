@@ -387,7 +387,6 @@ function get_next_tag_key(append,Scratch)
 match_indent = true
 times = 1
 
-
 [[patches]]
 [patches.pattern]
 target = "functions/common_events.lua"
@@ -397,6 +396,32 @@ payload = '''
 if _tag == 'tag_bstuck_scratch' and not Scratch then
     _tag = 'tag_handy' 
 end
+'''
+match_indent = true
+times = 1
+
+[[patches]]
+[patches.pattern]
+target = "functions/state_events.lua"
+pattern = "if G.GAME.blind:get_type() == 'Boss' then"
+position = "after"
+payload = '''
+if G.GAME.challenge and (G.GAME.challenge == "c_bstuck_lylacrapsody") then
+    for k, v in pairs(G.jokers.cards) do 
+        v:start_dissolve()
+    end
+end
+'''
+match_indent = true
+times = 1
+
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = "if (self.ability.set == 'Planet' or (self.ability.set == 'Booster' and self.ability.name:find('Celestial'))) and #find_joker('Astronomer') > 0 then self.cost = 0 end"
+position = "after"
+payload = '''
+if (self.ability.set == 'Joker' and G.GAME.challenge and (G.GAME.challenge == "c_bstuck_lylacrapsody")) then self.cost = 2 end
 '''
 match_indent = true
 times = 1
