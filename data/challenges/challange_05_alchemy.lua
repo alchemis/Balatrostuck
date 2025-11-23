@@ -6,6 +6,7 @@ SMODS.Challenge{
     rules = { 
         custom = {
             {id = 'perfectly_generic'},
+            {id = 'no_interest'}
         },
         --[[
         rules.custom ={ 

@@ -6,8 +6,8 @@ function Balatrostuck.INIT.Spectrals.c_spectral_thetreasure()
         loc_txt = {
             name = 'The Treasure',
             text = {
-                [1] = 'All Aspects gain 1 permanent level',
-                [2] = '-1 joker slot',
+                [1] = 'All {C:aspect}Aspects{} gain 1 permanent level',
+                [2] = '{C:red}-1{} Joker slot',
             }
         },
         pos = {

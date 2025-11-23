@@ -9,9 +9,11 @@ function Balatrostuck.INIT.Jokers.j_cloudwatching()
         loc_txt = {
             ['name'] = 'Cloudwatching',
             ['text'] = {
-                [1] = "When round begins, create a {C:paradox}Paradox{} copy of",
-                [2] = "the {C:attention}10th card{} from the top of your {C:attention}deck",
-                [3] = "and add it to your {C:attention}hand"
+                [1] = "When round begins, create ",
+                [2] = "a {C:paradox}Paradox{} copy of",
+              --  [3] = "and add it to your {C:attention}hand",
+                [3] = "the {C:attention}10th card{} from",
+                [4] = "the top of your {C:attention}deck"
             }
         },
         pos = {

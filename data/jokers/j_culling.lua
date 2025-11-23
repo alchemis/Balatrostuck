@@ -8,9 +8,11 @@ function Balatrostuck.INIT.Jokers.j_culling()
         loc_txt = {
             ['name'] = 'Culling',
             ['text'] = {
-                [1] = "{C:mult}+20{} Mult if a card has been {C:attention}destroyed{} this round,", 
-                [2] = "played cards with {C:clubs}Clubs{} or {C:diamonds}Diamonds{} suit have a", 
-                [3] = "{C:green}1 in 4{} chance to be {C:attention}destroyed{} when scored"
+                [1] = "{C:mult}+20{} Mult if a card has been", 
+                [2] = "{C:attention}destroyed{} this round, played",
+                [3] = "cards with {C:clubs}Clubs{} or {C:diamonds}Diamonds{}",
+                [4] = "suit have a {C:green}1 in 4{} chance",
+                [5] = "to be {C:attention}destroyed{} when scored"
             },
             unlock = {'Unlocked by',
                     'finishing Act 1'}

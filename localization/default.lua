@@ -306,6 +306,9 @@ return {
             ch_c_tripleblindsize = {
                 '{C:red}3x{} base Blind size'
             },
+            ch_c_perfectly_generic = {
+                'Only {C:attention}Perfectly Generic{} tags appear'
+            },
             ch_c_only_shop_zodiac = {
                 '{C:attention}Jokers{}, {C:planet}Planets{}, and {C:tarot}Tarots{} don\'t appear in the shop'
             },
