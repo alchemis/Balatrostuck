@@ -18,8 +18,9 @@ function Balatrostuck.INIT.Jokers.j_paintseal()
             unlock = {"Win with the",
             "{C:attention}Painted Deck"}
         },
+        unlock_condition = {type = 'win_deck', deck = 'b_painted'},
         check_for_unlock = function(self,args)
-            if args.type == 'bstuck_paintseal' then
+            if args.type == 'win_deck' then
                 unlock_card(self)
             end
         end,

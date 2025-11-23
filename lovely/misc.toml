@@ -249,23 +249,6 @@ local _size = self.ability.extra + asdf
 G.pack_cards.config.card_limit = self.ability.extra
 '''
 
-
-
-
-
-[[patches]]
-[patches.pattern]
-target = "card.lua"
-pattern = 'if (id > 0 and rank and rank.face) or next(find_joker("Pareidolia")) then'
-position = "before"
-payload = '''
-if id == 8 and next(find_joker("Snowman")) then
-    return true
-end
-'''
-match_indent = true
-times = 1
-
 [[patches]]
 [patches.pattern]
 target = "card.lua"

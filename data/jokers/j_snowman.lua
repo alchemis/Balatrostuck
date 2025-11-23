@@ -23,7 +23,7 @@ function Balatrostuck.INIT.Jokers.j_snowman()
         rarity = 1,
         blueprint_compat = true,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
         loc_vars = function(self, info_queue, card)
             art_credit('akai', info_queue)
@@ -44,6 +44,12 @@ function Balatrostuck.INIT.Jokers.j_snowman()
                     }
                 end
             end
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_snowman' then
+                unlock_card(self)
+            end
         end
+
     }
 end 

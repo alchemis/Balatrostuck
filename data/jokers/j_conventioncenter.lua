@@ -14,8 +14,9 @@ function Balatrostuck.INIT.Jokers.j_conventioncenter()
             unlock = {"Win with the",
             "{C:attention}Painted Deck"}
         },
+        unlock_condition = {type = 'win_deck', deck = 'b_painted'},
         check_for_unlock = function(self,args)
-            if args.type == 'bstuck_convention' then
+            if args.type == 'win_deck' then
                 unlock_card(self)
             end
         end,
