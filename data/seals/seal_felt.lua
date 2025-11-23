@@ -6,7 +6,7 @@ function Balatrostuck.INIT.Seals.seal_felt()
             name = 'Felt Seal',
             label = 'Felt Seal',
             text = {
-                'Create a {c:paradox}Paradox{} copy of',
+                'Create a {C:paradox}Paradox{} copy of',
                 'this card without a Seal',
                 'when drawn to hand'
             }
