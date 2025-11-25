@@ -24,8 +24,13 @@ function Balatrostuck.INIT.Jokers.j_dark_carnival()
         rarity = 3,
         blueprint_compat = false,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_darkcarnival' then
+                unlock_card(self)
+            end
+        end,
         loc_vars = function(self, info_queue, card)
             art_credit('akai', info_queue)
             return {vars = {}}

@@ -22,8 +22,13 @@ function Balatrostuck.INIT.Jokers.j_pawnrevolution()
         rarity = 1,
         blueprint_compat = true,
         eternal_compat = true,
-        unlocked = true,
+        unlocked = false,
         atlas = 'HomestuckJokers',
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_pawnrevo' then
+                unlock_card(self)
+            end
+        end,
         loc_vars = function (self, info_queue, card) 
             art_credit('cejai', info_queue)
             info_queue[#info_queue + 1] = G.P_CENTERS['e_bstuck_paradox']

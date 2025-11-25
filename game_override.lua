@@ -191,6 +191,8 @@ end
 local game_loadref = Game.start_run
 function Game:start_run(args)
     game_loadref(self,args)
+    self.GAME.ranks_destroyed = {}
+    self.GAME.kings_destroyed = 0
     self.GAME.BALATROSTUCK.active_castes = {}
     
     for k,v in pairs(self.GAME.BALATROSTUCK.zodiac_levels) do
@@ -300,7 +302,7 @@ function Card:draw(layer)
 end
 
 local shatter_ref = Card.shatter
-function Card:shatter()
+function Card:shatter()    
     if self.config.center.key == "j_8_ball" then check_for_unlock({type = 'bstuck_vriska'}) end
     if not self.being_used and self.edition and self.edition.key == 'e_bstuck_paradox' and next(SMODS.find_card('j_bstuck_biscuits')) and self.config.center.key ~= 'j_bstuck_questbed' then
         self.getting_sliced = nil
@@ -317,14 +319,15 @@ function Card:shatter()
     shatter_ref(self)
 end
 
+local dissolve_ref = Card.start_dissolve
+function Card:start_dissolve()
+    if self:get_id() and self:get_id() == 13 and G.GAME.kings_destroyed then G.GAME.kings_destroyed = G.GAME.kings_destroyed + 1 end
+    if self:get_id() and G.GAME.ranks_destroyed and not G.GAME.ranks_destroyed[self:get_id()] then G.GAME.ranks_destroyed[self:get_id()] = true end
 
-
-
-
-
-
-
-
+    if G.GAME.kings_destroyed and G.GAME.kings_destroyed >= 4 then check_for_unlock({type = 'bstuck_pawnrevo'}) end
+    if G.GAME.ranks_destroyed and #G.GAME.ranks_destroyed >= 13 then check_for_unlock({type = 'bstuck_darkcarnival'}) end
+    dissolve_ref(self)
+end
 
 function check_for_piss()
     -- sendInfoMessage(G.P_CENTERS['c_bstuck_piss'].discovered and 'True' or 'False')
