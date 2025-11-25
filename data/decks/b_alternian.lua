@@ -21,12 +21,17 @@ function Balatrostuck.INIT.Decks.b_alternian()
         end,
         atlas = 'HomestuckDecks',
         pos = {x = 1,y = 0},
-        unlocked = true,
+        unlocked = false,
         apply = function(self,back)
             G.GAME.starting_params.discards = 3
             G.GAME.starting_params.hands = 4
             G.GAME.starting_params.joker_slots = 6
             G.GAME.starting_params.ante_scaling = 4
+        end,
+        check_for_unlock = function(self,args)
+            if args.type == 'bstuck_altdeck' then
+                unlock_card(self)
+            end
         end
     }
 end

@@ -19,7 +19,6 @@ local function batch_load(txt)
     return joker_defs
 end
 
-
 NFS.load(mod.path.."lib.lua")()
 NFS.load(mod.path.."utils.lua")()
 NFS.load(mod.path.."utils/color_defs.lua")()
