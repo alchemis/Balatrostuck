@@ -77,7 +77,7 @@ function Balatrostuck.Aspect:get_formula(level)
     return {level*2, 2}
 
   elseif self.name == 'Light' or self.name == 'Rage' then 
-    return {1 + level/2}
+    return {1 + (level * 0.3)}
 
   elseif self.name == 'Piss' then 
     return {summation(level+1)}

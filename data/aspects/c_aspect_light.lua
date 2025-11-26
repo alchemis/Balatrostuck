@@ -42,8 +42,8 @@ function Balatrostuck.INIT.Aspects.c_aspect_light()
         apply = function(self, slab, context) 
             if context.other_consumeable then
                 return {
-                    Xmult_mod = 1 + slab:level() / 2,
-                    message = localize{type = 'variable', key = 'a_xmult', vars = {1 + slab:level() / 2}},
+                    Xmult_mod = 1 + (slab:level() * 0.3),
+                    message = localize{type = 'variable', key = 'a_xmult', vars = {1 + (slab:level() * 0.3)}},
                     card = context.other_consumeable              
                 }
             end
