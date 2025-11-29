@@ -5,7 +5,7 @@
 
 Balatrostuck is a mod for the popular poker roguelike Balatro aiming to add Homestuck-related content to the game.
 
-Why? Why not!
+[ADD TAGLINE HERE]
 
 ## Mod additions
 
