@@ -5,7 +5,8 @@ function Balatrostuck.INIT.Jokers.j_sovereignslayer()
         config = {
             extra = {
                 trash_list = {},
-                odds = 3
+                odds = 3,
+                walk_or_not = false
             }
         },
         loc_txt = {
@@ -41,6 +42,7 @@ function Balatrostuck.INIT.Jokers.j_sovereignslayer()
                     if v:is_suit("Spades") then has_spades = true end
                 end
 
+                card.ability.extra.walk_or_not = has_spades
                 if has_spades then
                     for i=1, #context.full_hand do
                         if pseudorandom('black') < G.GAME.probabilities.normal / card.ability.extra.odds then
@@ -49,13 +51,16 @@ function Balatrostuck.INIT.Jokers.j_sovereignslayer()
                     end                              
                 end
             elseif context.destroying_card and not context.blueprint then
+                
                 for _, v in pairs(card.ability.extra.trash_list) do
                     if v == context.destroying_card then
                         card_eval_status_text(context.destroying_card, 'extra', nil, nil, nil, {message = "Stab!", colour = G.C.RED})
                         return true
                     end
                 end
-                card_eval_status_text(context.destroying_card, 'extra', nil, nil, nil, {message = "Walk!", colour = G.C.SUITS.Spades})
+                if card.ability.extra.walk_or_not then
+                    card_eval_status_text(context.destroying_card, 'extra', nil, nil, nil, {message = "Walk!", colour = G.C.SUITS.Spades})
+                end
                 return nil
             end
         end
