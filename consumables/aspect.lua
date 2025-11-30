@@ -359,7 +359,7 @@ Balatrostuck.Slab = SMODS.GameObject:extend{
     -- TODO: tie slabs to Aspect center
     -- TODO: make them *kind of* like tags but without all the fluff
     -- TODO: set it up so that slabs can be made in tandem with Aspects
-    sendInfoMessage("Slab injected: "..self.key)
+    --sendInfoMessage("Slab injected: "..self.key)
     G.P_SLABS[self.key] = self
     SMODS.insert_pool(G.P_CENTER_POOLS[self.set], self)
   end,
