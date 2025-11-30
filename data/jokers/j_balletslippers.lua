@@ -53,34 +53,25 @@ function Balatrostuck.INIT.Jokers.j_balletslippers()
         end,
 
         calculate = function(self,card,context)
-            if context.setting_blind then
-                local _poker_hands = {}
-                for k, v in pairs(G.GAME.hands) do
-                    if v.visible then _poker_hands[#_poker_hands+1] = k end
-                end
-
-
-                
-
-
-                local old_hand = card.ability.extra.to_do_poker_hand
-                card.ability.extra.to_do_poker_hand = nil    
-
-                while not card.ability.extra.to_do_poker_hand do
-                    card.ability.extra.to_do_poker_hand = pseudorandom_element(_poker_hands, pseudoseed('ballet'))
-                    if card.ability.extra.to_do_poker_hand == old_hand then card.ability.extra.to_do_poker_hand = nil end
-                end
-            end
-            
-            if context.before and context.scoring_name == card.ability.extra.to_do_poker_hand then
-                if  context.scoring_name == card.ability.extra.to_do_poker_hand then
-                    card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_gain
-                    return {
-                        card = card,
-                        message = localize('k_upgrade_ex')
-                    }
-                else
-                    card.ability.extra.mult = 0
+            if context.before then
+                if context.scoring_name == card.ability.extra.to_do_poker_hand[card.ability.extra.counter] then
+                    if card.ability.extra.counter == 3 then
+                        card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_gain
+                        card.ability.extra.counter = 1
+                        return {
+                            card = card,
+                            message = localize('k_upgrade_ex')
+                        }
+                    else
+                        local thunk = card.ability.extra.counter
+                        card.ability.extra.counter = card.ability.extra.counter + 1
+                        return {
+                            card = card,
+                            message = thunk.."/3"
+                        }
+                    end
+                elseif card.ability.extra.counter > 1 then
+                    card.ability.extra.counter = 1
                     return {
                         card = card,
                         message = localize('k_reset')
@@ -94,8 +85,9 @@ function Balatrostuck.INIT.Jokers.j_balletslippers()
                   mult_mod = card.ability.extra.mult,
                   message = localize { type = 'variable', key = 'a_mult', vars = { card.ability.extra.mult } }
                 }
-            end        
+            end
         end,
+
         check_for_unlock = function(self,args)
             if args.type == 'bstuck_apple_eaten' then
                 unlock_card(self)
