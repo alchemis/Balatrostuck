@@ -110,8 +110,6 @@ SMODS.current_mod.extra_tabs = function()
                 BSUI.Row( BSUI.Config.Basic, {BSUI.Pad(0.0, 0.075)}),
                 BSUI.Row( BSUI.Config.Basic, {BSUI.Modules.Credits.Name('SagaciousCejai', scale*0.88)}),
                 BSUI.Row( BSUI.Config.Basic, {BSUI.Pad(0.0, 0.1)}),
-                BSUI.Row( BSUI.Config.Basic, {BSUI.Modules.Credits.Name('JadedDraconevix', scale*0.88)}),
-                BSUI.Row( BSUI.Config.Basic, {BSUI.Pad(0.0, 0.1)}),
             }),
         })
     end
