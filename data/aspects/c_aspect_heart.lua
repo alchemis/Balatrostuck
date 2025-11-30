@@ -40,7 +40,7 @@ function Balatrostuck.INIT.Aspects.c_aspect_heart()
         name = 'Aspect of Heart',
         apply = function(self, slab, context)
             if context.level_up_hand then
-                sendInfoMessage("Intersected level up")
+                --sendInfoMessage("Intersected level up")
                 return {
                     amount = context.amount + summation(slab:level())
                 }
