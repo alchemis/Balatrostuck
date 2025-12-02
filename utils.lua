@@ -1,12 +1,13 @@
 OR, XOR, AND = 1, 3, 4
 
 function check_for_bstuck_challenges()
+    local challenges_beaten = true
     for k, v in ipairs(G.CHALLENGES) do
         if v.key:find("bstuck") and not G.PROFILES[G.SETTINGS.profile].challenge_progress.completed[v.id or ''] then
-            G.PROFILES[G.SETTINGS.profile].challenge_progress.completed[v.id or ''] = true
+            challenges_beaten = false
         end
     end
-    return true
+    return challenges_beaten
 end
 
 SMODS.Joker:take_ownership("j_joker", {	
