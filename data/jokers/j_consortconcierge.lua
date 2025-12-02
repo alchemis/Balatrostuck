@@ -14,7 +14,7 @@ function Balatrostuck.INIT.Jokers.j_consortconcierge()
             ['text'] = {
                 [1] = '{C:attention}+1 hand size{} each',
                 [2] = 'hand played this round',
-                [3] = '{C:inactive}(Currently {C:attention}+#1#{}/#2#{C:inactive})'
+                [3] = '{C:inactive}(Currently {C:attention}+#1#{C:inactive}/#2#)'
             },
             unlock = {'Unlocked by',
                     'finishing Act 1'}
