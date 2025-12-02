@@ -7,7 +7,7 @@ SMODS.ConsumableType{
   shop_rate = 4,
   loc_txt = {
     name = 'Zodiac',
-    collection = 'Zodiac',
+    collection = 'Zodiac Cards',
     label = 'Zodiac',
     undiscovered = {
       ['name'] = 'Not Discovered',
@@ -107,7 +107,7 @@ function Balatrostuck.Zodiac:get_formula(level)
     return {level * 25}
 
   elseif self.name == 'Capricorn' then
-    return {level+0.5, 1/(level+1)}
+    return {(level*0.5)+1, 1/(level+1)}
 
   elseif self.name == 'Pisces' then
     return {level * 2}
@@ -196,7 +196,7 @@ Balatrostuck.Caste = SMODS.GameObject:extend{
   inject = function(self)
 
     -- I think it's safe to just reuse this?
-    sendInfoMessage("Caste injected: "..self.key)
+    --sendInfoMessage("Caste injected: "..self.key)
     G.P_CASTES[self.key] = self
     SMODS.insert_pool(G.P_CENTER_POOLS[self.set], self)
   end,

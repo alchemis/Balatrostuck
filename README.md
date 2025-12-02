@@ -5,7 +5,14 @@
 
 Balatrostuck is a mod for the popular poker roguelike Balatro aiming to add Homestuck-related content to the game.
 
-Why? Why not!
+It is your thirteenth birthday, and as with all twelve preceding it, something feels missing from your life. The game presently eluding you is only the latest sleight of hand in the repertoire of an unseen riddler, one to engender a sense not of mirth, but of lack. His coarse schemes are those less of a prankster than a common pickpocket. His riddle is Absence itself. It is a mystery dispersing altogether, like the moon's faint reflection, with even one pebble of inquiry dropped in its black well. It is the most diabolical riddle of all.
+
+"Absence diminishes little passions and increases great ones, as wind extinguishes candles and fans a fire." -Walt Whitman
+
+You have a feeling it's going to be a long day.
+
+**IF YOU ARE HAVING TECHNICAL ISSUES WITH THE MOD, DOWNGRADE YOUR SMODS TO THE FOLLOWING VERSION:**
+https://github.com/Steamodded/smods/releases/tag/1.0.0-beta-0323b
 
 ## Mod additions
 
@@ -14,6 +21,8 @@ Why? Why not!
 - **12 Aspect cards** with run-shaping effects
 - **10 new challenges and 4 new decks** to test your Balatro skills
 - Paradox edition, spectral cards, tags and many more goodies for both Homestuck fans and Balatro diehards
+
+Balatrostuck is currently not compatible with other mods.
 
 ## Act Structure
 
@@ -48,9 +57,9 @@ Unlike planets the Zodiac cards don't directly increase their values, instead gr
 ## Credits
 
 - **Direction:** Akai, Fazzie, CampfireCollective
-- **Artwork:** Akai, garb, Lyman, Baqly, Penny, Yokcos, bconian, Delirium, SagaciousCejai
-- **Programming:** Akai, Victin, Yokcos, garb, bcconion, Delirium, CampfireCollective, lord-ruby, cozyGalvanism, dangerbites
-- **Playtesting:** conchors, Penny, Chloe (Teki), Victin, Snowroom, pescia, SagaciousCejai, Jadedraconevix
+- **Artwork:** Akai, garb, Lyman, Baqly, Penny, Yokcos, bconlon, Delirium, SagaciousCejai
+- **Programming:** Akai, Victin, Yokcos, garb, bconlon, Delirium, CampfireCollective, lord-ruby, cozyGalvanism, dangerbites
+- **Playtesting:** conchors, Penny, Chloe (Teki), Victin, Snowroom, pescia, SagaciousCejai
 - **Music/SFX:** dangerbites, Delirium, JulianMOCs
 - **SAHCon Trailer:** shmig, sinewavey, Knightmare
 

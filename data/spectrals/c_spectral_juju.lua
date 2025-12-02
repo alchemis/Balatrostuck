@@ -6,14 +6,19 @@ function Balatrostuck.INIT.Spectrals.c_spectral_thetreasure()
         loc_txt = {
             name = 'The Treasure',
             text = {
-                [1] = 'All {C:aspect}Aspects{} gain 1 permanent level',
-                [2] = '{C:red}-1{} Joker slot',
+                [1] = 'Gain 1 {C:aspect}Aspects{} level',
+                [2] = '{C:aspect}Aspects{} start with +1 level',
+                [3] = 'Permanently {C:red}-1{} Joker slots',
+                [4] = '{C:inactive}Does not grant you an',
+                [5] = '{C:inactive}Aspect if you dont have one'
+
             }
         },
         pos = {
             x = 0,
             y = 0
         },
+
         loc_vars = function (self, info_queue, card) 
             art_credit('lyman', info_queue)
         end,
