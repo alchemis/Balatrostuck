@@ -19,6 +19,13 @@ return {
                     'in {C:attention}regular play{}'
                 }
             },
+            bstuck_act_joker = {
+                name = "Act Progression",
+                text = {
+                    "#1# this Joker",
+                    "to end {C:attention}Act #2#"
+                }
+            },
             c_bstuck_levelup = {
                 text = {'{s:1.1,E:2,V:1}(lvl.1){} Level up'}
             },
