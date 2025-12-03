@@ -28,6 +28,7 @@ function Balatrostuck.INIT.Jokers.j_collide()
         atlas = 'HomestuckJokers',
         loc_vars = function(self, info_queue, card)
             art_credit('akai', info_queue)
+            act_joker(6, "Purchase", info_queue)
             info_queue[#info_queue + 1] = G.P_CENTERS['m_steel']
         end,
         calculate = function (self, card, context)

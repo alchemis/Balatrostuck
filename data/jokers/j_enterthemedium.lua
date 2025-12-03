@@ -27,6 +27,7 @@ function Balatrostuck.INIT.Jokers.j_enterthemedium()
         atlas = 'HomestuckJokers',
         loc_vars = function(self, info_queue, card)
             art_credit('akai', info_queue)
+            act_joker(3, "Consume", info_queue)
             return {vars = {}}
         end,
         calculate = function(self,card,context)

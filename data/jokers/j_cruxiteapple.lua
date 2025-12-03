@@ -28,6 +28,7 @@ function Balatrostuck.INIT.Jokers.j_cruxiteapple()
         loc_vars = function(self, info_queue, card)
             info_queue[#info_queue + 1] = G.P_TAGS['tag_d_six']
             art_credit('akai', info_queue)
+            act_joker(1, "Consume", info_queue)
             return {vars = {}}
         end,
         calculate = function(self,card,context)

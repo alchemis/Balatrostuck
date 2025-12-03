@@ -25,6 +25,7 @@ function Balatrostuck.INIT.Jokers.j_descend()
         -- },
         loc_vars = function (self, info_queue, card) 
             art_credit('lyman', info_queue)
+            act_joker(4, "Purchase", info_queue)
 
             local key = self.key
             local table = {

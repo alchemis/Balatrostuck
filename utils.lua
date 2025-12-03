@@ -244,6 +244,10 @@ function shuffle(t,seed)
     return tbl
 end
 
+function act_joker(act_number, condition, info)
+    info[#info+1] = { key = 'bstuck_act_joker', set = 'Other', vars = {condition, act_number}}
+end
+
 
 function tableContains(table, value)
     for i = 1,#table do
