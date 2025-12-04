@@ -12,7 +12,7 @@ Balatrostuck.INIT = {
     Decks = {}
 
 }
-Balatrostuck.peanut_gallery = false
+Balatrostuck.peanut_gallery = true
 
 if not G.SETTINGS.bstuck_per_card_credits then
     G.SETTINGS.bstuck_per_card_credits = true
