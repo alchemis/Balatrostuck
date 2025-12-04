@@ -22,7 +22,7 @@ function Balatrostuck.INIT.Jokers.j_abraxas()
         },
         cost = 20,
         rarity = 4,
-        blueprint_compat = true,
+        blueprint_compat = false,
         eternal_compat = true,
         unlocked = true,
         discovered = false,

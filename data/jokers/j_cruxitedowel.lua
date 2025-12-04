@@ -69,6 +69,10 @@ function Balatrostuck.INIT.Jokers.j_cruxitedowel()
                         card.ability.extra.index = {}
                         card.ability.extra.first_consum = nil
                         card.ability.extra.second_consum = nil
+                        return {
+                        card = card,
+                        message = "Alchemy!"
+                                }
                     end
                 else
                     card.ability.extra.tildeath = card.ability.extra.tildeath-1
