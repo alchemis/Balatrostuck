@@ -14,7 +14,7 @@ function Balatrostuck.INIT.Decks.b_alternian()
                 'decks'}
         },
         config = {
-            discards = 1,
+            discards = 2,
             hands = 2,
             slots = 1,
             scaling = 4
