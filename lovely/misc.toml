@@ -409,10 +409,6 @@ if (G.GAME.selected_back.effect.center.key == 'b_bstuck_prospitan') or (G.GAME.s
     if G.PROFILES[G.SETTINGS.profile].progress.bstuck_wins >= 4 then check_for_unlock({ type = "bstuck_altdeck" }) end
     G:save_progress()
 end
-
-if check_for_bstuck_challenges() then
-    check_for_unlock({ type = "bstuck_frogdeck" })
-end
 '''
 match_indent = true
 times = 1
