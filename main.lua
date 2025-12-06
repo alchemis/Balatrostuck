@@ -283,7 +283,7 @@ UnlockedByAscend = {"beyondcanon", "batterwitch", "therapture", "ahabscrosshairs
 UnlockedbyEnterTheMedium = {"faygo", "stump", "ringofvoid", "porkhollow", "ringoflife", "descend"}
 UnlockedByDescend = {"cascade", "wake", "complacencyofthelearned", "gamebro", "dadswallet", "darkscholar"}
 UnlockedByCascade = {"collide", "joker","theplotpoint"}
-UnlockedByCollide = { "yourlordandmaster", "conditionalimmortality", "objectduality"}
+UnlockedByCollide = { "yourlordandmaster", "conditionalimmortality", "objectduality","magnificent","jokermode","crowbarsfelt"}
 
 mod.optional_features = { 
     cardareas = { unscored = true, deck = true, discard = true}
