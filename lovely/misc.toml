@@ -394,7 +394,7 @@ position = "after"
 payload = '''
 if (G.GAME.selected_back.effect.center.key == 'b_bstuck_prospitan') or (G.GAME.selected_back.effect.center.key == 'b_bstuck_dersite') then
     G.PROFILES[G.SETTINGS.profile].progress.bstuck_wins = G.PROFILES[G.SETTINGS.profile].progress.bstuck_wins and (G.PROFILES[G.SETTINGS.profile].progress.bstuck_wins + 1) or 1
-    if G.PROFILES[G.SETTINGS.profile].progress.bstuck_wins >= 4 then check_for_unlock({ type = "bstuck_altdeck" }) end
+    if G.PROFILES[G.SETTINGS.profile].progress.bstuck_wins >= 3 then check_for_unlock({ type = "bstuck_altdeck" }) end
     G:save_progress()
 end
 '''
