@@ -252,7 +252,7 @@ function Balatrostuck.INIT.Jokers.j_backseater()
                             card:remove_dialogue(4)
                         end
                 
-                    elseif context.end_of_round and not context.individual and not context.repetition then
+                    elseif context.start_of_shop and not context.individual and not context.repetition then
                         card.ability.extra.readyyet6 = false
                         card.ability.extra.cardsdone6 = 0
                     end   
