@@ -190,8 +190,9 @@ function Balatrostuck.INIT.Jokers.j_backseater()
                                 
                                 local tagkey2 = get_next_tag_key()
                                 
-                                local tag2 = Tag(tagkey2)
+                                
                                 if tagkey2 == 'tag_bstuck_scratch' then tagkey2 = 'tag_handy' end --prevent this from spawning scratch tag
+                                local tag2 = Tag(tagkey2)
                                 if tagkey2 == 'tag_orbital' then
                                     local _poker_hands = {}
                                     for k, v in pairs(G.GAME.hands) do
