@@ -111,7 +111,8 @@ local tag_list = {
     "scratch",
     "spirograph",
     "matriorb",
-    "sburb"
+    "sburb",
+    "firefly"
 }
 
 local spectral_list = {
