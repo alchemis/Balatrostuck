@@ -36,15 +36,21 @@ function Balatrostuck.INIT.Jokers.j_frogsprite2()
                     juice_card_until(card, eval, true)
                 end
             end
-            if context.discard and G.GAME.current_round.discards_used <= 0 and #context.full_hand == 1 then
+            if context.pre_discard and G.GAME.current_round.discards_used <= 0 and #context.full_hand == 1 then
+                context.other_card = context.full_hand[1]
+                context.other_card:juice_up(0.3,0.4)
+                delay(0.2)
+                local _card_base = string.sub(context.other_card.base.suit, 1, 1)..'_A'
+                context.other_card:set_base(G.P_CARDS[_card_base])
+                context.other_card:set_edition('e_bstuck_paradox',true,true)
+                delay(0.1)
+                
+
                 G.E_MANAGER:add_event(Event({
                     func = function() 
-                    local _card_base = string.sub(context.other_card.base.suit, 1, 1)..'_A'
-                    context.other_card:set_base(G.P_CARDS[_card_base])
-                    context.other_card:set_edition('e_bstuck_paradox',true,true)
                     playing_card_joker_effects({context.other_card})
-                    card_eval_status_text(card, 'extra', nil, nil, nil, {message = "ribbit", colour = G.C.PARADOX})
-                    delay(0.1)
+                    card_eval_status_text(context.other_card, 'extra', nil, nil, nil, {message = "ribbit", colour = G.C.PARADOX})
+                    
                     return true
                 end}))
             end
