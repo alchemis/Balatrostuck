@@ -87,6 +87,7 @@ function Balatrostuck.Aspect:get_formula(level)
   elseif self.name == 'Life' then 
     return {level*2, 2}
 
+
   elseif self.name == 'Light' then
     return {1 + (level * 0.3)}
 
@@ -96,6 +97,7 @@ function Balatrostuck.Aspect:get_formula(level)
     local max_hands = G.GAME.round_resets.hands + G.GAME.round_bonus.next_hands
     
     return {1 + (level * 0.5),1 / (1 + (level / 2)),(1 + (level * 0.5))^(G.GAME.current_round.discards_left - (G.GAME.current_round.hands_left-1))}
+
   elseif self.name == 'Piss' then 
     return {summation(level+1)}
 
