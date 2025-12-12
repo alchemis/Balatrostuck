@@ -124,7 +124,7 @@ function Balatrostuck.INIT.Jokers.j_echeladder()
         end,
 
         calculate = function(self,card,context)
-            if context.end_of_round and context.cardarea == G.jokers and not card.ability.extra.given_tag then
+            if context.end_of_round and context.cardarea == G.jokers and not card.ability.extra.given_tag and card.ability.extra.title_index >= 13 then
                 G.E_MANAGER:add_event(Event({
                     func = (function()
                         add_tag(Tag('tag_bstuck_sburb'))
